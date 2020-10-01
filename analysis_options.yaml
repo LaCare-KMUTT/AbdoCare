@@ -2,4 +2,5 @@ include: package:effective_dart/analysis_options.yaml
 
 linter:
   rules:
-    - prefer_expression_function_bodies
+    prefer_expression_function_bodies: true
+    public_member_api_docs: false
