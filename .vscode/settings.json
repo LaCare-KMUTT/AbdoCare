@@ -5,7 +5,7 @@
     "dart.previewFlutterUiGuides" : true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
 	"[dart]": {
-        "editor.tabSize" : 4,
+        "editor.tabSize" : 2,
 		"editor.formatOnSave": true,
 		"editor.formatOnType": true,
 		"editor.rulers": [80],
