@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Welcome to Chatbot'),
+          title: Text('Welcome to my Chatbot'),
         ),
         body: Center(
           child: Text(wordPair.asPascalCase),
