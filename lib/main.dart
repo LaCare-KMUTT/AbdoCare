@@ -1,6 +1,7 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'pages/Login.dart';
 
 void main() {
   runApp(MyApp());
@@ -134,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      home: LoginPage(),
     );
   }
 

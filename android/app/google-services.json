@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "611491873650",
+    "firebase_url": "https://abdocare-bdab0.firebaseio.com",
+    "project_id": "abdocare-bdab0",
+    "storage_bucket": "abdocare-bdab0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611491873650:android:65c4b8db904547044393eb",
+        "android_client_info": {
+          "package_name": "com.STIN.AbdoCare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611491873650-avbcimj51irvhma4qhbmeinch08cs72l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOnrmVsEviI45fHhC3IrlRQ7N4WAhygTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611491873650-avbcimj51irvhma4qhbmeinch08cs72l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

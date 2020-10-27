@@ -1,4 +1,4 @@
-package com.example.hello_test
+package com.STIN.AbdoCare
 
 import io.flutter.embedding.android.FlutterActivity
 
