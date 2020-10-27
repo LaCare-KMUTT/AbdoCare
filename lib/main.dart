@@ -11,14 +11,12 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: "Prompt"),
-      home: LoginPage(),
-      routes: {
-        '/profile_page': (context) => ProfilePage(),
-        '/login_page': (context) => LoginPage(),
-      },
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        theme: ThemeData(fontFamily: "Prompt"),
+        home: LoginPage(),
+        routes: {
+          '/profile_page': (context) => ProfilePage(),
+          '/login_page': (context) => LoginPage(),
+        },
+      );
 }

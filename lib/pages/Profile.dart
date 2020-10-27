@@ -32,13 +32,11 @@ class _ProfilePage extends State<ProfilePage> {
                 margin: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
               ),
               Container(
-                child: TextFormField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      hintText: 'ตัวอย่าง: นางสาวกรรไกร ไข่ผ้าไหม',
-                      border: UnderlineInputBorder(),
-                      contentPadding: EdgeInsets.all(5.0),
-                      hintStyle: TextStyle(color: Colors.grey)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('นางสาวพรพิมล แก้วใส', style: TextStyle(fontSize: 18)),
+                  ],
                 ),
                 margin: EdgeInsets.only(left: 30.0, right: 30.0),
               ),
@@ -53,13 +51,11 @@ class _ProfilePage extends State<ProfilePage> {
                 margin: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
               ),
               Container(
-                child: TextFormField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      hintText: 'หญิง',
-                      border: UnderlineInputBorder(),
-                      contentPadding: EdgeInsets.all(5.0),
-                      hintStyle: TextStyle(color: Colors.grey)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('หญิง', style: TextStyle(fontSize: 18)),
+                  ],
                 ),
                 margin: EdgeInsets.only(left: 30.0, right: 30.0),
               ),
@@ -74,13 +70,11 @@ class _ProfilePage extends State<ProfilePage> {
                 margin: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
               ),
               Container(
-                child: TextFormField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      hintText: '50',
-                      border: UnderlineInputBorder(),
-                      contentPadding: EdgeInsets.all(5.0),
-                      hintStyle: TextStyle(color: Colors.grey)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('22 ปี', style: TextStyle(fontSize: 18)),
+                  ],
                 ),
                 margin: EdgeInsets.only(left: 30.0, right: 30.0),
               ),
