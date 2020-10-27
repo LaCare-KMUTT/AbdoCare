@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "abdo-bot-briv",
+  "private_key_id": "9ed7278f51f5a326eb59b2c5b864a6f65d7e72ad",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDOPiZt+o0i2IHx\nAwRGOBPF4QNllSqaXexNpR3HY8lmj9/IVgcAtjBnsdt4jGRWumNt36XKpH1Ezjvy\nU+cyYmM9CTj/hMPdOy1aZGYOEJCVZgtlc682M1T266+GBs7HrCRhOLGgzEos5Fs/\nSKDYtQTYrrhE5h1REsK/TFl5Nj2Zrn1IFFX+vl/SdJGsCzc0u38/wVICF5Om4sz1\nOf48vL2JZLr3Deu3/vCHrLSksHF/0iNpFzCjtY+GV93Lh0uBthFGY30MK7OsOPDP\ntlRaFlTNWVZuE6845PgyKDoLIgJjhMfk+rGbdHyHDH67PMVMO4bMPHNR0L9J/xEC\n2EVLKsGzAgMBAAECggEABmqqmWtdLsNbr5rvbBvciaCJkYSFkc3wRy4m8ggpwPYi\n+UGr8Bq7AM7ozCRaDtS3uThnGRnrB9P+y3hOziN/gOujiVehHGX18EUFY9SiGvPU\n0PA7eE06jIAisuHNVysE6r1v0VfpyuHD8QEaeAORxggRlZsvOFGEG52Nfxbv7bMQ\nvcHVkkqEO11KfKwtwJGlvNAbWT8V6+vPiwoxqeUbWsP/R5cz9+TllGWVPvaO6Qcs\n1loX4o569lC3wmGlAWxYyX5jEUlhvuVLL/1fbxXvxD2abeP3eFaUNo5pqNovfAur\nyciEC0o7OMerVKPuhT1WUs9AAQaiI5AtEHI3Hl3YuQKBgQD4DjlFpeCI8PxTmBBh\nFZR4mIjdEkB0wvpEUVMuEUhe/LB3X73G2eAr0Yf+ggle1BH3vw2zFbiFs3mqQlod\nGBahvfE4Xzrm2yfYtyYZ/3qX+GrfiluDYlUKwR3IC9G6erWMTZeDgR1XpTDehWaS\n8ZxgT07nn+NxuHbAIrgbwdk4zwKBgQDU2RvOqvdi4sj9rLFV1uj3BukWekT1FKfx\nHjjV7xfObqczclcaz7LcJx6ask7zlgT9ZR4tPthP6EB/u7kfdqLMljw15sN4yad+\notnfpeSTgMPxnf0NywFbaGy5p3JjgHTbPHMllvqMVeGjb4680OjHTSVwioybgu3O\n+hRqP3+Z3QKBgCyMkWiaw9qUPRzeQILPF10ZN+tMLdtKcRv35xJs9CxrAV5PCYw+\n8O2tsdjZjclEGP3/h/xTuFH6y6zyQbDb9KSTslDHeZKgZWWcbvFYWrIUYU1IUesk\nq9VEnY6h4Ma25wgNn1p0w8pL1p0AJE3bqpP5alha9MQltt4G3j3N8K8tAoGBAIFt\nH26VIWb89jDi0Nacnv6PMi8b3FCW5eRFd1QHVheNy5gKABNqlp0uIHr6z+1onNIk\nqavjmg9E7+t8D/6k2ivDcwtnrhcFsBbeGdPYAVz8IKoMYrL/bWzS28Isou8ETop9\ngJsr6mBpXJJQJKCF+/Ys4AZGCWgKvmZsRPuybvn1AoGBALq2CtRVg1GEUAz9uaKf\n6wUYZkXHATQQPtdfSncNDcSRXjM7zQrSHbR0BRCOHGrJvZFLPOpb0gZE+AzkpK0l\nzQe6ZerQkK4xFoXYPo1Y6SM+5BmJZonNZ//MKcPKw+KNHfgpP8yrmngKgIc65VqO\n3qnhDW72wbIw9FfQC3EitTai\n-----END PRIVATE KEY-----\n",
+  "client_email": "abdocare@abdo-bot-briv.iam.gserviceaccount.com",
+  "client_id": "103586678616070390646",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/abdocare%40abdo-bot-briv.iam.gserviceaccount.com"
+}
