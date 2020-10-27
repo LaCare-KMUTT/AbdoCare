@@ -4,8 +4,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:AbdoCare/pages/Login.dart';
-import 'package:AbdoCare/pages/Profile.dart';
+import 'pages/Login.dart';
+import 'pages/Profile.dart';
 
 void main() => runApp(MyApp());
 
