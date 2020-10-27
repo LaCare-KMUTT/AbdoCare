@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                   RaisedButton(
                     textColor: Colors.white,
                     color: Color(0xFF33cc33),
-                    child: Text('ลงทะเบียน'),
+                    child: Text('ลงทะเบียน', style: TextStyle(fontSize: 18)),
                     onPressed: () {
                       print('This is login button');
                       setState(() {});
