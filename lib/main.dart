@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: "Poppins"),
+      theme: ThemeData(fontFamily: "Prompt"),
       home: LoginPage(),
       routes: {
         '/profile_page': (context) => ProfilePage(),
