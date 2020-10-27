@@ -4,9 +4,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:hello_test/pages/Login.dart';
-import 'package:hello_test/pages/Profile.dart';
-
+import 'package:AbdoCare/pages/Login.dart';
+import 'package:AbdoCare/pages/Profile.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: LoginPage(),
       routes: {
-        '/profile-page': (context) => ProfilePage(),
-        '/login-page': (context) => LoginPage(),
+        '/profile_page': (context) => ProfilePage(),
+        '/login_page': (context) => LoginPage(),
       },
     );
   }

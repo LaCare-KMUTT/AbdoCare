@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       print('This is login button');
                       setState(() {});
-                      Navigator.pushNamed(context, '/profile-page');
+                      Navigator.pushNamed(context, '/profile_page');
                     },
                   ),
                 ],

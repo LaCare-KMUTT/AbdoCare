@@ -200,7 +200,7 @@ class _ProfilePage extends State<ProfilePage> {
                   onPressed: () {
                     print('This is login button');
                     setState(() {});
-                    Navigator.pushNamed(context, '/login-page');
+                    Navigator.pushNamed(context, '/login_page');
                   },
                 ),
               ],
