@@ -70,21 +70,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: <Widget>[
-            //     Image.asset(
-            //       'assets/Hospital_logo.png',
-            //       height: 100,
-            //       width: 100,
-            //     ),
-            //     Image.asset(
-            //       'assets/STIN_logo.png',
-            //       height: 100,
-            //       width: 100,
-            //     )
-            //   ],
-            // ),
           ],
         ),
       ),
