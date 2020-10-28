@@ -1,6 +1,5 @@
-// import 'package:bubble/bubble.dart';
-import 'package:AbdoCare/pages/Chat.dart';
 import 'package:flutter/material.dart';
+import 'pages/Chat.dart';
 // import 'package:flutter_dialogflow/dialogflow_v2.dart';
 
 void main() {

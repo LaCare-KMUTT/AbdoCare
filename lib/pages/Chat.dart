@@ -39,7 +39,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final messageInsert = TextEditingController();
-  List<Map> messsages = List();
+  List<Map> messsages = [];
+
+  void _onItemTapped(int index) {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +121,32 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFFC37447),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white60,
+        selectedFontSize: 14,
+        unselectedFontSize: 12,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.keyboard,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            label: 'แป้นพิมพ์',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            label: 'เมนู',
+          ),
+        ],
+        onTap: _onItemTapped,
       ),
     );
   }
