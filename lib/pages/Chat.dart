@@ -1,3 +1,4 @@
+import 'package:AbdoCare/pages/BottomNavBar.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
@@ -40,10 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final messageInsert = TextEditingController();
   List<Map> messsages = [];
+  // int _selectedIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {});
-  }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -122,32 +126,34 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFFC37447),
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white60,
-        selectedFontSize: 14,
-        unselectedFontSize: 12,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.keyboard,
-              color: Colors.white,
-              size: 30.0,
-            ),
-            label: 'แป้นพิมพ์',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Colors.white,
-              size: 30.0,
-            ),
-            label: 'เมนู',
-          ),
-        ],
-        onTap: _onItemTapped,
-      ),
+      bottomNavigationBar: BottomNavBar(),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   backgroundColor: Color(0xFFC37447),
+      //   selectedItemColor: Colors.white,
+      //   unselectedItemColor: Colors.white60,
+      //   selectedFontSize: 14,
+      //   unselectedFontSize: 12,
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.keyboard,
+      //         color: Colors.white,
+      //         size: 30.0,
+      //       ),
+      //       label: 'แป้นพิมพ์',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.home,
+      //         color: Colors.white,
+      //         size: 30.0,
+      //       ),
+      //       label: 'เมนู',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   onTap: _onItemTapped,
+      // ),
     );
   }
 
