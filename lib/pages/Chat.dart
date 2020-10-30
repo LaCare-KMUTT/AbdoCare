@@ -1,7 +1,7 @@
-import 'package:AbdoCare/pages/BottomNavBar.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'RichMenu.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -41,13 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final messageInsert = TextEditingController();
   List<Map> messsages = [];
-  // int _selectedIndex = 0;
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -127,94 +120,112 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavBar(),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   backgroundColor: Color(0xFFC37447),
-      //   selectedItemColor: Colors.white,
-      //   unselectedItemColor: Colors.white60,
-      //   selectedFontSize: 14,
-      //   unselectedFontSize: 12,
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(
-      //         Icons.keyboard,
-      //         color: Colors.white,
-      //         size: 30.0,
-      //       ),
-      //       label: 'แป้นพิมพ์',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(
-      //         Icons.home,
-      //         color: Colors.white,
-      //         size: 30.0,
-      //       ),
-      //       label: 'เมนู',
-      //     ),
-      //   ],
-      //   currentIndex: _selectedIndex,
-      //   onTap: _onItemTapped,
-      // ),
     );
   }
+
+  BottomNavBar() => Container(
+        color: Color(0xFFC37447),
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlatButton(
+              color: Color(0xFFC37447),
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => SingleChildScrollView(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: RichMenuPage(),
+                          ),
+                        ));
+              },
+              child: Container(
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.home,
+                        color: Colors.white,
+                        size: 30.0,
+                      ),
+                      onPressed: () {
+                        // showMenu();
+                      },
+                    ),
+                    Text(
+                      'เมนูหลัก',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
 
   //for better one i have use the bubble package check out the pubspec.yaml
 
-  Widget chat(String message, int data) {
-    return Container(
-      padding: EdgeInsets.only(left: 5, right: 5),
-      child: Row(
-        mainAxisAlignment:
-            data == 1 ? MainAxisAlignment.end : MainAxisAlignment.start,
-        children: [
-          data == 0
-              ? Container(
-                  height: 40,
-                  width: 40,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/robot.jpg"),
-                  ),
-                )
-              : Container(),
-          Padding(
-            padding: EdgeInsets.all(5.0),
-            child: Bubble(
-                radius: Radius.circular(15.0),
-                color: data == 0 ? Color(0xFFF1B43F) : Color(0xFFFCECBC),
-                elevation: 0.0,
-                child: Padding(
-                  padding: EdgeInsets.all(1.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 5.0,
-                      ),
-                      Flexible(
-                          child: Container(
-                        constraints: BoxConstraints(maxWidth: 200),
-                        child: Text(
-                          message,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
+  Widget chat(String message, int data) => Container(
+        padding: EdgeInsets.only(left: 5, right: 5),
+        child: Row(
+          mainAxisAlignment:
+              data == 1 ? MainAxisAlignment.end : MainAxisAlignment.start,
+          children: [
+            data == 0
+                ? Container(
+                    height: 40,
+                    width: 40,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/robot.jpg"),
+                    ),
+                  )
+                : Container(),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Bubble(
+                  radius: Radius.circular(15.0),
+                  color: data == 0 ? Color(0xFFF1B43F) : Color(0xFFFCECBC),
+                  elevation: 0.0,
+                  child: Padding(
+                    padding: EdgeInsets.all(1.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 5.0,
                         ),
-                      ))
-                    ],
-                  ),
-                )),
-          ),
-          data == 1
-              ? Container(
-                  height: 40,
-                  width: 40,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/default.jpg"),
-                  ),
-                )
-              : Container(),
-        ],
-      ),
-    );
-  }
+                        Flexible(
+                            child: Container(
+                          constraints: BoxConstraints(maxWidth: 200),
+                          child: Text(
+                            message,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ))
+                      ],
+                    ),
+                  )),
+            ),
+            data == 1
+                ? Container(
+                    height: 40,
+                    width: 40,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/default.jpg"),
+                    ),
+                  )
+                : Container(),
+          ],
+        ),
+      );
 }
