@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'pages/Chat.dart';
-// import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'pages/Login.dart';
+import 'pages/Profile.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,11 +11,12 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-      routes: {},
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        theme: ThemeData(fontFamily: "Prompt"),
+        home: LoginPage(),
+        routes: {
+          '/profile_page': (context) => ProfilePage(),
+          '/login_page': (context) => LoginPage(),
+        },
+      );
 }
