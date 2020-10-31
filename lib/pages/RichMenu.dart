@@ -129,63 +129,6 @@ class _RichMenuPageState extends State<RichMenuPage> {
                       ),
                     ),
                   ),
-                  // FlatButton(
-                  //   color: Color(0xFFF8CC77),
-                  //   onPressed: () {},
-                  //   child: Container(
-                  //     height: 100,
-                  //     width: 20,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Text(
-                  //           'สรุปผลประจำวัน',
-                  //           style: TextStyle(
-                  //             fontSize: 18.0,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // FlatButton(
-                  //   color: Color(0xFFF1B43F),
-                  //   onPressed: () {},
-                  //   child: Container(
-                  //     height: 20,
-                  //     width: 20,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Text(
-                  //           'ตารางนัด',
-                  //           style: TextStyle(
-                  //             fontSize: 18.0,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // FlatButton(
-                  //   color: Color(0xFFE38C14),
-                  //   onPressed: () {},
-                  //   child: Container(
-                  //     height: 100,
-                  //     width: 20,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Text(
-                  //           'การฝึกสอน',
-                  //           style: TextStyle(
-                  //             fontSize: 18.0,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ],

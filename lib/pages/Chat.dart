@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: ListTile(
                 title: Container(
-                  height: 35,
+                  height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     color: Color.fromRGBO(220, 220, 220, 1),
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Color(0xFFC37447),
         height: 50,
         width: MediaQuery.of(context).size.width,
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FlatButton(
@@ -147,6 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Container(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
                       icon: Icon(
@@ -154,9 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.white,
                         size: 30.0,
                       ),
-                      onPressed: () {
-                        // showMenu();
-                      },
+                      onPressed: () {},
                     ),
                     Text(
                       'เมนูหลัก',
