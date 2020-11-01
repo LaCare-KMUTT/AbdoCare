@@ -12,7 +12,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFC37447),
         title: Text('AbdoCare'),
       ),
       body: Container(
@@ -22,11 +21,8 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(50, 200, 50, 0),
               child: TextField(
-                //Hide code
                 obscureText: true,
-                //ทำให้textไปตรงกลางของช่อง
                 textAlign: TextAlign.center,
-                //ใส่ว่าช่องนี้จะใส่อะไรเป็นข้อความแนะนำ
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'รหัสโค้ด',
@@ -39,13 +35,13 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   RaisedButton(
-                    textColor: Colors.white,
                     color: Color(0xFF33cc33),
-                    child: Text('ลงทะเบียน', style: TextStyle(fontSize: 18)),
+                    child: Text('ลงทะเบียน',
+                        style: Theme.of(context).textTheme.bodyText1),
                     onPressed: () {
                       print('This is login button');
                       setState(() {});
-                      Navigator.pushNamed(context, '/profile_page');
+                      Navigator.pushReplacementNamed(context, '/profile_page');
                     },
                   ),
                 ],

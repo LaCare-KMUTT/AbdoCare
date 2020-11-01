@@ -13,7 +13,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFC37447),
         title: Text('ข้อมูลส่วนตัว'),
       ),
       body: ListView(
@@ -26,10 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                 child: Text(
                   'ชื่อ-นามสกุล',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Color(0xFFC37447)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
@@ -37,7 +33,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('นางสาวพรพิมล แก้วใส', style: TextStyle(fontSize: 18)),
+                    Text('นางสาวพรพิมล แก้วใส',
+                        style: Theme.of(context).textTheme.bodyText1),
                   ],
                 ),
               ),
@@ -45,10 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                 child: Text(
                   'เพศ',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Color(0xFFC37447)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
@@ -56,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('หญิง', style: TextStyle(fontSize: 18)),
+                    Text('หญิง', style: Theme.of(context).textTheme.bodyText1),
                   ],
                 ),
               ),
@@ -64,10 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                 child: Text(
                   'อายุ',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Color(0xFFC37447)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
@@ -75,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('22 ปี', style: TextStyle(fontSize: 18)),
+                    Text('22 ปี', style: Theme.of(context).textTheme.bodyText1),
                   ],
                 ),
               ),
@@ -83,10 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                 child: Text(
                   'วิธีการผ่าตัด',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Color(0xFFC37447)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
@@ -94,7 +82,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('ผ่าตัดแบบส่องกล้อง', style: TextStyle(fontSize: 18)),
+                    Text('ผ่าตัดแบบส่องกล้อง',
+                        style: Theme.of(context).textTheme.bodyText1),
                   ],
                 ),
               ),
@@ -102,10 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                 child: Text(
                   'เบอร์โทรศัพท์',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Color(0xFFC37447)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
@@ -123,10 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                 child: Text(
                   'น้ำหนัก',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Color(0xFFC37447)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
@@ -144,10 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                 child: Text(
                   'ส่วนสูง',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Color(0xFFC37447)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
@@ -165,10 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                 child: Text(
                   'BMI ค่าดัชนีมวลกาย',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Color(0xFFC37447)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               Padding(
@@ -176,7 +153,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('23.44 (ท้วม)', style: TextStyle(fontSize: 18)),
+                    Text('23.44 (ท้วม)',
+                        style: Theme.of(context).textTheme.bodyText1),
                   ],
                 ),
               ),
@@ -190,12 +168,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 RaisedButton(
                   textColor: Colors.white,
                   color: Color(0xFFE38C14),
-                  child: Text('ตั้งค่ารหัสผ่านยืนยันตัวตน 4 หลัก',
-                      style: TextStyle(fontSize: 18)),
+                  child: Text('ตั้งค่ารหัสผ่านยืนยันตัวตน 6 หลัก',
+                      style: Theme.of(context).textTheme.bodyText1),
                   onPressed: () {
                     print('This is setpin button');
                     setState(() {});
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => SetpinRoute()),
                     );
@@ -212,11 +190,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 RaisedButton(
                   textColor: Colors.white,
                   color: Color(0xFF33cc33),
-                  child: Text('ยืนยัน', style: TextStyle(fontSize: 18)),
+                  child: Text('ยืนยัน',
+                      style: Theme.of(context).textTheme.bodyText1),
                   onPressed: () {
                     print('This is setpin button');
                     setState(() {});
-                    Navigator.pushNamed(context, '/login_page');
+                    Navigator.pushReplacementNamed(context, '/chat_page');
                   },
                 ),
               ],
@@ -236,10 +215,6 @@ class SetpinRoute extends StatefulWidget {
 class _SetpinRouteState extends State<SetpinRoute> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Color(0xFFC37447),
-        //   title: Text('ตั้งค่ารหัสผ่าน'),
-        // ),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -258,11 +233,13 @@ class PinScreen extends StatefulWidget {
 }
 
 class _PinScreenState extends State<PinScreen> {
-  List<String> currentPin = ["", "", "", ""];
+  List<String> currentPin = ["", "", "", "", "", ""];
   TextEditingController pinOneController = TextEditingController();
   TextEditingController pinTwoController = TextEditingController();
   TextEditingController pinThreeController = TextEditingController();
   TextEditingController pinFourController = TextEditingController();
+  TextEditingController pinFiveController = TextEditingController();
+  TextEditingController pinSixController = TextEditingController();
   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(10.0),
     borderSide: BorderSide(
@@ -398,10 +375,6 @@ class _PinScreenState extends State<PinScreen> {
                         },
                         child:
                             Icon(Icons.backspace_outlined, color: Colors.white),
-                        // child: Image.asset(
-                        //   "assets/Hospital_logo.png",
-                        //   color: Colors.white,
-                        // ),
                       ),
                     ),
                   ],
@@ -416,7 +389,7 @@ class _PinScreenState extends State<PinScreen> {
   clearPin() {
     if (pinIndex == 0) {
       pinIndex = 0;
-    } else if (pinIndex == 4) {
+    } else if (pinIndex == 6) {
       setPin(pinIndex, "");
       currentPin[pinIndex - 1] = "";
       pinIndex--;
@@ -431,7 +404,7 @@ class _PinScreenState extends State<PinScreen> {
   pinIndexSetup(String text) {
     if (pinIndex == 0) {
       pinIndex = 1;
-    } else if (pinIndex < 4) pinIndex++;
+    } else if (pinIndex < 6) pinIndex++;
     setPin(pinIndex, text);
     currentPin[pinIndex - 1] = text;
     var strPin = "";
@@ -439,7 +412,7 @@ class _PinScreenState extends State<PinScreen> {
     currentPin.forEach((element) {
       strPin += element;
     });
-    if (pinIndex == 4) {
+    if (pinIndex == 6) {
       Alert(
         context: context,
         type: AlertType.warning,
@@ -463,7 +436,7 @@ class _PinScreenState extends State<PinScreen> {
             ),
             onPressed: () {
               print(strPin);
-              Navigator.pushNamed(context, '/profile_page');
+              Navigator.pushReplacementNamed(context, '/profile_page');
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
           )
@@ -487,6 +460,12 @@ class _PinScreenState extends State<PinScreen> {
       case 4:
         pinFourController.text = text;
         break;
+      case 5:
+        pinFiveController.text = text;
+        break;
+      case 6:
+        pinSixController.text = text;
+        break;
     }
   }
 
@@ -509,6 +488,14 @@ class _PinScreenState extends State<PinScreen> {
           PINNumber(
             outlineInputBorder: outlineInputBorder,
             textEditingController: pinFourController,
+          ),
+          PINNumber(
+            outlineInputBorder: outlineInputBorder,
+            textEditingController: pinFiveController,
+          ),
+          PINNumber(
+            outlineInputBorder: outlineInputBorder,
+            textEditingController: pinSixController,
           ),
         ],
       );

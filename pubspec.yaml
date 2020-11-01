@@ -49,6 +49,8 @@ flutter:
     - assets/robot.jpg
     - assets/default.jpg
     - assets/abdo-bot-briv-9ed7278f51f5.json
+    - assets/Hospital_logo.png
+    - assets/STIN_logo.png
   fonts:
     - family: Prompt
       fonts:
@@ -62,9 +64,7 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-      - assets/Hospital_logo.png
-      - assets/STIN_logo.png
+ 
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

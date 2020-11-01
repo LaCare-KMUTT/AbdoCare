@@ -46,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFC37447),
         title: Text(
           "Abdo Bot",
         ),
@@ -71,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: ListTile(
                 title: Container(
-                  height: 35,
+                  height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     color: Color.fromRGBO(220, 220, 220, 1),
@@ -96,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(
                       Icons.send,
                       size: 30.0,
-                      color: Color(0xFFC37447),
+                      color: Theme.of(context).primaryColor,
                     ),
                     onPressed: () {
                       if (messageInsert.text.isEmpty) {
@@ -124,14 +123,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   BottomNavBar() => Container(
-        color: Color(0xFFC37447),
+        color: Theme.of(context).primaryColor,
         height: 50,
         width: MediaQuery.of(context).size.width,
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FlatButton(
-              color: Color(0xFFC37447),
               onPressed: () {
                 showModalBottomSheet(
                     context: context,
@@ -147,6 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Container(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
                       icon: Icon(
@@ -154,9 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.white,
                         size: 30.0,
                       ),
-                      onPressed: () {
-                        // showMenu();
-                      },
+                      onPressed: () {},
                     ),
                     Text(
                       'เมนูหลัก',

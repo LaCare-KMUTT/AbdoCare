@@ -32,15 +32,9 @@ class _RichMenuPageState extends State<RichMenuPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: Text(
-                  'เมนูหลัก',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Color(0xFFC37447),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: Text('เมนูหลัก',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyText2),
               ),
               FlatButton(
                 padding: EdgeInsets.only(top: 0),
@@ -57,9 +51,7 @@ class _RichMenuPageState extends State<RichMenuPage> {
                     children: [
                       Text(
                         'แบบประเมิน',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],
                   ),
@@ -79,9 +71,7 @@ class _RichMenuPageState extends State<RichMenuPage> {
                           children: [
                             Text(
                               'สรุปผลประจำวัน',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -100,9 +90,7 @@ class _RichMenuPageState extends State<RichMenuPage> {
                           children: [
                             Text(
                               'ตารางนัด',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],
                         ),
@@ -120,72 +108,13 @@ class _RichMenuPageState extends State<RichMenuPage> {
                           children: [
                             Text(
                               'การฝึกสอน',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  // FlatButton(
-                  //   color: Color(0xFFF8CC77),
-                  //   onPressed: () {},
-                  //   child: Container(
-                  //     height: 100,
-                  //     width: 20,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Text(
-                  //           'สรุปผลประจำวัน',
-                  //           style: TextStyle(
-                  //             fontSize: 18.0,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // FlatButton(
-                  //   color: Color(0xFFF1B43F),
-                  //   onPressed: () {},
-                  //   child: Container(
-                  //     height: 20,
-                  //     width: 20,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Text(
-                  //           'ตารางนัด',
-                  //           style: TextStyle(
-                  //             fontSize: 18.0,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // FlatButton(
-                  //   color: Color(0xFFE38C14),
-                  //   onPressed: () {},
-                  //   child: Container(
-                  //     height: 100,
-                  //     width: 20,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Text(
-                  //           'การฝึกสอน',
-                  //           style: TextStyle(
-                  //             fontSize: 18.0,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ],
