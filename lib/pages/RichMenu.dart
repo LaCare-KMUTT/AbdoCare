@@ -32,15 +32,9 @@ class _RichMenuPageState extends State<RichMenuPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: Text(
-                  'เมนูหลัก',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Color(0xFFC37447),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: Text('เมนูหลัก',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyText2),
               ),
               FlatButton(
                 padding: EdgeInsets.only(top: 0),
@@ -57,9 +51,7 @@ class _RichMenuPageState extends State<RichMenuPage> {
                     children: [
                       Text(
                         'แบบประเมิน',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],
                   ),
@@ -79,9 +71,7 @@ class _RichMenuPageState extends State<RichMenuPage> {
                           children: [
                             Text(
                               'สรุปผลประจำวัน',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -100,9 +90,7 @@ class _RichMenuPageState extends State<RichMenuPage> {
                           children: [
                             Text(
                               'ตารางนัด',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],
                         ),
@@ -120,9 +108,7 @@ class _RichMenuPageState extends State<RichMenuPage> {
                           children: [
                             Text(
                               'การฝึกสอน',
-                              style: TextStyle(
-                                fontSize: 18.0,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],
                         ),
