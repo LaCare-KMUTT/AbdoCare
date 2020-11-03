@@ -6,46 +6,7 @@ class AppointPage extends StatefulWidget {
   State<StatefulWidget> createState() => _AppointPageState();
 }
 
-class myItem {
-  myItem({this.header, this.isExpanded = false, this.body});
-  bool isExpanded;
-  final String header;
-  final String body;
-}
-
 class _AppointPageState extends State<AppointPage> {
-  List<myItem> _items = <myItem>[
-    myItem(header: "19 กันยายน 2563", body: "เวลา 09.00"),
-    myItem(header: "18 ตุลาคม 2563", body: "เวลา 08.00"),
-    myItem(header: "3 พฤศจิกายน 2563", body: "เวลา 09.00"),
-  ];
-  Widget _buildListPanel() {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _items[index].isExpanded = !_items[index].isExpanded;
-        });
-      },
-      children: _items.map((myItem item) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text(
-                item.header,
-                style: TextStyle(fontSize: 20, color: Color(0xFFC37447)),
-              ),
-            );
-          },
-          isExpanded: item.isExpanded,
-          body: ListTile(
-            title:
-                Text(item.body, style: Theme.of(context).textTheme.bodyText1),
-          ),
-        );
-      }).toList(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
