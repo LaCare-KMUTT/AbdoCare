@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'pages/Appointment.dart';
 import 'pages/Chat.dart';
 import 'pages/Login.dart';
 import 'pages/Profile.dart';
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: "Prompt",
           primaryColor: Color(0xFFC37447),
+          primarySwatch: Colors.amber,
           textTheme: TextTheme(
             bodyText1: TextStyle(fontSize: 18.0, color: Colors.black),
             bodyText2: TextStyle(
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           '/profile_page': (context) => ProfilePage(),
           '/login_page': (context) => LoginPage(),
           '/chat_page': (context) => MyHomePage(),
+          '/appoint_page': (context) => AppointPage(),
         },
       );
 }
