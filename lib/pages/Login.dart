@@ -13,11 +13,42 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _controller = TextEditingController();
   bool _validate = false;
+
   void _login(String uniqueKey) async {
     Firebase.initializeApp();
-    var user = FirebaseFirestore.instance.collection('user');
-    var doc = user.where('password', isEqualTo: uniqueKey);
-    print(doc.get());
+    final searchedUserId = await FirebaseFirestore.instance
+        .collection('Users')
+        .where('password', isEqualTo: uniqueKey)
+        .get();
+    print(searchedUserId.docs);
+    print(uniqueKey);
+    if (searchedUserId.size == 0) {
+      print('can\'t find user id ');
+    } else {
+      var document = searchedUserId.docs.first;
+      final userId = document.id;
+      final user = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userId)
+          .get();
+      final username = user.get('username');
+      print(username);
+
+      try {
+        var _authResult = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: username, password: uniqueKey);
+        print('sign in! YEAH!');
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          print('No user found for the email');
+        } else if (e.code == 'wrong-password') {
+          print('wrong password');
+        }
+      }
+      await FirebaseAuth.instance.signOut();
+      print('sign OUT ! ');
+      //TODO DEVELOPER => pass user data to next page
+    }
   }
 
   @override
