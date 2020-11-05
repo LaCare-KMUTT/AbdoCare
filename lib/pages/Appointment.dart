@@ -180,6 +180,25 @@ class _addappointState extends State<addappoint> {
                       children: [
                         Row(
                           children: [
+                            Icon(Icons.paste_rounded),
+                            Text(
+                              ' นัดมาตรวจ',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: TextFormField(
+                            autofocus: false,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
+                            onTap: () {},
+                          ),
+                        ),
+                        Row(
+                          children: [
                             Icon(Icons.calendar_today),
                             Text(
                               ' วัน/เดือน/ปี',
@@ -228,7 +247,7 @@ class _addappointState extends State<addappoint> {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.notes),
+                            Icon(Icons.notes_rounded),
                             Text(
                               ' การเตรียมความพร้อม',
                               style: Theme.of(context).textTheme.bodyText1,
