@@ -1,9 +1,9 @@
-import 'package:AbdoCare/pages/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'pages/Appointment.dart';
 import 'pages/Chat.dart';
 import 'pages/Login.dart';
 import 'pages/Profile.dart';
+import 'pages/dashboard.dart';
 
 void main() {
   runApp(MyApp());
