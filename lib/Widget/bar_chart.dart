@@ -6,16 +6,14 @@ class BarChart extends StatelessWidget {
   final List<SubscriberSeries> data;
   BarChart({@required this.data});
 
-  //const BarChart({Key key, this.data}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    List<charts.Series<SubscriberSeries, String>> series = [
+    var series = <charts.Series<SubscriberSeries, String>>[
       charts.Series(
           id: "Subscribers",
           data: data,
-          domainFn: (SubscriberSeries series, _) => series.year,
-          measureFn: (SubscriberSeries series, _) => series.subscribers,
+          domainFn: (SubscriberSeries series, _) => series.topic,
+          measureFn: (SubscriberSeries series, _) => series.point,
           colorFn: (SubscriberSeries series, _) => series.barColor),
     ];
     return Container(
@@ -24,7 +22,6 @@ class BarChart extends StatelessWidget {
       child: Card(
         child: Column(
           children: [
-            // Text('data'),
             Expanded(
               child: charts.BarChart(
                 series,
@@ -40,11 +37,9 @@ class BarChart extends StatelessWidget {
 }
 
 class SubscriberSeries {
-  final String year;
-  final int subscribers;
+  final String topic;
+  final int point;
   final charts.Color barColor;
   SubscriberSeries(
-      {@required this.year,
-      @required this.subscribers,
-      @required this.barColor});
+      {@required this.topic, @required this.point, @required this.barColor});
 }

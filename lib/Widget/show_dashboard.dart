@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'bar_chart.dart';
+import 'line_chart.dart';
 
 class ShowDashboard extends StatefulWidget {
   @override
@@ -10,51 +11,66 @@ class ShowDashboard extends StatefulWidget {
 }
 
 class _ShowDashboardState extends State<ShowDashboard> {
+  final List<PointSeries> data2 = [
+    PointSeries(day: 0, point: 10),
+    PointSeries(day: 1, point: 8),
+    PointSeries(day: 2, point: 7),
+    PointSeries(day: 3, point: 8),
+    PointSeries(day: 4, point: 5),
+    PointSeries(day: 5, point: 4),
+    PointSeries(day: 6, point: 2),
+  ];
+
   final List<SubscriberSeries> data = [
     SubscriberSeries(
-      year: "การรับประทานอาหาร",
-      subscribers: 3,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การรับประทานอาหาร",
+      point: 3,
+      barColor: charts.ColorUtil.fromDartColor(Colors.purple),
     ),
     SubscriberSeries(
-      year: "การขึ้นลงบันได1ชั้น",
-      subscribers: 1,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การขึ้นลงบันได1ชั้น",
+      point: 1,
+      barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
     ),
     SubscriberSeries(
-      year: "การสวมใส่เสื้อผ้า",
-      subscribers: 1,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การสวมใส่เสื้อผ้า",
+      point: 1,
+      barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
     ),
     SubscriberSeries(
-      year: "การเคลื่อนที่ภายในบ้าน",
-      subscribers: 2,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การลุกจากที่นอน",
+      point: 1,
+      barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
     ),
     SubscriberSeries(
-      year: "การอาบน้ำ",
-      subscribers: 0,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การเคลื่อนที่ภายใน\nห้องหรือบ้าน",
+      point: 2,
+      barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
     ),
     SubscriberSeries(
-      year: "การใช้ห้องน้ำ",
-      subscribers: 1,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การอาบน้ำ",
+      point: 0,
+      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
     SubscriberSeries(
-      year: "การกลั้นอุจจาระในระยะ\n1 สัปดาห์ที่ผ่านมา",
-      subscribers: 3,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การใช้ห้องน้ำ",
+      point: 1,
+      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
     SubscriberSeries(
-      year: "การกลั้นปัสสาวะในระยะ\n1 สัปดาห์ที่ผ่านมา",
-      subscribers: 2,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การกลั้นอุจจาระในระยะ\n1 สัปดาห์ที่ผ่านมา",
+      point: 3,
+      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
     SubscriberSeries(
-      year: "การล้างหน้า หวีผม \nแปลงฟัน",
-      subscribers: 3,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      topic: "การกลั้นปัสสาวะในระยะ\n1 สัปดาห์ที่ผ่านมา",
+      point: 2,
+      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
+    ),
+    SubscriberSeries(
+      topic: "การล้างหน้า หวีผม \nแปลงฟัน",
+      point: 3,
+      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     )
   ];
   @override
@@ -76,7 +92,7 @@ class _ShowDashboardState extends State<ShowDashboard> {
                     width: MediaQuery.of(context).size.width,
                     color: Color(0xFFC37447),
                     child: Text(
-                      'Nutrition',
+                      'ข้อมูลสุขภาพ',
                       style: TextStyle(color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
@@ -106,6 +122,13 @@ class _ShowDashboardState extends State<ShowDashboard> {
                   'พัฒนาการในแต่ละหัวข้อ',
                 ),
                 BarChart(data: data),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(
+                    'ความเจ็บปวด',
+                  ),
+                ),
+                LineChart(data2: data2),
               ],
             ),
           ),
