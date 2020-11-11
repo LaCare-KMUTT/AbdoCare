@@ -182,7 +182,7 @@ class _addappointState extends State<addappoint> {
                           children: [
                             Icon(Icons.paste_rounded),
                             Text(
-                              ' นัดมาตรวจ',
+                              ' ชื่อหัวข้อ',
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],
