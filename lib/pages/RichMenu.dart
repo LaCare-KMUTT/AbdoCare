@@ -20,21 +20,35 @@ class _RichMenuPageState extends State<RichMenuPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              IconButton(
-                icon: Icon(
-                  Icons.cancel,
-                  color: Colors.orange,
-                  size: 25,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Text('เมนูหลัก',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText2),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text('เมนูหลัก',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyText2),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.cancel,
+                            color: Colors.orange,
+                            size: 25,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
               FlatButton(
                 padding: EdgeInsets.only(top: 0),
