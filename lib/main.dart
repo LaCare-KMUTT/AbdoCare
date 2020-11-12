@@ -3,6 +3,7 @@ import 'pages/Appointment.dart';
 import 'pages/Chat.dart';
 import 'pages/Login.dart';
 import 'pages/Profile.dart';
+import 'pages/dashboard.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
           '/login_page': (context) => LoginPage(),
           '/chat_page': (context) => MyHomePage(),
           '/appoint_page': (context) => AppointPage(),
+          '/dashboard_page': (context) => DashboardPage(),
         },
       );
 }

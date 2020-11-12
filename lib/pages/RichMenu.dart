@@ -77,7 +77,9 @@ class _RichMenuPageState extends State<RichMenuPage> {
                   Expanded(
                     child: FlatButton(
                       color: Color(0xFFF8CC77),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/dashboard_page');
+                      },
                       child: Container(
                         height: 100,
                         child: Column(
