@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'pages/chat_page.dart';
 import 'pages/login_page.dart';
 import 'pages/profile_page.dart';
+import 'pages/Appointment.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: "Prompt",
           primaryColor: Color(0xFFC37447),
+          primarySwatch: Colors.amber,
           textTheme: TextTheme(
             bodyText1: TextStyle(fontSize: 18.0, color: Colors.black),
             bodyText2: TextStyle(
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
           '/profile_page': (context) => ProfilePage(),
           '/login_page': (context) => LoginPage(),
           '/chat_page': (context) => ChatPage(),
+          '/appoint_page': (context) => AppointPage(),
         },
       );
 }
