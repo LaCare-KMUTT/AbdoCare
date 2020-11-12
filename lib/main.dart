@@ -1,3 +1,4 @@
+import 'package:AbdoCare/pages/training.dart';
 import 'package:flutter/material.dart';
 import 'pages/Appointment.dart';
 import 'pages/Chat.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           '/chat_page': (context) => MyHomePage(),
           '/appoint_page': (context) => AppointPage(),
           '/dashboard_page': (context) => DashboardPage(),
+          '/training_page': (context) => TrainingPage(),
         },
       );
 }
