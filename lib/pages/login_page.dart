@@ -12,63 +12,46 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _controller = TextEditingController();
+  final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
   var _userAuth;
+  var _username;
   bool _validate = false;
 
   Future<bool> _login(String uniqueKey) async {
-    if (FirebaseAuth.instance.currentUser != null) {
+    //just for debugging
+
+    if (_auth.currentUser != null) {
       await FirebaseAuth.instance.signOut();
       print('Signout first ');
     }
-    final searchedUserId = await FirebaseFirestore.instance
+    var searchedUserId = await _firestore
         .collection('Users')
         .where('password', isEqualTo: uniqueKey)
         .get();
-    // print(searchedUserId.docs);
-    // print(uniqueKey);
     if (searchedUserId.size == 0) {
       print('can\'t find user id ');
     } else {
       var document = searchedUserId.docs.first;
-      final userId = document.id;
-      final user = await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(userId)
-          .get();
-      final username = user.get('username');
-      print('This is username Login.dart');
-      print(username);
-
-      try {
-        print('prepare to signin');
-        var authResult = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: username, password: uniqueKey);
-        setState(() {
-          _userAuth = authResult;
-        });
-        print('passed signinFirebase');
-        if (_userAuth.user.uid.isNotEmpty) {
-          print('_authResult.user.uid.isNotEmpty');
-          print('sign in! YEAH!');
-          return true;
-        }
-        print(_userAuth.user.uid);
-        print('end of try !');
-      } on FirebaseAuthException catch (e) {
-        print('catched here');
-        if (e.code == 'user-not-found') {
-          print('No user found for the email');
-        } else if (e.code == 'wrong-password') {
-          print('wrong password');
-        }
+      var userId = document.id;
+      var user =
+          await _firestore.collection('Users').doc(userId).get().then((user) {
+        _username = user.get('username');
+      }).catchError((e) {
+        print('Failed to find username');
+        _username = null;
         return false;
-      }
-
-      print('pass SIgn in !');
-      // await FirebaseAuth.instance.signOut();
-      // print('sign OUT ! ');
-      //TODO DEVELOPER => pass user data to next page
+      });
     }
+    return _auth
+        .signInWithEmailAndPassword(email: _username, password: uniqueKey)
+        .then((value) {
+      print('${value.user.uid} has logined!');
+      return true;
+    }).catchError((e) {
+      print('error: $e');
+      return false;
+    });
   }
 
   @override
@@ -114,9 +97,11 @@ class _LoginPageState extends State<LoginPage> {
                       if (_validate == false) {
                         if (await _login(_controller.text)) {
                           print("login success!");
-                          Navigator.pushReplacementNamed(
-                              context, '/profile_page');
+                          Navigator.of(context)
+                              .pushReplacementNamed('/profile_page');
                         }
+                      } else {
+                        print('login failed');
                       }
                     },
                   ),
