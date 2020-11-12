@@ -5,6 +5,7 @@ import 'pages/Appointment.dart';
 import 'pages/chat_page.dart';
 import 'pages/login_page.dart';
 import 'pages/profile_page.dart';
+import 'pages/dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           '/login_page': (context) => LoginPage(),
           '/chat_page': (context) => ChatPage(),
           '/appoint_page': (context) => AppointPage(),
+          '/dashboard_page': (context) => DashboardPage(),
         },
       );
 }
