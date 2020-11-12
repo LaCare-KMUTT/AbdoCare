@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'pages/Chat.dart';
-import 'pages/Login.dart';
-import 'pages/Profile.dart';
+import 'pages/chat_page.dart';
+import 'pages/login_page.dart';
+import 'pages/profile_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/profile_page': (context) => ProfilePage(),
           '/login_page': (context) => LoginPage(),
-          '/chat_page': (context) => MyHomePage(),
+          '/chat_page': (context) => ChatPage(),
         },
       );
 }

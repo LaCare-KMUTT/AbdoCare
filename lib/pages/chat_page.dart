@@ -1,10 +1,11 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
-import 'RichMenu.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+import '../widget/chatbot/buttom_nav_bar.dart';
+
+class ChatPage extends StatefulWidget {
+  ChatPage({Key key, this.title}) : super(key: key);
 
 // This widget is the home page of your application. It is stateful, meaning
 // that it has a State object (defined below) that contains fields that affect
@@ -18,10 +19,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ChatPageState createState() => _ChatPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ChatPageState extends State<ChatPage> {
   void response(query) async {
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/abdo-bot-briv-9ed7278f51f5.json")
@@ -118,56 +119,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: ButtomNavBar(),
     );
   }
-
-  BottomNavBar() => Container(
-        color: Theme.of(context).primaryColor,
-        height: 50,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FlatButton(
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => SingleChildScrollView(
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom),
-                            child: RichMenuPage(),
-                          ),
-                        ));
-              },
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.home,
-                        color: Colors.white,
-                        size: 30.0,
-                      ),
-                      onPressed: () {},
-                    ),
-                    Text(
-                      'เมนูหลัก',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-
-  //for better one i have use the bubble package check out the pubspec.yaml
 
   Widget chat(String message, int data) => Container(
         padding: EdgeInsets.only(left: 5, right: 5),
