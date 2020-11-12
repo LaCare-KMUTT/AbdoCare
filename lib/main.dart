@@ -1,10 +1,10 @@
-import 'package:AbdoCare/pages/training.dart';
 import 'package:flutter/material.dart';
 import 'pages/Appointment.dart';
 import 'pages/Chat.dart';
 import 'pages/Login.dart';
 import 'pages/Profile.dart';
 import 'pages/dashboard.dart';
+import 'pages/training.dart';
 
 void main() {
   runApp(MyApp());
