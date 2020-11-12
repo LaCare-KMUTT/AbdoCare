@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'pages/Appointment.dart';
 import 'pages/chat_page.dart';
 import 'pages/login_page.dart';
 import 'pages/profile_page.dart';
-import 'pages/Appointment.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

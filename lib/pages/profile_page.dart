@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import './set_pin_page.dart';
 
@@ -14,7 +14,32 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   var _userId;
+  var _age;
   // var _userData;
+
+  String calculateBMI(int weight, int height) {
+    var heightMeter = height / 100;
+    var bmi = (weight) / (heightMeter * heightMeter);
+    return bmi.toStringAsFixed(2);
+  }
+
+  int calculateAge(DateTime birthDate) {
+    var currentDate = DateTime.now();
+    var age = currentDate.year - birthDate.year;
+    var month1 = currentDate.month;
+    var month2 = birthDate.month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      var day1 = currentDate.day;
+      var day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+    return age;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -109,7 +134,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(snapshot.data['dob'].toString(),
+                            Text(
+                                calculateAge(DateFormat('mm-dd-yyyy')
+                                        .parse(snapshot.data['dob']))
+                                    .toString(),
                                 style: Theme.of(context).textTheme.bodyText1),
                           ],
                         ),
@@ -202,7 +230,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text('23.44 (ท้วม)',
+                            Text(
+                                calculateBMI(
+                                  snapshot.data['weight'],
+                                  snapshot.data['height'],
+                                ),
                                 style: Theme.of(context).textTheme.bodyText1),
                           ],
                         ),
