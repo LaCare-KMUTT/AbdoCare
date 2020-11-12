@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-import '../Widget/keyboard_number.dart';
-import '../Widget/pin_number.dart';
+import '../widget/keyboard_number.dart';
+import '../widget/pin_number.dart';
 
 class Pin extends StatefulWidget {
   @override
