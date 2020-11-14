@@ -1,11 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 import 'pages/Appointment.dart';
-import 'pages/Chat.dart';
-import 'pages/Login.dart';
-import 'pages/Profile.dart';
+import 'pages/chat_page.dart';
+import 'pages/login_page.dart';
+import 'pages/profile_page.dart';
 import 'pages/dashboard.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -29,7 +33,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/profile_page': (context) => ProfilePage(),
           '/login_page': (context) => LoginPage(),
-          '/chat_page': (context) => MyHomePage(),
+          '/chat_page': (context) => ChatPage(),
           '/appoint_page': (context) => AppointPage(),
           '/dashboard_page': (context) => DashboardPage(),
         },

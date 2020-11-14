@@ -5,9 +5,7 @@ import 'line_chart.dart';
 
 class ShowDashboard extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _ShowDashboardState();
-  }
+  State<StatefulWidget> createState() => _ShowDashboardState();
 }
 
 class _ShowDashboardState extends State<ShowDashboard> {
