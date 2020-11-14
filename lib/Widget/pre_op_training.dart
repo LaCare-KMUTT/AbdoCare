@@ -76,6 +76,19 @@ class _PreOpTrainingPageState extends State<PreOpTrainingPage> {
         "detail": "หลีกเลี่ยงอาหารประเภททอด"
       }
     ];
+    var anotherlist = [
+      {
+        'topic': "การใช้ห้องน้ำ",
+        "id": 0,
+        "detail":
+            "ผู้ป่วยสามารถอาบน้ำได้เนื่องจากทางโรงพยาบาลได้ปิดแผลแบบกันน้ำ"
+      },
+      {
+        'topic': "อาหารที่ควรรับประทานหลังผ่าตัด",
+        "id": 1,
+        "detail": "หลีกเลี่ยงอาหารประเภททอด"
+      }
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Text('การฝึกสอนและอบรม'),
@@ -83,9 +96,47 @@ class _PreOpTrainingPageState extends State<PreOpTrainingPage> {
       body: Container(
         child: ListView(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text('คำแนะนำที่ควรทราบ'),
+            ),
             Column(
               children: [
                 for (var item in list)
+                  Card(
+                    child: FlatButton(
+                      onPressed: () {
+                        number = item['id'];
+                        topic = item['topic'];
+                        detail = item['detail'];
+                        detailpage(number, topic, detail);
+                        pushToScreen(context, topic, detail);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(item['topic'],
+                                style: Theme.of(context).textTheme.bodyText1),
+                          ),
+                          Icon(
+                            Icons.navigate_next,
+                            size: 32,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text('คำแนะนำอื่นๆ'),
+            ),
+            Column(
+              children: [
+                for (var item in anotherlist)
                   Card(
                     child: FlatButton(
                       onPressed: () {
