@@ -1,11 +1,12 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
 
 import 'pages/Appointment.dart';
 import 'pages/chat_page.dart';
+import 'pages/dashboard.dart';
 import 'pages/login_page.dart';
 import 'pages/profile_page.dart';
-import 'pages/dashboard.dart';
+import 'pages/training_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           '/chat_page': (context) => ChatPage(),
           '/appoint_page': (context) => AppointPage(),
           '/dashboard_page': (context) => DashboardPage(),
+          '/training_page': (context) => TrainingPage(),
         },
       );
 }
