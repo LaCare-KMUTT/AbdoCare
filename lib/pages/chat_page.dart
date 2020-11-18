@@ -50,6 +50,24 @@ class _ChatPageState extends State<ChatPage> {
         title: Text(
           "Abdo Bot",
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.help),
+            tooltip: 'ช่วยเหลือ',
+            onPressed: () {},
+          ),
+        ],
+        leading: IconButton(
+          icon: const Icon(
+            Icons.person,
+            size: 30,
+          ),
+          tooltip: 'โปรไฟล์',
+          onPressed: () {
+            setState(() {});
+            Navigator.pushNamed(context, '/profile_page');
+          },
+        ),
       ),
       body: Container(
         child: Column(
