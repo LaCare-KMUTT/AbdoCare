@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,16 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFFC37447)),
           ),
         ),
-        home: LoginPage(),
+        home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (ctx, userSnapshot) {
+              if (userSnapshot.hasData) {
+                return ChatPage();
+              }
+              return LoginPage();
+            }),
+
+        // LoginPage(),
         routes: {
           '/profile_page': (context) => ProfilePage(),
           '/login_page': (context) => LoginPage(),

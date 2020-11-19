@@ -15,7 +15,15 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   var _userId;
   var _age;
+  final _auth = FirebaseAuth.instance;
   // var _userData;
+
+  Future<bool> _signout() async {
+    if (_auth.currentUser != null) {
+      await FirebaseAuth.instance.signOut();
+      print('Signout first ');
+    }
+  }
 
   String calculateBMI(int weight, int height) {
     var heightMeter = height / 100;
@@ -300,8 +308,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             'ออกจากระบบ',
                             style: TextStyle(fontSize: 18),
                           ),
-                          onPressed: () {
-                            setState(() {});
+                          onPressed: () async {
+                            await _signout();
                           },
                         ),
                       ],

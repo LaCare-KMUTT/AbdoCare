@@ -20,10 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   Future<bool> _login(String uniqueKey) async {
     //just for debugging
 
-    if (_auth.currentUser != null) {
-      await FirebaseAuth.instance.signOut();
-      print('Signout first ');
-    }
     var searchedUserId = await _firestore
         .collection('Users')
         .where('password', isEqualTo: uniqueKey)
