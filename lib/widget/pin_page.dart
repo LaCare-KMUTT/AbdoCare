@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../widget/keyboard_number.dart';
 import '../widget/pin_number.dart';
@@ -10,6 +12,9 @@ class Pin extends StatefulWidget {
 }
 
 class _PinState extends State<Pin> {
+  final uid = FirebaseAuth.instance.currentUser.uid;
+  final _firestore = FirebaseFirestore.instance;
+
   List<String> currentPin = ["", "", "", "", "", ""];
   TextEditingController pinOneController = TextEditingController();
   TextEditingController pinTwoController = TextEditingController();
@@ -199,6 +204,7 @@ class _PinState extends State<Pin> {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             onPressed: () {
+              clearPin();
               Navigator.pop(context);
             },
             color: Color.fromRGBO(255, 49, 0, 1.0),
@@ -209,6 +215,14 @@ class _PinState extends State<Pin> {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             onPressed: () {
+              _firestore
+                  .collection('Users')
+                  .doc(uid)
+                  .update({'password': strPin})
+                  .then((value) => {print('update success')})
+                  .catchError((onError) {
+                    print('error update password');
+                  });
               print(strPin);
               Navigator.pushReplacementNamed(context, '/profile_page');
             },
