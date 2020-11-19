@@ -249,8 +249,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         RaisedButton(
                           textColor: Colors.white,
                           color: Color(0xFFE38C14),
-                          child: Text('ตั้งค่ารหัสผ่านยืนยันตัวตน 6 หลัก',
-                              style: Theme.of(context).textTheme.bodyText1),
+                          child: Text(
+                            'ตั้งค่ารหัสผ่านยืนยันตัวตน 6 หลัก',
+                            style: TextStyle(fontSize: 18),
+                          ),
                           onPressed: () {
                             print('This is setpin button');
                             setState(() {});
@@ -265,20 +267,41 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         RaisedButton(
                           textColor: Colors.white,
                           color: Color(0xFF33cc33),
-                          child: Text('ยืนยัน',
-                              style: Theme.of(context).textTheme.bodyText1),
+                          child: Text(
+                            'ยืนยัน',
+                            style: TextStyle(fontSize: 18),
+                          ),
                           onPressed: () {
                             print('This is setpin button');
                             setState(() {});
                             Navigator.pushReplacementNamed(
                                 context, '/chat_page');
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.red,
+                          child: Text(
+                            'ออกจากระบบ',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          onPressed: () {
+                            setState(() {});
                           },
                         ),
                       ],

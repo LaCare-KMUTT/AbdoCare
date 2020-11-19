@@ -48,7 +48,28 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Abdo Bot",
+          "AbdoCare",
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.help,
+              size: 30,
+            ),
+            tooltip: 'ช่วยเหลือ',
+            onPressed: () {},
+          ),
+        ],
+        leading: IconButton(
+          icon: const Icon(
+            Icons.account_circle,
+            size: 30,
+          ),
+          tooltip: 'โปรไฟล์',
+          onPressed: () {
+            setState(() {});
+            Navigator.pushNamed(context, '/profile_page');
+          },
         ),
       ),
       body: Container(
