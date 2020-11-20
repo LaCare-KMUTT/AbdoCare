@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import '../widget/keyboard_number.dart';
 import '../widget/pin_number.dart';
 
 class Pin extends StatefulWidget {
+  Pin(this.setPin);
+
+  final void Function({
+    @required String strPin,
+  }) setPin;
+
   @override
   State<StatefulWidget> createState() => _PinState();
 }
 
 class _PinState extends State<Pin> {
-  final uid = FirebaseAuth.instance.currentUser.uid;
-  final _firestore = FirebaseFirestore.instance;
-
   List<String> currentPin = ["", "", "", "", "", ""];
   TextEditingController pinOneController = TextEditingController();
   TextEditingController pinTwoController = TextEditingController();
@@ -29,6 +30,7 @@ class _PinState extends State<Pin> {
     ),
   );
   int pinIndex = 0;
+
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Column(
@@ -215,15 +217,7 @@ class _PinState extends State<Pin> {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             onPressed: () {
-              _firestore
-                  .collection('Users')
-                  .doc(uid)
-                  .update({'password': strPin})
-                  .then((value) => {print('update success')})
-                  .catchError((onError) {
-                    print('error update password');
-                  });
-              print(strPin);
+              widget.setPin(strPin: strPin);
               Navigator.pushReplacementNamed(context, '/profile_page');
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
