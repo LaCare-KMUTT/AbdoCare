@@ -263,7 +263,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           onPressed: () {
                             print('This is setpin button');
-                            setState(() {});
+                            // setState(() {});
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -288,7 +288,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           onPressed: () {
                             print('This is setpin button');
-                            setState(() {});
                             Navigator.pushReplacementNamed(
                                 context, '/chat_page');
                           },

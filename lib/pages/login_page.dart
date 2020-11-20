@@ -19,10 +19,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<bool> _login(String uniqueKey) async {
     //just for debugging
-
     var searchedUserId = await _firestore
         .collection('Users')
-        .where('password', isEqualTo: uniqueKey)
+        .where('uniqueKey', isEqualTo: uniqueKey)
         .get();
     if (searchedUserId.size == 0) {
       print('can\'t find user id ');

@@ -35,9 +35,12 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (ctx, userSnapshot) {
               if (userSnapshot.hasData) {
+                print('userSnapshot has data');
                 return ChatPage();
+              } else {
+                print('auth change user snapshot doesn\'t have data');
+                return LoginPage();
               }
-              return LoginPage();
             }),
 
         // LoginPage(),
