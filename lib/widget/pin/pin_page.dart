@@ -220,6 +220,7 @@ class _PinState extends State<Pin> {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             onPressed: () {
+              print(widget.mode);
               widget.getPin(strPin: strPin);
               Navigator.pushReplacementNamed(context, '/profile_page');
             },
