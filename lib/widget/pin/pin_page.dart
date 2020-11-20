@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-import '../widget/keyboard_number.dart';
-import '../widget/pin_number.dart';
+import './@enum/pin_mode.dart';
+import './keyboard_number.dart';
+import './pin_number.dart';
 
 class Pin extends StatefulWidget {
-  Pin(this.setPin);
+  final PinMode mode;
+
+  Pin(this.getPin, this.mode);
 
   final void Function({
     @required String strPin,
-  }) setPin;
+  }) getPin;
 
   @override
   State<StatefulWidget> createState() => _PinState();
@@ -217,7 +220,7 @@ class _PinState extends State<Pin> {
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             onPressed: () {
-              widget.setPin(strPin: strPin);
+              widget.getPin(strPin: strPin);
               Navigator.pushReplacementNamed(context, '/profile_page');
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),

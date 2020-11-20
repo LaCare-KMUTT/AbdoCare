@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../widget/pin_page.dart';
+import '../widget/pin/@enum/pin_mode.dart';
+import '../widget/pin/pin_page.dart';
 
 class SetPinPage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _SetPinPageState extends State<SetPinPage> {
   final _firestore = FirebaseFirestore.instance;
 
   void _setPin({
-    @required strPin,
+    @required String strPin,
   }) {
     _firestore
         .collection('Users')
@@ -36,7 +37,7 @@ class _SetPinPageState extends State<SetPinPage> {
               begin: Alignment.bottomCenter,
             ),
           ),
-          child: Pin(_setPin),
+          child: Pin(_setPin, PinMode.setPin),
         ),
       );
 }

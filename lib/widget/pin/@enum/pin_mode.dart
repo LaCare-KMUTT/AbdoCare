@@ -1,0 +1,4 @@
+enum PinMode {
+  setPin,
+  login,
+}
