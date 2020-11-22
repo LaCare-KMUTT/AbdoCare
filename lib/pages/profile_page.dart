@@ -309,6 +309,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           onPressed: () async {
                             await _signout();
+                            Navigator.pushReplacementNamed(
+                                context, '/login_page');
                           },
                         ),
                       ],
