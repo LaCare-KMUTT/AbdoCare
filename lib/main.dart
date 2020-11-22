@@ -6,6 +6,7 @@ import 'pages/Appointment.dart';
 import 'pages/chat_page.dart';
 import 'pages/dashboard.dart';
 import 'pages/login_page.dart';
+import 'pages/passcode_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/training_page.dart';
 
@@ -35,8 +36,9 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (ctx, userSnapshot) {
               if (userSnapshot.hasData) {
+                print(FirebaseAuth.instance.currentUser.uid);
                 print('userSnapshot has data');
-                return ChatPage();
+                return PasscodePage();
               } else {
                 print('auth change user snapshot doesn\'t have data');
                 return LoginPage();
@@ -51,6 +53,7 @@ class MyApp extends StatelessWidget {
           '/appoint_page': (context) => AppointPage(),
           '/dashboard_page': (context) => DashboardPage(),
           '/training_page': (context) => TrainingPage(),
+          '/passcode_page': (context) => PasscodePage(),
         },
       );
 }
