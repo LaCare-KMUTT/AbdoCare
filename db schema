@@ -10,8 +10,6 @@
         - dob(Date)
         - gender(string)
         - patientTel(string)
-        - weight (number)
-        - height (number)
         - username (string)
         - password (string)
         - uniqueKey(string)
@@ -30,6 +28,11 @@
                 - form(array)
                     - formKey
                 - ward(string)
+                - roomType(string)
+                - roomNumber(string)
+                - bedNumber(string)
+                - weight (number)
+                - height (number)
         
 
 +MedicalTeam
@@ -62,3 +65,12 @@
         - name(string)
         - date(Date)
         - preparation(string)
+
+
++notification
+    >notificationKey
+        - notificationType(string)
+        .
+        .
+        .
+        
