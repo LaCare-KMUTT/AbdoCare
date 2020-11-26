@@ -16,13 +16,21 @@
         - password (string)
         - uniqueKey(string)
         - hn(string)
-        - an(string)
-        - careTakerName(string)
-        - careTakerSurname(string)
-        - careTakerTel(string)
-        - form(array)
-            - formKey
-        - ward(string)
+        + an
+            >anKey
+                -an(string)
+                - doctorName(string)
+                - state(string)
+                - operationName(string)
+                - operationMethod(string)
+                - operationDate(string)
+                - careTakerName(string)
+                - careTakerSurname(string)
+                - careTakerTel(string)
+                - form(array)
+                    - formKey
+                - ward(string)
+        
 
 +MedicalTeam
     >MedicalTeamKey
