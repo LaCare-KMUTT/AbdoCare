@@ -1,0 +1,56 @@
++ => Collection
+> => Document
+- => field
+
++Users
+    >UsersKey
+        - name(string)
+        - surname(string)
+        - address(string)
+        - dob(Date)
+        - gender(string)
+        - patientTel(string)
+        - weight (number)
+        - height (number)
+        - username (string)
+        - password (string)
+        - uniqueKey(string)
+        - hn(string)
+        - an(string)
+        - careTakerName(string)
+        - careTakerSurname(string)
+        - careTakerTel(string)
+        - form(array)
+            - formKey
+        - ward(string)
+
++MedicalTeam
+    >MedicalTeamKey
+        - name (string)
+        - surname (string)
+        - username (string)
+        - password (string)
+        - ward (string)
+
++role
+    >roleKey
+        -uid(string)
+        -username(string)
+        -role(string)
+
++form
+    >formKey
+        -hn(string)
+        -an(string)
+        -timestamp(Date)
+        -formName(string)
+        -formData(Array)
+            {
+                ....
+            }
+
++appointment
+    >appointmentKey
+        - name(string)
+        - date(Date)
+        - preparation(string)
