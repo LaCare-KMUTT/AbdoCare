@@ -35,7 +35,16 @@
                 - height (number)
         
 
-+MedicalTeam
++trainings
+    >traningKey
+        - name (string)
+        - title (string)
+        - subtitle (string)
+        - detail (string)
+        - videoURL? (string)
+        - stage (string)
+
++MedicalTeams
     >MedicalTeamKey
         - name (string)
         - surname (string)
@@ -43,34 +52,44 @@
         - password (string)
         - ward (string)
 
-+role
++roles
     >roleKey
         -uid(string)
         -username(string)
         -role(string)
 
-+form
++forms
     >formKey
         -hn(string)
         -an(string)
         -timestamp(Date)
         -formName(string)
-        -formData(Array)
+        -formData(map)
             {
                 ....
             }
 
-+appointment
++appointments
     >appointmentKey
         - name(string)
         - date(Date)
         - preparation(string)
+        - detail(string)
+        - hn(string)
+        - an(string)
+        - doctorName(string)
 
-
-+notification
++notifications
     >notificationKey
         - notificationType(string)
-        .
-        .
-        .
-        
+        - notificationMessage(string)
+        - creation(Date)
+        - hn(string)
+        - an(string)
+        - ward(string)
+        - imageUrl?(string)
+        - reply?(map)
+            {
+                message(string)
+                choice(number)
+            }
