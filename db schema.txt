@@ -12,36 +12,58 @@
         - patientTel(string)
         - username (string)
         - password (string)
-        - uniqueKey(string)
-        - hn(string)
+        - uniqueKey (string)
+        - hn (string)
         + an
             >anKey
-                -an(string)
-                - doctorName(string)
-                - state(string)
-                - operationName(string)
-                - operationMethod(string)
-                - operationDate(string)
-                - careTakerName(string)
-                - careTakerSurname(string)
-                - careTakerTel(string)
-                - form(array)
+                -an (string)
+                - doctorName (string)
+                - state (string)
+                - operationName (string)
+                - operationMethod (string)
+                - operationDate (string)
+                - careTakerName (string)
+                - careTakerSurname (string)
+                - careTakerTel (string)
+                - form (array)
                     - formKey
-                - ward(string)
-                - roomType(string)
-                - roomNumber(string)
-                - bedNumber(string)
+                - ward (string)
+                - roomType (string)
+                - roomNumber (string)
+                - bedNumber (string)
                 - weight (number)
                 - height (number)
-        
+                - diagnosis (string)
+                - ASA Class (string)
+                - cosentSigned (string)
+                - drugUsed (string)
+                - nutrition (map)
+                    {
+                        BW : (number)
+                        height : (number)
+                        Last
+                    }
+                - previousSurgery( string )
+                - allergy (string)
+                - symtomps (string)
+                - allergyToLatex (string)
+                - psychologicalStatus(string)
+                - drugAndSubstance (string)
+                - sleepDisorder (map)
+                    {
+                        disorder : (boolean)
+                        duration : (string)
+                        onAverage : (number)
+                    }
 
 +trainings
-    >traningKey
+    >trainingKey
         - name (string)
         - title (string)
         - subtitle (string)
         - detail (string)
         - videoURL? (string)
+        - imageURL? (string)
         - stage (string)
 
 +MedicalTeams
@@ -53,21 +75,43 @@
         - ward (string)
 
 +roles
-    >roleKey
-        -uid(string)
-        -username(string)
-        -role(string)
+    > roleKey
+        - uid (string)
+        - username (string)
+        - role (string)
 
 +forms
-    >formKey
-        -hn(string)
-        -an(string)
-        -timestamp(Date)
-        -formName(string)
-        -formData(map)
+    > formKey
+        - hn (string)
+        - an (string)
+        - creation (Date)
+        - creator (string)
+        - formName (string)
+        - patientStage (string)
+        - formData (map)
             {
-                ....
+                ...
             }
+For example,
+if(formName = `Barthel's Index`)
+    {
+        formData (map)
+        {
+            'feeding': (number)
+            'grooming': (number)
+            'transfer': (number)
+            'toilet_use': (number)
+            'mobility': (number)
+            'dressing': (number)
+            'stairs': (number)
+            'bathing': (number)
+            'bowels': (number)
+            'bladder': (number)
+            'result' : (string)
+        }
+    }
+
+
 
 +appointments
     >appointmentKey
@@ -81,14 +125,14 @@
 
 +notifications
     >notificationKey
-        - notificationType(string)
-        - notificationMessage(string)
-        - creation(Date)
-        - hn(string)
-        - an(string)
-        - ward(string)
-        - imageUrl?(string)
-        - reply?(map)
+        - notificationType (string)
+        - notificationMessage (string)
+        - creation (Date)
+        - hn (string)
+        - an (string)
+        - ward (string)
+        - imageUrl? (string)
+        - reply? (map)
             {
                 message(string)
                 choice(number)
