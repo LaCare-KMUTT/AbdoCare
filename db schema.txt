@@ -115,13 +115,13 @@ if(formName = `Barthel's Index`)
 
 +appointments
     >appointmentKey
-        - name(string)
-        - date(Date)
-        - preparation(string)
-        - detail(string)
-        - hn(string)
-        - an(string)
-        - doctorName(string)
+        - name (string)
+        - date (Date)
+        - preparation (string)
+        - detail (string)
+        - hn (string)
+        - an (string)
+        - doctorName (string)
 
 +notifications
     >notificationKey
