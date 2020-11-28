@@ -21,7 +21,7 @@
                 - state (string)
                 - operationName (string)
                 - operationMethod (string)
-                - operationDate (string)
+                - operationDate (Date)
                 - careTakerName (string)
                 - careTakerSurname (string)
                 - careTakerTel (string)
@@ -41,7 +41,9 @@
                     {
                         BW : (number)
                         height : (number)
-                        Last
+                        pastMonth : (number)
+                        pastWeight : (number)
+                        
                     }
                 - previousSurgery( string )
                 - allergy (string)
@@ -122,6 +124,7 @@ if(formName = `Barthel's Index`)
         - hn (string)
         - an (string)
         - doctorName (string)
+        - status (string)
 
 +notifications
     >notificationKey
