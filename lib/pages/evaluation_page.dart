@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../widget/evaluation_form/Post-opDay0/post-op-Day0_page.dart';
+import '../widget/evaluation_form/pre-op/pre-op_page.dart';
 
 class EvaluationPage extends StatefulWidget {
   @override
@@ -17,14 +19,24 @@ class _EvaluationPageState extends State<EvaluationPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 100, right: 100),
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PreOpPage()),
+                    );
+                  },
                   child: Text('Pre-op'),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 100, right: 100),
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PostOpDay0Page()),
+                    );
+                  },
                   child: Text('Post-op @ hospital Day 0'),
                 ),
               ),
@@ -54,3 +66,5 @@ class _EvaluationPageState extends State<EvaluationPage> {
         ),
       );
 }
+
+class PostOpDay0 {}
