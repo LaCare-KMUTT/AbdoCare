@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
 
@@ -5,6 +6,7 @@ import 'pages/Appointment.dart';
 import 'pages/chat_page.dart';
 import 'pages/dashboard.dart';
 import 'pages/login_page.dart';
+import 'pages/passcode_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/training_page.dart';
 
@@ -30,7 +32,20 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFFC37447)),
           ),
         ),
-        home: LoginPage(),
+        home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (ctx, userSnapshot) {
+              if (userSnapshot.hasData) {
+                print(FirebaseAuth.instance.currentUser.uid);
+                print('userSnapshot has data');
+                return PasscodePage();
+              } else {
+                print('auth change user snapshot doesn\'t have data');
+                return LoginPage();
+              }
+            }),
+
+        // LoginPage(),
         routes: {
           '/profile_page': (context) => ProfilePage(),
           '/login_page': (context) => LoginPage(),
@@ -38,6 +53,7 @@ class MyApp extends StatelessWidget {
           '/appoint_page': (context) => AppointPage(),
           '/dashboard_page': (context) => DashboardPage(),
           '/training_page': (context) => TrainingPage(),
+          '/passcode_page': (context) => PasscodePage(),
         },
       );
 }
