@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-import '../widget/keyboard_number.dart';
-import '../widget/pin_number.dart';
+import './@enum/pin_mode.dart';
+import './keyboard_number.dart';
+import './pin_number.dart';
 
 class Pin extends StatefulWidget {
+  final PinMode mode;
+
+  Pin(this.getPin, this.mode);
+
+  final void Function({
+    @required String strPin,
+  }) getPin;
+
   @override
   State<StatefulWidget> createState() => _PinState();
 }
 
 class _PinState extends State<Pin> {
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
+
   List<String> currentPin = ["", "", "", "", "", ""];
   TextEditingController pinOneController = TextEditingController();
   TextEditingController pinTwoController = TextEditingController();
@@ -24,6 +38,8 @@ class _PinState extends State<Pin> {
     ),
   );
   int pinIndex = 0;
+  bool isCheckPin = false;
+
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Column(
@@ -175,7 +191,32 @@ class _PinState extends State<Pin> {
     }
   }
 
-  void pinIndexSetup(String text) {
+  Future<String> getPasscode() async {
+    var uid = _auth.currentUser.uid;
+    print('UID IN pin_page $uid');
+    var passcode = await _firestore
+        .collection('Users')
+        .doc(uid)
+        .get()
+        .then((value) => value.get('password'));
+    return passcode;
+  }
+
+  Future<bool> _checkPin(String pin) async {
+    var passcode = await getPasscode();
+    print('this is passcode :$passcode');
+    if (passcode == pin) {
+      print('$pin equal passcode');
+      print('passcode : $passcode');
+      return true;
+    } else {
+      print('wrong passcode : $pin');
+      print('correct is : $passcode');
+      return false;
+    }
+  }
+
+  void pinIndexSetup(String text) async {
     if (pinIndex == 0) {
       pinIndex = 1;
     } else if (pinIndex < 6) pinIndex++;
@@ -187,35 +228,85 @@ class _PinState extends State<Pin> {
       strPin += element;
     });
     if (pinIndex == 6) {
-      Alert(
-        context: context,
-        type: AlertType.warning,
-        title: "ยืนยันรหัสผ่าน",
-        //desc: "Flutter is more awesome with RFlutter Alert.",
-        buttons: [
-          DialogButton(
-            child: Text(
-              "ยกเลิก",
-              style: TextStyle(color: Colors.white, fontSize: 18),
+      if (widget.mode == PinMode.setPin) {
+        Alert(
+          context: context,
+          type: AlertType.warning,
+          title: "ยืนยันรหัสผ่าน",
+          //desc: "Flutter is more awesome with RFlutter Alert.",
+          buttons: [
+            DialogButton(
+              child: Text(
+                "ยกเลิก",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              onPressed: () {
+                clearPin();
+                Navigator.pop(context);
+              },
+              color: Color.fromRGBO(255, 49, 0, 1.0),
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            color: Color.fromRGBO(255, 49, 0, 1.0),
-          ),
-          DialogButton(
-            child: Text(
-              "ยืนยัน",
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            onPressed: () {
-              print(strPin);
-              Navigator.pushReplacementNamed(context, '/profile_page');
-            },
-            color: Color.fromRGBO(0, 179, 134, 1.0),
-          )
-        ],
-      ).show();
+            DialogButton(
+              child: Text(
+                "ยืนยัน",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              onPressed: () {
+                print('hello widget.mode ${widget.mode}');
+                widget.getPin(strPin: strPin);
+                Navigator.pushReplacementNamed(context, '/profile_page');
+              },
+              color: Color.fromRGBO(0, 179, 134, 1.0),
+            )
+          ],
+        ).show();
+      } else if (widget.mode == PinMode.login) {
+        isCheckPin = await _checkPin(strPin);
+        print('isCheckpin =  $isCheckPin');
+        if (isCheckPin != null) {
+          print('isCheckpin after check null =  $isCheckPin');
+          if (isCheckPin == true) {
+            CircularProgressIndicator();
+            Navigator.pushReplacementNamed(context, '/chat_page');
+          } else {
+            print('here!');
+            AlertDialog(
+              title: Text('กรุณาตรวจสอบรหัสผ่าน'),
+              content: SingleChildScrollView(
+                child: Text('รหัสผ่านผิด กรุณาตรวจสอบใหม่'),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Okay'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+
+            // Alert(
+            //   context: context,
+            //   type: AlertType.info,
+            //   title: 'กรุณาตรวจสอบรหัสผ่าน',
+            //   buttons: [
+            //     DialogButton(
+            //       child: Text(
+            //         'okie',
+            //         style: TextStyle(color: Colors.white, fontSize: 18),
+            //       ),
+            //       onPressed: () {
+            //         for (int i = 0; i < 6; i++) {
+            //           clearPin();
+            //         }
+            //         Navigator.pop(context);
+            //       },
+            //     )
+            //   ],
+            // );
+          }
+        }
+      }
     }
   }
 
@@ -273,7 +364,9 @@ class _PinState extends State<Pin> {
       );
 
   Widget buildSecurityText() => Text(
-        "ตั้งค่ารหัสผ่านใหม่",
+        widget.mode == PinMode.setPin
+            ? 'ตั้งค่ารหัสผ่านใหม่'
+            : 'กรุณากรอกรหัส PIN',
         style: TextStyle(color: Colors.white, fontSize: 18.0),
       );
 }

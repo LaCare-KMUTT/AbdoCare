@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import '../widget/pin_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../widget/pin/@enum/pin_mode.dart';
+import '../widget/pin/pin_page.dart';
 
 class SetPinPage extends StatefulWidget {
   @override
@@ -7,6 +11,23 @@ class SetPinPage extends StatefulWidget {
 }
 
 class _SetPinPageState extends State<SetPinPage> {
+  final uid = FirebaseAuth.instance.currentUser.uid;
+
+  final _firestore = FirebaseFirestore.instance;
+
+  void _setPin({
+    @required String strPin,
+  }) {
+    _firestore
+        .collection('Users')
+        .doc(uid)
+        .update({'password': strPin})
+        .then((value) => {print('update success')})
+        .catchError((onError) {
+          print('error update password');
+        });
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Container(
@@ -16,7 +37,7 @@ class _SetPinPageState extends State<SetPinPage> {
               begin: Alignment.bottomCenter,
             ),
           ),
-          child: Pin(),
+          child: Pin(_setPin, PinMode.setPin),
         ),
       );
 }
