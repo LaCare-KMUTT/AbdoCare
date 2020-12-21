@@ -78,44 +78,31 @@ class _ShowDashboardState extends State<ShowDashboard> {
         shrinkWrap: true,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width,
-                    color: Color(0xFFC37447),
-                    child: Text(
-                      'ข้อมูลสุขภาพ',
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Text('อายุ 21 ปี',
-                      style: Theme.of(context).textTheme.bodyText1),
-                  Text('ส่วนสูง 160.0 ซม.',
-                      style: Theme.of(context).textTheme.bodyText1),
-                  Text('น้ำหนัก 60.0 กก.',
-                      style: Theme.of(context).textTheme.bodyText1),
-                  Text('ค่าดัชนีมวลกาย 23.44 Kg/m2 (ท้วม)',
-                      style: Theme.of(context).textTheme.bodyText1),
-                  Text('น้ำหนักเมื่อ 3 เดือนที่ผ่านมา 65.0 กก.',
-                      style: Theme.of(context).textTheme.bodyText1),
-                  Text('%BWL = 2%',
-                      style: Theme.of(context).textTheme.bodyText1),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                Text('ข้อมูลสุขภาพ'),
+                Container(
+                  child: Card(
+                    child: Column(
+                      children: [
+                        Text('อายุ 21 ปี',
+                            style: Theme.of(context).textTheme.bodyText1),
+                        Text('ส่วนสูง 160.0 ซม.',
+                            style: Theme.of(context).textTheme.bodyText1),
+                        Text('น้ำหนัก 60.0 กก.',
+                            style: Theme.of(context).textTheme.bodyText1),
+                        Text('ค่าดัชนีมวลกาย 23.44 Kg/m2 (ท้วม)',
+                            style: Theme.of(context).textTheme.bodyText1),
+                        Text('น้ำหนักเมื่อ 3 เดือนที่ผ่านมา 65.0 กก.',
+                            style: Theme.of(context).textTheme.bodyText1),
+                        Text('%BWL = 2%',
+                            style: Theme.of(context).textTheme.bodyText1),
+                      ],
+                    ),
+                  ),
+                ),
                 Text(
                   'พัฒนาการในแต่ละหัวข้อ',
                 ),
