@@ -39,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: StreamBuilder(
           stream: _firebaseService.getCollectionSnapshotByDocId(
-              'Users', _firebaseService.getUserId()),
+              collection: 'Users', docId: _firebaseService.getUserId()),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Center(

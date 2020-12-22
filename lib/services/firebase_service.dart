@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseService {
   final _firestore = FirebaseFirestore.instance;
@@ -55,12 +56,19 @@ class FirebaseService {
   String getUserId() => _auth.currentUser.uid;
 
   Stream<DocumentSnapshot> getCollectionSnapshotByDocId(
-      String collection, String docId) {
+      {@required String collection, @required String docId}) {
     return _firestore.collection(collection).doc(docId).snapshots();
   }
 
+  String getAStringValueFormField(
+      {@required String collection,
+      @required String docId,
+      @required String field}) {}
+
   void updateFieldCollection(
-      {String collection, String docId, Map<String, dynamic> updateField}) {
+      {@required String collection,
+      @required String docId,
+      @required Map<String, dynamic> updateField}) {
     print('here is updateFieldCollection');
     print(collection);
     print(docId);
