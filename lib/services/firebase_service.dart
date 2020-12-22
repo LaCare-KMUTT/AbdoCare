@@ -56,14 +56,18 @@ class FirebaseService {
   String getUserId() => _auth.currentUser.uid;
 
   Stream<DocumentSnapshot> getCollectionSnapshotByDocId(
-      {@required String collection, @required String docId}) {
-    return _firestore.collection(collection).doc(docId).snapshots();
-  }
+          {@required String collection, @required String docId}) =>
+      _firestore.collection(collection).doc(docId).snapshots();
 
-  String getAStringValueFormField(
-      {@required String collection,
-      @required String docId,
-      @required String field}) {}
+  Future<String> getAStringValueFormField(
+          {@required String collection,
+          @required String docId,
+          @required String field}) async =>
+      await _firestore
+          .collection(collection)
+          .doc(docId)
+          .get()
+          .then((value) => value.get(field));
 
   void updateFieldCollection(
       {@required String collection,
