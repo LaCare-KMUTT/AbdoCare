@@ -60,7 +60,7 @@ class FirebaseService {
   }
 
   void updateFieldCollection(
-      {String collection, String docId, Map updateField}) {
+      {String collection, String docId, Map<String, dynamic> updateField}) {
     print('here is updateFieldCollection');
     print(collection);
     print(docId);
