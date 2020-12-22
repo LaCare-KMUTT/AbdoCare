@@ -1,0 +1,24 @@
+class CalculationService {
+  int calculateAge(DateTime birthDate) {
+    var currentDate = DateTime.now();
+    var age = currentDate.year - birthDate.year;
+    var month1 = currentDate.month;
+    var month2 = birthDate.month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      var day1 = currentDate.day;
+      var day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+    return age;
+  }
+
+  String calculateBMI(int weight, int height) {
+    var heightMeter = height / 100;
+    var bmi = (weight) / (heightMeter * heightMeter);
+    return bmi.toStringAsFixed(2);
+  }
+}

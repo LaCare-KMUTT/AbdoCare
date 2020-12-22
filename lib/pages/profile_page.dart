@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../services/calculation_service.dart';
+import '../services/firebase_service.dart';
 import './set_pin_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -13,55 +13,21 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final _firebaseService = FirebaseService();
+  final _calculationService = CalculationService();
   var _userId;
-  var _age;
-  final _auth = FirebaseAuth.instance;
-  // var _userData;
-
-  Future<bool> _signout() async {
-    if (_auth.currentUser != null) {
-      await FirebaseAuth.instance.signOut();
-      print('Signout first ');
-    }
-  }
-
-  String calculateBMI(int weight, int height) {
-    var heightMeter = height / 100;
-    var bmi = (weight) / (heightMeter * heightMeter);
-    return bmi.toStringAsFixed(2);
-  }
-
-  int calculateAge(DateTime birthDate) {
-    var currentDate = DateTime.now();
-    var age = currentDate.year - birthDate.year;
-    var month1 = currentDate.month;
-    var month2 = birthDate.month;
-    if (month2 > month1) {
-      age--;
-    } else if (month1 == month2) {
-      var day1 = currentDate.day;
-      var day2 = birthDate.day;
-      if (day2 > day1) {
-        age--;
-      }
-    }
-    return age;
-  }
 
   @override
   void initState() {
     super.initState();
-    var userId = FirebaseAuth.instance.currentUser.uid;
+    var userId = _firebaseService.getUserId();
     if (userId.isNotEmpty) {
       print('$userId is here');
     } else {
       print('$userId not found');
     }
-    // var userData =
-    //     FirebaseFirestore.instance.collection('Users').doc(userId).get();
     setState(() {
       _userId = userId;
-      // _userData = userData;
     });
   }
 
@@ -72,10 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text('ข้อมูลส่วนตัว'),
       ),
       body: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection('Users')
-              .doc(_userId)
-              .snapshots(),
+          stream: _firebaseService.getCollectionSnapshotByDocId(
+              collection: 'Users', docId: _firebaseService.getUserId()),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Center(
@@ -143,7 +107,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                                calculateAge(DateFormat('mm-dd-yyyy')
+                                _calculationService
+                                    .calculateAge(DateFormat('mm-dd-yyyy')
                                         .parse(snapshot.data['dob']))
                                     .toString(),
                                 style: Theme.of(context).textTheme.bodyText1),
@@ -239,7 +204,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                                calculateBMI(
+                                _calculationService.calculateBMI(
                                   snapshot.data['weight'],
                                   snapshot.data['height'],
                                 ),
@@ -308,7 +273,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             style: TextStyle(fontSize: 18),
                           ),
                           onPressed: () async {
-                            await _signout();
+                            await _firebaseService.signout();
                             Navigator.pushReplacementNamed(
                                 context, '/login_page');
                           },

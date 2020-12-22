@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import '../services/firebase_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,43 +10,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _firebaseService = FirebaseService();
   final _controller = TextEditingController();
-  final _firestore = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
-  var _userAuth;
-  var _username;
   bool _validate = false;
-
-  Future<bool> _login(String uniqueKey) async {
-    //just for debugging
-    var searchedUserId = await _firestore
-        .collection('Users')
-        .where('uniqueKey', isEqualTo: uniqueKey)
-        .get();
-    if (searchedUserId.size == 0) {
-      print('can\'t find user id ');
-    } else {
-      var document = searchedUserId.docs.first;
-      var userId = document.id;
-      var user =
-          await _firestore.collection('Users').doc(userId).get().then((user) {
-        _username = user.get('username');
-      }).catchError((e) {
-        print('Failed to find username');
-        _username = null;
-        return false;
-      });
-    }
-    return _auth
-        .signInWithEmailAndPassword(email: _username, password: uniqueKey)
-        .then((value) {
-      print('${value.user.uid} has logined!');
-      return true;
-    }).catchError((e) {
-      print('error: $e');
-      return false;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                             : _validate = false;
                       });
                       if (_validate == false) {
-                        if (await _login(_controller.text)) {
+                        if (await _firebaseService.login(_controller.text)) {
                           print("login success!");
                           Navigator.of(context)
                               .pushReplacementNamed('/profile_page');
