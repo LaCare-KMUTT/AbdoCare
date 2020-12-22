@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import '../services/firebase_service.dart';
 import './set_pin_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -13,17 +11,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final _firebaseService = FirebaseService();
   var _userId;
   var _age;
-  final _auth = FirebaseAuth.instance;
-  // var _userData;
-
-  Future<bool> _signout() async {
-    if (_auth.currentUser != null) {
-      await FirebaseAuth.instance.signOut();
-      print('Signout first ');
-    }
-  }
 
   String calculateBMI(int weight, int height) {
     var heightMeter = height / 100;
@@ -51,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    var userId = FirebaseAuth.instance.currentUser.uid;
+    var userId = _firebaseService.getUserId();
     if (userId.isNotEmpty) {
       print('$userId is here');
     } else {
@@ -72,10 +62,8 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text('ข้อมูลส่วนตัว'),
       ),
       body: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection('Users')
-              .doc(_userId)
-              .snapshots(),
+          stream: _firebaseService.getCollectionSnapshotByDocId(
+              'Users', _firebaseService.getUserId()),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Center(
@@ -308,7 +296,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             style: TextStyle(fontSize: 18),
                           ),
                           onPressed: () async {
-                            await _signout();
+                            await _firebaseService.signout();
                             Navigator.pushReplacementNamed(
                                 context, '/login_page');
                           },

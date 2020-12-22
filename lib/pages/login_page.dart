@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../services/login_service.dart';
+import '../services/firebase_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,7 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _loginService = LoginService();
+  final _firebaseService = FirebaseService();
   final _controller = TextEditingController();
   bool _validate = false;
 
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                             : _validate = false;
                       });
                       if (_validate == false) {
-                        if (await _loginService.login(_controller.text)) {
+                        if (await _firebaseService.login(_controller.text)) {
                           print("login success!");
                           Navigator.of(context)
                               .pushReplacementNamed('/profile_page');

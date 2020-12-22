@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginService {
+class FirebaseService {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
@@ -43,5 +43,19 @@ class LoginService {
     });
     print('$loginResult Login is working ? ');
     return loginResult;
+  }
+
+  Future<void> signout() async {
+    if (_auth.currentUser != null) {
+      await _auth.signOut();
+      print('Firebase user : ${_auth.currentUser} has signed out');
+    }
+  }
+
+  String getUserId() => _auth.currentUser.uid;
+
+  Stream<DocumentSnapshot> getCollectionSnapshotByDocId(
+      String collection, String docId) {
+    return _firestore.collection(collection).doc(docId).snapshots();
   }
 }
