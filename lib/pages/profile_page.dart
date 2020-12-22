@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../services/calculation_service.dart';
 import '../services/firebase_service.dart';
 import './set_pin_page.dart';
 
@@ -12,31 +14,8 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final _firebaseService = FirebaseService();
+  final _calculationService = CalculationService();
   var _userId;
-  var _age;
-
-  String calculateBMI(int weight, int height) {
-    var heightMeter = height / 100;
-    var bmi = (weight) / (heightMeter * heightMeter);
-    return bmi.toStringAsFixed(2);
-  }
-
-  int calculateAge(DateTime birthDate) {
-    var currentDate = DateTime.now();
-    var age = currentDate.year - birthDate.year;
-    var month1 = currentDate.month;
-    var month2 = birthDate.month;
-    if (month2 > month1) {
-      age--;
-    } else if (month1 == month2) {
-      var day1 = currentDate.day;
-      var day2 = birthDate.day;
-      if (day2 > day1) {
-        age--;
-      }
-    }
-    return age;
-  }
 
   @override
   void initState() {
@@ -131,7 +110,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                                calculateAge(DateFormat('mm-dd-yyyy')
+                                _calculationService
+                                    .calculateAge(DateFormat('mm-dd-yyyy')
                                         .parse(snapshot.data['dob']))
                                     .toString(),
                                 style: Theme.of(context).textTheme.bodyText1),
@@ -227,7 +207,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                                calculateBMI(
+                                _calculationService.calculateBMI(
                                   snapshot.data['weight'],
                                   snapshot.data['height'],
                                 ),
