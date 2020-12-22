@@ -58,4 +58,21 @@ class FirebaseService {
       String collection, String docId) {
     return _firestore.collection(collection).doc(docId).snapshots();
   }
+
+  bool updateFieldCollection(
+      {String collection, String docId, Map updateField}) {
+    print('here is updateFieldCollection');
+    print(collection);
+    print(docId);
+    print(updateField);
+    _firestore
+        .collection(collection)
+        .doc(docId)
+        .update(updateField)
+        .then((value) => {print('update pin success')})
+        .catchError((onError) {
+      print('error update password');
+    });
+    return true;
+  }
 }
