@@ -21,6 +21,7 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
               padding: const EdgeInsets.fromLTRB(10, 50, 10, 20),
               child: RaisedButton(
                 padding: EdgeInsets.only(top: 0),
+                color: Colors.white70,
                 onPressed: () {},
                 child: Container(
                   height: 80,
@@ -33,10 +34,13 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.done,
-                            size: 40.0,
-                            color: Colors.green,
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.done,
+                              size: 40.0,
+                              color: Colors.green,
+                            ),
                           ),
                           Expanded(
                             child: Container(
@@ -62,6 +66,7 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
               child: RaisedButton(
                 padding: EdgeInsets.only(top: 0),
+                color: Colors.white70,
                 onPressed: () {},
                 child: Container(
                   height: 80,
@@ -74,10 +79,13 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.done,
-                            size: 40.0,
-                            color: Colors.green,
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.done,
+                              size: 40.0,
+                              color: Colors.green,
+                            ),
                           ),
                           Expanded(
                             child: Container(
@@ -103,6 +111,7 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
               child: RaisedButton(
                 padding: EdgeInsets.only(top: 0),
+                color: Colors.white70,
                 onPressed: () {},
                 child: Container(
                   height: 80,
@@ -115,10 +124,13 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.done,
-                            size: 40.0,
-                            color: Colors.green,
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.done,
+                              size: 40.0,
+                              color: Colors.green,
+                            ),
                           ),
                           Expanded(
                             child: Container(
@@ -144,6 +156,7 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
               child: RaisedButton(
                 padding: EdgeInsets.only(top: 0),
+                color: Colors.white70,
                 onPressed: () {},
                 child: Container(
                   height: 80,
@@ -156,10 +169,13 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.done,
-                            size: 40.0,
-                            color: Colors.green,
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.done,
+                              size: 40.0,
+                              color: Colors.green,
+                            ),
                           ),
                           Expanded(
                             child: Container(
