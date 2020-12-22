@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../services/firebase_service.dart';
 import './@enum/pin_mode.dart';
 import './keyboard_number.dart';
 import './pin_number.dart';
@@ -21,8 +20,7 @@ class Pin extends StatefulWidget {
 }
 
 class _PinState extends State<Pin> {
-  final _auth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
+  final _firebaseService = FirebaseService();
 
   List<String> currentPin = ["", "", "", "", "", ""];
   TextEditingController pinOneController = TextEditingController();
@@ -192,13 +190,10 @@ class _PinState extends State<Pin> {
   }
 
   Future<String> getPasscode() async {
-    var uid = _auth.currentUser.uid;
+    var uid = _firebaseService.getUserId();
     print('UID IN pin_page $uid');
-    var passcode = await _firestore
-        .collection('Users')
-        .doc(uid)
-        .get()
-        .then((value) => value.get('password'));
+    var passcode = await _firebaseService.getAStringValueFormField(
+        collection: 'Users', docId: uid, field: 'password');
     return passcode;
   }
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
+import '../services/firebase_service.dart';
 import '../widget/pin/@enum/pin_mode.dart';
 import '../widget/pin/pin_page.dart';
 
@@ -11,21 +10,14 @@ class SetPinPage extends StatefulWidget {
 }
 
 class _SetPinPageState extends State<SetPinPage> {
-  final uid = FirebaseAuth.instance.currentUser.uid;
-
-  final _firestore = FirebaseFirestore.instance;
-
+  final _firebaseService = FirebaseService();
   void _setPin({
     @required String strPin,
   }) {
-    _firestore
-        .collection('Users')
-        .doc(uid)
-        .update({'password': strPin})
-        .then((value) => {print('update success')})
-        .catchError((onError) {
-          print('error update password');
-        });
+    _firebaseService.updateFieldCollection(
+        collection: 'Users',
+        docId: _firebaseService.getUserId(),
+        updateField: {'password': strPin});
   }
 
   @override
