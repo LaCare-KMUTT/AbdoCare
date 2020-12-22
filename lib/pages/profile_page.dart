@@ -26,11 +26,8 @@ class _ProfilePageState extends State<ProfilePage> {
     } else {
       print('$userId not found');
     }
-    // var userData =
-    //     FirebaseFirestore.instance.collection('Users').doc(userId).get();
     setState(() {
       _userId = userId;
-      // _userData = userData;
     });
   }
 
