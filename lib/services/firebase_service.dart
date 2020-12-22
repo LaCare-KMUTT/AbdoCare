@@ -81,7 +81,7 @@ class FirebaseService {
         .collection(collection)
         .doc(docId)
         .update(updateField)
-        .then((value) => {print('update pin success')})
+        .then((value) => {print('update field ${updateField.keys} success')})
         .catchError((onError) {
       print('error update password');
     });
