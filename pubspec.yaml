@@ -59,6 +59,14 @@ flutter:
     - assets/icon/Feeding.png
     - assets/icon/Grooming.png
     - assets/icon/Transfer.png
+    - assets/icon/Toilet.png
+    - assets/icon/Mobility.png
+    - assets/icon/Dressing.png
+    - assets/icon/Stairs.png
+    - assets/icon/Bathing.png
+    - assets/icon/Bowels.png
+    - assets/icon/Bladder.png
+   
   fonts:
     - family: Prompt
       fonts:
