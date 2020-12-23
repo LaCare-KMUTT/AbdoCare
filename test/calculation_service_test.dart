@@ -1,15 +1,20 @@
-import 'package:AbdoCare/services/calculation_service.dart';
+import 'package:AbdoCare/services/interfaces/calculation_service_interface.dart';
+import 'package:AbdoCare/services/service_locator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  setUpAll(() {
+    setupServiceLocator();
+    locator.allowReassignment = true;
+  });
   test('calculateAge should be able to calculate', () {
-    final _calculationService = CalculationService();
+    ICalculationService _calculationService = locator<ICalculationService>();
     var age = _calculationService.calculateAge(DateTime(1999, 03, 12));
     expect(age, 21);
   });
 
   test('calculate BMI should be correct', () {
-    final _calculationService = CalculationService();
+    ICalculationService _calculationService = locator<ICalculationService>();
     var bmi = _calculationService.calculateBMI(70, 170);
     expect(bmi, "24.22");
   });

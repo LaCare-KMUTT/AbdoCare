@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-import '../../services/firebase_service.dart';
+import '../../services/interfaces/firebase_service_interface.dart';
+import '../../services/service_locator.dart';
 import './@enum/pin_mode.dart';
 import './keyboard_number.dart';
 import './pin_number.dart';
@@ -20,7 +21,7 @@ class Pin extends StatefulWidget {
 }
 
 class _PinState extends State<Pin> {
-  final _firebaseService = FirebaseService();
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
 
   List<String> currentPin = ["", "", "", "", "", ""];
   TextEditingController pinOneController = TextEditingController();
