@@ -65,7 +65,7 @@ class _AppointPageState extends State<AppointPage> {
   }
 }
 
-showAlertDialog(BuildContext context) {
+void showAlertDialog(BuildContext context) {
   // Create button
   Widget OkButton = FlatButton(
     child: Container(
