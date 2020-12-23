@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
 
-import 'pages/Appointment.dart';
+import 'pages/appointment.dart';
 import 'pages/chat_page.dart';
 import 'pages/dashboard.dart';
+import 'pages/evaluation_page.dart';
 import 'pages/login_page.dart';
 import 'pages/passcode_page.dart';
 import 'pages/profile_page.dart';
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
           primaryColor: Color(0xFFC37447),
           primarySwatch: Colors.amber,
           textTheme: TextTheme(
-            bodyText1: TextStyle(fontSize: 18.0, color: Colors.black),
+            bodyText1: TextStyle(fontSize: 16.0, color: Colors.black),
             bodyText2: TextStyle(
-                fontSize: 18.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFFC37447)),
           ),
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
           '/profile_page': (context) => ProfilePage(),
           '/login_page': (context) => LoginPage(),
           '/chat_page': (context) => ChatPage(),
+          '/evaluation_page': (context) => EvaluationPage(),
           '/appoint_page': (context) => AppointPage(),
           '/dashboard_page': (context) => DashboardPage(),
           '/training_page': (context) => TrainingPage(),
