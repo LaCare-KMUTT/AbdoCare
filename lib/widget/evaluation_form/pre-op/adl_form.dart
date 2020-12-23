@@ -181,46 +181,6 @@ class _ADLFormState extends State<ADLForm> {
                     },
                   ),
                 ),
-
-                // Padding(
-                //   padding: const EdgeInsets.all(10.0),
-                //   child: Column(
-                //     children: [
-                //       FlatButton(
-                //         shape: RoundedRectangleBorder(
-                //             borderRadius: BorderRadius.circular(10.0),
-                //             side: BorderSide(color: Colors.red)),
-                //         color: Colors.white,
-                //         textColor: Colors.red,
-                //         padding: EdgeInsets.all(5.0),
-                //         onPressed: () {},
-                //         child: Text(
-                //           "ไม่สามารถตักอาหารเข้าปากได้ ต้องมีคนป้อนให้",
-                //           style: TextStyle(
-                //               fontSize: 16,
-                //               color: Colors.black,
-                //               fontWeight: FontWeight.normal),
-                //         ),
-                //       ),
-                //       FlatButton(
-                //         shape: RoundedRectangleBorder(
-                //             borderRadius: BorderRadius.circular(10.0),
-                //             side: BorderSide(color: Colors.green)),
-                //         color: Colors.white,
-                //         textColor: Colors.green,
-                //         padding: EdgeInsets.all(5.0),
-                //         onPressed: () {},
-                //         child: Text(
-                //           "ตักอาหารเองได้แต่ต้องมีคนช่วย เช่น ช่วยใช้ช้อนตักเตรียมไว้ให้หรือตัดเป็นเล็กๆไว้ล่วงหน้า",
-                //           style: TextStyle(
-                //               fontSize: 16,
-                //               color: Colors.black,
-                //               fontWeight: FontWeight.normal),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // )
               ],
             )
           ],

@@ -91,10 +91,6 @@ showAlertDialog(BuildContext context) {
         Text("หากผู้ป่วยต้องการเลื่อนนัด",
             style: Theme.of(context).textTheme.bodyText2),
         Text("กรุณาติดต่อ\n", style: Theme.of(context).textTheme.bodyText2),
-        // Text("ในเวลาราชการ 02-2565318",
-        //     style: Theme.of(context).textTheme.bodyText1),
-        // Text("นอกเวลาราชการ 02-2565172",
-        //     style: Theme.of(context).textTheme.bodyText1),
         Text("ในเวลาราชการ", style: Theme.of(context).textTheme.bodyText1),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -119,12 +115,6 @@ showAlertDialog(BuildContext context) {
         ),
       ],
     ),
-    // content: Row(
-    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //   children: [
-    //     Text("ในเวลาราชการ\n02-2565318\nนอกเวลาราชการ\n02-2565172"),
-    //   ],
-    // ),
     actions: [
       OkButton,
     ],
