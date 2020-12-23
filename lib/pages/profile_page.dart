@@ -196,7 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         padding:
                             EdgeInsets.only(left: 10.0, bottom: 0, top: 10.0),
                         child: Text(
-                          'BMI ค่าดัชนีมวลกาย',
+                          '%BML',
                           style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ),
@@ -222,15 +222,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         RaisedButton(
-                          textColor: Colors.white,
-                          color: Color(0xFFE38C14),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7.0)),
+                          textColor: Colors.black,
+                          color: Color(0xFFEBEBEB),
                           child: Text(
                             'ตั้งค่ารหัสผ่านยืนยันตัวตน 6 หลัก',
                             style: TextStyle(fontSize: 18),
                           ),
                           onPressed: () {
-                            print('This is setpin button');
-                            // setState(() {});
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -247,14 +247,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7.0)),
                           textColor: Colors.white,
-                          color: Color(0xFF33cc33),
+                          color: Color(0xFF2ED47A),
                           child: Text(
                             'ยืนยัน',
                             style: TextStyle(fontSize: 18),
                           ),
                           onPressed: () {
-                            print('This is setpin button');
                             Navigator.pushReplacementNamed(
                                 context, '/chat_page');
                           },
@@ -268,8 +269,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7.0)),
                           textColor: Colors.white,
-                          color: Colors.red,
+                          color: Color(0xFFE96E4C),
                           child: Text(
                             'ออกจากระบบ',
                             style: TextStyle(fontSize: 18),

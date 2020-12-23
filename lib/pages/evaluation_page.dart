@@ -13,6 +13,16 @@ class _EvaluationPageState extends State<EvaluationPage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: Text('แบบประเมินพัฒนาการของผู้ป่วย'),
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 30,
+            ),
+            tooltip: 'กลับ',
+            onPressed: () {
+              Navigator.pushNamed(context, '/chat_page');
+            },
+          ),
         ),
         body: Container(
           child: ListView(

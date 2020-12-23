@@ -30,6 +30,15 @@ class _TrainingPageState extends State<TrainingPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('การฝึกสอนและอบรบ'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+          tooltip: 'กลับ',
+          onPressed: () {
+            Navigator.pushNamed(context, '/chat_page');
+          },
+        ),
       ),
       body: Container(
         child: ListView(

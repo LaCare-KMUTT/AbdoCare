@@ -14,6 +14,15 @@ class _AppointPageState extends State<AppointPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('ตารางนัด'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+          tooltip: 'กลับ',
+          onPressed: () {
+            Navigator.pushNamed(context, '/chat_page');
+          },
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.add),

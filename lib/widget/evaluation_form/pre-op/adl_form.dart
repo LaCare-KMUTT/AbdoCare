@@ -20,10 +20,7 @@ class _ADLFormState extends State<ADLForm> {
           'การปฏิบัติกิจวัตรประจำวัน',
         ),
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            size: 30,
-          ),
+          icon: const Icon(Icons.arrow_back_ios),
           tooltip: 'กลับ',
           onPressed: () {
             Navigator.push(
