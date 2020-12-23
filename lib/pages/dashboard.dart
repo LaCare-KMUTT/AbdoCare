@@ -14,6 +14,15 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('สรุปผลประจำวัน'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+          tooltip: 'กลับ',
+          onPressed: () {
+            Navigator.pushNamed(context, '/chat_page');
+          },
+        ),
       ),
       body: ShowDashboard(),
     );

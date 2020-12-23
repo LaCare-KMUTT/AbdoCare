@@ -16,8 +16,7 @@ class _PreOpPageState extends State<PreOpPage> {
         title: Text('แบบประเมิน'),
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back,
-            size: 30,
+            Icons.arrow_back_ios,
           ),
           tooltip: 'กลับ',
           onPressed: () {
@@ -32,7 +31,7 @@ class _PreOpPageState extends State<PreOpPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 50, 10, 20),
               child: RaisedButton(
-                color: Colors.white10,
+                color: Color(0xFFE9E9E9),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -59,7 +58,7 @@ class _PreOpPageState extends State<PreOpPage> {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
               child: RaisedButton(
                 padding: EdgeInsets.only(top: 0),
-                color: Colors.white70,
+                color: Color(0xFFF5F5F5),
                 onPressed: () {
                   Navigator.push(
                     context,

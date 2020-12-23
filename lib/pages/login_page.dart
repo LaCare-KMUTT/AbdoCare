@@ -57,7 +57,9 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   RaisedButton(
-                    color: Color(0xFF33cc33),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0)),
+                    color: Color(0xFF2ED47A),
                     child: Text('ลงทะเบียน',
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     onPressed: () async {
