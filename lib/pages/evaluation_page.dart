@@ -67,5 +67,3 @@ class _EvaluationPageState extends State<EvaluationPage> {
         ),
       );
 }
-
-class PostOpDay0 {}

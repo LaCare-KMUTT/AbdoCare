@@ -14,6 +14,16 @@ class _PreOpPageState extends State<PreOpPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('แบบประเมิน'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            size: 30,
+          ),
+          tooltip: 'กลับ',
+          onPressed: () {
+            Navigator.pushNamed(context, '/chat_page');
+          },
+        ),
       ),
       body: Container(
         child: ListView(
