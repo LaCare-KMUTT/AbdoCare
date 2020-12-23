@@ -56,6 +56,8 @@ flutter:
     - assets/Hospital_logo.png
     - assets/STIN_logo.png
     - assets/icon/Feeding.png
+    - assets/icon/Grooming.png
+    - assets/icon/Transfer.png
   fonts:
     - family: Prompt
       fonts:
