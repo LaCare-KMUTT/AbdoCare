@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
 
-import 'pages/Appointment.dart';
+import 'pages/appointment.dart';
 import 'pages/chat_page.dart';
 import 'pages/dashboard.dart';
 import 'pages/evaluation_page.dart';
