@@ -56,6 +56,9 @@ flutter:
     - assets/abdo-bot-briv-9ed7278f51f5.json
     - assets/Hospital_logo.png
     - assets/STIN_logo.png
+    - assets/icon/Feeding.png
+    - assets/icon/Grooming.png
+    - assets/icon/Transfer.png
   fonts:
     - family: Prompt
       fonts:

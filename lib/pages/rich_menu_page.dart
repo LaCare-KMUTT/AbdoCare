@@ -52,7 +52,9 @@ class _RichMenuPageState extends State<RichMenuPage> {
               ),
               FlatButton(
                 padding: EdgeInsets.only(top: 0),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/evaluation_page');
+                },
                 child: Container(
                   height: 100,
                   width: MediaQuery.of(context).size.width,
@@ -64,7 +66,7 @@ class _RichMenuPageState extends State<RichMenuPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'แบบประเมิน',
+                        'แบบประเมินพัฒนาการของผู้ป่วย',
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],
