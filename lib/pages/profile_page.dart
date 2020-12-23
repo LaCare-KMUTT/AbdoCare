@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../services/calculation_service.dart';
-import '../services/firebase_service.dart';
+import '../services/interfaces/calculation_service_interface.dart';
+import '../services/interfaces/firebase_service_interface.dart';
+import '../services/service_locator.dart';
 import './set_pin_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -13,8 +14,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final _firebaseService = FirebaseService();
-  final _calculationService = CalculationService();
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
+  final ICalculationService _calculationService =
+      locator<ICalculationService>();
   var _userId;
 
   @override

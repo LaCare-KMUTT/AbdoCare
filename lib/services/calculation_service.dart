@@ -1,4 +1,6 @@
-class CalculationService {
+import 'interfaces/calculation_service_interface.dart';
+
+class CalculationService extends ICalculationService {
   int calculateAge(DateTime birthDate) {
     var currentDate = DateTime.now();
     var age = currentDate.year - birthDate.year;

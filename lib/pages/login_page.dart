@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../services/firebase_service.dart';
+import '../services/interfaces/firebase_service_interface.dart';
+import '../services/service_locator.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _firebaseService = FirebaseService();
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
   final _controller = TextEditingController();
   bool _validate = false;
 

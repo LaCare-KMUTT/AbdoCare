@@ -9,10 +9,12 @@ import 'pages/login_page.dart';
 import 'pages/passcode_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/training_page.dart';
+import 'services/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  setupServiceLocator();
   runApp(MyApp());
 }
 
