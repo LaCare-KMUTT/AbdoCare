@@ -9,6 +9,17 @@ class ADLForm extends StatefulWidget {
 }
 
 class _ADLFormState extends State<ADLForm> {
+  int totalscore = 0;
+  int score1,
+      score2,
+      score3,
+      score4,
+      score5,
+      score6,
+      score7,
+      score8,
+      score9,
+      score10 = 0;
   String selectedChoice1 = '';
   String selectedChoice2 = '';
   String selectedChoice3 = '';
@@ -19,6 +30,19 @@ class _ADLFormState extends State<ADLForm> {
   String selectedChoice8 = '';
   String selectedChoice9 = '';
   String selectedChoice10 = '';
+
+  void result(int score) {
+    if (score >= 12) {
+      print('mild independence');
+    } else if (9 <= score) {
+      print('moderately independence');
+    } else if (score <= 5) {
+      print('severe independence');
+    } else if (score <= 0) {
+      print('total independence');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,6 +153,7 @@ class _ADLFormState extends State<ADLForm> {
                               "ไม่สามารถตักอาหารเข้าปากได้ ต้องมีคนป้อนให้",
                           onSelected: (selected1) {
                             setState(() {
+                              score1 = 0;
                               selectedChoice1 =
                                   "ไม่สามารถตักอาหารเข้าปากได้ ต้องมีคนป้อนให้";
                               print(selectedChoice1);
@@ -165,6 +190,7 @@ class _ADLFormState extends State<ADLForm> {
                               "ตักอาหารเองได้แต่ต้องมีคนช่วย",
                           onSelected: (selected1) {
                             setState(() {
+                              score1 = 1;
                               selectedChoice1 = "ตักอาหารเองได้แต่ต้องมีคนช่วย";
                               print(selectedChoice1);
                             });
@@ -196,6 +222,7 @@ class _ADLFormState extends State<ADLForm> {
                               "ตักอาหารและช่วยตัวเองได้เป็นปกติ",
                           onSelected: (selected1) {
                             setState(() {
+                              score1 = 2;
                               selectedChoice1 =
                                   "ตักอาหารและช่วยตัวเองได้เป็นปกติ";
                               print(selectedChoice1);
@@ -295,6 +322,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice2 == "ต้องการความช่วยเหลือ",
                           onSelected: (selected2) {
                             setState(() {
+                              score2 = 0;
                               selectedChoice2 = "ต้องการความช่วยเหลือ";
                               print(selectedChoice2);
                             });
@@ -328,6 +356,7 @@ class _ADLFormState extends State<ADLForm> {
                               "ทำเองได้(รวมทั้งที่ทำได้เองถ้าเตรียมอุปกรณ์ไว้ให้)",
                           onSelected: (selected2) {
                             setState(() {
+                              score2 = 1;
                               selectedChoice2 =
                                   "ทำเองได้(รวมทั้งที่ทำได้เองถ้าเตรียมอุปกรณ์ไว้ให้)";
                               print(selectedChoice2);
@@ -429,6 +458,7 @@ class _ADLFormState extends State<ADLForm> {
                               "ไม่สามารถนั่งได้ (นั่งแล้วจะล้มเสมอ)",
                           onSelected: (selected3) {
                             setState(() {
+                              score3 = 0;
                               selectedChoice3 =
                                   "ไม่สามารถนั่งได้ (นั่งแล้วจะล้มเสมอ)";
                               print(selectedChoice3);
@@ -465,6 +495,7 @@ class _ADLFormState extends State<ADLForm> {
                               "ต้องการความช่วยเหลืออย่างมากจึงจะนั่งได้",
                           onSelected: (selected3) {
                             setState(() {
+                              score3 = 1;
                               selectedChoice3 =
                                   "ต้องการความช่วยเหลืออย่างมากจึงจะนั่งได้";
                               print(selectedChoice3);
@@ -499,6 +530,7 @@ class _ADLFormState extends State<ADLForm> {
                               "ต้องการความช่วยเหลือบ้างเช่น ช่วยพยุงเล็กน้อย",
                           onSelected: (selected3) {
                             setState(() {
+                              score3 = 2;
                               selectedChoice3 =
                                   "ต้องการความช่วยเหลือบ้างเช่น ช่วยพยุงเล็กน้อย";
                               print(selectedChoice3);
@@ -530,6 +562,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice3 == "ทำเองได้",
                           onSelected: (selected3) {
                             setState(() {
+                              score3 = 3;
                               selectedChoice3 = "ทำเองได้";
                               print(selectedChoice3);
                             });
@@ -628,6 +661,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice4 == "ช่วยตัวเองไม่ได้",
                           onSelected: (selected4) {
                             setState(() {
+                              score4 = 0;
                               selectedChoice4 = "ช่วยตัวเองไม่ได้";
                               print(selectedChoice4);
                             });
@@ -660,6 +694,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice4 == "ทำเองได้บ้าง",
                           onSelected: (selected4) {
                             setState(() {
+                              score4 = 1;
                               selectedChoice4 = "ทำเองได้บ้าง";
                               print(selectedChoice4);
                             });
@@ -692,6 +727,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice4 == "ช่วยตัวเองได้ดี",
                           onSelected: (selected4) {
                             setState(() {
+                              score4 = 2;
                               selectedChoice4 = "ช่วยตัวเองได้ดี";
                               print(selectedChoice4);
                             });
@@ -790,6 +826,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice5 == "เคลื่อนที่ไปไหนไม่ได้",
                           onSelected: (selected5) {
                             setState(() {
+                              score5 = 0;
                               selectedChoice5 = "เคลื่อนที่ไปไหนไม่ได้";
                               print(selectedChoice5);
                             });
@@ -823,6 +860,7 @@ class _ADLFormState extends State<ADLForm> {
                               "ต้องใช้รถเข็นช่วยตัวเองให้เคลื่อนที่ได้เอง",
                           onSelected: (selected5) {
                             setState(() {
+                              score5 = 1;
                               selectedChoice5 =
                                   "ต้องใช้รถเข็นช่วยตัวเองให้เคลื่อนที่ได้เอง";
                               print(selectedChoice5);
@@ -853,12 +891,13 @@ class _ADLFormState extends State<ADLForm> {
                           ),
                           backgroundColor: Colors.white,
                           selectedColor: Color(0xffFDF4D7),
-                          selected: selectedChoice4 ==
+                          selected: selectedChoice5 ==
                               "เดินหรือเคลื่อนที่โดยมีคนช่วย",
-                          onSelected: (selected4) {
+                          onSelected: (selected5) {
                             setState(() {
-                              selectedChoice4 = "เดินหรือเคลื่อนที่โดยมีคนช่วย";
-                              print(selectedChoice4);
+                              score5 = 2;
+                              selectedChoice5 = "เดินหรือเคลื่อนที่โดยมีคนช่วย";
+                              print(selectedChoice5);
                             });
                           },
                         ),
@@ -883,11 +922,12 @@ class _ADLFormState extends State<ADLForm> {
                           backgroundColor: Colors.white,
                           selectedColor: Color(0xffE5FBEE),
                           selected:
-                              selectedChoice4 == "เดินหรือเคลื่อนที่ได้เอง",
-                          onSelected: (selected4) {
+                              selectedChoice5 == "เดินหรือเคลื่อนที่ได้เอง",
+                          onSelected: (selected5) {
                             setState(() {
-                              selectedChoice4 = "เดินหรือเคลื่อนที่ได้เอง";
-                              print(selectedChoice4);
+                              score5 = 3;
+                              selectedChoice5 = "เดินหรือเคลื่อนที่ได้เอง";
+                              print(selectedChoice5);
                             });
                           },
                         ),
@@ -985,6 +1025,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice6 == "ต้องมีคนสวมใส่ให้",
                           onSelected: (selected6) {
                             setState(() {
+                              score6 = 0;
                               selectedChoice6 = "ต้องมีคนสวมใส่ให้";
                               print(selectedChoice6);
                             });
@@ -1018,6 +1059,7 @@ class _ADLFormState extends State<ADLForm> {
                               selectedChoice6 == "ช่วยตัวเองได้ประมาณร้อยละ50",
                           onSelected: (selected6) {
                             setState(() {
+                              score6 = 1;
                               selectedChoice6 = "ช่วยตัวเองได้ประมาณร้อยละ50";
                               print(selectedChoice6);
                             });
@@ -1051,6 +1093,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice6 == "ช่วยตัวเองได้ดี",
                           onSelected: (selected6) {
                             setState(() {
+                              score6 = 2;
                               selectedChoice6 = "ช่วยตัวเองได้ดี";
                               print(selectedChoice6);
                             });
@@ -1149,6 +1192,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice7 == "ไม่สามารถทำได้",
                           onSelected: (selected7) {
                             setState(() {
+                              score7 = 0;
                               selectedChoice7 = "ไม่สามารถทำได้";
                               print(selectedChoice7);
                             });
@@ -1180,6 +1224,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice7 == "ต้องการคนช่วย",
                           onSelected: (selected7) {
                             setState(() {
+                              score7 = 1;
                               selectedChoice7 = "ต้องการคนช่วย";
                               print(selectedChoice7);
                             });
@@ -1211,6 +1256,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice7 == "ขึ้นลงได้เอง",
                           onSelected: (selected7) {
                             setState(() {
+                              score7 = 2;
                               selectedChoice7 = "ขึ้นลงได้เอง";
                               print(selectedChoice7);
                             });
@@ -1309,6 +1355,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice8 == "ต้องมีคนช่วยหรือทำให้",
                           onSelected: (selected8) {
                             setState(() {
+                              score8 = 0;
                               selectedChoice8 = "ต้องมีคนช่วยหรือทำให้";
                               print(selectedChoice8);
                             });
@@ -1339,6 +1386,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice8 == "อาบน้ำเองได้",
                           onSelected: (selected8) {
                             setState(() {
+                              score8 = 1;
                               selectedChoice8 = "อาบน้ำเองได้";
                               print(selectedChoice8);
                             });
@@ -1439,6 +1487,7 @@ class _ADLFormState extends State<ADLForm> {
                               "กลั้นไม่ได้ หรือต้องการการสวนอุจจาระอยู่เสมอ",
                           onSelected: (selected9) {
                             setState(() {
+                              score9 = 0;
                               selectedChoice9 =
                                   "กลั้นไม่ได้ หรือต้องการการสวนอุจจาระอยู่เสมอ";
                               print(selectedChoice9);
@@ -1472,6 +1521,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice9 == "กลั้นไม่ได้บางครั้ง",
                           onSelected: (selected9) {
                             setState(() {
+                              score9 = 1;
                               selectedChoice9 = "กลั้นไม่ได้บางครั้ง";
                               print(selectedChoice9);
                             });
@@ -1502,6 +1552,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice9 == "กลั้นได้เป็นปกติ",
                           onSelected: (selected9) {
                             setState(() {
+                              score9 = 2;
                               selectedChoice9 = "กลั้นได้เป็นปกติ";
                               print(selectedChoice9);
                             });
@@ -1602,6 +1653,7 @@ class _ADLFormState extends State<ADLForm> {
                               "กลั้นไม่ได้ หรือใส่สายสวนปัสสาวะ",
                           onSelected: (selected10) {
                             setState(() {
+                              score10 = 0;
                               selectedChoice10 =
                                   "กลั้นไม่ได้ หรือใส่สายสวนปัสสาวะ";
                               print(selectedChoice10);
@@ -1636,6 +1688,7 @@ class _ADLFormState extends State<ADLForm> {
                               "กลั้นไม่ได้บางครั้ง (เป็นน้อยกว่าวันละ1ครั้ง)",
                           onSelected: (selected10) {
                             setState(() {
+                              score10 = 1;
                               selectedChoice10 =
                                   "กลั้นไม่ได้บางครั้ง (เป็นน้อยกว่าวันละ1ครั้ง)";
                               print(selectedChoice10);
@@ -1667,6 +1720,7 @@ class _ADLFormState extends State<ADLForm> {
                           selected: selectedChoice10 == "กลั้นได้เป็นปกติ",
                           onSelected: (selected10) {
                             setState(() {
+                              score10 = 2;
                               selectedChoice10 = "กลั้นได้เป็นปกติ";
                               print(selectedChoice10);
                             });
@@ -1690,16 +1744,29 @@ class _ADLFormState extends State<ADLForm> {
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       color: Color(0xFF2ED47A),
                       onPressed: () {
-                        print('1 $selectedChoice1');
-                        print('2 $selectedChoice2');
-                        print('3 $selectedChoice3');
-                        print('4 $selectedChoice4');
-                        print('5 $selectedChoice5');
-                        print('6 $selectedChoice6');
-                        print('7 $selectedChoice7');
-                        print('8 $selectedChoice8');
-                        print('9 $selectedChoice9');
-                        print('10 $selectedChoice10');
+                        print('1. $selectedChoice1 $score1');
+                        print('2. $selectedChoice2 $score2');
+                        print('3. $selectedChoice3 $score3');
+                        print('4. $selectedChoice4 $score4');
+                        print('5. $selectedChoice5 $score5');
+                        print('6. $selectedChoice6 $score6');
+                        print('7. $selectedChoice7 $score7');
+                        print('8. $selectedChoice8 $score8');
+                        print('9. $selectedChoice9 $score9');
+                        print('10. $selectedChoice10 $score10');
+                        totalscore = score1 +
+                            score2 +
+                            score3 +
+                            score4 +
+                            score5 +
+                            score6 +
+                            score7 +
+                            score8 +
+                            score9 +
+                            score10;
+                        ;
+                        print(totalscore);
+                        result(totalscore);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => PreOpPage()),
