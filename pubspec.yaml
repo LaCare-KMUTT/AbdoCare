@@ -66,6 +66,7 @@ flutter:
     - assets/icon/Bathing.png
     - assets/icon/Bowels.png
     - assets/icon/Bladder.png
+    - assets/Painform.png
    
   fonts:
     - family: Prompt
