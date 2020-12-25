@@ -32,14 +32,18 @@ class _ADLFormState extends State<ADLForm> {
   String selectedChoice10 = '';
 
   void result(int score) {
-    if (score >= 12) {
+    if (totalscore >= 12) {
       print('mild independence');
-    } else if (9 <= score) {
+      showAlertDialog(context);
+    } else if (9 <= totalscore) {
       print('moderately independence');
-    } else if (score <= 5) {
+      showAlertDialog(context);
+    } else if (5 <= totalscore) {
       print('severe independence');
-    } else if (score <= 0) {
+      showAlertDialog(context);
+    } else if (0 <= totalscore) {
       print('total independence');
+      showAlertDialog(context);
     }
   }
 
@@ -1767,10 +1771,6 @@ class _ADLFormState extends State<ADLForm> {
                         ;
                         print(totalscore);
                         result(totalscore);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PreOpPage()),
-                        );
                       }),
                 ],
               ),
@@ -1780,4 +1780,44 @@ class _ADLFormState extends State<ADLForm> {
       ),
     );
   }
+}
+
+void showAlertDialog(BuildContext context) {
+  // Create button
+  Widget OkButton = FlatButton(
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      child: Center(
+        child: Text(
+          "ตกลง",
+          style: Theme.of(context).textTheme.bodyText2,
+        ),
+      ),
+    ),
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PreOpPage()),
+      );
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+    title: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("เก่งมากเลยค่ะ", style: Theme.of(context).textTheme.bodyText1),
+      ],
+    ),
+    actions: [
+      OkButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (context) => alert,
+  );
 }
