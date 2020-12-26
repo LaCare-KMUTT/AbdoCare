@@ -249,7 +249,7 @@ class AdvisePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("การดูแลแผล"),
+          title: Text("คำแนะนำ"),
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
@@ -266,92 +266,148 @@ class AdvisePage extends StatelessWidget {
         body: Container(
           child: ListView(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        Text('คำแนะนำ'),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Column(
                           children: [
                             Text(
-                                '1. ให้ผู้ป่วยจินตนาการในสถานที่ๆรู้สึกสบายเช่น ทะเล หรือภูเขา',
-                                style: Theme.of(context).textTheme.bodyText1),
-                            Text('2. ให้ผู้ป่วยทำกิจกรรมอื่นๆ',
-                                style: Theme.of(context).textTheme.bodyText1),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text('2.1 ดูโทรทัศน์ ',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                  Text('2.2 ฟังดนตรี',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                  Text(
-                                      '2.3 พูดคุยกับสมาชิกภายในบ้านหรือบุคคลอื่น',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                ],
-                              ),
-                            ),
-                            Text('3. การหายใจเป็นจังหวะสม่ำเสมอ',
-                                style: Theme.of(context).textTheme.bodyText1),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                      '3.1 สูดลมหายใจเต็มปอดช้าๆ นับหนึ่งกลั้นไว้สักครู่ และ ค่อยๆหายใจออกช้าๆ',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                  Text(
-                                      '3.2 ระหว่างนี้อาจทำสมาธิจากการมุ่งความสนใจที่ลมหายใจเข้า-ออก',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                ],
-                              ),
-                            ),
-                            Text('4. เกร็งและผ่อนคลายกล้ามเนื้อ',
-                                style: Theme.of(context).textTheme.bodyText1),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                      '4.1 ฝึกเกร็งกล้ามเนื้อกลุ่มต่างๆให้ตึงตัวก่อน เช่น น่อง ต้นขา แผ่นหลัง หน้าท้อง สะโพก',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                  Text(
-                                      '4.2 จากนั้นเมื่อรู้สึกเกร็งนับ 1-3 แล้วคลายช้าๆ',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                ],
-                              ),
+                                'การดูแลเพื่อส่งเสริมการหายของแผลและป้องกันการติดเชื้อที่แผลผ่าตัด มีดังนี้'),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                    '1. ให้ผู้ป่วยพักผ่อนให้เพียงพออย่างน้อยวันละ 8 ชั่วโมง เพื่อลดกระบวนการเผาผลาญภายในเซลล์ที่ไม่จำเป็น เนื้อเยื่อสามารถนำออกซิเจนและสารอาหารไปใช้ได้เพียงพอ',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                                Text(
+                                    '2. ดูแลทำความสะอาดแผลอย่างถูกวิธี และหลีกเลี่ยงการใช้มือสัมผัสกับแผลผ่าตัด เพื่อลดการติดเชื้อที่แผลผ่าตัด',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                                Text('3. การรับประทานอาหาร ',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Text(
+                                          '3.1 รับประทานอาหารประเภทโปรตีน เช่น ไข่ขาว เนื้อไก่เนื้อปลา',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '3.2 รับประทานอาหารที่มีวิตามินซีสูง เช่น ผลไม้รสเปรี้ยว และผักใบเขียว',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                    ],
+                                  ),
+                                ),
+                                Text(
+                                    '4. ระมัดระวังไม่ให้แผลโดนน้ำ อาจใช้ถุงพลาสติกสะอาดปิดคลุมบริเวณแผลขณะอาบน้ำเพื่อป้องกันการซึมของน้ำเข้าแผลผ่าตัด',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                                Text(
+                                    '5. เมื่อแผลเริ่มแห้ง อาจเกิดสะเก็ดแผล ควรหลีกเลี่ยงการแกะหรือเกาแผล เพื่อป้องกันการฉีกขาดของแผลเพิ่มขึ้น',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Column(
+                          children: [
+                            Text(
+                                'การดูแลแผลผ่าตัด การทำแผล มีวิธีการทำแผลดังนี้'),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                    '1. หากผู้ป่วยอยู่ใกล้กับสถานพยาบาลหรือมีความสะดวกในการเดินทางไปยังสถานพยาบาล เช่น โรงพยาบาล ศูนย์ส่งเสริมสุขภาพตำบล หรือ คลินิก แนะนำให้ผู้ป่วยไปทำแผลในสถานพยาบาลใกล้บ้านนั้น',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                                Text(
+                                    '3. กรณีที่ผู้รับบริการต้องการทำแผลเองปฏิบัติ ดังนี้',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Text(
+                                          '3.1 จัดเตรียมอุปกรณ์สำหรับทำแผล ได้แก่ ชุดทำแผล และ น้ำยาสำหรับทำความสะอาดแผล พลาสเตอร์ หรือแผ่นผิดแผลกันน้ำ',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '3.2 ล้างมือด้วยน้ำสบู่ หรือ แอลกอฮอล์เจล ให้สะอาดทุกครั้งก่อนการทำแผล',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '3.3 เปิดชุดทำแผลด้วยความระมัดระวังการปนเปื้อน',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '3.4 เทน้ำยาสำหรับทำความสะอาดแผล (0.9% NSS) ลงในช่องภายในชุดทำแผล',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '3.5 ใช้ที่คีบสำลีตัวที่ 1 จับสำลีชุบน้ำยาทำความสะอาดแผลส่งให้คีบสำลีตัวที่ 2 และเช็ดทำความสะอาดที่ขอบแผลวนออกด้านนอก 2 – 3 นิ้ว',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '3.6 ใช้ที่คีบสำลีตัวที่ 1 จับสำลีชุบน้ำยาทำความสะอาดแผลส่งให้คีบสำลีตัวที่ 2 และเช็ดทำความสะอาดที่แผล',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '3.7 ปฏิบัติซ้ำในข้อที่ 3.5 – 3.6 จนแผลสะอาด',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '3.8 ปิดแผลด้วยผ้าก็อซที่มีให้ในชุดทำแผล',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
