@@ -20,7 +20,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('แผลผ่าตัด'),
+        title: Text('อาการแสดงที่ผิดปกติ'),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
