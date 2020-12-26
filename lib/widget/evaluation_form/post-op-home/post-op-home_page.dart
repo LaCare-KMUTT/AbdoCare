@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'pain_form.dart';
+import 'surgical_incision_form.dart';
 
 class PostOpHomePage extends StatefulWidget {
   @override
@@ -59,7 +60,13 @@ class _PostOpHomeState extends State<PostOpHomePage> {
               child: RaisedButton(
                 padding: EdgeInsets.only(top: 0),
                 color: Color(0xFFF5F5F5),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SurgicalIncisionForm()),
+                  );
+                },
                 child: Container(
                   height: 80,
                   width: MediaQuery.of(context).size.width,

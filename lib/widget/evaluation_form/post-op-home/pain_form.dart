@@ -120,10 +120,6 @@ class _PainFormState extends State<PainForm> {
                         } else {
                           showAdvise2(context, value);
                         }
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => PreOpPage()),
-                        // );
                       }),
                 ],
               ),
