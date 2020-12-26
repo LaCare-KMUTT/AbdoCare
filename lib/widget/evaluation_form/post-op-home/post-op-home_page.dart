@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import '../pre-op/adl_form.dart';
+import 'abnormal_symptom_form.dart';
 import 'pain_form.dart';
 import 'surgical_incision_form.dart';
 
@@ -47,6 +49,31 @@ class _PostOpHomeState extends State<PostOpHomePage> {
                     children: [
                       Text(
                         'แบบประเมินความปวดหลังการผ่าตัด',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+              child: RaisedButton(
+                color: Color(0xFFE9E9E9),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ADLForm()),
+                  );
+                },
+                child: Container(
+                  height: 80,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'แบบประเมินการปฏิบัติกิจวัตรประจำวันหลังผ่าตัด',
                         style: TextStyle(fontSize: 16),
                       ),
                     ],
@@ -108,7 +135,13 @@ class _PostOpHomeState extends State<PostOpHomePage> {
               child: RaisedButton(
                 padding: EdgeInsets.only(top: 0),
                 color: Color(0xFFF5F5F5),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AbnormalSymptomForm()),
+                  );
+                },
                 child: Container(
                   height: 80,
                   width: MediaQuery.of(context).size.width,
