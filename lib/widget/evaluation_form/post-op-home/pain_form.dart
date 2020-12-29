@@ -355,7 +355,7 @@ class Advise2Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("การบรรเทาความปวดโดยไม่ใช้ยา"),
+          title: Text("คำแนะนำ"),
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
@@ -382,10 +382,10 @@ class Advise2Page extends StatelessWidget {
                     padding: const EdgeInsets.all(5.0),
                     child: Column(
                       children: [
-                        Text('คำแนะนำ'),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            Text('การจัดการความปวดด้วยตนเอง มีดังนี้'),
                             Text(
                                 '1. ให้ผู้ป่วยจินตนาการในสถานที่ๆรู้สึกสบายเช่น ทะเล หรือภูเขา',
                                 style: Theme.of(context).textTheme.bodyText1),
