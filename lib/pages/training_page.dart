@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/post_op_home_training.dart';
 import '../widget/pre_op_training.dart';
 
 class TrainingPage extends StatefulWidget {
@@ -21,7 +22,10 @@ class _TrainingPageState extends State<TrainingPage> {
     } else if (number == 2) {
       print('post-op @ hospital day 1+');
     } else if (number == 3) {
-      print('post-op @ community');
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PostOpHomeTrainingPage()),
+      );
     }
   }
 
