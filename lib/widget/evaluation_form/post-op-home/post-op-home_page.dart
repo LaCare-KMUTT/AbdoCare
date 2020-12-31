@@ -1,34 +1,102 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import '../pre-op/adl_form.dart';
+import 'abnormal_symptom_form.dart';
+import 'pain_form.dart';
+import 'surgical_incision_form.dart';
 
-class PostOpDay0Page extends StatefulWidget {
+class PostOpHomePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _PostOpDay0PageState();
+  State<StatefulWidget> createState() => _PostOpHomeState();
 }
 
-class _PostOpDay0PageState extends State<PostOpDay0Page> {
+class _PostOpHomeState extends State<PostOpHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('แบบประเมินพัฒนาการของผู้ป่วย'),
+        title: Text('แบบประเมิน'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+          tooltip: 'กลับ',
+          onPressed: () {
+            Navigator.pushNamed(context, '/chat_page');
+          },
+        ),
       ),
       body: Container(
         child: ListView(
           children: [
+            //The evaluation form has not been done yet.
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 50, 10, 20),
               child: RaisedButton(
-                padding: EdgeInsets.only(top: 0),
-                color: Colors.white70,
-                onPressed: () {},
+                color: Color(0xFFE9E9E9),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PainForm()),
+                  );
+                },
                 child: Container(
                   height: 80,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'แบบประเมินความปวดหลังการผ่าตัด',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
                   ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+              child: RaisedButton(
+                color: Color(0xFFE9E9E9),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ADLForm()),
+                  );
+                },
+                child: Container(
+                  height: 80,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'แบบประเมินการปฏิบัติกิจวัตรประจำวันหลังผ่าตัด',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            //Completed the evaluation form.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+              child: RaisedButton(
+                padding: EdgeInsets.only(top: 0),
+                color: Color(0xFFF5F5F5),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SurgicalIncisionForm()),
+                  );
+                },
+                child: Container(
+                  height: 80,
+                  width: MediaQuery.of(context).size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -48,7 +116,7 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'แบบประเมินระบบทางเดินหายใจหลังผ่าตัด',
+                                    'แบบประเมินแผล',
                                     style: TextStyle(fontSize: 16),
                                   ),
                                 ],
@@ -66,14 +134,17 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
               child: RaisedButton(
                 padding: EdgeInsets.only(top: 0),
-                color: Colors.white70,
-                onPressed: () {},
+                color: Color(0xFFF5F5F5),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AbnormalSymptomForm()),
+                  );
+                },
                 child: Container(
                   height: 80,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -93,97 +164,7 @@ class _PostOpDay0PageState extends State<PostOpDay0Page> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'แบบประเมินการจัดการแผลผ่าตัดและสายระบายต่างๆ',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
-              child: RaisedButton(
-                padding: EdgeInsets.only(top: 0),
-                color: Colors.white70,
-                onPressed: () {},
-                child: Container(
-                  height: 80,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Icon(
-                              Icons.done,
-                              size: 40.0,
-                              color: Colors.green,
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'แบบประเมินการจัดการความปวด',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
-              child: RaisedButton(
-                padding: EdgeInsets.only(top: 0),
-                color: Colors.white70,
-                onPressed: () {},
-                child: Container(
-                  height: 80,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Icon(
-                              Icons.done,
-                              size: 40.0,
-                              color: Colors.green,
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'แบบประเมินระบบปัสสาวะ',
+                                    'แบบประเมินอาการแสดงที่ผิดปกติ',
                                     style: TextStyle(fontSize: 16),
                                   ),
                                 ],
