@@ -10,6 +10,7 @@ import 'pages/login_page.dart';
 import 'pages/passcode_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/training_page.dart';
+import 'services/firebase_service.dart';
 import 'services/service_locator.dart';
 
 void main() async {
@@ -21,6 +22,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  final _firebaseService = FirebaseService();
   @override
   Widget build(BuildContext context) => MaterialApp(
         theme: ThemeData(
@@ -39,8 +41,9 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (ctx, userSnapshot) {
               if (userSnapshot.hasData) {
-                print(FirebaseAuth.instance.currentUser.uid);
+                print(_firebaseService.getUserId());
                 print('userSnapshot has data');
+                // _firebaseService.signout(); //incase can't signout normally
                 return PasscodePage();
               } else {
                 print('auth change user snapshot doesn\'t have data');

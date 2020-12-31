@@ -88,4 +88,18 @@ class FirebaseService extends IFirebaseService {
       print('error update password');
     });
   }
+
+  Future<Map<String, dynamic>> getLatestAnSubCollection({
+    @required String userId,
+  }) async {
+    var anSubCollection = await _firestore
+        .collection('Users')
+        .doc(userId)
+        .collection('an')
+        .orderBy('operationDate', descending: true)
+        .limit(1)
+        .get()
+        .then((querySnapshot) => querySnapshot.docs.first.data());
+    return anSubCollection;
+  }
 }
