@@ -64,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text('ลงทะเบียน',
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       onPressed: () async {
-                        print('This is login button');
                         setState(() {
                           _uniqueKeycontroller.text.isEmpty ||
                                   _uniqueKeycontroller.text.length != 6
