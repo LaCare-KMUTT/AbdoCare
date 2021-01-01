@@ -8,11 +8,12 @@ class FirebaseService extends IFirebaseService {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
-  Future<String> _getUserByUniqueId(String uniqueKey) async {
+  Future<String> _getUsernameByHnAndKey(String hn, String uniqueKey) async {
     var username;
     var searchedUserId = await _firestore
         .collection('Users')
         .where('uniqueKey', isEqualTo: uniqueKey)
+        .where('hn', isEqualTo: hn)
         .get();
     if (searchedUserId.size != 0) {
       var document = searchedUserId.docs.first;
@@ -22,8 +23,8 @@ class FirebaseService extends IFirebaseService {
           .doc(userId)
           .get()
           .then((user) => user.get('username'))
-          .catchError((e) {
-        print('Failed to find username');
+          .catchError((onError) {
+        print('$onError Failed to find username');
         return null;
       });
     } else {
@@ -33,8 +34,11 @@ class FirebaseService extends IFirebaseService {
     return username;
   }
 
-  Future<bool> login(String uniqueKey) async {
-    var username = await _getUserByUniqueId(uniqueKey);
+  Future<bool> login({
+    @required String hn,
+    @required String uniqueKey,
+  }) async {
+    var username = await _getUsernameByHnAndKey(hn, uniqueKey);
     var loginResult = await _auth
         .signInWithEmailAndPassword(email: username, password: uniqueKey)
         .then((value) {
@@ -50,8 +54,9 @@ class FirebaseService extends IFirebaseService {
 
   Future<void> signout() async {
     if (_auth.currentUser != null) {
+      var signingOutUserId = _auth.currentUser.uid;
       await _auth.signOut();
-      print('Firebase user : ${_auth.currentUser} has signed out');
+      print('Firebase user : $signingOutUserId has signed out');
     }
   }
 
@@ -87,5 +92,19 @@ class FirebaseService extends IFirebaseService {
         .catchError((onError) {
       print('error update password');
     });
+  }
+
+  Future<Map<String, dynamic>> getLatestAnSubCollection({
+    @required String userId,
+  }) async {
+    var anSubCollection = await _firestore
+        .collection('Users')
+        .doc(userId)
+        .collection('an')
+        .orderBy('operationDate', descending: true)
+        .limit(1)
+        .get()
+        .then((querySnapshot) => querySnapshot.docs.first.data());
+    return anSubCollection;
   }
 }
