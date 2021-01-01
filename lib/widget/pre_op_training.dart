@@ -2,59 +2,13 @@ import 'package:flutter/material.dart';
 
 class PreOpTrainingPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _PreOpTrainingPageState();
-  }
+  State<StatefulWidget> createState() => _PreOpTrainingPageState();
 }
 
 class _PreOpTrainingPageState extends State<PreOpTrainingPage> {
   int number;
   String topic;
   String detail;
-  void detailpage(int number, String topic, String detail) {
-    if (number == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => pushToScreen(context, topic, detail)),
-      );
-    } else if (number == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => pushToScreen(context, topic, detail)),
-      );
-    } else if (number == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => pushToScreen(context, topic, detail)),
-      );
-    } else if (number == 3) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => pushToScreen(context, topic, detail)),
-      );
-    }
-  }
-
-  pushToScreen(BuildContext context, String topic, String detail) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(topic),
-      ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Text(
-            detail,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,22 +63,37 @@ class _PreOpTrainingPageState extends State<PreOpTrainingPage> {
                         number = item['id'];
                         topic = item['topic'];
                         detail = item['detail'];
-                        detailpage(number, topic, detail);
-                        pushToScreen(context, topic, detail);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    pushToScreen(context, topic, detail)));
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(item['topic'],
-                                style: Theme.of(context).textTheme.bodyText1),
-                          ),
-                          Icon(
-                            Icons.navigate_next,
-                            size: 32,
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(item['topic'],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.navigate_next,
+                              size: 32,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -143,28 +112,60 @@ class _PreOpTrainingPageState extends State<PreOpTrainingPage> {
                         number = item['id'];
                         topic = item['topic'];
                         detail = item['detail'];
-                        detailpage(number, topic, detail);
-                        pushToScreen(context, topic, detail);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    pushToScreen(context, topic, detail)));
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(item['topic'],
-                                style: Theme.of(context).textTheme.bodyText1),
-                          ),
-                          Icon(
-                            Icons.navigate_next,
-                            size: 32,
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(item['topic'],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.navigate_next,
+                              size: 32,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget pushToScreen(BuildContext context, String topic, String detail) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(topic),
+      ),
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            detail,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
         ),
       ),
     );
