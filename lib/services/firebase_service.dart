@@ -10,7 +10,6 @@ class FirebaseService extends IFirebaseService {
 
   Future<String> _getUsernameByHnAndKey(String hn, String uniqueKey) async {
     var username;
-    print('Searching Userid where hn= $hn and uniqueKey = $uniqueKey');
     var searchedUserId = await _firestore
         .collection('Users')
         .where('uniqueKey', isEqualTo: uniqueKey)
@@ -24,8 +23,8 @@ class FirebaseService extends IFirebaseService {
           .doc(userId)
           .get()
           .then((user) => user.get('username'))
-          .catchError((e) {
-        print('Failed to find username');
+          .catchError((onError) {
+        print('$onError Failed to find username');
         return null;
       });
     } else {
@@ -55,8 +54,9 @@ class FirebaseService extends IFirebaseService {
 
   Future<void> signout() async {
     if (_auth.currentUser != null) {
+      var signingOutUser = _auth.currentUser;
       await _auth.signOut();
-      print('Firebase user : ${_auth.currentUser} has signed out');
+      print('Firebase user : $signingOutUser has signed out');
     }
   }
 
