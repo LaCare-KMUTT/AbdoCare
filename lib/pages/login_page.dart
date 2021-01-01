@@ -12,7 +12,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
-  final _controller = TextEditingController();
+  final _uniqueKeycontroller = TextEditingController();
+  final _hnController = TextEditingController();
   bool _validate = false;
 
   @override
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(50, 150, 50, 0),
               child: TextField(
-                controller: _controller,
+                controller: _uniqueKeycontroller,
                 obscureText: true,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
@@ -41,13 +42,13 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(50, 20, 50, 0),
               child: TextField(
-                //controller: _controller,
+                controller: _hnController,
                 obscureText: true,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'หมายเลขผู้ป่วยนอก(HN)',
-                  //errorText: _validate ? 'กรุณาใส่รหัสโค้ด 6 หลัก' : null,
+                  errorText: _validate ? 'กรุณาใส่หมายเลขผู้ป่วยนอก(HN)' : null,
                 ),
               ),
             ),
@@ -65,13 +66,17 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () async {
                       print('This is login button');
                       setState(() {
-                        (_controller.text.isEmpty ||
-                                _controller.text.length != 6)
+                        ((_uniqueKeycontroller.text.isEmpty &&
+                                    _hnController.text.isEmpty) ||
+                                _uniqueKeycontroller.text.length !=
+                                    6) // TODO Define HN length.
                             ? _validate = true
                             : _validate = false;
                       });
                       if (_validate == false) {
-                        if (await _firebaseService.login(_controller.text)) {
+                        if (await _firebaseService.login(
+                            hn: _hnController.text,
+                            uniqueKey: _uniqueKeycontroller.text)) {
                           print("login success!");
                           Navigator.of(context)
                               .pushReplacementNamed('/profile_page');

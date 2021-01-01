@@ -33,7 +33,10 @@ class FirebaseService extends IFirebaseService {
     return username;
   }
 
-  Future<bool> login(String uniqueKey) async {
+  Future<bool> login({
+    @required String hn,
+    @required String uniqueKey,
+  }) async {
     var username = await _getUserByUniqueId(uniqueKey);
     var loginResult = await _auth
         .signInWithEmailAndPassword(email: username, password: uniqueKey)
