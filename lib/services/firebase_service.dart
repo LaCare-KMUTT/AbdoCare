@@ -8,11 +8,13 @@ class FirebaseService extends IFirebaseService {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
-  Future<String> _getUserByUniqueId(String uniqueKey) async {
+  Future<String> _getUsernameByHnAndKey(String hn, String uniqueKey) async {
     var username;
+    print('Searching Userid where hn= $hn and uniqueKey = $uniqueKey');
     var searchedUserId = await _firestore
         .collection('Users')
         .where('uniqueKey', isEqualTo: uniqueKey)
+        .where('hn', isEqualTo: hn)
         .get();
     if (searchedUserId.size != 0) {
       var document = searchedUserId.docs.first;
@@ -37,7 +39,7 @@ class FirebaseService extends IFirebaseService {
     @required String hn,
     @required String uniqueKey,
   }) async {
-    var username = await _getUserByUniqueId(uniqueKey);
+    var username = await _getUsernameByHnAndKey(hn, uniqueKey);
     var loginResult = await _auth
         .signInWithEmailAndPassword(email: username, password: uniqueKey)
         .then((value) {
