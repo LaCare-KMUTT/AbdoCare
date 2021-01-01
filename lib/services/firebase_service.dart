@@ -54,9 +54,9 @@ class FirebaseService extends IFirebaseService {
 
   Future<void> signout() async {
     if (_auth.currentUser != null) {
-      var signingOutUser = _auth.currentUser;
+      var signingOutUserId = _auth.currentUser.uid;
       await _auth.signOut();
-      print('Firebase user : $signingOutUser has signed out');
+      print('Firebase user : $signingOutUserId has signed out');
     }
   }
 
