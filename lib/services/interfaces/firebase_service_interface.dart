@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 abstract class IFirebaseService {
-  Future<bool> login(String uniqueKey);
+  Future<bool> login({@required String hn, @required String uniqueKey});
 
   Future<void> signout();
 
