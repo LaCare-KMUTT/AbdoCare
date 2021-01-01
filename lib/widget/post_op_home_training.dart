@@ -2,92 +2,88 @@ import 'package:flutter/material.dart';
 
 class PostOpHomeTrainingPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _PostOpHomeTrainingPageState();
-  }
+  State<StatefulWidget> createState() => _PostOpHomeTrainingPageState();
 }
 
 class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
   int number;
   String topic;
   String detail;
-  void detailpage(int number, String topic, String detail) {
-    if (number == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => pushToScreen(context, topic, detail)),
-      );
-    } else if (number == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => pushToScreen(context, topic, detail)),
-      );
-    } else if (number == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => pushToScreen(context, topic, detail)),
-      );
-    } else if (number == 3) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => pushToScreen(context, topic, detail)),
-      );
-    }
-  }
-
-  pushToScreen(BuildContext context, String topic, String detail) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(topic),
-      ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Text(
-            detail,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     var list = [
       {
-        'topic': "การเตรียมตัวก่อนผ่าตัด",
+        'topic': "การจัดการความปวด",
         "id": 0,
-        "detail":
-            "ในช่วง 1 วันก่อนผ่าตัดจะมีการงดน้ำงดอาหาร และจะมีการสวนก้นเพื่อให้ขับถ่ายของเสีย"
+        "detail": "...................................0"
       },
       {
-        'topic': "การปฎิบัติตัวหลังการผ่าตัด",
+        'topic': "การดูแลแผลผ่าตัด",
         "id": 1,
-        "detail": "พยายามลุกเดิน"
+        "detail": "...................................1"
       },
       {
-        'topic': "อาหารที่ควรรับประทาน",
+        'topic': "การปฏิบัติกิจวัตรประจำวันหลังการผ่าตัด",
         "id": 2,
-        "detail": "หลีกเลี่ยงอาหารประเภททอด"
-      }
+        "detail": "...................................2"
+      },
+      {
+        'topic': "การรับประทานอาหารที่เหมาะสม",
+        "id": 3,
+        "detail": "...................................3"
+      },
     ];
     var anotherlist = [
       {
-        'topic': "การใช้ห้องน้ำ",
+        'topic': "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
         "id": 0,
-        "detail":
-            "ผู้ป่วยสามารถอาบน้ำได้เนื่องจากทางโรงพยาบาลได้ปิดแผลแบบกันน้ำ"
+        "detail": "...................................0"
       },
       {
-        'topic': "อาหารที่ควรรับประทานหลังผ่าตัด",
+        'topic': "การจัดการแผลผ่าตัดและสายระบายต่างๆ",
         "id": 1,
-        "detail": "หลีกเลี่ยงอาหารประเภททอด"
-      }
+        "detail": "...................................1"
+      },
+      {
+        'topic': "การป้องกันการเกิดภาวะลิ่มเลือดอุดตัน",
+        "id": 2,
+        "detail": "...................................2"
+      },
+      {
+        'topic': "การจัดการภาวะโภชนาการ",
+        "id": 3,
+        "detail": "...................................3"
+      },
+      {
+        'topic': "การเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
+        "id": 4,
+        "detail": "...................................4"
+      },
+      {
+        'topic': "การเฝ้าระวังความผิดปกติของการระบายสิ่งคัดหลั่ง",
+        "id": 5,
+        "detail": "...................................5"
+      },
+      {
+        'topic': "การฟื้นฟูสมรรถภาพของปอด",
+        "id": 6,
+        "detail": "...................................6"
+      },
+      {
+        'topic': "การฟื้นฟูสมรรถภาพของปอด",
+        "id": 7,
+        "detail": "...................................7"
+      },
+      {
+        'topic': "การฟื้นฟูระบบทางเดินอาหาร",
+        "id": 8,
+        "detail": "...................................8"
+      },
+      {
+        'topic': "การแนะนำการปฏิบัติตัวที่เหมาะสมก่อนกลับบ้าน",
+        "id": 9,
+        "detail": "...................................9"
+      },
     ];
     return Scaffold(
       appBar: AppBar(
@@ -109,22 +105,37 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                         number = item['id'];
                         topic = item['topic'];
                         detail = item['detail'];
-                        detailpage(number, topic, detail);
-                        pushToScreen(context, topic, detail);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    pushToScreen(context, topic, detail)));
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(item['topic'],
-                                style: Theme.of(context).textTheme.bodyText1),
-                          ),
-                          Icon(
-                            Icons.navigate_next,
-                            size: 32,
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(item['topic'],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.navigate_next,
+                              size: 32,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -143,22 +154,37 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                         number = item['id'];
                         topic = item['topic'];
                         detail = item['detail'];
-                        detailpage(number, topic, detail);
-                        pushToScreen(context, topic, detail);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    pushToScreen(context, topic, detail)));
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(item['topic'],
-                                style: Theme.of(context).textTheme.bodyText1),
-                          ),
-                          Icon(
-                            Icons.navigate_next,
-                            size: 32,
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(item['topic'],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.navigate_next,
+                              size: 32,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -169,4 +195,20 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
       ),
     );
   }
+
+  Widget pushToScreen(BuildContext context, String topic, String detail) =>
+      Scaffold(
+        appBar: AppBar(
+          title: Text("คำแนะนำ"),
+        ),
+        body: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text(
+              detail,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ),
+        ),
+      );
 }

@@ -4,9 +4,7 @@ import '../widget/pre_op_training.dart';
 
 class TrainingPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _TrainingPageState();
-  }
+  State<StatefulWidget> createState() => _TrainingPageState();
 }
 
 class _TrainingPageState extends State<TrainingPage> {
@@ -84,7 +82,7 @@ class _TrainingPageState extends State<TrainingPage> {
                   number = 3;
                   navigate(number);
                 },
-                child: Text('Post-op @ community'),
+                child: Text('Post-op @ home'),
               ),
             ),
           ],
