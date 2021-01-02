@@ -1,4 +1,3 @@
-import 'package:AbdoCare/widget/training_information/navigate_function.dart';
 import 'package:flutter/material.dart';
 import '../pages/chat_page.dart';
 import 'training_information/pain_advice.dart';
@@ -12,6 +11,14 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
   int number;
   String topic;
   String state;
+  void detailpage(int number) {
+    if (number == 15) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => PainAdvice()));
+    } else if (number == 2) {
+    } else if (number == 3) {
+    } else if (number == 4) {}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,13 +148,14 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                       onPressed: () {
                         number = item['id'];
                         topic = item['topic'];
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  TrainingInformation(numberid: number),
-                              //pushToScreen(context, number),
-                            ));
+                        detailpage(number);
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) =>
+                        //           TrainingInformation(numberid: number),
+                        //       //pushToScreen(context, number),
+                        //     ));
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -191,18 +199,6 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                       onPressed: () {
                         number = item['id'];
                         topic = item['topic'];
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  TrainingInformation(numberid: number),
-                            ));
-                        print(number);
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) =>
-                        //             pushToScreen(context, number, detail)));
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
