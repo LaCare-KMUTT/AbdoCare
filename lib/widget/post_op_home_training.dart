@@ -1,4 +1,7 @@
+import 'package:AbdoCare/widget/training_information/navigate_function.dart';
 import 'package:flutter/material.dart';
+import '../pages/chat_page.dart';
+import 'training_information/pain_advice.dart';
 
 class PostOpHomeTrainingPage extends StatefulWidget {
   @override
@@ -8,86 +11,120 @@ class PostOpHomeTrainingPage extends StatefulWidget {
 class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
   int number;
   String topic;
-  String detail;
+  String state;
+
   @override
   Widget build(BuildContext context) {
-    var list = [
-      {
-        'topic': "การจัดการความปวด",
-        "id": 0,
-        "detail": "...................................0"
-      },
-      {
-        'topic': "การดูแลแผลผ่าตัด",
-        "id": 1,
-        "detail": "...................................1"
-      },
-      {
-        'topic': "การปฏิบัติกิจวัตรประจำวันหลังการผ่าตัด",
-        "id": 2,
-        "detail": "...................................2"
-      },
-      {
-        'topic': "การรับประทานอาหารที่เหมาะสม",
-        "id": 3,
-        "detail": "...................................3"
-      },
-    ];
     var anotherlist = [
       {
-        'topic': "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
-        "id": 0,
-        "detail": "...................................0"
-      },
-      {
-        'topic': "การจัดการแผลผ่าตัดและสายระบายต่างๆ",
+        "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
+        "state": "post-op @ Hospital Day 0",
         "id": 1,
-        "detail": "...................................1"
       },
       {
-        'topic': "การป้องกันการเกิดภาวะลิ่มเลือดอุดตัน",
+        "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
+        "state": "post-op @ Hospital Day 0",
         "id": 2,
-        "detail": "...................................2"
       },
       {
-        'topic': "การจัดการภาวะโภชนาการ",
+        "topic": "การจัดการแผลผ่าตัดและสายระบายต่างๆ",
+        "state": "post-op @ Hospital Day 0",
         "id": 3,
-        "detail": "...................................3"
       },
       {
-        'topic': "การเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
+        "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
+        "state": "post-op @ Hospital Day 1",
         "id": 4,
-        "detail": "...................................4"
       },
       {
-        'topic': "การเฝ้าระวังความผิดปกติของการระบายสิ่งคัดหลั่ง",
+        "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
+        "state": "post-op @ Hospital Day 1",
         "id": 5,
-        "detail": "...................................5"
       },
       {
-        'topic': "การฟื้นฟูสมรรถภาพของปอด",
+        "topic": "การจัดการแผลผ่าตัดและสายระบายต่างๆ",
+        "state": "post-op @ Hospital Day 1",
         "id": 6,
-        "detail": "...................................6"
       },
       {
-        'topic': "การฟื้นฟูสมรรถภาพของปอด",
+        "topic": "การป้องกันการเกิดภาวะลิ่มเลือดอุดตัน",
+        "state": "post-op @ Hospital Day 1",
         "id": 7,
-        "detail": "...................................7"
       },
       {
-        'topic': "การฟื้นฟูระบบทางเดินอาหาร",
+        "topic": "การจัดการภาวะโภชนาการ",
+        "state": "post-op @ Hospital Day 1",
         "id": 8,
-        "detail": "...................................8"
       },
       {
-        'topic': "การแนะนำการปฏิบัติตัวที่เหมาะสมก่อนกลับบ้าน",
+        "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
+        "state": "post-op @ Hospital Day 2",
         "id": 9,
-        "detail": "...................................9"
+      },
+      {
+        "topic": "การเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
+        "state": "post-op @ Hospital Day 2",
+        "id": 10,
+      },
+      {
+        "topic": "การเฝ้าระวังความผิดปกติของการระบายสิ่งคัดหลั่ง",
+        "state": "post-op @ Hospital Day 2",
+        "id": 11,
+      },
+      {
+        "topic": "การฟื้นฟูสมรรถภาพของปอด",
+        "state": "post-op @ Hospital Day 2",
+        "id": 12,
+      },
+      {
+        "topic": "การฟื้นฟูระบบทางเดินอาหาร",
+        "state": "post-op @ Hospital Day 2",
+        "id": 13,
+      },
+      {
+        "topic": "การแนะนำการปฏิบัติตัวที่เหมาะสมก่อนกลับบ้าน",
+        "state": "post-op @ Hospital Day 2",
+        "id": 14,
+      },
+    ];
+
+    var postOpHome = [
+      {
+        "topic": "การจัดการความปวดขณะพักฟื้นอยู่ที่บ้าน",
+        "state": "post-op @ Home",
+        "id": 15,
+      },
+      {
+        "topic": "การดูแลแผลผ่าตัด",
+        "state": "post-op @ Home",
+        "id": 16,
+      },
+      {
+        "topic": "การปฏิบัติกิจวัตรประจำวันหลังการผ่าตัด",
+        "state": "post-op @ Home",
+        "id": 17,
+      },
+      {
+        "topic": "การรับประทานอาหารที่เหมาะสม",
+        "state": "post-op @ Home",
+        "id": 18,
       },
     ];
     return Scaffold(
       appBar: AppBar(
         title: Text('การฝึกสอนและอบรม'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+          tooltip: 'กลับ',
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ChatPage()),
+            );
+          },
+        ),
       ),
       body: Container(
         child: ListView(
@@ -98,18 +135,19 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
             ),
             Column(
               children: [
-                for (var item in list)
+                for (var item in postOpHome)
                   Card(
                     child: FlatButton(
                       onPressed: () {
                         number = item['id'];
                         topic = item['topic'];
-                        detail = item['detail'];
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    pushToScreen(context, topic, detail)));
+                              builder: (context) =>
+                                  TrainingInformation(numberid: number),
+                              //pushToScreen(context, number),
+                            ));
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -153,12 +191,18 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                       onPressed: () {
                         number = item['id'];
                         topic = item['topic'];
-                        detail = item['detail'];
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    pushToScreen(context, topic, detail)));
+                              builder: (context) =>
+                                  TrainingInformation(numberid: number),
+                            ));
+                        print(number);
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) =>
+                        //             pushToScreen(context, number, detail)));
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -196,8 +240,7 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
     );
   }
 
-  Widget pushToScreen(BuildContext context, String topic, String detail) =>
-      Scaffold(
+  Widget pushToScreen(BuildContext context, int number) => Scaffold(
         appBar: AppBar(
           title: Text("คำแนะนำ"),
         ),
@@ -205,7 +248,7 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Text(
-              detail,
+              "Detail",
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
