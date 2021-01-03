@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/chat_page.dart';
 import 'training_information/daily_activity_advice.dart';
+import 'training_information/food_advice.dart';
 import 'training_information/pain_advice.dart';
 import 'training_information/surgical_incision_advice.dart';
 
@@ -23,7 +24,10 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
     } else if (number == 17) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => DailyActivityAdvice()));
-    } else if (number == 18) {}
+    } else if (number == 18) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => FoodAdvice()));
+    }
   }
 
   @override
