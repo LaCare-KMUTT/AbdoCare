@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../pages/chat_page.dart';
+import 'training_information/daily_activity_advice.dart';
 import 'training_information/pain_advice.dart';
 import 'training_information/surgical_incision_advice.dart';
 
@@ -20,6 +21,8 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => SurgicalIncisionAdvice()));
     } else if (number == 17) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => DailyActivityAdvice()));
     } else if (number == 18) {}
   }
 
