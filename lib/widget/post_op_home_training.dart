@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/chat_page.dart';
 import 'training_information/pain_advice.dart';
+import 'training_information/surgical_incision_advice.dart';
 
 class PostOpHomeTrainingPage extends StatefulWidget {
   @override
@@ -15,9 +16,11 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
     if (number == 15) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => PainAdvice()));
-    } else if (number == 2) {
-    } else if (number == 3) {
-    } else if (number == 4) {}
+    } else if (number == 16) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => SurgicalIncisionAdvice()));
+    } else if (number == 17) {
+    } else if (number == 18) {}
   }
 
   @override
