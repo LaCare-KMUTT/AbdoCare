@@ -2,7 +2,7 @@
 // Post-op @ Hospital Day 0
 import 'package:flutter/material.dart';
 
-class RespiratoryAdvice extends StatelessWidget {
+class RespiratoryAdviceDay0 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(

@@ -66,7 +66,7 @@ class _ShowDashboardState extends State<ShowDashboard> {
       barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
     SubscriberSeries(
-      topic: "การล้างหน้า หวีผม \nแปลงฟัน",
+      topic: "การล้างหน้า หวีผม \nแปรงฟัน",
       point: 3,
       barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     )
