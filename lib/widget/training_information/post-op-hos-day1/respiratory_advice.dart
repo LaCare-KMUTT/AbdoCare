@@ -1,8 +1,8 @@
 // Advice for Prevent respiratory complication
-// Post-op @ Hospital Day 0
+// Post-op @ Hospital Day 1
 import 'package:flutter/material.dart';
 
-class RespiratoryAdviceDay0 extends StatelessWidget {
+class RespiratoryAdviceDay1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -40,7 +40,7 @@ class RespiratoryAdviceDay0 extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('1.	นอนท่าศีรษะสูง 30 - 45 องศา',
+                            child: Text('1.	นอนท่าศีรษะสูง 45-60 องศา',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Padding(
