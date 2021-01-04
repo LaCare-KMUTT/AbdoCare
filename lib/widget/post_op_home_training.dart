@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../pages/chat_page.dart';
-import 'training_information/daily_activity_advice.dart';
-import 'training_information/food_advice.dart';
-import 'training_information/pain_advice.dart';
-import 'training_information/surgical_incision_advice.dart';
+import 'training_information/post-op-home/daily_activity_advice.dart';
+import 'training_information/post-op-home/food_advice.dart';
+import 'training_information/post-op-home/pain_advice.dart';
+import 'training_information/post-op-home/surgical_incision_advice.dart';
+import 'training_information/post-op-hos-day0/respiratory_advice.dart';
 
 class PostOpHomeTrainingPage extends StatefulWidget {
   @override
@@ -15,7 +16,10 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
   String topic;
   String state;
   void detailpage(int number) {
-    if (number == 15) {
+    if (number == 1) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => RespiratoryAdvice()));
+    } else if (number == 15) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => PainAdvice()));
     } else if (number == 16) {
@@ -209,6 +213,7 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                       onPressed: () {
                         number = item['id'];
                         topic = item['topic'];
+                        detailpage(number);
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
