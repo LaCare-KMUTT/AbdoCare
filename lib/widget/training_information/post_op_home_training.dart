@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import '../pages/chat_page.dart';
-import 'training_information/post-op-home/daily_activity_advice.dart';
-import 'training_information/post-op-home/food_advice.dart';
-import 'training_information/post-op-home/pain_advice.dart';
-import 'training_information/post-op-home/surgical_incision_advice.dart';
-import 'training_information/post-op-hos-day0/drain_advice.dart';
-import 'training_information/post-op-hos-day0/pain_advice.dart';
-import 'training_information/post-op-hos-day0/respiratory_advice.dart';
-import 'training_information/post-op-hos-day1/blood_clots_advice.dart';
-import 'training_information/post-op-hos-day1/nutrition_advice.dart';
-import 'training_information/post-op-hos-day1/respiratory_advice.dart';
+import '../../pages/chat_page.dart';
+import 'post-op-home/daily_activity_advice.dart';
+import 'post-op-home/food_advice.dart';
+import 'post-op-home/infection_advice.dart';
+import 'post-op-home/pain_advice.dart';
+import 'post-op-home/surgical_incision_advice.dart';
+import 'post-op-hos-day0/drain_advice.dart';
+import 'post-op-hos-day0/pain_advice.dart';
+import 'post-op-hos-day0/respiratory_advice.dart';
+import 'post-op-hos-day1/blood_clots_advice.dart';
+import 'post-op-hos-day1/nutrition_advice.dart';
+import 'post-op-hos-day1/respiratory_advice.dart';
+import 'post-op-hos-day2-7/behave_advice.dart';
+import 'post-op-hos-day2-7/digestive_rehabilitation_advice.dart';
+import 'post-op-hos-day2-7/drain_secretion_advice.dart';
+import 'post-op-hos-day2-7/pain_advice_day2.dart';
+import 'post-op-hos-day2-7/pulmanary_rehabilitation_advice.dart';
 
 class PostOpHomeTrainingPage extends StatefulWidget {
   @override
@@ -39,16 +45,34 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
     } else if (number == 8) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => NutritionAdviceDay1()));
+    } else if (number == 9) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => PainAdviceDay2()));
+    } else if (number == 11) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => DrainSecretionAdviceDay2()));
+    } else if (number == 12) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => PulmonaryAdviceDay2()));
+    } else if (number == 13) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => DigestiveAdviceDay2()));
+    } else if (number == 14) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => BehaveAdviceDay2()));
     } else if (number == 15) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => PainAdvice()));
-    } else if (number == 16) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => SurgicalIncisionAdvice()));
+    } else if (number == 16 || number == 10) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => InfectionAdvice()));
     } else if (number == 17) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => DailyActivityAdvice()));
+          MaterialPageRoute(builder: (context) => SurgicalIncisionAdvice()));
     } else if (number == 18) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => DailyActivityAdvice()));
+    } else if (number == 19) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => FoodAdvice()));
     }
@@ -136,19 +160,24 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
         "id": 15,
       },
       {
-        "topic": "การดูแลแผลผ่าตัด",
+        "topic": "การเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
         "state": "post-op @ Home",
         "id": 16,
       },
       {
-        "topic": "การปฏิบัติกิจวัตรประจำวันหลังการผ่าตัด",
+        "topic": "การดูแลแผลผ่าตัด",
         "state": "post-op @ Home",
         "id": 17,
       },
       {
-        "topic": "การรับประทานอาหารที่เหมาะสม",
+        "topic": "การปฏิบัติกิจวัตรประจำวันหลังการผ่าตัด",
         "state": "post-op @ Home",
         "id": 18,
+      },
+      {
+        "topic": "การรับประทานอาหารที่เหมาะสม",
+        "state": "post-op @ Home",
+        "id": 19,
       },
     ];
     return Scaffold(
