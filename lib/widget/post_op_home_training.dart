@@ -7,6 +7,8 @@ import 'training_information/post-op-home/surgical_incision_advice.dart';
 import 'training_information/post-op-hos-day0/drain_advice.dart';
 import 'training_information/post-op-hos-day0/pain_advice.dart';
 import 'training_information/post-op-hos-day0/respiratory_advice.dart';
+import 'training_information/post-op-hos-day1/blood_clots_advice.dart';
+import 'training_information/post-op-hos-day1/nutrition_advice.dart';
 import 'training_information/post-op-hos-day1/respiratory_advice.dart';
 
 class PostOpHomeTrainingPage extends StatefulWidget {
@@ -31,6 +33,12 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
     } else if (number == 4) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => RespiratoryAdviceDay1()));
+    } else if (number == 7) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => BloodclotsAdviceDay1()));
+    } else if (number == 8) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => NutritionAdviceDay1()));
     } else if (number == 15) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => PainAdvice()));
