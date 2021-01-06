@@ -37,8 +37,8 @@ class PainAdvice extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-1. ให้ผู้ป่วยจินตนาการในสถานที่ๆรู้สึกสบายเช่น ทะเล หรือภูเขา''',
+                            child: Text(
+                                '''1. ให้ผู้ป่วยจินตนาการในสถานที่ๆรู้สึกสบายเช่น ทะเล หรือภูเขา''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Padding(
@@ -63,8 +63,8 @@ class PainAdvice extends StatelessWidget {
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-                                      Text('''
-2.3 พูดคุยกับสมาชิกภายในบ้านหรือบุคคลอื่น''',
+                                      Text(
+                                          '''2.3 พูดคุยกับสมาชิกภายในบ้านหรือบุคคลอื่น''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
@@ -88,13 +88,13 @@ class PainAdvice extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Text('''
-3.1 สูดลมหายใจเต็มปอดช้าๆ นับหนึ่งกลั้นไว้สักครู่ และ ค่อยๆหายใจออกช้าๆ''',
+                                      Text(
+                                          '''3.1 สูดลมหายใจเต็มปอดช้าๆ นับหนึ่งกลั้นไว้สักครู่ และ ค่อยๆหายใจออกช้าๆ''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-                                      Text('''
-3.2 ระหว่างนี้อาจทำสมาธิจากการมุ่งความสนใจที่ลมหายใจเข้า-ออก''',
+                                      Text(
+                                          '''3.2 ระหว่างนี้อาจทำสมาธิจากการมุ่งความสนใจที่ลมหายใจเข้า-ออก''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
@@ -118,13 +118,13 @@ class PainAdvice extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Text('''
-4.1 ฝึกเกร็งกล้ามเนื้อกลุ่มต่างๆให้ตึงตัวก่อน เช่น น่อง ต้นขา แผ่นหลัง หน้าท้อง สะโพก''',
+                                      Text(
+                                          '''4.1 ฝึกเกร็งกล้ามเนื้อกลุ่มต่างๆให้ตึงตัวก่อน เช่น น่อง ต้นขา แผ่นหลัง หน้าท้อง สะโพก''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-                                      Text('''
-4.2 จากนั้นเมื่อรู้สึกเกร็งนับ 1-3 แล้วคลายช้าๆ''',
+                                      Text(
+                                          '''4.2 จากนั้นเมื่อรู้สึกเกร็งนับ 1-3 แล้วคลายช้าๆ''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),

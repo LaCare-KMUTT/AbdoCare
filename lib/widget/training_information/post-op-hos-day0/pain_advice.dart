@@ -39,14 +39,14 @@ class PainAdviceDay0 extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-1. ให้ผู้ป่วยนอนท่าศีรษะสูงเพื่อลดการดึงรั้งแผลผ่าตัดหรือท่าที่ผู้รับบริการสุขสบาย''',
+                            child: Text(
+                                '''1. ให้ผู้ป่วยนอนท่าศีรษะสูงเพื่อลดการดึงรั้งแผลผ่าตัดหรือท่าที่ผู้รับบริการสุขสบาย''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-2. ให้ผู้ป่วย มือสองข้างประคองบริเวณแผลผ่าตัดขณะที่มีการเคลื่อนไหวหรือไอเพื่อลดภาวะกล้ามเนื้อตึงเครียด''',
+                            child: Text(
+                                '''2. ให้ผู้ป่วย มือสองข้างประคองบริเวณแผลผ่าตัดขณะที่มีการเคลื่อนไหวหรือไอเพื่อลดภาวะกล้ามเนื้อตึงเครียด''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                         ],

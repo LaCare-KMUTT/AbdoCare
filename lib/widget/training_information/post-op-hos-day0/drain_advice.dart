@@ -35,19 +35,19 @@ class DrainAdviceDay0 extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-การป้องกันภาวะแทรกซ้อน เช่น ช๊อก จากการเกิดอันตรายจากภาวะเลือดออกมาก มีอาการและอาการแสดง ดังนี้'''),
+                            child: Text(
+                                '''การป้องกันภาวะแทรกซ้อน เช่น ช๊อก จากการเกิดอันตรายจากภาวะเลือดออกมาก มีอาการและอาการแสดง ดังนี้'''),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-1. ลักษณะแผลผ่าตัด และและสายระบายต่างๆมีเลือดออกมาก''',
+                            child: Text(
+                                '''1. ลักษณะแผลผ่าตัด และและสายระบายต่างๆมีเลือดออกมาก''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-2. อาการและอาการแสดงของการเสียเลือดมากจากแผลผ่าตัดและสายระบาย (ถ้าปริมาณเลือด > 200 มิลลิลิตรใน 1 ชั่วโมง) เช่น ใจสั่น หน้ามืด หัวใจเต้นเร็ว เป็นต้น''',
+                            child: Text(
+                                '''2. อาการและอาการแสดงของการเสียเลือดมากจากแผลผ่าตัดและสายระบาย (ถ้าปริมาณเลือด > 200 มิลลิลิตรใน 1 ชั่วโมง) เช่น ใจสั่น หน้ามืด หัวใจเต้นเร็ว เป็นต้น''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Padding(
@@ -58,8 +58,8 @@ class DrainAdviceDay0 extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-4.	สัญญาณชีพปกติ โดยเฉพาะค่า PR, RR, BP และ O2sat''',
+                            child: Text(
+                                '''4.	สัญญาณชีพปกติ โดยเฉพาะค่า PR, RR, BP และ O2sat''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                         ],

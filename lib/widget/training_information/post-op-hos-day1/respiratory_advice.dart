@@ -58,18 +58,18 @@ class RespiratoryAdviceDay1 extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Text('''
-2.1 ใช้มือทั้งสองข้างจับที่ท้องจะได้รู้สึกเวลาหน้าอกขยาย''',
+                                      Text(
+                                          '''2.1 ใช้มือทั้งสองข้างจับที่ท้องจะได้รู้สึกเวลาหน้าอกขยาย''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-                                      Text('''
-2.2 หายใจเข้าทางจมูกจนรู้สึกว่าหน้าท้องขยาย''',
+                                      Text(
+                                          '''2.2 หายใจเข้าทางจมูกจนรู้สึกว่าหน้าท้องขยาย''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-                                      Text('''
-2.3.	หายใจออกทางปากขณะกล้ามเนื้อหน้าหน้าท้องหดตัว''',
+                                      Text(
+                                          '''2.3.	หายใจออกทางปากขณะกล้ามเนื้อหน้าหน้าท้องหดตัว''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
@@ -84,8 +84,8 @@ class RespiratoryAdviceDay1 extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                Text('''
-3. การไออย่างมีประสิทธิภาพเมื่อมีเสมหะ คือ''',
+                                Text(
+                                    '''3. การไออย่างมีประสิทธิภาพเมื่อมีเสมหะ คือ''',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 Padding(
@@ -94,18 +94,18 @@ class RespiratoryAdviceDay1 extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Text('''
-3.1. ใช้มือประคองแผลผ่าตัด หรือหมอนใบเล็กหรือผ้าเช็ดตัวม้วนกดแผลผ่าตัดให้แน่น''',
+                                      Text(
+                                          '''3.1. ใช้มือประคองแผลผ่าตัด หรือหมอนใบเล็กหรือผ้าเช็ดตัวม้วนกดแผลผ่าตัดให้แน่น''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-                                      Text('''
-3.2 หายใจเข้าลึกๆ และหายใจออกทางปาก 3 ครั้ง''',
+                                      Text(
+                                          '''3.2 หายใจเข้าลึกๆ และหายใจออกทางปาก 3 ครั้ง''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-                                      Text('''
-3.3. ครั้งที่ 3 กลั้นหายใจ 1 – 2 วินาที และไอเอาเสมหะออกมา''',
+                                      Text(
+                                          '''3.3. ครั้งที่ 3 กลั้นหายใจ 1 – 2 วินาที และไอเอาเสมหะออกมา''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),

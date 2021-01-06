@@ -35,8 +35,8 @@ class BloodclotsAdviceDay1 extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-การป้องกันการเกิดภาวะลิ่มเลือดอุดตันคือ การออกกำลังกายขา โดยทำทีละข้าง เริ่มจากข้างขวา'''),
+                            child: Text(
+                                '''การป้องกันการเกิดภาวะลิ่มเลือดอุดตันคือ การออกกำลังกายขา โดยทำทีละข้าง เริ่มจากข้างขวา'''),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
