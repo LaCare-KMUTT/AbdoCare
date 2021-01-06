@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/evaluation_form/post-op-home/post-op-home_page.dart';
 
 class RichMenuPage extends StatefulWidget {
   @override
@@ -53,7 +54,12 @@ class _RichMenuPageState extends State<RichMenuPage> {
               FlatButton(
                 padding: EdgeInsets.only(top: 0),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/evaluation_page');
+                  // not in NSC scope
+                  //Navigator.pushNamed(context, '/evaluation_page');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PostOpHomePage()),
+                  );
                 },
                 child: Container(
                   height: 100,
