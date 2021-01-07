@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widget/training_information/post_op_home_training.dart';
+
 class RichMenuPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _RichMenuPageState();
@@ -121,7 +123,13 @@ class _RichMenuPageState extends State<RichMenuPage> {
                     child: FlatButton(
                       color: Color(0xFFE38C14),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/training_page');
+                        // not in NSC scope
+                        // Navigator.pushNamed(context, '/training_page');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PostOpHomeTrainingPage()),
+                        );
                       },
                       child: Container(
                         height: 100,
