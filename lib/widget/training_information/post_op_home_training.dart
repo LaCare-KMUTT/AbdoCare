@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../pages/chat_page.dart';
+import '@enum/topic_mode.dart';
 import 'post-op-home/daily_activity_advice.dart';
 import 'post-op-home/food_advice.dart';
 import 'post-op-home/infection_advice.dart';
@@ -26,53 +28,57 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
   int number;
   String topic;
   String state;
-  void detailpage(int number) {
-    if (number == 1) {
+  TopicMode selectedtopic;
+  void detailpage(TopicMode selected) {
+    if (selected == TopicMode.respiratoryDay0) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => RespiratoryAdviceDay0()));
-    } else if (number == 2 || number == 5) {
+    } else if (selected == TopicMode.painDay0 ||
+        selected == TopicMode.painDay1) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => PainAdviceDay0()));
-    } else if (number == 3 || number == 6) {
+    } else if (selected == TopicMode.drainDay0 ||
+        selected == TopicMode.drainDay0) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => DrainAdviceDay0()));
-    } else if (number == 4) {
+    } else if (selected == TopicMode.respiratoryDay1) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => RespiratoryAdviceDay1()));
-    } else if (number == 7) {
+    } else if (selected == TopicMode.bloodclotDay1) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => BloodclotsAdviceDay1()));
-    } else if (number == 8) {
+    } else if (selected == TopicMode.nutritionDay1) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => NutritionAdviceDay1()));
-    } else if (number == 9) {
+    } else if (selected == TopicMode.painDay2) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => PainAdviceDay2()));
-    } else if (number == 11) {
+    } else if (selected == TopicMode.drainDay2) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => DrainSecretionAdviceDay2()));
-    } else if (number == 12) {
+    } else if (selected == TopicMode.pulmanaryDay2) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => PulmonaryAdviceDay2()));
-    } else if (number == 13) {
+    } else if (selected == TopicMode.digestiveDay2) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => DigestiveAdviceDay2()));
-    } else if (number == 14) {
+    } else if (selected == TopicMode.behaveDay2) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => BehaveAdviceDay2()));
-    } else if (number == 15) {
+    } else if (selected == TopicMode.painHome) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => PainAdvice()));
-    } else if (number == 16 || number == 10) {
+    } else if (selected == TopicMode.infectionHome ||
+        selected == TopicMode.infectionDay2) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => InfectionAdvice()));
-    } else if (number == 17) {
+    } else if (selected == TopicMode.surgicalIncisionHome) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => SurgicalIncisionAdvice()));
-    } else if (number == 18) {
+    } else if (selected == TopicMode.dailyActivityHome) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => DailyActivityAdvice()));
-    } else if (number == 19) {
+    } else if (selected == TopicMode.foodHome) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => FoodAdvice()));
     }
@@ -84,72 +90,72 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
       {
         "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
         "state": "post-op @ Hospital Day 0",
-        "id": 1,
+        "selectedtopic": TopicMode.respiratoryDay0,
       },
       {
         "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
         "state": "post-op @ Hospital Day 0",
-        "id": 2,
+        "selectedtopic": TopicMode.painDay0,
       },
       {
         "topic": "การจัดการแผลผ่าตัดและสายระบายต่างๆ",
         "state": "post-op @ Hospital Day 0",
-        "id": 3,
+        "selectedtopic": TopicMode.drainDay0,
       },
       {
         "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
         "state": "post-op @ Hospital Day 1",
-        "id": 4,
+        "selectedtopic": TopicMode.respiratoryDay1,
       },
       {
         "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
         "state": "post-op @ Hospital Day 1",
-        "id": 5,
+        "selectedtopic": TopicMode.painDay1,
       },
       {
         "topic": "การจัดการแผลผ่าตัดและสายระบายต่างๆ",
         "state": "post-op @ Hospital Day 1",
-        "id": 6,
+        "selectedtopic": TopicMode.drainDay1,
       },
       {
         "topic": "การป้องกันการเกิดภาวะลิ่มเลือดอุดตัน",
         "state": "post-op @ Hospital Day 1",
-        "id": 7,
+        "selectedtopic": TopicMode.bloodclotDay1,
       },
       {
         "topic": "การจัดการภาวะโภชนาการ",
         "state": "post-op @ Hospital Day 1",
-        "id": 8,
+        "selectedtopic": TopicMode.nutritionDay1,
       },
       {
         "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
         "state": "post-op @ Hospital Day 2",
-        "id": 9,
+        "selectedtopic": TopicMode.painDay2,
       },
       {
         "topic": "การเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
         "state": "post-op @ Hospital Day 2",
-        "id": 10,
+        "selectedtopic": TopicMode.infectionDay2,
       },
       {
         "topic": "การเฝ้าระวังความผิดปกติของการระบายสิ่งคัดหลั่ง",
         "state": "post-op @ Hospital Day 2",
-        "id": 11,
+        "selectedtopic": TopicMode.drainDay2,
       },
       {
         "topic": "การฟื้นฟูสมรรถภาพของปอด",
         "state": "post-op @ Hospital Day 2",
-        "id": 12,
+        "selectedtopic": TopicMode.pulmanaryDay2,
       },
       {
         "topic": "การฟื้นฟูระบบทางเดินอาหาร",
         "state": "post-op @ Hospital Day 2",
-        "id": 13,
+        "selectedtopic": TopicMode.digestiveDay2,
       },
       {
         "topic": "การแนะนำการปฏิบัติตัวที่เหมาะสมก่อนกลับบ้าน",
         "state": "post-op @ Hospital Day 2",
-        "id": 14,
+        "selectedtopic": TopicMode.behaveDay2,
       },
     ];
 
@@ -157,27 +163,27 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
       {
         "topic": "การจัดการความปวดขณะพักฟื้นอยู่ที่บ้าน",
         "state": "post-op @ Home",
-        "id": 15,
+        "selectedtopic": TopicMode.painHome,
       },
       {
         "topic": "การเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
         "state": "post-op @ Home",
-        "id": 16,
+        "selectedtopic": TopicMode.infectionHome,
       },
       {
         "topic": "การดูแลแผลผ่าตัด",
         "state": "post-op @ Home",
-        "id": 17,
+        "selectedtopic": TopicMode.surgicalIncisionHome,
       },
       {
         "topic": "การปฏิบัติกิจวัตรประจำวันหลังการผ่าตัด",
         "state": "post-op @ Home",
-        "id": 18,
+        "selectedtopic": TopicMode.dailyActivityHome,
       },
       {
         "topic": "การรับประทานอาหารที่เหมาะสม",
         "state": "post-op @ Home",
-        "id": 19,
+        "selectedtopic": TopicMode.foodHome,
       },
     ];
     return Scaffold(
@@ -211,7 +217,8 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                       onPressed: () {
                         number = item['id'];
                         topic = item['topic'];
-                        detailpage(number);
+                        selectedtopic = item['selectedtopic'];
+                        detailpage(selectedtopic);
                         // Navigator.push(
                         //     context,
                         //     MaterialPageRoute(
@@ -262,7 +269,8 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                       onPressed: () {
                         number = item['id'];
                         topic = item['topic'];
-                        detailpage(number);
+                        selectedtopic = item['selectedtopic'];
+                        detailpage(selectedtopic);
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
