@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../widget/pre_op_training.dart';
+import '../widget/training_information/post_op_home_training.dart';
 
 class TrainingPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _TrainingPageState();
-  }
+  State<StatefulWidget> createState() => _TrainingPageState();
 }
 
 class _TrainingPageState extends State<TrainingPage> {
@@ -21,7 +21,10 @@ class _TrainingPageState extends State<TrainingPage> {
     } else if (number == 2) {
       print('post-op @ hospital day 1+');
     } else if (number == 3) {
-      print('post-op @ community');
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PostOpHomeTrainingPage()),
+      );
     }
   }
 
@@ -80,7 +83,7 @@ class _TrainingPageState extends State<TrainingPage> {
                   number = 3;
                   navigate(number);
                 },
-                child: Text('Post-op @ community'),
+                child: Text('Post-op @ home'),
               ),
             ),
           ],

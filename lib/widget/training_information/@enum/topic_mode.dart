@@ -1,0 +1,21 @@
+enum TopicMode {
+  respiratoryDay0,
+  painDay0,
+  drainDay0,
+  respiratoryDay1,
+  painDay1,
+  drainDay1,
+  bloodclotDay1,
+  nutritionDay1,
+  painDay2,
+  infectionDay2,
+  drainDay2,
+  pulmanaryDay2,
+  digestiveDay2,
+  behaveDay2,
+  painHome,
+  infectionHome,
+  surgicalIncisionHome,
+  dailyActivityHome,
+  foodHome
+}
