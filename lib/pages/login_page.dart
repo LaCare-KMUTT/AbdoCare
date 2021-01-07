@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
+import 'set_pin_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -81,8 +82,11 @@ class _LoginPageState extends State<LoginPage> {
                               hn: _hnController.text,
                               uniqueKey: _uniqueKeycontroller.text)) {
                             print("login success!");
-                            Navigator.of(context)
-                                .pushReplacementNamed('/profile_page');
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SetPinPage()),
+                            );
                           }
                         } else {
                           print('login failed');
