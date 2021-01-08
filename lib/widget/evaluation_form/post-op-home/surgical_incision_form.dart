@@ -54,7 +54,6 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                       onChanged: (value) {
                         setState(() {
                           _value = value;
-                          _value2 = false;
                           _value3 = false;
                           _value4 = false;
                         });
@@ -69,7 +68,6 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                       onChanged: (value) {
                         setState(() {
                           _value2 = value;
-                          _value = false;
                           _value3 = false;
                           _value4 = false;
                         });

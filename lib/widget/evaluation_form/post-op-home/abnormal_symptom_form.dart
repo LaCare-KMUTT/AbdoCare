@@ -55,9 +55,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       onChanged: (value) {
                         setState(() {
                           _value = value;
-                          _value2 = false;
-                          _value3 = false;
-                          _value4 = false;
                           _value5 = false;
                         });
                       },
@@ -71,9 +68,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       onChanged: (value) {
                         setState(() {
                           _value2 = value;
-                          _value = false;
-                          _value3 = false;
-                          _value4 = false;
                           _value5 = false;
                         });
                       },
@@ -87,9 +81,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       onChanged: (value) {
                         setState(() {
                           _value3 = value;
-                          _value = false;
-                          _value2 = false;
-                          _value4 = false;
                           _value5 = false;
                         });
                       },
@@ -103,9 +94,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       onChanged: (value) {
                         setState(() {
                           _value4 = value;
-                          _value = false;
-                          _value2 = false;
-                          _value3 = false;
                           _value5 = false;
                         });
                       },
