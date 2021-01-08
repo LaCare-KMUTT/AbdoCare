@@ -35,7 +35,8 @@ class _PostOpHomeState extends State<PostOpHomePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 50, 10, 20),
               child: RaisedButton(
-                color: Color(0xFFE9E9E9),
+                padding: EdgeInsets.only(top: 0),
+                color: Color(0xFFF5F5F5),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -48,19 +49,42 @@ class _PostOpHomeState extends State<PostOpHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'แบบประเมินความปวดหลังการผ่าตัด',
-                        style: TextStyle(fontSize: 16),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.check_box_outline_blank,
+                              size: 40.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'แบบประเมินความปวดหลังการผ่าตัด',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
               child: RaisedButton(
-                color: Color(0xFFE9E9E9),
+                padding: EdgeInsets.only(top: 0),
+                color: Color(0xFFF5F5F5),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -73,9 +97,30 @@ class _PostOpHomeState extends State<PostOpHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'แบบประเมินการปฏิบัติกิจวัตรประจำวันหลังผ่าตัด',
-                        style: TextStyle(fontSize: 16),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.check_box_outline_blank,
+                              size: 40.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '''แบบประเมินการปฏิบัติกิจวัตรประจำวันหลังผ่าตัด''',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ],
                   ),
@@ -106,7 +151,7 @@ class _PostOpHomeState extends State<PostOpHomePage> {
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: Icon(
-                              Icons.done,
+                              Icons.check_box,
                               size: 40.0,
                               color: Colors.green,
                             ),
@@ -154,7 +199,7 @@ class _PostOpHomeState extends State<PostOpHomePage> {
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: Icon(
-                              Icons.done,
+                              Icons.check_box,
                               size: 40.0,
                               color: Colors.green,
                             ),
