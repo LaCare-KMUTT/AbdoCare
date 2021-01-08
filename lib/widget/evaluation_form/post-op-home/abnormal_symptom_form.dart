@@ -137,6 +137,13 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       }
                       if (_value5 == true) {
                         showAdvise2(context);
+                      } else if (_value |
+                              _value2 |
+                              _value3 |
+                              _value4 |
+                              _value5 !=
+                          true) {
+                        alert(context);
                       }
                     }),
               ],
@@ -145,6 +152,23 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
         ],
       ),
     );
+  }
+
+  void alert(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) {
+          Future.delayed(Duration(seconds: 2), () {
+            Navigator.of(context).pop(true);
+          });
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: Text("แสดงเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
+                style: Theme.of(context).textTheme.bodyText2,
+                textAlign: TextAlign.center),
+          );
+        });
   }
 
   void showAdvise1(BuildContext context) {
