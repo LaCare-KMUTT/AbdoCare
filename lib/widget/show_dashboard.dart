@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'bar_chart.dart';
 import 'line_chart.dart';
-import 'pie_chart.dart';
 
 class ShowDashboard extends StatefulWidget {
   @override
