@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'bar_chart.dart';
 import 'line_chart.dart';
+import ' radial_gauge_chart .dart';
 
 class ShowDashboard extends StatefulWidget {
   @override
@@ -17,13 +18,6 @@ class _ShowDashboardState extends State<ShowDashboard> {
     PointSeries(day: 4, point: 5),
     PointSeries(day: 5, point: 4),
     PointSeries(day: 6, point: 2),
-  ];
-  final List<BarSerise> data3 = [
-    BarSerise(
-      topic: "ผลรวมคะแนน",
-      point: 12,
-      barColor: charts.ColorUtil.fromDartColor(Colors.green),
-    ),
   ];
   final List<BarSerise> data = [
     BarSerise(
@@ -78,92 +72,64 @@ class _ShowDashboardState extends State<ShowDashboard> {
     )
   ];
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text('ข้อมูลสุขภาพ'),
-                ),
-                Container(
-                  child: Card(
-                    child: Column(
-                      children: [
-                        Text('อายุ 21 ปี',
-                            style: Theme.of(context).textTheme.bodyText1),
-                        Text('ส่วนสูง 160.0 ซม.',
-                            style: Theme.of(context).textTheme.bodyText1),
-                        Text('น้ำหนัก 60.0 กก.',
-                            style: Theme.of(context).textTheme.bodyText1),
-                        Text('ค่าดัชนีมวลกาย 23.44 Kg/m2 (ท้วม)',
-                            style: Theme.of(context).textTheme.bodyText1),
-                        Text('น้ำหนักเมื่อ 3 เดือนที่ผ่านมา 65.0 กก.',
-                            style: Theme.of(context).textTheme.bodyText1),
-                        Text('%BWL = 2%',
-                            style: Theme.of(context).textTheme.bodyText1),
-                      ],
+  Widget build(BuildContext context) => Container(
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text('ข้อมูลสุขภาพ'),
+                  ),
+                  Container(
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Text('อายุ 21 ปี',
+                              style: Theme.of(context).textTheme.bodyText1),
+                          Text('ส่วนสูง 160.0 ซม.',
+                              style: Theme.of(context).textTheme.bodyText1),
+                          Text('น้ำหนัก 60.0 กก.',
+                              style: Theme.of(context).textTheme.bodyText1),
+                          Text('ค่าดัชนีมวลกาย 23.44 Kg/m2 (ท้วม)',
+                              style: Theme.of(context).textTheme.bodyText1),
+                          Text('น้ำหนักเมื่อ 3 เดือนที่ผ่านมา 65.0 กก.',
+                              style: Theme.of(context).textTheme.bodyText1),
+                          Text('%BWL = 2%',
+                              style: Theme.of(context).textTheme.bodyText1),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    'ความสามารถในการปฏิบัติกิจวัตรประจำวัน',
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      'ความสามารถในการปฏิบัติกิจวัตรประจำวัน',
+                    ),
                   ),
-                ),
-                BarChart(data: data),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    'ผลการประเมินการปฏิบัติกิจวัตรประจำวัน',
+                  BarChart(data: data),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      'ผลการประเมินการปฏิบัติกิจวัตรประจำวัน',
+                    ),
                   ),
-                ),
-                Card(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        child: BarChart(data: data3),
-                      ),
-                      //PieChart(),
-                      Text('การแปลผล',
-                          style: Theme.of(context).textTheme.bodyText1,
-                          textAlign: TextAlign.left),
-                      Text('12 คะแนนขึ้นไป = mild independence',
-                          style: Theme.of(context).textTheme.bodyText1,
-                          textAlign: TextAlign.center),
-                      Text('9-11 คะแนน= moderately independence',
-                          style: Theme.of(context).textTheme.bodyText1,
-                          textAlign: TextAlign.center),
-                      Text('5-8 คะแนน = severe independence',
-                          style: Theme.of(context).textTheme.bodyText1,
-                          textAlign: TextAlign.center),
-                      Text('0-4 คะแนน = total independence',
-                          style: Theme.of(context).textTheme.bodyText1,
-                          textAlign: TextAlign.center),
-                    ],
+                  PieChart(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      'ความเจ็บปวด',
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    'ความเจ็บปวด',
-                  ),
-                ),
-                LineChart(data2: data2),
-              ],
+                  LineChart(data2: data2),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      );
 }
