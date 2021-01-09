@@ -6,6 +6,7 @@ class PieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Card(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SfRadialGauge(
                 enableLoadingAnimation: true,
