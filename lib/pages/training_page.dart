@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widget/pre_op_training.dart';
 import '../widget/training_information/post_op_home_training.dart';
+import '../widget/training_information/pre_op_training.dart';
 
 class TrainingPage extends StatefulWidget {
   @override
