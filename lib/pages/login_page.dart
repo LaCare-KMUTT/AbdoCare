@@ -79,8 +79,8 @@ class _LoginPageState extends State<LoginPage> {
                         });
                         if ((_validateHN && _validateHN) == false) {
                           if (await _firebaseService.signIn(
-                              hn: _hnController.text,
-                              uniqueKey: _uniqueKeycontroller.text)) {
+                              hn: _hnController.text.trim(),
+                              uniqueKey: _uniqueKeycontroller.text.trim())) {
                             print("login success!");
                             Navigator.pushReplacement(
                               context,
