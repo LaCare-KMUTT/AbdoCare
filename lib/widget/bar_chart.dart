@@ -3,14 +3,14 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
 class BarChart extends StatelessWidget {
-  final List<BarSerise> data;
+  final List<BarSeries> data;
   BarChart({@required this.data});
 
   @override
   Widget build(BuildContext context) {
-    var series = <charts.Series<BarSerise, String>>[
+    var series = <charts.Series<BarSeries, String>>[
       charts.Series(
-          id: "Subscribers",
+          id: "ADL",
           data: data,
           domainFn: (series, _) => series.topic,
           measureFn: (series, _) => series.point,
@@ -36,10 +36,10 @@ class BarChart extends StatelessWidget {
   }
 }
 
-class BarSerise {
+class BarSeries {
   final String topic;
   final int point;
   final charts.Color barColor;
-  BarSerise(
+  BarSeries(
       {@required this.topic, @required this.point, @required this.barColor});
 }

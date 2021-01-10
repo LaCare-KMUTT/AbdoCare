@@ -19,53 +19,53 @@ class _ShowDashboardState extends State<ShowDashboard> {
     PointSeries(day: 5, point: 4),
     PointSeries(day: 6, point: 2),
   ];
-  final List<BarSerise> data = [
-    BarSerise(
+  final List<BarSeries> data = [
+    BarSeries(
       topic: "การรับประทานอาหาร",
       point: 3,
       barColor: charts.ColorUtil.fromDartColor(Colors.purple),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การขึ้นลงบันได1ชั้น",
       point: 1,
       barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การสวมใส่เสื้อผ้า",
       point: 1,
       barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การลุกจากที่นอน",
       point: 1,
       barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การเคลื่อนที่ภายใน\nห้องหรือบ้าน",
       point: 2,
       barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การอาบน้ำ",
       point: 0,
       barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การใช้ห้องน้ำ",
       point: 1,
       barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การกลั้นอุจจาระในระยะ\n1 สัปดาห์ที่ผ่านมา",
       point: 3,
       barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การกลั้นปัสสาวะในระยะ\n1 สัปดาห์ที่ผ่านมา",
       point: 2,
       barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
-    BarSerise(
+    BarSeries(
       topic: "การล้างหน้า หวีผม \nแปรงฟัน",
       point: 3,
       barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
