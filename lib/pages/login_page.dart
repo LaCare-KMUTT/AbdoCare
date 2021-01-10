@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                               ? _validateHN = true
                               : _validateHN = false;
                         });
-                        if ((_validateHN && _validateHN) == false) {
+                        if (_validateHN == false && _validateHN == false) {
                           if (await _firebaseService.signIn(
                               hn: _hnController.text.trim(),
                               uniqueKey: _uniqueKeycontroller.text.trim())) {
