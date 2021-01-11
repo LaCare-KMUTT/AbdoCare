@@ -1,6 +1,7 @@
+import 'dart:io';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'post-op-home_page.dart';
 
 class SurgicalIncisionForm extends StatefulWidget {
@@ -11,139 +12,152 @@ class SurgicalIncisionForm extends StatefulWidget {
 }
 
 class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
+  File _image;
+  final picker = ImagePicker();
   var _value = false;
   var _value2 = false;
   var _value3 = false;
   var _value4 = false;
+
+  Future<Null> getImage(ImageSource imageSource) async {
+    final pickedFile = await picker.getImage(source: imageSource);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('แผลผ่าตัด'),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text('แผลผ่าตัด'),
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+            ),
+            tooltip: 'กลับ',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PostOpHomePage()),
+              );
+            },
           ),
-          tooltip: 'กลับ',
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PostOpHomePage()),
-            );
-          },
         ),
-      ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  children: [
-                    Text('แสดงเครื่องหมาย √ ในข้อที่ท่านมีอาการ'),
-                    CheckboxListTile(
-                      value: _value,
-                      selected: _value,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      activeColor: Color(0xFFC37447),
-                      onChanged: (value) {
-                        setState(() {
-                          _value = value;
-                          _value3 = false;
-                          _value4 = false;
-                        });
-                      },
-                      title: Text('1. แผลผ่าตัดบวมมาก'),
-                    ),
-                    CheckboxListTile(
-                      value: _value2,
-                      selected: _value2,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      activeColor: Color(0xFFC37447),
-                      onChanged: (value) {
-                        setState(() {
-                          _value2 = value;
-                          _value3 = false;
-                          _value4 = false;
-                        });
-                      },
-                      title: Text('2. มีหนองไหลจากแผลผ่าตัด'),
-                    ),
-                    CheckboxListTile(
-                      value: _value3,
-                      selected: _value3,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      activeColor: Color(0xFFC37447),
-                      onChanged: (value) {
-                        setState(() {
-                          _value3 = value;
-                          _value = false;
-                          _value2 = false;
-                          _value4 = false;
-                        });
-                      },
-                      title: Text('3. แผลผ่าตัดแห้งดี'),
-                    ),
-                    CheckboxListTile(
-                      value: _value4,
-                      selected: _value4,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      activeColor: Color(0xFFC37447),
-                      onChanged: (value) {
-                        setState(() {
-                          _value4 = value;
-                          _value = false;
-                          _value2 = false;
-                          _value3 = false;
-                        });
-                      },
-                      title: Text('4. ไม่ทราบ ต้องการให้พยาบาลประเมินแผล'),
-                    ),
-                  ],
+        body: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Column(
+                    children: [
+                      Text('แสดงเครื่องหมาย √ ในข้อที่ท่านมีอาการ'),
+                      CheckboxListTile(
+                        value: _value,
+                        selected: _value,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        activeColor: Color(0xFFC37447),
+                        onChanged: (value) {
+                          setState(() {
+                            _value = value;
+                            _value3 = false;
+                            _value4 = false;
+                          });
+                        },
+                        title: Text('1. แผลผ่าตัดบวมมาก'),
+                      ),
+                      CheckboxListTile(
+                        value: _value2,
+                        selected: _value2,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        activeColor: Color(0xFFC37447),
+                        onChanged: (value) {
+                          setState(() {
+                            _value2 = value;
+                            _value3 = false;
+                            _value4 = false;
+                          });
+                        },
+                        title: Text('2. มีหนองไหลจากแผลผ่าตัด'),
+                      ),
+                      CheckboxListTile(
+                        value: _value3,
+                        selected: _value3,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        activeColor: Color(0xFFC37447),
+                        onChanged: (value) {
+                          setState(() {
+                            _value3 = value;
+                            _value = false;
+                            _value2 = false;
+                            _value4 = false;
+                          });
+                        },
+                        title: Text('3. แผลผ่าตัดแห้งดี'),
+                      ),
+                      CheckboxListTile(
+                        value: _value4,
+                        selected: _value4,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        activeColor: Color(0xFFC37447),
+                        onChanged: (value) {
+                          setState(() {
+                            _value4 = value;
+                            _value = false;
+                            _value2 = false;
+                            _value3 = false;
+                          });
+                        },
+                        title: Text('4. ไม่ทราบ ต้องการให้พยาบาลประเมินแผล'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () {
-                      if (_value | _value2 == true) {
-                        showAdvise1(context);
-                      }
-                      if (_value3 == true) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AdvisePage()));
-                      }
-                      if (_value4 == true) {
-                        showAdvise2(context);
-                      } else if (_value | _value2 | _value3 | _value4 ==
-                          false) {
-                        alert(context);
-                      }
-                    }),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7.0)),
+                      child: Text('สำเร็จ',
+                          style: TextStyle(fontSize: 18, color: Colors.white)),
+                      color: Color(0xFF2ED47A),
+                      onPressed: () {
+                        if (_value | _value2 == true) {
+                          showAdvise1(context);
+                        }
+                        if (_value3 == true) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdvisePage()));
+                        }
+                        if (_value4 == true) {
+                          showAdvise2(context);
+                        } else if (_value | _value2 | _value3 | _value4 ==
+                            false) {
+                          alert(context);
+                        }
+                      }),
+                ],
+              ),
+            )
+          ],
+        ),
+      );
 
   void alert(BuildContext context) {
     showDialog(
@@ -225,7 +239,19 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("ส่งรูป", style: Theme.of(context).textTheme.bodyText1),
+                Container(
+                  height: 200,
+                  width: 200,
+                  child: _image == null
+                      ? Image.asset(
+                          'assets/default.jpg',
+                        )
+                      : Image.file(_image),
+                ),
+                IconButton(
+                    icon: Icon(Icons.add_a_photo),
+                    iconSize: 40,
+                    onPressed: () => getImage(ImageSource.camera))
               ],
             ),
           ),
