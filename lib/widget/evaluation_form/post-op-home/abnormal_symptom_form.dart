@@ -184,7 +184,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("ให้ผู้ป้วยมาพบแพทย์ทันที",
+                Text("ให้ผู้ป่วยมาพบแพทย์ทันที",
                     style: Theme.of(context).textTheme.bodyText1),
               ],
             ),
