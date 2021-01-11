@@ -77,10 +77,10 @@ class _LoginPageState extends State<LoginPage> {
                               ? _validateHN = true
                               : _validateHN = false;
                         });
-                        if ((_validateHN && _validateHN) == false) {
-                          if (await _firebaseService.login(
-                              hn: _hnController.text,
-                              uniqueKey: _uniqueKeycontroller.text)) {
+                        if (_validateHN == false && _validateHN == false) {
+                          if (await _firebaseService.signIn(
+                              hn: _hnController.text.trim(),
+                              uniqueKey: _uniqueKeycontroller.text.trim())) {
                             print("login success!");
                             Navigator.pushReplacement(
                               context,
@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         } else {
                           print('login failed');
+                          _showErrorSignInDialog();
                         }
                       },
                     ),
@@ -119,4 +120,25 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       );
+
+  void _showErrorSignInDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Login Failed'),
+            content:
+                Text('Sth went wrong please provide some UI for me please.'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('close'),
+                onPressed: () {
+                  print('close button');
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
 }

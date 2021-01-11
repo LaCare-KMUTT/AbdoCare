@@ -318,7 +318,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     style: TextStyle(fontSize: 18),
                                   ),
                                   onPressed: () async {
-                                    await _firebaseService.signout();
+                                    await _firebaseService.signOut();
                                     Navigator.pushReplacementNamed(
                                         context, '/login_page');
                                   },
