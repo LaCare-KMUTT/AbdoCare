@@ -53,6 +53,7 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
+    - assets/image.png
     - assets/robot.jpg
     - assets/default.jpg
     - assets/abdo-bot-briv-9ed7278f51f5.json

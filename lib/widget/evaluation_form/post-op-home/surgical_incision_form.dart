@@ -239,14 +239,18 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  height: 200,
-                  width: 200,
+                Center(
                   child: _image == null
                       ? Image.asset(
-                          'assets/default.jpg',
+                          'assets/image.png',
+                          height: 100,
+                          width: 100,
                         )
-                      : Image.file(_image),
+                      : Image.file(
+                          _image,
+                          height: 100,
+                          width: 100,
+                        ),
                 ),
                 IconButton(
                     icon: Icon(Icons.add_a_photo),
