@@ -34,7 +34,7 @@ class FirebaseService extends IFirebaseService {
     return username;
   }
 
-  Future<bool> login({
+  Future<bool> signIn({
     @required String hn,
     @required String uniqueKey,
   }) async {
@@ -52,7 +52,7 @@ class FirebaseService extends IFirebaseService {
     return loginResult;
   }
 
-  Future<void> signout() async {
+  Future<void> signOut() async {
     if (_auth.currentUser != null) {
       var signingOutUserId = _auth.currentUser.uid;
       await _auth.signOut();
