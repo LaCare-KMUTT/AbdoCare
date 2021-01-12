@@ -36,7 +36,8 @@ class _ChatPageState extends State<ChatPage> {
         "message": aiResponse.getListMessage()[0]["text"]["text"][0].toString()
       });
     });
-    //print(aiResponse.getMessage());
+    print(aiResponse.getMessage().toString());
+    print("New");
     print(aiResponse.getListMessage()[0]["text"]["text"][0].toString());
   }
 
@@ -82,9 +83,6 @@ class _ChatPageState extends State<ChatPage> {
                     itemBuilder: (context, index) => chat(
                         messsages[index]["message"].toString(),
                         messsages[index]["data"]))),
-            SizedBox(
-              height: 10,
-            ),
             Divider(
               height: 5.0,
               color: Color(0xFFC37447),
@@ -152,8 +150,8 @@ class _ChatPageState extends State<ChatPage> {
           children: [
             data == 0
                 ? Container(
-                    height: 40,
-                    width: 40,
+                    height: 30,
+                    width: 30,
                     child: CircleAvatar(
                       backgroundImage: AssetImage("assets/robot.jpg"),
                     ),
@@ -180,7 +178,7 @@ class _ChatPageState extends State<ChatPage> {
                             message,
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.normal),
                           ),
                         ))
@@ -190,8 +188,8 @@ class _ChatPageState extends State<ChatPage> {
             ),
             data == 1
                 ? Container(
-                    height: 40,
-                    width: 40,
+                    height: 30,
+                    width: 30,
                     child: CircleAvatar(
                       backgroundImage: AssetImage("assets/default.jpg"),
                     ),
