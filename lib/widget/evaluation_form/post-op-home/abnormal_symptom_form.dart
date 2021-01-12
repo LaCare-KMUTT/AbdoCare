@@ -46,7 +46,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                 padding: const EdgeInsets.all(5.0),
                 child: Column(
                   children: [
-                    Text('แสดงเครื่องหมาย √ ในข้อที่ท่านมีอาการ'),
+                    Text('ทำเครื่องหมาย √ ในข้อที่ท่านมีอาการ'),
                     CheckboxListTile(
                       value: _value,
                       selected: _value,
