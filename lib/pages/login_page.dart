@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:rflutter_alert/rflutter_alert.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
 import 'set_pin_page.dart';
@@ -122,23 +122,44 @@ class _LoginPageState extends State<LoginPage> {
       );
 
   void _showErrorSignInDialog() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Login Failed'),
-            content:
-                Text('Sth went wrong please provide some UI for me please.'),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('close'),
-                onPressed: () {
-                  print('close button');
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
-          );
-        });
+    var alertStyle = AlertStyle(
+      animationType: AnimationType.fromBottom,
+      descStyle: TextStyle(fontWeight: FontWeight.bold),
+      descTextAlign: TextAlign.center,
+      animationDuration: Duration(milliseconds: 400),
+      alertBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+        side: BorderSide(
+          color: Colors.grey[50],
+        ),
+      ),
+      titleStyle: TextStyle(
+        color: Color(0xFFC37447),
+      ),
+      alertAlignment: Alignment.center,
+    );
+    Alert(
+      context: context,
+      type: AlertType.warning,
+      style: alertStyle,
+      title: "ขออภัยค่ะ",
+      content: Text(
+        'ไม่สามารถลงทะเบียนได้เนื่องจากท่านกรอกข้อมูลไม่ถูกต้องค่ะ',
+        style: Theme.of(context).textTheme.bodyText1,
+        textAlign: TextAlign.center,
+      ),
+      buttons: [
+        DialogButton(
+          child: Text(
+            "ตกลง",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: Color(0xFFC37447),
+        ),
+      ],
+    ).show();
   }
 }

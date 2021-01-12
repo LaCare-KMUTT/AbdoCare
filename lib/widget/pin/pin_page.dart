@@ -265,45 +265,53 @@ class _PinState extends State<Pin> {
             CircularProgressIndicator();
             Navigator.pushReplacementNamed(context, '/chat_page');
           } else {
-            print('here!');
-            AlertDialog(
-              title: Text('กรุณาตรวจสอบรหัสผ่าน'),
-              content: SingleChildScrollView(
-                child: Text('รหัสผ่านผิด กรุณาตรวจสอบใหม่'),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  child: Text('Okay'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-
-            // Alert(
-            //   context: context,
-            //   type: AlertType.info,
-            //   title: 'กรุณาตรวจสอบรหัสผ่าน',
-            //   buttons: [
-            //     DialogButton(
-            //       child: Text(
-            //         'okie',
-            //         style: TextStyle(color: Colors.white, fontSize: 18),
-            //       ),
-            //       onPressed: () {
-            //         for (int i = 0; i < 6; i++) {
-            //           clearPin();
-            //         }
-            //         Navigator.pop(context);
-            //       },
-            //     )
-            //   ],
-            // );
+            _showErrorSignInDialog();
           }
         }
       }
     }
+  }
+
+  void _showErrorSignInDialog() {
+    var alertStyle = AlertStyle(
+      animationType: AnimationType.fromBottom,
+      descStyle: TextStyle(fontWeight: FontWeight.bold),
+      descTextAlign: TextAlign.center,
+      animationDuration: Duration(milliseconds: 400),
+      alertBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+        side: BorderSide(
+          color: Colors.grey[50],
+        ),
+      ),
+      titleStyle: TextStyle(
+        color: Color(0xFFC37447),
+      ),
+      alertAlignment: Alignment.center,
+    );
+    Alert(
+      context: context,
+      type: AlertType.warning,
+      style: alertStyle,
+      title: "ขออภัยค่ะ",
+      content: Text(
+        'ท่านกรอกรหัส PIN ไม่ถูกต้อง กรุณาตรวจสอบและลองใหม่อีกครั้งค่ะ',
+        style: Theme.of(context).textTheme.bodyText1,
+        textAlign: TextAlign.center,
+      ),
+      buttons: [
+        DialogButton(
+          child: Text(
+            "ตกลง",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          color: Color(0xFFC37447),
+        ),
+      ],
+    ).show();
   }
 
   void setPin(int n, String text) {

@@ -46,7 +46,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                 padding: const EdgeInsets.all(5.0),
                 child: Column(
                   children: [
-                    Text('แสดงเครื่องหมาย √ ในข้อที่ท่านมีอาการ'),
+                    Text('ทำเครื่องหมาย √ ในข้อที่ท่านมีอาการ'),
                     CheckboxListTile(
                       value: _value,
                       selected: _value,
@@ -55,9 +55,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       onChanged: (value) {
                         setState(() {
                           _value = value;
-                          _value2 = false;
-                          _value3 = false;
-                          _value4 = false;
                           _value5 = false;
                         });
                       },
@@ -71,9 +68,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       onChanged: (value) {
                         setState(() {
                           _value2 = value;
-                          _value = false;
-                          _value3 = false;
-                          _value4 = false;
                           _value5 = false;
                         });
                       },
@@ -87,9 +81,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       onChanged: (value) {
                         setState(() {
                           _value3 = value;
-                          _value = false;
-                          _value2 = false;
-                          _value4 = false;
                           _value5 = false;
                         });
                       },
@@ -103,9 +94,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       onChanged: (value) {
                         setState(() {
                           _value4 = value;
-                          _value = false;
-                          _value2 = false;
-                          _value3 = false;
                           _value5 = false;
                         });
                       },
@@ -149,6 +137,13 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       }
                       if (_value5 == true) {
                         showAdvise2(context);
+                      } else if (_value |
+                              _value2 |
+                              _value3 |
+                              _value4 |
+                              _value5 !=
+                          true) {
+                        alert(context);
                       }
                     }),
               ],
@@ -157,6 +152,23 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
         ],
       ),
     );
+  }
+
+  void alert(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) {
+          Future.delayed(Duration(seconds: 2), () {
+            Navigator.of(context).pop(true);
+          });
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: Text("แสดงเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
+                style: Theme.of(context).textTheme.bodyText2,
+                textAlign: TextAlign.center),
+          );
+        });
   }
 
   void showAdvise1(BuildContext context) {
@@ -172,7 +184,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("ให้ผู้ป้วยมาพบแพทย์ทันที",
+                Text("ให้ผู้ป่วยมาพบแพทย์ทันที",
                     style: Theme.of(context).textTheme.bodyText1),
               ],
             ),
