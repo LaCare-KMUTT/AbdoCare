@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'ADL_chart.dart';
 import 'bar_chart.dart';
 import 'line_chart.dart';
 import 'radial_gauge_chart .dart';
@@ -112,6 +113,8 @@ class _ShowDashboardState extends State<ShowDashboard> {
                     ),
                   ),
                   BarChart(data: data),
+                  ADLChart(),
+                  //BarChart(data: data),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Text(
