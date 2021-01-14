@@ -111,31 +111,31 @@ class ADLChart extends StatelessWidget {
                       return Icon(
                         Icons.sentiment_very_dissatisfied,
                         color: Colors.red,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer >= 1 && index == 1) {
                       return Icon(
                         Icons.sentiment_satisfied,
                         color: Colors.yellow,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer != 1 && index == 1) {
                       return Icon(
                         Icons.sentiment_satisfied,
                         color: Colors.grey[300],
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer >= 2 && index == 2) {
                       return Icon(
                         Icons.sentiment_very_satisfied_outlined,
                         color: Colors.green,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer != 2 && index == 2) {
                       return Icon(
                         Icons.sentiment_very_satisfied_outlined,
                         color: Colors.grey[300],
-                        size: 40,
+                        size: 50,
                       );
                     }
                   },
@@ -159,43 +159,43 @@ class ADLChart extends StatelessWidget {
                       return Icon(
                         Icons.sentiment_very_dissatisfied,
                         color: Colors.red,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer >= 1 && index == 1) {
                       return Icon(
                         Icons.sentiment_satisfied,
                         color: Colors.orange,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer != 1 && index == 1) {
                       return Icon(
                         Icons.sentiment_satisfied,
                         color: Colors.grey[300],
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer >= 2 && index == 2) {
                       return Icon(
                         Icons.sentiment_satisfied_outlined,
                         color: Colors.yellow,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer != 2 && index == 2) {
                       return Icon(
                         Icons.sentiment_satisfied_outlined,
                         color: Colors.grey[300],
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer >= 3 && index == 3) {
                       return Icon(
                         Icons.sentiment_very_satisfied_outlined,
                         color: Colors.green,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer != 3 && index == 3) {
                       return Icon(
                         Icons.sentiment_very_satisfied_outlined,
                         color: Colors.grey[300],
-                        size: 40,
+                        size: 50,
                       );
                     }
                   },
@@ -218,19 +218,19 @@ class ADLChart extends StatelessWidget {
                       return Icon(
                         Icons.sentiment_very_dissatisfied,
                         color: Colors.red,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer >= 1 && index == 1) {
                       return Icon(
                         Icons.sentiment_satisfied,
                         color: Colors.green,
-                        size: 40,
+                        size: 50,
                       );
                     } else if (answer != 1 && index == 1) {
                       return Icon(
-                        Icons.sentiment_satisfied,
+                        Icons.sentiment_very_satisfied_outlined,
                         color: Colors.grey[300],
-                        size: 40,
+                        size: 50,
                       );
                     }
                   },
