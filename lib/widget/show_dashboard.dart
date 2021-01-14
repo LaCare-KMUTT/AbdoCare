@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter/material.dart';
 import 'ADL_chart.dart';
 import 'bar_chart.dart';
 import 'line_chart.dart';
 import 'radial_gauge_chart .dart';
+import 'test_chart.dart';
 
 class ShowDashboard extends StatefulWidget {
   @override
@@ -82,14 +83,21 @@ class _ShowDashboardState extends State<ShowDashboard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text('ข้อมูลสุขภาพ'),
-                  ),
                   Container(
                     child: Card(
                       child: Column(
                         children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                                child: Text(
+                                  'ข้อมูลสุขภาพ',
+                                ),
+                              ),
+                            ],
+                          ),
                           Text('อายุ 21 ปี',
                               style: Theme.of(context).textTheme.bodyText1),
                           Text('ส่วนสูง 160.0 ซม.',
@@ -106,29 +114,68 @@ class _ShowDashboardState extends State<ShowDashboard> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      'ความสามารถในการปฏิบัติกิจวัตรประจำวัน',
+                  Testchart(),
+                  Container(
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                                child: Text(
+                                  'ความสามารถในการปฏิบัติกิจวัตรประจำวัน',
+                                ),
+                              ),
+                            ],
+                          ),
+                          //BarChart(data: data),
+                          ADLChart(),
+                        ],
+                      ),
                     ),
                   ),
-                  BarChart(data: data),
-                  ADLChart(),
-                  //BarChart(data: data),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      'ผลการประเมินการปฏิบัติกิจวัตรประจำวัน',
+                  Container(
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                                child: Text(
+                                  'ผลการประเมินการปฏิบัติกิจวัตรประจำวัน',
+                                ),
+                              ),
+                            ],
+                          ),
+                          PieChart(),
+                        ],
+                      ),
                     ),
                   ),
-                  PieChart(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      'ความเจ็บปวด',
+                  Container(
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                                child: Text(
+                                  'ความเจ็บปวด',
+                                ),
+                              ),
+                            ],
+                          ),
+                          LineChart(data2: data2),
+                        ],
+                      ),
                     ),
                   ),
-                  LineChart(data2: data2),
                 ],
               ),
             ),
