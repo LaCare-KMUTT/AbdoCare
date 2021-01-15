@@ -5,3 +5,4 @@ linter:
     prefer_expression_function_bodies: false
     public_member_api_docs: false
     omit_local_variable_types: false
+    unnecessary_this: false
