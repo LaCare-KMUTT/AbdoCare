@@ -43,7 +43,7 @@ class _ADLFormState extends State<ADLForm> {
     'Question8': 'score8',
     'Question9': 'score9',
     'Question10': 'score10',
-    'Sum': 'totalscore',
+    'TotalscoreADL': 'totalscore',
   };
   void result(int score) {
     if (totalscore >= 12) {
