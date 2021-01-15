@@ -5,9 +5,7 @@ import 'post-op-home_page.dart';
 
 class AbnormalSymptomForm extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _AbnormalSymptomFormState();
-  }
+  State<StatefulWidget> createState() => _AbnormalSymptomFormState();
 }
 
 class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
