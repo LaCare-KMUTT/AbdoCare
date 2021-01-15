@@ -107,4 +107,18 @@ class FirebaseService extends IFirebaseService {
         .then((querySnapshot) => querySnapshot.docs.first.data());
     return anSubCollection;
   }
+
+  Future<DocumentReference> addDocumentToCollection({
+    @required String collection,
+    @required Map<String, dynamic> docData,
+  }) async {
+    var doc = await _firestore.collection(collection).add(docData).then((doc) {
+      print('Success add $docData to $collection collection');
+      return doc;
+    }).catchError((onError) {
+      print('Failed to add $docData to $collection collection');
+      return null;
+    });
+    return doc;
+  }
 }
