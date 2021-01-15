@@ -2,11 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'interfaces/calculation_service_interface.dart';
 import 'interfaces/firebase_service_interface.dart';
+import 'service_locator.dart';
 
 class FirebaseService extends IFirebaseService {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
+  final ICalculationService _calculationService =
+      locator<ICalculationService>();
 
   Future<String> _getUsernameByHnAndKey(String hn, String uniqueKey) async {
     var username;
@@ -120,5 +124,20 @@ class FirebaseService extends IFirebaseService {
       return null;
     });
     return doc;
+  }
+
+  Future<void> addDataToFormsCollection({
+    @required String formName,
+    @required Map<String, dynamic> data,
+  }) {
+    Map<String, dynamic> dataToAdd = {
+      'an': 'an',
+      'hn': 'hn',
+      'creation': _calculationService.formatDate(date: DateTime.now()),
+      'formName': formName,
+      'creator': 'asd',
+      'patientStage': '',
+      'formData': data,
+    };
   }
 }
