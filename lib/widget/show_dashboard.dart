@@ -115,6 +115,13 @@ class _ShowDashboardState extends State<ShowDashboard> {
                     ),
                   ),
                   Testchart(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                    child: Text(
+                      'ความสามารถในการปฏิบัติกิจวัตรประจำวัน',
+                    ),
+                  ),
+                  ADLTable(),
                   Container(
                     child: Card(
                       child: Column(
