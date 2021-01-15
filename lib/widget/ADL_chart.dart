@@ -728,10 +728,13 @@ class ADLTable extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.sentiment_very_satisfied_outlined,
-                    color: Colors.green,
-                    size: 75,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    child: Icon(
+                      Icons.sentiment_very_satisfied_outlined,
+                      color: Colors.green,
+                      size: 80,
+                    ),
                   ),
                 ]),
                 TableRow(children: [
@@ -751,10 +754,13 @@ class ADLTable extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.sentiment_very_dissatisfied,
-                    color: Colors.red,
-                    size: 75,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    child: Icon(
+                      Icons.sentiment_very_dissatisfied,
+                      color: Colors.red,
+                      size: 75,
+                    ),
                   ),
                 ]),
                 TableRow(children: [
@@ -774,10 +780,13 @@ class ADLTable extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.sentiment_satisfied_outlined,
-                    color: Colors.yellow[600],
-                    size: 75,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    child: Icon(
+                      Icons.sentiment_satisfied_outlined,
+                      color: Colors.yellow[600],
+                      size: 75,
+                    ),
                   ),
                 ]),
                 TableRow(children: [
@@ -799,10 +808,13 @@ class ADLTable extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.sentiment_satisfied,
-                    color: Colors.orange,
-                    size: 75,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    child: Icon(
+                      Icons.sentiment_satisfied,
+                      color: Colors.orange,
+                      size: 75,
+                    ),
                   ),
                 ]),
                 TableRow(children: [
@@ -825,10 +837,13 @@ class ADLTable extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.sentiment_satisfied_outlined,
-                    color: Colors.yellow[600],
-                    size: 75,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    child: Icon(
+                      Icons.sentiment_satisfied_outlined,
+                      color: Colors.yellow[600],
+                      size: 75,
+                    ),
                   ),
                 ]),
                 TableRow(children: [
@@ -851,10 +866,13 @@ class ADLTable extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.sentiment_very_satisfied_outlined,
-                    color: Colors.green,
-                    size: 75,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    child: Icon(
+                      Icons.sentiment_very_satisfied_outlined,
+                      color: Colors.green,
+                      size: 75,
+                    ),
                   ),
                 ]),
               ],
