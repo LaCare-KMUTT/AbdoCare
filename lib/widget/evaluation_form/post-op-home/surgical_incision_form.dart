@@ -18,7 +18,12 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
   var _value2 = false;
   var _value3 = false;
   var _value4 = false;
-
+  Map<String, dynamic> saveToDatabase = {
+    'Choice1': '_value',
+    'Choice2': '_value2',
+    'Choice3': '_value3',
+    'Choice4': '_value4',
+  };
   Future<Null> getImage(ImageSource imageSource) async {
     final pickedFile = await picker.getImage(source: imageSource);
 

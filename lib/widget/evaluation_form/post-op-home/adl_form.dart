@@ -32,6 +32,19 @@ class _ADLFormState extends State<ADLForm> {
   String selectedChoice9 = '';
   String selectedChoice10 = '';
 
+  Map<String, dynamic> saveToDatabase = {
+    'Question1': 'score1',
+    'Question2': 'score2',
+    'Question3': 'score3',
+    'Question4': 'score4',
+    'Question5': 'score5',
+    'Question6': 'score6',
+    'Question7': 'score7',
+    'Question8': 'score8',
+    'Question9': 'score9',
+    'Question10': 'score10',
+    'Sum': 'totalscore',
+  };
   void result(int score) {
     if (totalscore >= 12) {
       print('mild independence');

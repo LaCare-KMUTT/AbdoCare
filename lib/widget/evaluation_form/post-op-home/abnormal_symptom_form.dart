@@ -16,6 +16,12 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
   var _value3 = false;
   var _value4 = false;
   var _value5 = false;
+  Map<String, dynamic> saveToDatabase = {
+    'Choice1': '_value',
+    'Choice2': '_value2',
+    'Choice3': '_value3',
+    'Choice4': '_value4',
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,6 +138,10 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     color: Color(0xFF2ED47A),
                     onPressed: () {
+                      print(_value);
+                      print(_value2);
+                      print(_value3);
+                      print(_value4);
                       if (_value | _value2 | _value3 | _value4 == true) {
                         showAdvise1(context);
                       }

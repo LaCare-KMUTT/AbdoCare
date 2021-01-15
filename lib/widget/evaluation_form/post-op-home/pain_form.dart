@@ -13,6 +13,10 @@ class PainForm extends StatefulWidget {
 class _PainFormState extends State<PainForm> {
   int value = 5;
   String result = "ปวดปานกลาง";
+
+  Map<String, dynamic> saveToDatabase = {
+    'Answer': 'value',
+  };
   LinearGradient gradient = LinearGradient(colors: <Color>[
     Colors.greenAccent[400],
     Colors.orangeAccent[400],
