@@ -687,8 +687,8 @@ class ADLTable extends StatelessWidget {
               border: TableBorder.all(
                   color: Colors.grey, style: BorderStyle.solid, width: 1),
               columnWidths: {
-                0: FractionColumnWidth(0.7),
-                1: FractionColumnWidth(0.3)
+                0: FractionColumnWidth(0.75),
+                1: FractionColumnWidth(0.25)
               },
               children: [
                 TableRow(children: [
@@ -729,7 +729,7 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    padding: const EdgeInsets.only(top: 25, bottom: 20),
                     child: Icon(
                       Icons.sentiment_very_satisfied_outlined,
                       color: Colors.green,
@@ -755,11 +755,11 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    padding: const EdgeInsets.only(top: 25, bottom: 20),
                     child: Icon(
                       Icons.sentiment_very_dissatisfied,
                       color: Colors.red,
-                      size: 75,
+                      size: 80,
                     ),
                   ),
                 ]),
@@ -781,11 +781,11 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    padding: const EdgeInsets.only(top: 25, bottom: 20),
                     child: Icon(
                       Icons.sentiment_satisfied_outlined,
                       color: Colors.yellow[600],
-                      size: 75,
+                      size: 80,
                     ),
                   ),
                 ]),
@@ -809,11 +809,11 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    padding: const EdgeInsets.only(top: 25, bottom: 20),
                     child: Icon(
                       Icons.sentiment_satisfied,
                       color: Colors.orange,
-                      size: 75,
+                      size: 80,
                     ),
                   ),
                 ]),
@@ -832,17 +832,16 @@ class ADLTable extends StatelessWidget {
                         Image.asset(
                           'assets/icon/Mobility.png',
                           height: 100,
-                          width: 100,
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    padding: const EdgeInsets.only(top: 25, bottom: 20),
                     child: Icon(
                       Icons.sentiment_satisfied_outlined,
                       color: Colors.yellow[600],
-                      size: 75,
+                      size: 80,
                     ),
                   ),
                 ]),
@@ -861,17 +860,16 @@ class ADLTable extends StatelessWidget {
                         Image.asset(
                           'assets/icon/Dressing.png',
                           height: 100,
-                          width: 100,
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 30),
+                    padding: const EdgeInsets.only(top: 25, bottom: 20),
                     child: Icon(
                       Icons.sentiment_very_satisfied_outlined,
                       color: Colors.green,
-                      size: 75,
+                      size: 80,
                     ),
                   ),
                 ]),
