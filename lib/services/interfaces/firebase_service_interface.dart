@@ -11,6 +11,9 @@ abstract class IFirebaseService {
   Stream<DocumentSnapshot> getCollectionSnapshotByDocId(
       {@required String collection, @required String docId});
 
+  Future<Map<String, dynamic>> getCollectionMapByDocId(
+      {@required String collection, @required String docId});
+
   Future<String> getAStringValueFormField(
       {@required String collection,
       @required String docId,
@@ -29,4 +32,6 @@ abstract class IFirebaseService {
     @required String collection,
     @required Map<String, dynamic> docData,
   });
+
+  void saveDataToSharedPref();
 }

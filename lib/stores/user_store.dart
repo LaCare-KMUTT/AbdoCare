@@ -1,25 +1,47 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 class UserStore {
-  String storedUserId;
-  String storedName;
-  String storedSurname;
-  String storedHn;
+  static SharedPreferences _pref;
+  static final UserStore _instance = UserStore._getInstance();
 
-  UserStore(
-      {this.storedUserId, this.storedName, this.storedSurname, this.storedHn});
+  factory UserStore() {
+    return _instance;
+  }
 
-  String get userId => this.storedUserId;
+  UserStore._getInstance() {
+    SharedPreferences.getInstance().then((pref) => _pref = pref);
+  }
 
-  set userId(String userId) => this.storedUserId = userId;
+  static void setDataToStore({Map<String, dynamic> data}) async {
+    if (_pref.getString('StoredUserId') == null) {
+      print('here!!!!!!!!!!!');
+      // print(_pref.getKeys());
+      data.forEach((key, value) {
+        if (key is String) {
+          _pref.setString(key, value);
+        } else if (key is bool) {
+          _pref.setBool(key, value);
+        } else if (key is int) {
+          _pref.setInt(key, value);
+        } else if (key is double) {
+          _pref.setDouble(key, value);
+        } else {
+          print('setDataToStore $key is ${key.runtimeType}');
+        }
+      });
+      print(_pref.getKeys());
+    }
+  }
 
-  String get name => this.name;
+  static void printKeyInUserStore() {
+    print('here is all keys in _pref${_pref.getKeys()}');
+  }
 
-  set name(String name) => this.storedName = name;
-
-  String get surname => this.storedSurname;
-
-  set surname(String surname) => this.storedSurname = surname;
-
-  String get hn => this.storedHn;
-
-  set hn(String hn) => this.storedHn = hn;
+  static dynamic getValueFromStore(String key) {
+    if (_pref == null) {
+      print('_pref = null shit');
+      return null;
+    }
+    return _pref.get(key);
+  }
 }

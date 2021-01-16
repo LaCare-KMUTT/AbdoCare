@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../stores/user_store.dart';
 import 'interfaces/calculation_service_interface.dart';
 import 'interfaces/firebase_service_interface.dart';
 import 'service_locator.dart';
@@ -80,6 +81,14 @@ class FirebaseService extends IFirebaseService {
           .get()
           .then((value) => value.get(field));
 
+  Future<Map<String, dynamic>> getCollectionMapByDocId(
+          {@required String collection, @required String docId}) async =>
+      await _firestore
+          .collection(collection)
+          .doc(docId)
+          .get()
+          .then((value) => value.data());
+
   void updateFieldCollection(
       {@required String collection,
       @required String docId,
@@ -129,15 +138,55 @@ class FirebaseService extends IFirebaseService {
   Future<void> addDataToFormsCollection({
     @required String formName,
     @required Map<String, dynamic> data,
-  }) {
-    Map<String, dynamic> dataToAdd = {
-      'an': 'an',
-      'hn': 'hn',
-      'creation': _calculationService.formatDate(date: DateTime.now()),
-      'formName': formName,
-      'creator': 'asd',
-      'patientStage': '',
-      'formData': data,
+  }) async {
+    // var anSubCollection =
+    //     await this.getLatestAnSubCollection(userId: _userStore.userId);
+    // var an = anSubCollection['an'];
+    // Map<String, dynamic> dataToAdd = {
+    //   'an': an,
+    //   'hn': _userStore.hn,
+    //   'creation': _calculationService.formatDate(date: DateTime.now()),
+    //   'formName': formName,
+    //   'creator': '${_userStore.name} ${_userStore.surname}',
+    //   'patientStage': _userStore.patientStage,
+    //   'formData': data,
+    // };
+  }
+
+  void saveDataToSharedPref() async {
+    var userId = this.getUserId();
+    var hn = await _firestore
+        .collection('Users')
+        .doc(userId)
+        .get()
+        .then((value) => value.get('hn'));
+
+    var name = await _firestore
+        .collection('Users')
+        .doc(userId)
+        .get()
+        .then((value) => value.get('name'));
+
+    var surname = await _firestore
+        .collection('Users')
+        .doc(userId)
+        .get()
+        .then((value) => value.get('surname'));
+
+    var latestAn = await _firestore
+        .collection('Users')
+        .doc(userId)
+        .get()
+        .then((value) => value.get('an'));
+    var length = latestAn.length;
+    Map<String, dynamic> data = {
+      'storedUserId': userId,
+      'storedHn': hn,
+      'storedName': name,
+      'storedSurname': surname,
+      'storedLatestAnId': latestAn[length - 1]['an'],
     };
+    print(data);
+    UserStore.setDataToStore(data: data);
   }
 }
