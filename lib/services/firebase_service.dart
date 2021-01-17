@@ -71,7 +71,7 @@ class FirebaseService extends IFirebaseService {
           {@required String collection, @required String docId}) =>
       _firestore.collection(collection).doc(docId).snapshots();
 
-  Future<String> getAStringValueFormField(
+  Future<String> getAStringValueFromField(
           {@required String collection,
           @required String docId,
           @required String field}) async =>
@@ -89,21 +89,17 @@ class FirebaseService extends IFirebaseService {
           .get()
           .then((value) => value.data());
 
-  void updateFieldCollection(
+  Future<void> updateDataToCollectionField(
       {@required String collection,
       @required String docId,
-      @required Map<String, dynamic> updateField}) {
-    print('here is updateFieldCollection');
-    print(collection);
-    print(docId);
-    print(updateField);
-    _firestore
+      @required Map<String, dynamic> updateField}) async {
+    await _firestore
         .collection(collection)
         .doc(docId)
         .update(updateField)
         .then((value) => {print('update field ${updateField.keys} success')})
         .catchError((onError) {
-      print('error update password');
+      print('error update $updateField');
     });
   }
 
@@ -135,22 +131,70 @@ class FirebaseService extends IFirebaseService {
     return doc;
   }
 
+  Future<Map<String, dynamic>> getSubCollectionMap(
+      {@required String collection,
+      @required String docId,
+      @required String subCollection,
+      @required String subDocId}) {
+    var subCollectionMap = _firestore
+        .collection(collection)
+        .doc(docId)
+        .collection(subCollection)
+        .doc(subDocId)
+        .get()
+        .then((value) => value.data());
+    return subCollectionMap;
+  }
+
   Future<void> addDataToFormsCollection({
     @required String formName,
     @required Map<String, dynamic> data,
   }) async {
-    // var anSubCollection =
-    //     await this.getLatestAnSubCollection(userId: _userStore.userId);
-    // var an = anSubCollection['an'];
-    // Map<String, dynamic> dataToAdd = {
-    //   'an': an,
-    //   'hn': _userStore.hn,
-    //   'creation': _calculationService.formatDate(date: DateTime.now()),
-    //   'formName': formName,
-    //   'creator': '${_userStore.name} ${_userStore.surname}',
-    //   'patientStage': _userStore.patientStage,
-    //   'formData': data,
-    // };
+    var storedUserId = UserStore.getValueFromStore('storedUserId');
+    var storedLatestAnId = UserStore.getValueFromStore('storedLatestAnId');
+    var anSubCollection = await this.getSubCollectionMap(
+        collection: 'Users',
+        docId: storedUserId,
+        subCollection: 'an',
+        subDocId: storedLatestAnId);
+    var patientStage = anSubCollection['stage'];
+    var an = anSubCollection['an'];
+    var creator =
+        '''${UserStore.getValueFromStore('storedName')} ${UserStore.getValueFromStore('storedSurname')}''';
+    var creation = _calculationService.formatDate(date: DateTime.now());
+    Map<String, dynamic> dataToAdd = {
+      'an': an,
+      'hn': UserStore.getValueFromStore('storedHn'),
+      'creation': creation,
+      'formName': formName,
+      'creator': creator,
+      'patientStage': patientStage,
+      'formData': data,
+    };
+
+    print('Here is data to add $dataToAdd');
+    var forms = await this
+        .addDocumentToCollection(collection: 'Forms', docData: dataToAdd);
+    var formsId = forms.id;
+    await _firestore
+        .collection('Users')
+        .doc(UserStore.getValueFromStore('storedUserId'))
+        .collection('an')
+        .doc(storedLatestAnId)
+        .update({
+          'forms': FieldValue.arrayUnion([
+            {
+              'formsId': formsId,
+              'formName': formName,
+              'formCreation': creation,
+            }
+          ]),
+        })
+        .then(
+            (value) => print('success adding forms things to an subCollection'))
+        .catchError((onError) {
+          print('$onError on adding forms things to an subCollection');
+        });
   }
 
   void saveDataToSharedPref() async {

@@ -193,7 +193,7 @@ class _PinState extends State<Pin> {
   Future<String> getPasscode() async {
     var uid = _firebaseService.getUserId();
     print('UID IN pin_page $uid');
-    var passcode = await _firebaseService.getAStringValueFormField(
+    var passcode = await _firebaseService.getAStringValueFromField(
         collection: 'Users', docId: uid, field: 'password');
     return passcode;
   }
