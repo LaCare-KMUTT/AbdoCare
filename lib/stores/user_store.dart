@@ -14,8 +14,7 @@ class UserStore {
 
   static void setDataToStore({Map<String, dynamic> data}) async {
     if (_pref.getString('StoredUserId') == null) {
-      print('here!!!!!!!!!!!');
-      // print(_pref.getKeys());
+      print('Setting data to store');
       data.forEach((key, value) {
         if (key is String) {
           _pref.setString(key, value);
