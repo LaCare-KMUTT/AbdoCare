@@ -64,7 +64,7 @@ class _AppointPageState extends State<AppointPage> {
 
 void showAlertDialog(BuildContext context) {
   // Create button
-  Widget OkButton = FlatButton(
+  Widget okButton = FlatButton(
     child: Container(
       width: MediaQuery.of(context).size.width,
       child: Center(
@@ -113,7 +113,7 @@ void showAlertDialog(BuildContext context) {
       ],
     ),
     actions: [
-      OkButton,
+      okButton,
     ],
   );
   // show the dialog
