@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import '../../../services/interfaces/firebase_service_interface.dart';
+import '../../../services/service_locator.dart';
 import 'post-op-home_page.dart';
 
 class AbnormalSymptomForm extends StatefulWidget {
@@ -14,12 +16,8 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
   var _value3 = false;
   var _value4 = false;
   var _value5 = false;
-  Map<String, dynamic> saveToDatabase = {
-    'Choice1': '_value',
-    'Choice2': '_value2',
-    'Choice3': '_value3',
-    'Choice4': '_value4',
-  };
+
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,10 +134,15 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     color: Color(0xFF2ED47A),
                     onPressed: () {
-                      print(_value);
-                      print(_value2);
-                      print(_value3);
-                      print(_value4);
+                      Map<String, dynamic> formDataToDB = {
+                        'Choice1': _value,
+                        'Choice2': _value2,
+                        'Choice3': _value3,
+                        'Choice4': _value4,
+                        'Choice5': _value5,
+                      };
+                      _firebaseService.addDataToFormsCollection(
+                          formName: 'Abnormal Symptom', data: formDataToDB);
                       if (_value | _value2 | _value3 | _value4 == true) {
                         showAdvise1(context);
                       }

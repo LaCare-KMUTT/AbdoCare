@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
-import '../pre-op/pre-op_page.dart';
 import 'post-op-home_page.dart';
 
 class ADLForm extends StatefulWidget {
@@ -1789,8 +1788,8 @@ class _ADLFormState extends State<ADLForm> {
                           'Question10': score10,
                           'TotalscoreADL': totalscore,
                         };
-                        _firebaseService.addDocumentToCollection(
-                            collection: null, docData: null);
+                        _firebaseService.addDataToFormsCollection(
+                            formName: 'ADL', data: formDataToDB);
                       }),
                 ],
               ),
@@ -1817,7 +1816,7 @@ void showAlertDialog(BuildContext context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => PreOpPage()),
+        MaterialPageRoute(builder: (context) => PostOpHomePage()),
       );
     },
   );
