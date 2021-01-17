@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../services/interfaces/firebase_service_interface.dart';
+import '../../../services/service_locator.dart';
 import '../pre-op/pre-op_page.dart';
 import 'post-op-home_page.dart';
 
@@ -10,6 +13,7 @@ class ADLForm extends StatefulWidget {
 }
 
 class _ADLFormState extends State<ADLForm> {
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
   int totalscore = 0;
   int score1,
       score2,
@@ -32,19 +36,6 @@ class _ADLFormState extends State<ADLForm> {
   String selectedChoice9 = '';
   String selectedChoice10 = '';
 
-  Map<String, dynamic> saveToDatabase = {
-    'Question1': 'score1',
-    'Question2': 'score2',
-    'Question3': 'score3',
-    'Question4': 'score4',
-    'Question5': 'score5',
-    'Question6': 'score6',
-    'Question7': 'score7',
-    'Question8': 'score8',
-    'Question9': 'score9',
-    'Question10': 'score10',
-    'TotalscoreADL': 'totalscore',
-  };
   void result(int score) {
     if (totalscore >= 12) {
       print('mild independence');
@@ -124,7 +115,7 @@ class _ADLFormState extends State<ADLForm> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Text(
@@ -187,7 +178,7 @@ class _ADLFormState extends State<ADLForm> {
                             width: MediaQuery.of(context).size.width,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                              children: <Widget>[
                                 Text(
                                     "ตักอาหารเองได้แต่ต้องมีคนช่วย เช่น ช่วยใช้"),
                                 Text(
@@ -1785,6 +1776,21 @@ class _ADLFormState extends State<ADLForm> {
                         ;
                         print(totalscore);
                         result(totalscore);
+                        Map<String, dynamic> formDataToDB = {
+                          'Question1': score1,
+                          'Question2': score2,
+                          'Question3': score3,
+                          'Question4': score4,
+                          'Question5': score5,
+                          'Question6': score6,
+                          'Question7': score7,
+                          'Question8': score8,
+                          'Question9': score9,
+                          'Question10': score10,
+                          'TotalscoreADL': totalscore,
+                        };
+                        _firebaseService.addDocumentToCollection(
+                            collection: null, docData: null);
                       }),
                 ],
               ),
@@ -1798,7 +1804,7 @@ class _ADLFormState extends State<ADLForm> {
 
 void showAlertDialog(BuildContext context) {
   // Create button
-  Widget OkButton = FlatButton(
+  Widget okButton = FlatButton(
     child: Container(
       width: MediaQuery.of(context).size.width,
       child: Center(
@@ -1826,7 +1832,7 @@ void showAlertDialog(BuildContext context) {
       ],
     ),
     actions: [
-      OkButton,
+      okButton,
     ],
   );
   // show the dialog
