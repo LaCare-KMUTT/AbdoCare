@@ -30,6 +30,7 @@ class _ChatPageState extends State<ChatPage> {
     Dialogflow dialogflow =
         Dialogflow(authGoogle: authGoogle, language: Language.thai);
     AIResponse aiResponse = await dialogflow.detectIntent(query);
+
     setState(() {
       messsages.insert(0, {
         "data": 0,
@@ -92,11 +93,11 @@ class _ChatPageState extends State<ChatPage> {
                 title: Container(
                   height: 40,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: Color.fromRGBO(220, 220, 220, 1),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.grey[300],
                   ),
                   padding: EdgeInsets.only(left: 15),
-                  child: TextFormField(
+                  child: TextField(
                     controller: messageInsert,
                     decoration: InputDecoration(
                       hintText: "ส่งข้อความ...",
@@ -158,13 +159,13 @@ class _ChatPageState extends State<ChatPage> {
                   )
                 : Container(),
             Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.only(bottom: 5),
               child: Bubble(
                   radius: Radius.circular(15.0),
                   color: data == 0 ? Color(0xFFF1B43F) : Color(0xFFFCECBC),
                   elevation: 0.0,
                   child: Padding(
-                    padding: EdgeInsets.all(1.0),
+                    padding: EdgeInsets.all(3.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
