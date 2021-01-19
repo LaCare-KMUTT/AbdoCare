@@ -157,7 +157,7 @@ class FirebaseService extends IFirebaseService {
         docId: storedUserId,
         subCollection: 'an',
         subDocId: storedLatestAnId);
-    var patientStage = anSubCollection['stage'];
+    var patientState = anSubCollection['state'];
     var an = anSubCollection['an'];
     var creator =
         '''${UserStore.getValueFromStore('storedName')} ${UserStore.getValueFromStore('storedSurname')}''';
@@ -168,7 +168,7 @@ class FirebaseService extends IFirebaseService {
       'creation': creation,
       'formName': formName,
       'creator': creator,
-      'patientStage': patientStage,
+      'patientState': patientState,
       'formData': data,
     };
 
