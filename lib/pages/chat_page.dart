@@ -129,7 +129,7 @@ class _ChatPageState extends State<ChatPage> {
                 child: TextField(
                   controller: messageInsert,
                   decoration: InputDecoration(
-                    hintText: "ส่งข้อความ...",
+                    hintText: "พิมพ์ข้อความ...",
                     hintStyle: TextStyle(color: Colors.black26),
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
