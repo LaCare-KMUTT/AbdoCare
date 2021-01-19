@@ -120,12 +120,13 @@ class _PainFormState extends State<PainForm> {
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       color: Color(0xFF2ED47A),
                       onPressed: () {
+                        Map<String, dynamic> saveToDatabase = {
+                          'Answer': value,
+                        };
+                        _firebaseService.addDataToFormsCollection(
+                            formName: 'pain', data: saveToDatabase);
+                        print(value);
                         if (value >= 7) {
-                          Map<String, dynamic> saveToDatabase = {
-                            'Answer': value,
-                          };
-                          _firebaseService.addDataToFormsCollection(
-                              formName: 'pain', data: saveToDatabase);
                           showAdvise1(context, value);
                         } else {
                           showAdvise2(context, value);

@@ -1,7 +1,10 @@
 import 'dart:io';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../services/interfaces/firebase_service_interface.dart';
+import '../../../services/service_locator.dart';
 import 'post-op-home_page.dart';
 
 class SurgicalIncisionForm extends StatefulWidget {
@@ -18,12 +21,8 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
   var _value2 = false;
   var _value3 = false;
   var _value4 = false;
-  Map<String, dynamic> saveToDatabase = {
-    'Choice1': '_value',
-    'Choice2': '_value2',
-    'Choice3': '_value3',
-    'Choice4': '_value4',
-  };
+
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
   Future<Null> getImage(ImageSource imageSource) async {
     final pickedFile = await picker.getImage(source: imageSource);
 
@@ -141,6 +140,14 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       color: Color(0xFF2ED47A),
                       onPressed: () {
+                        Map<String, dynamic> formDataToDB = {
+                          'Choice1': _value,
+                          'Choice2': _value2,
+                          'Choice3': _value3,
+                          'Choice4': _value4,
+                        };
+                        _firebaseService.addDataToFormsCollection(
+                            formName: 'Surgical Incision', data: formDataToDB);
                         if (_value | _value2 == true) {
                           showAdvise1(context);
                         }
@@ -174,7 +181,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
           return AlertDialog(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text("แสดงเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
+            title: Text("ทำเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
                 style: Theme.of(context).textTheme.bodyText2,
                 textAlign: TextAlign.center),
           );
