@@ -28,13 +28,10 @@ class ButtomNavBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.home,
-                        color: Colors.white,
-                        size: 30.0,
-                      ),
-                      onPressed: () {},
+                    Icon(
+                      Icons.home,
+                      color: Colors.white,
+                      size: 30.0,
                     ),
                     Text(
                       'เมนูหลัก',

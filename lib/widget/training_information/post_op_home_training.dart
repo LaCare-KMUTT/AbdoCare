@@ -86,7 +86,7 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    var anotherlist = [
+    List<Map<String, Object>> anotherlist = [
       {
         "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
         "state": "post-op @ Hospital Day 0",
@@ -159,7 +159,7 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
       },
     ];
 
-    var postOpHome = [
+    List<Map<String, Object>> postOpHome = [
       {
         "topic": "การจัดการความปวดขณะพักฟื้นอยู่ที่บ้าน",
         "state": "post-op @ Home",
