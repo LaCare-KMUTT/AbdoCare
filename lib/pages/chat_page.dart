@@ -23,6 +23,16 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  List<String> optionlist = [
+    "รับประทานอาหาร",
+    "อาบน้ำ",
+    "ดูแลแผล",
+    "แผลบวม",
+    "ท้องอืด",
+    "ไอบ่อย",
+    "ลืมทานยา",
+    "เลื่อนนัด"
+  ];
   void response(query) async {
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/abdo-bot-briv-9ed7278f51f5.json")
@@ -31,13 +41,8 @@ class _ChatPageState extends State<ChatPage> {
         Dialogflow(authGoogle: authGoogle, language: Language.thai);
     AIResponse aiResponse = await dialogflow.detectIntent(query);
     setState(() {
-      messsages.insert(0, {
-        "data": 0,
-        "message": aiResponse.getListMessage()[0]["text"]["text"][0].toString()
-      });
+      messsages.insert(0, {"data": 0, "message": aiResponse.getMessage()});
     });
-    print(aiResponse.getMessage().toString());
-    print("New");
     print(aiResponse.getListMessage()[0]["text"]["text"][0].toString());
   }
 
@@ -83,57 +88,81 @@ class _ChatPageState extends State<ChatPage> {
                     itemBuilder: (context, index) => chat(
                         messsages[index]["message"].toString(),
                         messsages[index]["data"]))),
+            Container(
+              height: 40.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Row(
+                    children: [
+                      for (var item in optionlist)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: ActionChip(
+                              backgroundColor: Color(0xFFF1B43F),
+                              label: Text(item),
+                              onPressed: () {
+                                setState(() {
+                                  messsages
+                                      .insert(0, {"data": 1, "message": item});
+                                });
+                                response(item);
+                              }),
+                        ),
+                    ],
+                  )
+                ],
+              ),
+            ),
             Divider(
               height: 5.0,
               color: Color(0xFFC37447),
             ),
-            Container(
-              child: ListTile(
-                title: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: Color.fromRGBO(220, 220, 220, 1),
-                  ),
-                  padding: EdgeInsets.only(left: 15),
-                  child: TextFormField(
-                    controller: messageInsert,
-                    decoration: InputDecoration(
-                      hintText: "ส่งข้อความ...",
-                      hintStyle: TextStyle(color: Colors.black26),
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                    ),
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                    onChanged: (value) {},
-                  ),
+            ListTile(
+              title: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.grey[300],
                 ),
-                trailing: IconButton(
-                    icon: Icon(
-                      Icons.send,
-                      size: 30.0,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    onPressed: () {
-                      if (messageInsert.text.isEmpty) {
-                        print("empty message");
-                      } else {
-                        setState(() {
-                          messsages.insert(
-                              0, {"data": 1, "message": messageInsert.text});
-                        });
-                        response(messageInsert.text);
-                        messageInsert.clear();
-                      }
-                      FocusScopeNode currentFocus = FocusScope.of(context);
-                      if (!currentFocus.hasPrimaryFocus) {
-                        currentFocus.unfocus();
-                      }
-                    }),
+                padding: EdgeInsets.only(left: 15),
+                child: TextField(
+                  controller: messageInsert,
+                  decoration: InputDecoration(
+                    hintText: "พิมพ์ข้อความ...",
+                    hintStyle: TextStyle(color: Colors.black26),
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  onChanged: (value) {},
+                ),
               ),
+              trailing: IconButton(
+                  icon: Icon(
+                    Icons.send,
+                    size: 30.0,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: () {
+                    if (messageInsert.text.isEmpty) {
+                      print("empty message");
+                    } else {
+                      setState(() {
+                        messsages.insert(
+                            0, {"data": 1, "message": messageInsert.text});
+                      });
+                      response(messageInsert.text);
+                      messageInsert.clear();
+                    }
+                    FocusScopeNode currentFocus = FocusScope.of(context);
+                    if (!currentFocus.hasPrimaryFocus) {
+                      currentFocus.unfocus();
+                    }
+                  }),
             ),
           ],
         ),
@@ -142,7 +171,7 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  Widget chat(String message, int data) => Container(
+  Widget chat(dynamic message, int data) => Container(
         padding: EdgeInsets.only(left: 5, right: 5),
         child: Row(
           mainAxisAlignment:
@@ -158,13 +187,13 @@ class _ChatPageState extends State<ChatPage> {
                   )
                 : Container(),
             Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.only(bottom: 5),
               child: Bubble(
                   radius: Radius.circular(15.0),
                   color: data == 0 ? Color(0xFFF1B43F) : Color(0xFFFCECBC),
                   elevation: 0.0,
                   child: Padding(
-                    padding: EdgeInsets.all(1.0),
+                    padding: EdgeInsets.all(3.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
