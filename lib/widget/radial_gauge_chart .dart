@@ -14,19 +14,6 @@ class PieChart extends StatelessWidget {
               RadialAxis(
                   axisLineStyle: AxisLineStyle(
                     thickness: 50,
-                    /*For gradient color*/
-                    // thicknessUnit: GaugeSizeUnit.factor,
-                    // gradient: SweepGradient(colors: <Color>[
-                    //   Colors.red,
-                    //   Colors.orange,
-                    //   Colors.yellow,
-                    //   Colors.green
-                    // ], stops: <double>[
-                    //   0.10,
-                    //   0.25,
-                    //   0.50,
-                    //   1
-                    // ]),
                   ),
                   startAngle: 180,
                   endAngle: 0,
