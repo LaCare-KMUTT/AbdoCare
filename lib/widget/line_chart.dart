@@ -29,34 +29,32 @@ class LineChart extends StatelessWidget {
       charts.Series(
         id: "Pain",
         data: data2,
-        domainFn: (PointSeries serieslist, _) => serieslist.day,
-        measureFn: (PointSeries serieslist, _) => serieslist.point,
+        domainFn: (serieslist, _) => serieslist.day,
+        measureFn: (serieslist, _) => serieslist.point,
       ),
     ];
     return Container(
       height: 400,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Column(
-            children: [
-              Expanded(
-                child: charts.LineChart(
-                  serieslist,
-                  animate: false,
-                  primaryMeasureAxis: charts.NumericAxisSpec(
-                    tickProviderSpec: charts.BasicNumericTickProviderSpec(
-                        desiredTickCount: 6),
-                  ),
-                  domainAxis: charts.NumericAxisSpec(
-                    tickProviderSpec: charts.BasicNumericTickProviderSpec(
-                        desiredTickCount: 7),
-                    tickFormatterSpec: customTickFormatter,
-                  ),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Column(
+          children: [
+            Expanded(
+              child: charts.LineChart(
+                serieslist,
+                animate: false,
+                primaryMeasureAxis: charts.NumericAxisSpec(
+                  tickProviderSpec:
+                      charts.BasicNumericTickProviderSpec(desiredTickCount: 6),
+                ),
+                domainAxis: charts.NumericAxisSpec(
+                  tickProviderSpec:
+                      charts.BasicNumericTickProviderSpec(desiredTickCount: 7),
+                  tickFormatterSpec: customTickFormatter,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

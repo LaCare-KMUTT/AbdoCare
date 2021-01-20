@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'bar_chart.dart';
+import 'package:flutter/material.dart';
+import 'ADL_chart.dart';
 import 'line_chart.dart';
 import 'radial_gauge_chart .dart';
 
@@ -19,58 +19,7 @@ class _ShowDashboardState extends State<ShowDashboard> {
     PointSeries(day: 5, point: 4),
     PointSeries(day: 6, point: 2),
   ];
-  final List<BarSeries> data = [
-    BarSeries(
-      topic: "การรับประทานอาหาร",
-      point: 3,
-      barColor: charts.ColorUtil.fromDartColor(Colors.purple),
-    ),
-    BarSeries(
-      topic: "การขึ้นลงบันได1ชั้น",
-      point: 1,
-      barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
-    ),
-    BarSeries(
-      topic: "การสวมใส่เสื้อผ้า",
-      point: 1,
-      barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
-    ),
-    BarSeries(
-      topic: "การลุกจากที่นอน",
-      point: 1,
-      barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
-    ),
-    BarSeries(
-      topic: "การเคลื่อนที่ภายใน\nห้องหรือบ้าน",
-      point: 2,
-      barColor: charts.ColorUtil.fromDartColor(Colors.lightBlue),
-    ),
-    BarSeries(
-      topic: "การอาบน้ำ",
-      point: 0,
-      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
-    ),
-    BarSeries(
-      topic: "การใช้ห้องน้ำ",
-      point: 1,
-      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
-    ),
-    BarSeries(
-      topic: "การกลั้นอุจจาระในระยะ\n1 สัปดาห์ที่ผ่านมา",
-      point: 3,
-      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
-    ),
-    BarSeries(
-      topic: "การกลั้นปัสสาวะในระยะ\n1 สัปดาห์ที่ผ่านมา",
-      point: 2,
-      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
-    ),
-    BarSeries(
-      topic: "การล้างหน้า หวีผม \nแปรงฟัน",
-      point: 3,
-      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
-    )
-  ];
+
   @override
   Widget build(BuildContext context) => Container(
         child: ListView(
@@ -81,14 +30,21 @@ class _ShowDashboardState extends State<ShowDashboard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text('ข้อมูลสุขภาพ'),
-                  ),
                   Container(
                     child: Card(
                       child: Column(
                         children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                                child: Text(
+                                  'ข้อมูลสุขภาพ',
+                                ),
+                              ),
+                            ],
+                          ),
                           Text('อายุ 21 ปี',
                               style: Theme.of(context).textTheme.bodyText1),
                           Text('ส่วนสูง 160.0 ซม.',
@@ -105,27 +61,66 @@ class _ShowDashboardState extends State<ShowDashboard> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      'ความสามารถในการปฏิบัติกิจวัตรประจำวัน',
+                  Container(
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                                child: Text(
+                                  'ความสามารถในการปฏิบัติกิจวัตรประจำวัน',
+                                ),
+                              ),
+                            ],
+                          ),
+                          ADLTable(),
+                        ],
+                      ),
                     ),
                   ),
-                  BarChart(data: data),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      'ผลการประเมินการปฏิบัติกิจวัตรประจำวัน',
+                  Container(
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                                child: Text(
+                                  'ผลการประเมินการปฏิบัติกิจวัตรประจำวัน',
+                                ),
+                              ),
+                            ],
+                          ),
+                          PieChart(),
+                        ],
+                      ),
                     ),
                   ),
-                  PieChart(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      'ความเจ็บปวด',
+                  Container(
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                                child: Text(
+                                  'ความเจ็บปวด',
+                                ),
+                              ),
+                            ],
+                          ),
+                          LineChart(data2: data2),
+                        ],
+                      ),
                     ),
                   ),
-                  LineChart(data2: data2),
                 ],
               ),
             ),
