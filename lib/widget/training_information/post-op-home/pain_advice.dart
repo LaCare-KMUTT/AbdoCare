@@ -46,11 +46,6 @@ class PainAdvice extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                Image.asset(
-                                  'assets/default.jpg',
-                                  height: 100,
-                                  width: 80,
-                                ),
                                 Text('2. ให้ผู้ป่วยทำกิจกรรมอื่นๆ',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
@@ -88,7 +83,7 @@ class PainAdvice extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 Image.asset(
-                                  'assets/default.jpg',
+                                  'assets/image.png',
                                   height: 100,
                                   width: 80,
                                 ),
@@ -123,7 +118,7 @@ class PainAdvice extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 Image.asset(
-                                  'assets/default.jpg',
+                                  'assets/image.png',
                                   height: 100,
                                   width: 80,
                                 ),
