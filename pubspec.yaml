@@ -40,6 +40,7 @@ dependencies:
   get_it: ^5.0.3
   syncfusion_flutter_gauges: ^18.4.33
   image_picker: ^0.6.7+21
+  shared_preferences: ^0.5.12+4
   step_progress_indicator: ^0.2.5+8
   expandable: ^4.1.4
 

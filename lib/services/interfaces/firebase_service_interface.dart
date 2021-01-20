@@ -11,17 +11,38 @@ abstract class IFirebaseService {
   Stream<DocumentSnapshot> getCollectionSnapshotByDocId(
       {@required String collection, @required String docId});
 
-  Future<String> getAStringValueFormField(
+  Future<Map<String, dynamic>> getCollectionMapByDocId(
+      {@required String collection, @required String docId});
+
+  Future<String> getAStringValueFromField(
       {@required String collection,
       @required String docId,
       @required String field});
 
-  void updateFieldCollection(
+  void updateDataToCollectionField(
       {@required String collection,
       @required String docId,
       @required Map<String, dynamic> updateField});
 
   Future<Map<String, dynamic>> getLatestAnSubCollection({
     @required String userId,
+  });
+
+  Future<Map<String, dynamic>> getSubCollectionMap(
+      {@required String collection,
+      @required String docId,
+      @required String subCollection,
+      @required String subDocId});
+
+  Future<DocumentReference> addDocumentToCollection({
+    @required String collection,
+    @required Map<String, dynamic> docData,
+  });
+
+  void saveDataToSharedPref();
+
+  Future<void> addDataToFormsCollection({
+    @required String formName,
+    @required Map<String, dynamic> data,
   });
 }

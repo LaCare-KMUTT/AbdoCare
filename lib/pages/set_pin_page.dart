@@ -15,7 +15,7 @@ class _SetPinPageState extends State<SetPinPage> {
   void _setPin({
     @required String strPin,
   }) {
-    _firebaseService.updateFieldCollection(
+    _firebaseService.updateDataToCollectionField(
         collection: 'Users',
         docId: _firebaseService.getUserId(),
         updateField: {'password': strPin});

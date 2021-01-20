@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+
+import '../../../services/interfaces/firebase_service_interface.dart';
+import '../../../services/service_locator.dart';
 import 'post-op-home_page.dart';
 
 class PainForm extends StatefulWidget {
@@ -13,6 +16,8 @@ class PainForm extends StatefulWidget {
 class _PainFormState extends State<PainForm> {
   int value = 5;
   String result = "ปวดปานกลาง";
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
+
   LinearGradient gradient = LinearGradient(colors: <Color>[
     Colors.greenAccent[400],
     Colors.orangeAccent[400],
@@ -115,6 +120,12 @@ class _PainFormState extends State<PainForm> {
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       color: Color(0xFF2ED47A),
                       onPressed: () {
+                        Map<String, dynamic> saveToDatabase = {
+                          'Answer': value,
+                        };
+                        _firebaseService.addDataToFormsCollection(
+                            formName: 'pain', data: saveToDatabase);
+                        print(value);
                         if (value >= 7) {
                           showAdvise1(context, value);
                         } else {

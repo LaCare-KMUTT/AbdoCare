@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../pre-op/pre-op_page.dart';
+
+import '../../../services/interfaces/firebase_service_interface.dart';
+import '../../../services/service_locator.dart';
 import 'post-op-home_page.dart';
 
 class ADLForm extends StatefulWidget {
@@ -10,6 +12,7 @@ class ADLForm extends StatefulWidget {
 }
 
 class _ADLFormState extends State<ADLForm> {
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
   int totalscore = 0;
   int score1,
       score2,
@@ -111,7 +114,7 @@ class _ADLFormState extends State<ADLForm> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Text(
@@ -174,7 +177,7 @@ class _ADLFormState extends State<ADLForm> {
                             width: MediaQuery.of(context).size.width,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                              children: <Widget>[
                                 Text(
                                     "ตักอาหารเองได้แต่ต้องมีคนช่วย เช่น ช่วยใช้"),
                                 Text(
@@ -1772,6 +1775,21 @@ class _ADLFormState extends State<ADLForm> {
                         ;
                         print(totalscore);
                         result(totalscore);
+                        Map<String, dynamic> formDataToDB = {
+                          'Feeding': score1,
+                          'Grooming': score2,
+                          'Tranfer': score3,
+                          'Toilet': score4,
+                          'Mobility': score5,
+                          'Dressing': score6,
+                          'Stairs': score7,
+                          'Bathing': score8,
+                          'Bowels': score9,
+                          'Bladder': score10,
+                          'TotalscoreADL': totalscore,
+                        };
+                        _firebaseService.addDataToFormsCollection(
+                            formName: 'ADL', data: formDataToDB);
                       }),
                 ],
               ),
@@ -1785,7 +1803,7 @@ class _ADLFormState extends State<ADLForm> {
 
 void showAlertDialog(BuildContext context) {
   // Create button
-  Widget OkButton = FlatButton(
+  Widget okButton = FlatButton(
     child: Container(
       width: MediaQuery.of(context).size.width,
       child: Center(
@@ -1798,7 +1816,7 @@ void showAlertDialog(BuildContext context) {
     onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => PreOpPage()),
+        MaterialPageRoute(builder: (context) => PostOpHomePage()),
       );
     },
   );
@@ -1813,7 +1831,7 @@ void showAlertDialog(BuildContext context) {
       ],
     ),
     actions: [
-      OkButton,
+      okButton,
     ],
   );
   // show the dialog

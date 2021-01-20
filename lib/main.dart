@@ -12,16 +12,17 @@ import 'pages/profile_page.dart';
 import 'pages/training_page.dart';
 import 'services/firebase_service.dart';
 import 'services/service_locator.dart';
+import 'stores/user_store.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await setupServiceLocator();
+  await UserStore();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   final _firebaseService = FirebaseService();
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
               if (userSnapshot.hasData) {
                 print(_firebaseService.getUserId());
                 print('userSnapshot has data');
+                _firebaseService.saveDataToSharedPref();
                 // _firebaseService.signout(); //incase can't signout normally
                 return PasscodePage();
               } else {
