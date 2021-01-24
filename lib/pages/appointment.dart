@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/show_appointment.dart';
 
 class AppointPage extends StatefulWidget {
   AppointPage({Key key}) : super(key: key);
@@ -25,12 +26,7 @@ class _AppointPageState extends State<AppointPage> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return StuffInTiles(listOfTiles[index]);
-              },
-              itemCount: listOfTiles.length,
-            ),
+            child: ShowAppointment(),
           ),
           FlatButton(
             padding: EdgeInsets.only(top: 0),
@@ -122,60 +118,3 @@ void showAlertDialog(BuildContext context) {
     builder: (context) => alert,
   );
 }
-
-class StuffInTiles extends StatelessWidget {
-  final MyTile myTile;
-  StuffInTiles(this.myTile);
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildTiles(myTile);
-  }
-
-  Widget _buildTiles(MyTile t) {
-    if (t.children.isEmpty) {
-      return ListTile(
-        title: Text(
-          t.title,
-        ),
-      );
-    }
-
-    return ExpansionTile(
-      key: PageStorageKey<int>(3),
-      title: Text(
-        t.title,
-        style: TextStyle(
-          fontSize: 20,
-          color: Color(0xFFC37447),
-        ),
-      ),
-      children: t.children.map(_buildTiles).toList(),
-    );
-  }
-}
-
-class MyTile {
-  String title;
-  List<MyTile> children;
-  MyTile(this.title, [this.children = const <MyTile>[]]);
-}
-
-List<MyTile> listOfTiles = <MyTile>[
-  //Column
-  MyTile(
-    '19 กันยายน 2563',
-    <MyTile>[
-      MyTile('เจาะเลือด เวลา 09.00 น.'),
-      MyTile('การเตรียมความพร้อมก่อนมาพบแพทย์: \nงดน้ำงดอาหารหลังสองทุ่ม'),
-    ],
-  ),
-  //Column
-  MyTile(
-    '18 ตุลาคม 2563',
-    <MyTile>[
-      MyTile('นัดตรวจ เวลา 09.00 น.'),
-      MyTile('การเตรียมความพร้อมก่อนมาพบแพทย์: \nไม่มี'),
-    ],
-  ),
-];
