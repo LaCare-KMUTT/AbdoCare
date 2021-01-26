@@ -43,7 +43,6 @@ dependencies:
   shared_preferences: ^0.5.12+4
   step_progress_indicator: ^0.2.5+8
   expandable: ^4.1.4
-  firebase_messaging: ^7.0.3
 
 dev_dependencies:
   flutter_test:
