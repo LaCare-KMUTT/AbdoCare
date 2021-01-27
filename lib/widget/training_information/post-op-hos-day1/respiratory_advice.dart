@@ -6,6 +6,7 @@ class RespiratoryAdviceDay1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("คำแนะนำ"),
         leading: IconButton(
           icon: const Icon(
@@ -35,8 +36,8 @@ class RespiratoryAdviceDay1 extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('''
-การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ เช่น ภาวะปอดแฟบ ปอดอักเสบหรือการติดเชื้อระบบหายใจส่วนล่าง ควรปฏิบัติกิจกรรม ดังนี้'''),
+                            child: Text(
+                                '''การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ เช่น ภาวะปอดแฟบ ปอดอักเสบหรือการติดเชื้อระบบหายใจส่วนล่าง ควรปฏิบัติกิจกรรม ดังนี้'''),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),

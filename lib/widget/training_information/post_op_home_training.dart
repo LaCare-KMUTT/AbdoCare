@@ -188,6 +188,7 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
     ];
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('การฝึกสอนและอบรม'),
         leading: IconButton(
           icon: const Icon(

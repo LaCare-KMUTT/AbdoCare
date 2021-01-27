@@ -6,6 +6,7 @@ class PulmonaryAdviceDay2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("คำแนะนำ"),
         leading: IconButton(
           icon: const Icon(

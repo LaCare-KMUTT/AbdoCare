@@ -32,6 +32,7 @@ class _TrainingPageState extends State<TrainingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('การฝึกสอนและอบรบ'),
         leading: IconButton(
           icon: const Icon(

@@ -38,6 +38,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text('แผลผ่าตัด'),
           leading: IconButton(
             icon: const Icon(

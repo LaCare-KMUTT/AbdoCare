@@ -55,6 +55,7 @@ class _ADLFormState extends State<ADLForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'การปฏิบัติกิจวัตรประจำวัน',
         ),

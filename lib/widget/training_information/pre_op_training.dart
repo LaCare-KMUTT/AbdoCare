@@ -45,6 +45,7 @@ class _PreOpTrainingPageState extends State<PreOpTrainingPage> {
     ];
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('การฝึกสอนและอบรม'),
       ),
       body: Container(

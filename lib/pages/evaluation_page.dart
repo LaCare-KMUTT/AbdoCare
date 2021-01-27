@@ -11,6 +11,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text('แบบประเมินพัฒนาการของผู้ป่วย'),
           leading: IconButton(
             icon: const Icon(

@@ -19,7 +19,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('AbdoCare'),
+          centerTitle: true,
+          title: Text(
+            'AbdoCare',
+          ),
         ),
         body: Container(
           child: ListView(

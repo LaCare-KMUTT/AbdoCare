@@ -27,6 +27,7 @@ class _PainFormState extends State<PainForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('ความปวดหลังการผ่าตัด'),
         leading: IconButton(
           icon: const Icon(
