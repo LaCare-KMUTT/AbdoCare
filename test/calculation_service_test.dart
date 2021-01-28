@@ -9,7 +9,7 @@ void main() {
   });
   test('calculateAge should be able to calculate', () {
     ICalculationService _calculationService = locator<ICalculationService>();
-    var age = _calculationService.calculateAge(DateTime(1999, 03, 12));
+    var age = _calculationService.calculateAge(DateTime(2542, 03, 12));
     expect(age, 21);
   });
 
