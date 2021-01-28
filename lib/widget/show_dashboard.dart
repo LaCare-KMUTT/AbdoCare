@@ -98,7 +98,7 @@ class _ShowDashboardState extends State<ShowDashboard> {
                                       ],
                                     ),
                                     Text(
-                                        '''อายุ${_calculationService.calculateAge(DateFormat('yyyy-mm-dd').parse(userCollection.data['dob']))}ปี''',
+                                        '''อายุ ${_calculationService.calculateAge(userCollection.data['dob'].toDate()).toString()} ปี''',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1),
