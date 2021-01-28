@@ -133,9 +133,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   children: <Widget>[
                                     Text(
                                         _calculationService
-                                            .calculateAge(
-                                                DateFormat('yyyy-mm-dd').parse(
-                                                    userCollection.data['dob']))
+                                            .calculateAge(userCollection
+                                                .data['dob']
+                                                .toDate())
                                             .toString(),
                                         style: Theme.of(context)
                                             .textTheme
