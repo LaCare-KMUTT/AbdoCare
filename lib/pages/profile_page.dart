@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: <Widget>[
                               Padding(
                                 padding: EdgeInsets.only(
-                                    left: 10.0, bottom: 0, top: 10.0),
+                                    left: 10.0, bottom: 0, top: 20.0),
                                 child: Text(
                                   'ชื่อ-นามสกุล',
                                   style: Theme.of(context).textTheme.bodyText2,
@@ -98,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
-                                    left: 10.0, bottom: 0, top: 10.0),
+                                    left: 10.0, bottom: 0, top: 20.0),
                                 child: Text(
                                   'เพศ',
                                   style: Theme.of(context).textTheme.bodyText2,
@@ -119,7 +119,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
-                                    left: 10.0, bottom: 0, top: 10.0),
+                                    left: 10.0, bottom: 0, top: 20.0),
                                 child: Text(
                                   'อายุ',
                                   style: Theme.of(context).textTheme.bodyText2,
@@ -145,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
-                                    left: 10.0, bottom: 0, top: 10.0),
+                                    left: 10.0, bottom: 0, top: 20.0),
                                 child: Text(
                                   'วิธีการผ่าตัด',
                                   style: Theme.of(context).textTheme.bodyText2,
@@ -167,7 +167,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
-                                    left: 10.0, bottom: 0, top: 10.0),
+                                    left: 10.0, bottom: 0, top: 20.0),
                                 child: Text(
                                   'เบอร์โทรศัพท์',
                                   style: Theme.of(context).textTheme.bodyText2,
@@ -227,31 +227,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                       border: UnderlineInputBorder(),
                                       contentPadding: EdgeInsets.all(5.0),
                                       hintStyle: TextStyle(color: Colors.grey)),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 10.0, bottom: 0, top: 10.0),
-                                child: Text(
-                                  '%BML',
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(left: 30.0, right: 30.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                        _calculationService.calculateBMI(
-                                          anSubCollection.data['weight'],
-                                          anSubCollection.data['height'],
-                                        ),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
-                                  ],
                                 ),
                               ),
                             ],
