@@ -84,45 +84,48 @@ class _ShowDashboardState extends State<ShowDashboard> {
                           children: [
                             Container(
                               child: Card(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              5, 10, 0, 10),
-                                          child: Text(
-                                            'ข้อมูลสุขภาพ',
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                5, 10, 0, 10),
+                                            child: Text(
+                                              'ข้อมูลสุขภาพ',
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                        '''อายุ ${_calculationService.calculateAge(userCollection.data['dob'].toDate()).toString()} ปี''',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
-                                    Text(
-                                        '''ส่วนสูง ${anSubCollection.data['height']} ซม.''',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
-                                    Text(
-                                        '''น้ำหนัก ${anSubCollection.data['weight']} กก.''',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
-                                    Text(
-                                        'ค่าดัชนีมวลกาย ${_calculationService.calculateBMI(anSubCollection.data['weight'], anSubCollection.data['height'])} Kg/m2 ',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
-                                    // We haven't calculated %BWL yet.
-                                    Text('%BWL = 2%',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
-                                  ],
+                                        ],
+                                      ),
+                                      Text(
+                                          '''อายุ ${_calculationService.calculateAge(userCollection.data['dob'].toDate()).toString()} ปี''',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '''ส่วนสูง ${anSubCollection.data['height']} ซม.''',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '''น้ำหนัก ${anSubCollection.data['weight']} กก.''',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          'ค่าดัชนีมวลกาย ${_calculationService.calculateBMI(anSubCollection.data['weight'], anSubCollection.data['height'])} Kg/m2',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                      Text(
+                                          '''%BWL = ${_calculationService.calculateBML(anSubCollection.data['oldWeight'], anSubCollection.data['weight'])} %''',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
