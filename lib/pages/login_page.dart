@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import '../services/format_txt.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
 import 'set_pin_page.dart';
@@ -29,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.fromLTRB(50, 150, 50, 0),
                 child: TextField(
                   controller: _hnController,
-                  obscureText: true,
+                  obscureText: false,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -37,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                     errorText:
                         _validateHN ? 'กรุณาใส่หมายเลขผู้ป่วยนอก(HN)' : null,
                   ),
+                  inputFormatters: [UpperCaseTxt()],
                 ),
               ),
               Padding(
@@ -77,7 +79,8 @@ class _LoginPageState extends State<LoginPage> {
                               ? _validateHN = true
                               : _validateHN = false;
                         });
-                        if (_validateHN == false && _validateHN == false) {
+                        if (_validateHN == false &&
+                            _validateUniqueKey == false) {
                           if (await _firebaseService.signIn(
                               hn: _hnController.text.trim(),
                               uniqueKey: _uniqueKeycontroller.text.trim())) {
