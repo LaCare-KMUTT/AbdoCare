@@ -23,6 +23,13 @@ abstract class IFirebaseService {
       {@required String collection,
       @required String docId,
       @required Map<String, dynamic> updateField});
+  Future<void> updateFieldToSubCollection({
+    @required String collection,
+    @required String docId,
+    @required String subCollection,
+    @required String subCollectionDoc,
+    @required Map<String, dynamic> data,
+  });
 
   Future<Map<String, dynamic>> getLatestAnSubCollection({
     @required String userId,

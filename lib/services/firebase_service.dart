@@ -103,6 +103,28 @@ class FirebaseService extends IFirebaseService {
     });
   }
 
+  Future<void> updateFieldToSubCollection({
+    @required String collection,
+    @required String docId,
+    @required String subCollection,
+    @required String subCollectionDoc,
+    @required Map<String, dynamic> data,
+  }) async {
+    await _firestore
+        .collection(collection)
+        .doc(docId)
+        .collection(subCollection)
+        .doc(subCollectionDoc)
+        .update(data)
+        .then((value) {
+      print('success update data $data to collection $collection ');
+      print('docId = $docId, $subCollection $subCollectionDoc');
+    }).catchError((onError) {
+      print(
+          '$onError Failed on update $data to $collection $docId $subCollection $subCollectionDoc');
+    });
+  }
+
   Future<Map<String, dynamic>> getLatestAnSubCollection({
     @required String userId,
   }) async {
