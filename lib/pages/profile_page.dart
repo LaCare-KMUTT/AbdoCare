@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
       locator<ICalculationService>();
   var _userId;
   var _userCollection;
-
+  String patientTel;
   @override
   void initState() {
     super.initState();
@@ -185,6 +185,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                       border: UnderlineInputBorder(),
                                       contentPadding: EdgeInsets.all(5.0),
                                       hintStyle: TextStyle(color: Colors.grey)),
+                                  initialValue:
+                                      userCollection.data['patientTel'],
+                                  onChanged: (value) {
+                                    setState(() {
+                                      patientTel = value;
+                                    });
+                                  },
                                 ),
                               ),
                               Padding(
@@ -206,6 +213,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       border: UnderlineInputBorder(),
                                       contentPadding: EdgeInsets.all(5.0),
                                       hintStyle: TextStyle(color: Colors.grey)),
+                                  initialValue:
+                                      anSubCollection.data['weight'].toString(),
                                 ),
                               ),
                               Padding(
@@ -227,6 +236,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       border: UnderlineInputBorder(),
                                       contentPadding: EdgeInsets.all(5.0),
                                       hintStyle: TextStyle(color: Colors.grey)),
+                                  initialValue:
+                                      anSubCollection.data['height'].toString(),
                                 ),
                               ),
                             ],
@@ -271,6 +282,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                     style: TextStyle(fontSize: 18),
                                   ),
                                   onPressed: () {
+                                    if (patientTel != null) {
+                                      _firebaseService
+                                          .updateDataToCollectionField(
+                                              collection: 'Users',
+                                              docId: _userId,
+                                              updateField: {
+                                            'patientTel': patientTel,
+                                          });
+                                    }
                                     Navigator.pushReplacementNamed(
                                         context, '/chat_page');
                                   },
