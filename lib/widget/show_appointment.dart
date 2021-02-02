@@ -1,41 +1,57 @@
 import 'package:flutter/material.dart';
 
+import '../services/interfaces/calculation_service_interface.dart';
+import '../services/interfaces/firebase_service_interface.dart';
+import '../services/service_locator.dart';
+
 class ShowAppointment extends StatefulWidget {
   @override
   State createState() => ShowAppointmentState();
 }
 
 class ShowAppointmentState extends State<ShowAppointment> {
-  List<Map<String, Object>> anotherlist = [
-    {
-      "date": "19 กุมภาพันธ์ 2564",
-      "time": "7.00",
-      "reason": "เลือด",
-      "preparation": "งดน้ำงดอาหารหลัง 2 ทุ่ม"
-    },
-    {
-      "date": "20 กุมภาพันธ์ 2564",
-      "time": "8.00",
-      "reason": "เลือด",
-      "preparation": "งดน้ำงดอาหารหลังเที่ยงคืน"
-    },
-  ];
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
+  final ICalculationService _calculationService =
+      locator<ICalculationService>();
+  List<Map<String, dynamic>> appointments = <Map<String, dynamic>>[];
+
+  __initData() {
+    var data = _getAppointments();
+    print('IS NULL  ? ? ?$appointments');
+    data.then((value) => appointments.addAll(value));
+    print('aw my god$appointments');
+  }
+
+  Future<List<Map<String, dynamic>>> _getAppointments() async {
+    final _appointments = await _firebaseService.getAppointments();
+    print('=[]= showAppointment = $_appointments');
+    print('${_appointments.length}');
+    return _appointments;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    __initData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        for (var item in anotherlist)
+      children: <Widget>[
+        for (var appointment in appointments)
           ExpansionTile(
             title: Text(
-              item['date'],
+              _calculationService.formatDateToThaiString(
+                  isBuddhist: true, date: appointment['date'].toDate()),
               style: TextStyle(color: Color(0xFFC37447)),
             ),
-            children: [
+            children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
+                  children: <Widget>[
                     Text(
                       'รายละเอียดการนัดหมาย',
                       style: Theme.of(context).textTheme.bodyText1,
@@ -44,17 +60,17 @@ class ShowAppointmentState extends State<ShowAppointment> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
+                        children: <Widget>[
                           Text(
-                            'เวลา ${item['time']} น.',
+                            'เวลา ${appointment['time']} น.',
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                           Text(
-                            'นัดมาตรวจ: ${item['reason']}',
+                            'นัดมาตรวจ: ${appointment['reason']}',
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                           Text(
-                            'การเตรียมความพร้อม: ${item['preparation']}',
+                            'การเตรียมความพร้อม: ${appointment['preparation']}',
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                         ],
@@ -64,7 +80,7 @@ class ShowAppointmentState extends State<ShowAppointment> {
                 ),
               )
             ],
-          )
+          ),
       ],
     );
   }

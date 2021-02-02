@@ -45,4 +45,6 @@ abstract class IFirebaseService {
     @required String formName,
     @required Map<String, dynamic> data,
   });
+
+  Future<List<Map<String, dynamic>>> getAppointments();
 }
