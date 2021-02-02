@@ -24,7 +24,7 @@ class _AppointPageState extends State<AppointPage> {
         ),
       ),
       body: Column(
-        children: [
+        children: <Widget>[
           Expanded(
             child: ShowAppointment(),
           ),
@@ -43,7 +43,7 @@ class _AppointPageState extends State<AppointPage> {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   Text(
                     'เลื่อนนัด',
                     style: TextStyle(fontSize: 18),
@@ -80,14 +80,14 @@ void showAlertDialog(BuildContext context) {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     title: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      children: <Widget>[
         Text("หากผู้ป่วยต้องการเลื่อนนัด",
             style: Theme.of(context).textTheme.bodyText2),
         Text("กรุณาติดต่อ\n", style: Theme.of(context).textTheme.bodyText2),
         Text("ในเวลาราชการ", style: Theme.of(context).textTheme.bodyText1),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Icon(
               Icons.phone,
               size: 30.0,
@@ -98,7 +98,7 @@ void showAlertDialog(BuildContext context) {
         Text("นอกเวลาราชการ", style: Theme.of(context).textTheme.bodyText1),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Icon(
               Icons.phone,
               size: 30.0,
