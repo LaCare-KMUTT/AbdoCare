@@ -255,4 +255,20 @@ class FirebaseService extends IFirebaseService {
     print(data);
     UserStore.setDataToStore(data: data);
   }
+
+  Future<List<Map<String, dynamic>>> getAppointments() async {
+    var storedHn = UserStore.getValueFromStore('storedHn');
+    print('storedHn in getAppointmentList $storedHn');
+    var querySnapshot = await _firestore
+        .collection('Appointments')
+        .where('hn', isEqualTo: storedHn)
+        .get()
+        .then((value) => value.docs)
+        .catchError((onError) {
+      print('$onError error in getAppointments');
+    });
+    var map = querySnapshot.map((doc) => doc.data()).toList();
+    print('Map in getAppointments $map');
+    return map;
+  }
 }
