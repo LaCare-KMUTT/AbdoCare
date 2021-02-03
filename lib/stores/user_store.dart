@@ -1,5 +1,13 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+///
+/// UserStore keeps frequently used data of patient.
+/// `storedUserId`,
+///  `storedHn`,
+///  `storedName`,
+///  `storedSurname`,
+///  `storedLatestAnId`
+///
 class UserStore {
   static SharedPreferences _pref;
   static final UserStore _instance = UserStore._getInstance();
