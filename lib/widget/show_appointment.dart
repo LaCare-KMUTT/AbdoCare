@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
@@ -29,26 +28,22 @@ class _ShowAppointmentState extends State<ShowAppointment> {
     return _appointments;
   }
 
-  var _userId;
-  var _userCollection;
+  var _userappointment;
   @override
   void initState() {
     super.initState();
     __initData();
-    var userId = _firebaseService.getUserId();
     setState(() {
-      _userId = userId;
-      _userCollection = _firebaseService.getCollectionSnapshotByDocId(
-          collection: 'Users', docId: _userId);
+      _userappointment = _firebaseService.getAppointments();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<DocumentSnapshot>(
-        stream: _userCollection,
-        builder: (context, userCollection) {
-          if (!userCollection.hasData) {
+    return FutureBuilder(
+        future: _userappointment,
+        builder: (context, _appointments) {
+          if (!_appointments.hasData) {
             return Center(
               child: Column(
                 children: <Widget>[
@@ -57,86 +52,63 @@ class _ShowAppointmentState extends State<ShowAppointment> {
                 ],
               ),
             );
-          } else {
-            return FutureBuilder<Map<String, dynamic>>(
-                future:
-                    _firebaseService.getLatestAnSubCollection(userId: _userId),
-                builder: (context, anSubCollection) {
-                  if (!anSubCollection.hasData) {
-                    return Center(
-                      child: Column(
-                        children: <Widget>[
-                          CircularProgressIndicator(),
-                          Text('Loading...'),
-                        ],
-                      ),
-                    );
-                  }
-                  return ListView(
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          for (var appointment in appointments)
-                            ExpansionTile(
-                              title: Text(
-                                _calculationService.formatDateToThaiString(
-                                    isBuddhist: true,
-                                    date: appointment['date'].toDate()),
-                                style: TextStyle(color: Color(0xFFC37447)),
-                              ),
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: <Widget>[
-                                      Text(
-                                        'รายละเอียดการนัดหมาย',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: <Widget>[
-                                            Text(
-                                              'เวลา ${appointment['time']} น.',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                            Text(
-                                              '''นัดมาตรวจ: ${appointment['reason']}''',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                            Text(
-                                              '''การเตรียมความพร้อม: ${appointment['preparation']}''',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                        ],
-                      ),
-                    ],
-                  );
-                });
           }
+          return ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  for (var appointment in appointments)
+                    ExpansionTile(
+                      title: Text(
+                        _calculationService.formatDateToThaiString(
+                            isBuddhist: true,
+                            date: appointment['date'].toDate()),
+                        style: TextStyle(color: Color(0xFFC37447)),
+                      ),
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Text(
+                                'รายละเอียดการนัดหมาย',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: <Widget>[
+                                    Text(
+                                      'เวลา ${appointment['time']} น.',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                    Text(
+                                      '''นัดมาตรวจ: ${appointment['reason']}''',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                    Text(
+                                      '''การเตรียมความพร้อม: ${appointment['preparation']}''',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                ],
+              ),
+            ],
+          );
         });
   }
 }
