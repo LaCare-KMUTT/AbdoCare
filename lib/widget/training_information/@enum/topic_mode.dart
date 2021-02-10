@@ -1,9 +1,8 @@
 enum TopicMode {
   respiratoryDay0,
-  painDay0,
-  drainDay0,
+  painDay01,
+  drainDay01,
   respiratoryDay1,
-  painDay1,
   drainDay1,
   bloodclotDay1,
   nutritionDay1,
