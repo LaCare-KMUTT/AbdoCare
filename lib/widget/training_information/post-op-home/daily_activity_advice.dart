@@ -45,10 +45,6 @@ class DailyActivityAdvice extends StatelessWidget {
                                     '''1.การออกกำลังกาย: ควรออกกำลังกายด้วยการเดิน โดยขณะเดินตัวจะต้องตรงเสมอ''',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
-                                Image.asset(
-                                  'assets/walk.png',
-                                  height: 200,
-                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Column(
@@ -82,19 +78,11 @@ class DailyActivityAdvice extends StatelessWidget {
                                 '''2. การลุกนั่ง: ในช่วง 6 สัปดาห์แรก ควรนั่งบนเก้าอี้ที่สูงที่สามารถลุกขึ้นได้ง่ายโดยไม่ต้องออกแรงที่กล้ามเนื้อหน้าท้อง\n ***หลีกเลี่ยงการนั่งที่เก้าอี้หรือโซฟาเพราะจะทำให้เกิดการเกร็งหน้าท้องขณะลุกขึ้น ซึ่งอาจกระทบกระเทือนกับแผลผ่าตัดได้***''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
-                          Image.asset(
-                            'assets/sit.png',
-                            height: 200,
-                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
                                 '''3. การทำงานบ้าน: การทำงานบ้านเล็กๆน้อยๆ เช่น การกวาดบ้าน การปัดฝุ่น สามารถทำได้ แต่ในระยะ 6 สัปดาห์แรกควรระวังการยืนนาน การยกของหนักที่มีน้ำหนักมากกว่า 3 – 4 กิโลกรัม หรือ การอุ้มเด็ก เป็นต้น''',
                                 style: Theme.of(context).textTheme.bodyText1),
-                          ),
-                          Image.asset(
-                            'assets/housework.png',
-                            height: 200,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
