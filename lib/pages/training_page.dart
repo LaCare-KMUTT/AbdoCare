@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../services/interfaces/firebase_service_interface.dart';
+import '../services/service_locator.dart';
 import '../widget/training_information/@enum/topic_mode.dart';
 import '../widget/training_information/post-op-home/daily_activity_advice.dart';
 import '../widget/training_information/post-op-home/food_advice.dart';
@@ -28,6 +31,9 @@ class _TrainingPageState extends State<TrainingPage> {
   String topic;
   String state;
   TopicMode selectedtopic;
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
+  var _userId;
+  var _userCollection;
   void detailpage(TopicMode selected) {
     if (selected == TopicMode.respiratoryDay0) {
       Navigator.push(context,
@@ -82,9 +88,18 @@ class _TrainingPageState extends State<TrainingPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    var userId = _firebaseService.getUserId();
+    setState(() {
+      _userId = userId;
+      _userCollection = _firebaseService.getCollectionSnapshotByDocId(
+          collection: 'Users', docId: _userId);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // patient state used to select the display of training information in if-else condition.
-    String patientstate = "Post-Operation@Home";
     List<Map<String, Object>> postOpHospital = [
       {
         "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
@@ -175,340 +190,348 @@ class _TrainingPageState extends State<TrainingPage> {
         "selectedtopic": TopicMode.foodHome,
       },
     ];
-    if (patientstate == 'Pre-Operation') {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('การฝึกสอนและอบรม'),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-            ),
-            tooltip: 'กลับ',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChatPage()),
-              );
-            },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('การฝึกสอนและอบรม'),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
           ),
+          tooltip: 'กลับ',
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ChatPage()),
+            );
+          },
         ),
-        body: Container(
-          child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text('คำแนะนำที่ควรทราบ'),
-              ),
-              Column(
-                children: [
-                  for (var item in postOpHospital)
-                    Card(
-                      child: FlatButton(
-                        onPressed: () {
-                          number = item['id'];
-                          topic = item['topic'];
-                          selectedtopic = item['selectedtopic'];
-                          detailpage(selectedtopic);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(item['topic'],
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Icon(
-                                Icons.navigate_next,
-                                size: 32,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  for (var item in postOpHome)
-                    Card(
-                      child: FlatButton(
-                        onPressed: () {
-                          number = item['id'];
-                          topic = item['topic'];
-                          selectedtopic = item['selectedtopic'];
-                          detailpage(selectedtopic);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(item['topic'],
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Icon(
-                                Icons.navigate_next,
-                                size: 32,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+      ),
+      body: StreamBuilder<DocumentSnapshot>(
+        stream: _userCollection,
+        builder: (context, userCollection) {
+          if (!userCollection.hasData) {
+            return Center(
+              child: Column(
+                children: <Widget>[
+                  CircularProgressIndicator(),
+                  Text('Loading...'),
                 ],
               ),
-            ],
-          ),
-        ),
-      );
-    } else if (patientstate == 'Post-Operation@Hospital') {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('การฝึกสอนและอบรม'),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-            ),
-            tooltip: 'กลับ',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChatPage()),
-              );
-            },
-          ),
-        ),
-        body: Container(
-          child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text('คำแนะนำที่ควรทราบ'),
-              ),
-              Column(
-                children: [
-                  for (var item in postOpHospital)
-                    Card(
-                      child: FlatButton(
-                        onPressed: () {
-                          number = item['id'];
-                          topic = item['topic'];
-                          selectedtopic = item['selectedtopic'];
-                          detailpage(selectedtopic);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(item['topic'],
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1),
-                                      ),
-                                    ],
+            );
+          } else {
+            return FutureBuilder<Map<String, dynamic>>(
+                future:
+                    _firebaseService.getLatestAnSubCollection(userId: _userId),
+                builder: (context, anSubCollection) {
+                  if (!anSubCollection.hasData) {
+                    return Center(
+                      child: Column(
+                        children: <Widget>[
+                          CircularProgressIndicator(),
+                          Text('Loading...'),
+                        ],
+                      ),
+                    );
+                  } else if (anSubCollection.data['state'] == "Pre-Operation") {
+                    return ListView(
+                      shrinkWrap: true,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text('คำแนะนำที่ควรทราบ'),
+                        ),
+                        Column(
+                          children: [
+                            for (var item in postOpHospital)
+                              Card(
+                                child: FlatButton(
+                                  onPressed: () {
+                                    number = item['id'];
+                                    topic = item['topic'];
+                                    selectedtopic = item['selectedtopic'];
+                                    detailpage(selectedtopic);
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            child: Column(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(item['topic'],
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          size: 32,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                              Icon(
-                                Icons.navigate_next,
-                                size: 32,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text('คำแนะนำอื่นๆ'),
-              ),
-              Column(
-                children: [
-                  for (var item in postOpHome)
-                    Card(
-                      child: FlatButton(
-                        onPressed: () {
-                          number = item['id'];
-                          topic = item['topic'];
-                          selectedtopic = item['selectedtopic'];
-                          detailpage(selectedtopic);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(item['topic'],
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1),
-                                      ),
-                                    ],
+                            for (var item in postOpHome)
+                              Card(
+                                child: FlatButton(
+                                  onPressed: () {
+                                    number = item['id'];
+                                    topic = item['topic'];
+                                    selectedtopic = item['selectedtopic'];
+                                    detailpage(selectedtopic);
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            child: Column(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(item['topic'],
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          size: 32,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                              Icon(
-                                Icons.navigate_next,
-                                size: 32,
-                              ),
-                            ],
-                          ),
+                          ],
                         ),
-                      ),
-                    ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    } else if (patientstate == 'Post-Operation@Home') {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('การฝึกสอนและอบรม'),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-            ),
-            tooltip: 'กลับ',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChatPage()),
-              );
-            },
-          ),
-        ),
-        body: Container(
-          child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text('คำแนะนำที่ควรทราบ'),
-              ),
-              Column(
-                children: [
-                  for (var item in postOpHome)
-                    Card(
-                      child: FlatButton(
-                        onPressed: () {
-                          number = item['id'];
-                          topic = item['topic'];
-                          selectedtopic = item['selectedtopic'];
-                          detailpage(selectedtopic);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(item['topic'],
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1),
-                                      ),
-                                    ],
+                      ],
+                    );
+                  } else if (anSubCollection.data['state'] ==
+                      "Post-Operation@Hospital") {
+                    return ListView(
+                      shrinkWrap: true,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text('คำแนะนำที่ควรทราบ'),
+                        ),
+                        Column(
+                          children: [
+                            for (var item in postOpHospital)
+                              Card(
+                                child: FlatButton(
+                                  onPressed: () {
+                                    number = item['id'];
+                                    topic = item['topic'];
+                                    selectedtopic = item['selectedtopic'];
+                                    detailpage(selectedtopic);
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            child: Column(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(item['topic'],
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          size: 32,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                              Icon(
-                                Icons.navigate_next,
-                                size: 32,
-                              ),
-                            ],
-                          ),
+                          ],
                         ),
-                      ),
-                    ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text('คำแนะนำอื่นๆ'),
-              ),
-              Column(
-                children: [
-                  for (var item in postOpHospital)
-                    Card(
-                      child: FlatButton(
-                        onPressed: () {
-                          number = item['id'];
-                          topic = item['topic'];
-                          selectedtopic = item['selectedtopic'];
-                          detailpage(selectedtopic);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(item['topic'],
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1),
-                                      ),
-                                    ],
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text('คำแนะนำอื่นๆ'),
+                        ),
+                        Column(
+                          children: [
+                            for (var item in postOpHome)
+                              Card(
+                                child: FlatButton(
+                                  onPressed: () {
+                                    number = item['id'];
+                                    topic = item['topic'];
+                                    selectedtopic = item['selectedtopic'];
+                                    detailpage(selectedtopic);
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            child: Column(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(item['topic'],
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          size: 32,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                              Icon(
-                                Icons.navigate_next,
-                                size: 32,
-                              ),
-                            ],
-                          ),
+                          ],
                         ),
-                      ),
-                    ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    }
+                      ],
+                    );
+                  } else if (anSubCollection.data['state'] ==
+                      "Post-Operation@Home") {
+                    return ListView(
+                      shrinkWrap: true,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text('คำแนะนำที่ควรทราบ'),
+                        ),
+                        Column(
+                          children: [
+                            for (var item in postOpHome)
+                              Card(
+                                child: FlatButton(
+                                  onPressed: () {
+                                    number = item['id'];
+                                    topic = item['topic'];
+                                    selectedtopic = item['selectedtopic'];
+                                    detailpage(selectedtopic);
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            child: Column(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(item['topic'],
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          size: 32,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text('คำแนะนำอื่นๆ'),
+                        ),
+                        Column(
+                          children: [
+                            for (var item in postOpHospital)
+                              Card(
+                                child: FlatButton(
+                                  onPressed: () {
+                                    number = item['id'];
+                                    topic = item['topic'];
+                                    selectedtopic = item['selectedtopic'];
+                                    detailpage(selectedtopic);
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            child: Column(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(item['topic'],
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          size: 32,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ],
+                    );
+                  }
+                });
+          }
+        },
+      ),
+    );
   }
 }
