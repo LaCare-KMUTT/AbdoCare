@@ -257,52 +257,51 @@ class _PostOpHomeTrainingPageState extends State<PostOpHomeTrainingPage> {
                   ),
               ],
             ),
-            //TO DO When have pre and post operation @ hospital
-            // Padding(
-            //   padding: const EdgeInsets.all(10.0),
-            //   child: Text('คำแนะนำอื่นๆ'),
-            // ),
-            // Column(
-            //   children: [
-            //     for (var item in anotherlist)
-            //       Card(
-            //         child: FlatButton(
-            //           onPressed: () {
-            //             number = item['id'];
-            //             topic = item['topic'];
-            //             selectedtopic = item['selectedtopic'];
-            //             detailpage(selectedtopic);
-            //           },
-            //           child: Padding(
-            //             padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-            //             child: Row(
-            //               children: [
-            //                 Expanded(
-            //                   child: Container(
-            //                     child: Column(
-            //                       children: [
-            //                         Align(
-            //                           alignment: Alignment.centerLeft,
-            //                           child: Text(item['topic'],
-            //                               style: Theme.of(context)
-            //                                   .textTheme
-            //                                   .bodyText1),
-            //                         ),
-            //                       ],
-            //                     ),
-            //                   ),
-            //                 ),
-            //                 Icon(
-            //                   Icons.navigate_next,
-            //                   size: 32,
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //   ],
-            // ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text('คำแนะนำอื่นๆ'),
+            ),
+            Column(
+              children: [
+                for (var item in anotherlist)
+                  Card(
+                    child: FlatButton(
+                      onPressed: () {
+                        number = item['id'];
+                        topic = item['topic'];
+                        selectedtopic = item['selectedtopic'];
+                        detailpage(selectedtopic);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(item['topic'],
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.navigate_next,
+                              size: 32,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ],
         ),
       ),
