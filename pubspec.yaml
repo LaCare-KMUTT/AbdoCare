@@ -73,10 +73,14 @@ flutter:
     - assets/icon/Bowels.png
     - assets/icon/Bladder.png
     - assets/Painform.png
-    - assets/walk.png
-    - assets/sit.png
-    - assets/housework.png
-   
+    - assets/training/walk.png
+    - assets/training/sit.png
+    - assets/training/housework.png
+    - assets/training/drive.png
+    - assets/training/work.png
+    - assets/training/hospital.png
+    - assets/training/watchTV.png
+    - assets/training/scenery.png 
   fonts:
     - family: Prompt
       fonts:
