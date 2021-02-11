@@ -42,11 +42,11 @@ class DailyActivityAdvice extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
-                                    '''1.การออกกำลังกาย: ควรออกกำลังกายด้วยการเดิน โดยขณะเดินตัวจะต้องตรงเสมอ''',
+                                    '''1. การออกกำลังกาย: ควรออกกำลังกายด้วยการเดิน โดยขณะเดินตัวจะต้องตรงเสมอ''',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 Image.asset(
-                                  'assets/walk.png',
+                                  'assets/training/walk.png',
                                   height: 200,
                                 ),
                                 Padding(
@@ -83,8 +83,8 @@ class DailyActivityAdvice extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Image.asset(
-                            'assets/sit.png',
-                            height: 200,
+                            'assets/training/sit.png',
+                            height: 150,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
@@ -93,8 +93,8 @@ class DailyActivityAdvice extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Image.asset(
-                            'assets/housework.png',
-                            height: 200,
+                            'assets/training/housework.png',
+                            height: 150,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
@@ -102,11 +102,19 @@ class DailyActivityAdvice extends StatelessWidget {
                                 '''4. การทำงาน: สามารถกลับไปทำงานได้ตามปกติหากงานที่ทำไม่ได้มีการออกแรงมาก แต่หากเป็นงานที่ออกแรงมาก เช่น มีการยกของที่หนัก ควรพักอย่างน้อย 6 สัปดาห์จึงเริ่มทำงาน''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
+                          Image.asset(
+                            'assets/training/work.png',
+                            height: 150,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
-                                '''5. การขับรถ: สามารถทำได้ภายหลังการผ่าตัดอย่างน้อย 6 สัปดาห์ ระหว่างนี้ท่านอาจใช้รถโดยสารประจำทาง หรือรถรับจ้างแทน เพื่อป้องกันแรงกระทบการเทือนที่แผลผ่าตัด ทั้งนี้หากรู้สึกเจ็บแผลขณะคาดเข็มขัดนิรภัยอาจใช้ใช้ผ้าขนหนูพับระหว่างแผลกับเข็มขัดนิรภัยได้''',
+                                '''5. การขับรถ: สามารถขับรถได้ภายหลังการผ่าตัดอย่างน้อย 6 สัปดาห์ ระหว่างนี้ท่านอาจใช้รถโดยสารประจำทาง หรือรถรับจ้างแทน เพื่อป้องกันแรงกระทบการเทือนที่แผลผ่าตัด ทั้งนี้หากรู้สึกเจ็บแผลขณะคาดเข็มขัดนิรภัยอาจใช้ใช้ผ้าขนหนูพับระหว่างแผลกับเข็มขัดนิรภัยได้''',
                                 style: Theme.of(context).textTheme.bodyText1),
+                          ),
+                          Image.asset(
+                            'assets/training/drive.png',
+                            height: 150,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
