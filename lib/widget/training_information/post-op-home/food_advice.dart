@@ -42,11 +42,19 @@ class FoodAdvice extends StatelessWidget {
                                 '''1. ควรรับประทานอาหารประเภทโปรตีนให้เพียงพอ โดยเลือกเนื้อสัตว์ไม่ติดมัน เช่น เนื้อไก่ เนื้อปลา ไข่ขาว เป็นต้น เพราะเป็นอาหารที่โปรตีนสูง มีลักษณะนุ่ม เคี้ยวง่าย การย่อยและดูดซึมได้ดี''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
+                          Image.asset(
+                            'assets/training/protein.png',
+                            height: 200,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
                                 '''2. ดื่มนมอย่างน้อยวันละ 1 แก้ว หากมีปัญหาไขมันในเลือดสูงให้ดื่มนมพร่องมันเนย หรือนมถั่วเหลืองแทน หากมีอาการท้องอืดหรือท้องเสียเนื่องจากร่างกายไม่สามารถย่อยน้ำตาลแลกโตสในนมวัวได้ ควรเปลี่ยนเป็นนมเปรี้ยว โยเกิร์ตหรือนมถั่วเหลือง''',
                                 style: Theme.of(context).textTheme.bodyText1),
+                          ),
+                          Image.asset(
+                            'assets/training/milk.png',
+                            height: 150,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
@@ -54,11 +62,19 @@ class FoodAdvice extends StatelessWidget {
                                 '''3. ควรรับประทานผักหลาย ๆ ชนิดสลับกัน ควรเป็นผักที่นึ่งหรือต้มจนสุกไม่ควรบริโภคผักสด เนื่องจากย่อยยาก เกิดแก๊สท้องอืดท้องเฟ้อได้''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
+                          Image.asset(
+                            'assets/training/vegetable.png',
+                            height: 200,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
                                 '''4. ควรรับประทานผลไม้ทุกวันเพื่อให้ได้วิตามินซีและใยอาหาร และควรเป็นผลไม้เนื้อนุ่ม เคี้ยวง่าย เช่น มะละกอ กล้วยสุก แต่ถ้าผู้สูงอายุเป็นโรคเบาหวานหรือน้ำหนักตัวมาก ไม่ควรรับประทานผลไม้ที่มีรสหวานจัด เช่น ลำไย ทุเรียน ขนุน เป็นต้น''',
                                 style: Theme.of(context).textTheme.bodyText1),
+                          ),
+                          Image.asset(
+                            'assets/training/fruit.png',
+                            height: 200,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
