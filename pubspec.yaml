@@ -85,7 +85,11 @@ flutter:
     - assets/training/milk.png 
     - assets/training/fruit.png 
     - assets/training/vegetable.png 
-
+    - assets/training/medicine.png 
+    - assets/training/protein2.png 
+    - assets/training/sleep.png 
+    - assets/training/water.png 
+    
   fonts:
     - family: Prompt
       fonts:
