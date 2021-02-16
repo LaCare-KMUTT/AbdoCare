@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import '../services/format_txt.dart';
+
+import '../services/format_text.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
 import 'set_pin_page.dart';
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                   errorText:
                       _validateHN ? 'กรุณาใส่หมายเลขผู้ป่วยนอก(HN)' : null,
                 ),
-                inputFormatters: [UpperCaseTxt()],
+                inputFormatters: [UpperCaseText()],
               ),
             ),
             Padding(
