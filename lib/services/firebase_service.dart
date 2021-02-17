@@ -249,4 +249,15 @@ class FirebaseService extends IFirebaseService {
     print('Map in getAppointments $map');
     return map;
   }
+
+  Future<void> addNotification(Map<String, dynamic> data) async {
+    await _firestore
+        .collection('Notifications')
+        .add(data)
+        .then((value) =>
+            print('Successfully added $value to Notificaitons Collection'))
+        .catchError((e) {
+      print('$e failed to add notification to Notification Collections');
+    });
+  }
 }
