@@ -9,6 +9,8 @@ class RespiratoryAdviceDay0 extends StatefulWidget {
 }
 
 class _RespiratoryAdviceDay0State extends State<RespiratoryAdviceDay0> {
+  String videoId = YoutubePlayer.convertUrlToId(
+      "https://www.youtube.com/watch?v=3gU1OLKBcys");
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -47,9 +49,8 @@ class _RespiratoryAdviceDay0State extends State<RespiratoryAdviceDay0> {
                           Container(
                             child: YoutubePlayer(
                               controller: YoutubePlayerController(
-                                initialVideoId:
-                                    'iLnmTe5Q2Qw', // try to add video
-                                flags: YoutubePlayerFlags(autoPlay: false),
+                                initialVideoId: videoId, // try to add video
+                                flags: YoutubePlayerFlags(autoPlay: true),
                               ),
                               showVideoProgressIndicator: true,
                               progressIndicatorColor: Colors.blue,
