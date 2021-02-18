@@ -1,8 +1,14 @@
 // Advice for Prevent respiratory complication
 // Post-op @ Hospital Day 0
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class RespiratoryAdviceDay0 extends StatelessWidget {
+class RespiratoryAdviceDay0 extends StatefulWidget {
+  @override
+  _RespiratoryAdviceDay0State createState() => _RespiratoryAdviceDay0State();
+}
+
+class _RespiratoryAdviceDay0State extends State<RespiratoryAdviceDay0> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -37,6 +43,20 @@ class RespiratoryAdviceDay0 extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
                                 '''การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ เช่น ภาวะปอดแฟบ ปอดอักเสบหรือการติดเชื้อระบบหายใจส่วนล่าง ควรปฏิบัติกิจกรรมดังนี้'''),
+                          ),
+                          Container(
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId:
+                                    'iLnmTe5Q2Qw', // try to add video
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.blue,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Colors.blue,
+                                  handleColor: Colors.blueAccent),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
