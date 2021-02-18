@@ -52,6 +52,45 @@ class NutritionAdviceDay1 extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                                '''3. การลุกออกจากเตียง โดยให้ปฏิบัติตามลำดับที่ร่างกายทนได้''',
+                                style: Theme.of(context).textTheme.bodyText1),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                      '''3.1 ให้ตะแคงก่อนลุกนั่งใช้แขนช่วยลดความตึงของช่องท้อง''',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
+                                  Text(
+                                      '''3.2 ให้ลุกนั่งช้าๆ และหยุดพักก่อนยืน ใช้การประคองบริเวณแผลเช่นเดียวกับการไอ และหายใจลึกๆ เพื่อลดความเจ็บปวดเมื่อยืน และเดินออกจากเตียง ''',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
+                                  Text(
+                                      '''3.3 วันแรกที่สามารถลุกได้ให้เดินบริเวณรอบๆ เตียง''',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
+                                  Text(
+                                      '''3.4 ให้ลุกเดินออกห่างจากเตียงเป็นระยะ 5 เมตร และวันต่อไปให้ลุกเดินออกจากเตียงเพิ่มเป็น 10 เมตร และสามารถเพิ่มระยะทางการเดินได้ตามความสามารถของผู้ป่วย''',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
