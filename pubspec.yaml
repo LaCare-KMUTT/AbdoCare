@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   step_progress_indicator: ^0.2.5+8
   expandable: ^4.1.4
+  youtube_player_flutter: ^7.0.0+7
 
 dev_dependencies:
   flutter_test:
