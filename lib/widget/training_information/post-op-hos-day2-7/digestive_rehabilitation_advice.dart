@@ -1,8 +1,14 @@
 // Digestive rehabilitation advice to prevent intestinal complications
 // Post-op @ Hospital Day 2-7
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class DigestiveAdviceDay2 extends StatelessWidget {
+class DigestiveAdviceDay2 extends StatefulWidget {
+  @override
+  _DigestiveAdviceDay2State createState() => _DigestiveAdviceDay2State();
+}
+
+class _DigestiveAdviceDay2State extends State<DigestiveAdviceDay2> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -38,6 +44,21 @@ class DigestiveAdviceDay2 extends StatelessWidget {
                             child: Text(
                                 '''การออกกำลังกายเพื่อกระตุ้นการเคลื่อนไหวของลำไส้ให้มีประสิทธิภาพมีดังนี้'''),
                           ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    "https://youtu.be/MB7NVIb-bck"),
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
+                            ),
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Column(
@@ -64,22 +85,22 @@ class DigestiveAdviceDay2 extends StatelessWidget {
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''1.3 ข้อเข่า - ให้ผู้ป่วยนอนบนเตียงให้ศีรษะสูงประมาณ 45 องศา เริ่มที่ขาข้างขวา งอหัวเข่า ยกเท้าขึ้นจากเตียง ค้างไว้ 5 วินาที แล้วยืดขา เหยียดเข่า และวางลงบนเตียง โดยทำซ้ำข้างละ 5 ครั้ง/รอบ/ชั่วโมง''',
+                                          '''1.3 ข้อเข่า - ให้ผู้ป่วยนอนบนเตียงให้ศีรษะสูงประมาณ 45 องศา เริ่มที่ขาข้างขวา งอหัวเข่า ยกเท้าขึ้นจากเตียง ค้างไว้ 5 วินาที แล้วยืดขา เหยียดเข่า และวางลงบนเตียง โดยทำซ้ำข้างละ 15 ครั้ง/รอบ/ชั่วโมง''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''1.4 ข้อเข่า - ให้ผู้ป่วยนอนบนเตียงให้ศีรษะสูงประมาณ 45 องศา งอหัวเข่าขึ้นมา วางปลายเท้าราบ และกดปลายเท้าลงไปให้น่องและขาตึง ค้างไว้ 5 วินาที แล้วยืดขา เหยียดเข่า และวางลงบนเตียง โดยทำซ้ำข้างละ 5 ครั้ง/รอบ/ชั่วโมง''',
+                                          '''1.4 ข้อเข่า - ให้ผู้ป่วยนอนบนเตียงให้ศีรษะสูงประมาณ 45 องศา งอหัวเข่าขึ้นมา วางปลายเท้าราบ และกดปลายเท้าลงไปให้น่องและขาตึง ค้างไว้ 5 วินาที แล้วยืดขา เหยียดเข่า และวางลงบนเตียง โดยทำซ้ำข้างละ 25 ครั้ง/รอบ/ชั่วโมง''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''1.5 ข้อเข่า - ให้ผู้ป่วยชันเข่าทั้ง 2 ข้าง กางแขนทั้ง 2 ข้างออกข้างลำตัว เข่าและขาชิดกันและหมุนเข่าสลับซ้าย-ขวา โดยทำซ้ำข้างละ 10 ครั้ง/รอบ/ชั่วโมง''',
+                                          '''1.5 กล้ามเนื้ออุ้งเชิงกราน - ให้ผู้ป่วยชันเข่าทั้ง 2 ข้าง กางแขนทั้ง 2 ข้างออกข้างลำตัว ยกลำตัวช่วงท้องสลับขึ้น-ลง โดยทำซ้ำข้างละ 10 ครั้ง/รอบ/ชั่วโมง''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''1.6 กล้ามเนื้ออุ้งเชิงกราน - ให้ผู้ป่วยชันเข่าทั้ง 2 ข้าง กางแขนทั้ง 2 ข้างออกข้างลำตัว ยกลำตัวช่วงท้องสลับขึ้น-ลง โดยทำซ้ำข้างละ 10 ครั้ง/รอบ/ชั่วโมง''',
+                                          '''1.6 ข้อเข่า - ให้ผู้ป่วยชันเข่าทั้ง 2 ข้าง กางแขนทั้ง 2 ข้างออกข้างลำตัว เข่าและขาชิดกันและหมุนเข่าสลับซ้าย-ขวา โดยทำซ้ำข้างละ 10 ครั้ง/รอบ/ชั่วโมง''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
@@ -120,7 +141,7 @@ class DigestiveAdviceDay2 extends StatelessWidget {
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''2.4 วันถัดมาให้ลุกเดินออกห่างจากเตียงเป็นระยะ 5 เมตร และวันต่อไปให้ลุกเดินออกจากเตียงเพิ่มเป็น 10 เมตร และสามารถเพิ่มระยะทางการเดินได้ตามความสามารถของผู้ป่วย''',
+                                          '''2.4 ให้ลุกเดินออกห่างจากเตียงเป็นระยะ 10 เมตร และสามารถเพิ่มระยะทางการเดินได้ตามความสามารถของผู้ป่วย''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),

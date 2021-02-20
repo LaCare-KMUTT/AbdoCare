@@ -57,31 +57,55 @@ class BehaveAdviceDay2 extends StatelessWidget {
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
+                                      Image.asset(
+                                        'assets/training/medicine.png',
+                                        height: 100,
+                                      ),
                                       Text(
                                           '''1.2 ดูแลไม่ให้แผลเปียกน้ำ ควรทำความสะอาดแผลผ่าตัดวันละ 1 ครั้งที่สถานบริการพยาบาลใกล้บ้าน หรือตามสิทธิการรักษาที่ผู้ป่วยสะดวกรับบริการ''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
+                                      Image.asset(
+                                        'assets/training/hospital.png',
+                                        height: 150,
+                                      ),
                                       Text(
                                           '''1.3 ควรรับประทานอาหารประเภทโปรตีนให้เพียงพอ โดยเลือกเนื้อสัตว์ไม่ติดมัน เช่น เนื้อไก่ เนื้อปลา หรือไข่ขาว เป็นต้น เพราะเป็นอาหารที่มีโปรตีนสูง จะช่วยส่งเสริมกระบวนการหายของแผล และควรเริ่มรับประทานอาหารครั้งละน้อยๆ ค่อยๆ เพิ่มปริมาณอาหาร เพื่อป้องกันการเกิดอาการแน่นท้อง''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
+                                      Image.asset(
+                                        'assets/training/protein2.png',
+                                        height: 150,
+                                      ),
                                       Text(
                                           '''1.4 แนะนำให้ดื่มน้ำวันละ 1000 – 2000 มล. ทั้งนี้ไม่ขัดกับแผนการรักษาของแพทย์''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
+                                      Image.asset(
+                                        'assets/training/water.png',
+                                        height: 150,
+                                      ),
                                       Text(
                                           '''1.5 แนะนำนอนหลับพักผ่อนอย่างเพียงพอ อย่างน้อยวันละ 8 ชั่วโมง เพื่อให้ร่างกายได้พัก ลดเมตาบอลิสมเพื่อส่งเสริมการฟื้นฟูสภาพของร่างกาย''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
+                                      Image.asset(
+                                        'assets/training/sleep.png',
+                                        height: 100,
+                                      ),
                                       Text(
                                           '''1.6	สามารถออกกำลังกายเบาๆ ได้ เช่น การเดิน โดยขณะเดินตัวจะต้องตรงเสมอ สามารถเริ่มจากการเดินในระยะเวลาสั้นๆประมาณ 10 นาที วันละ 2-3 ครั้ง หลังจากนั้นจึงเริ่มเดินในระยะเวลาที่นานขึ้นตามที่สามารถทำได้ และหลังจากการผ่าตัดผ่านไป 6 สัปดาห์ควรเดินได้ในระยะเวลา 30 นาที ถึง 1 ชั่วโมง\n***งดการออกกำลังกายที่ต้องเกร็งหน้าท้องภายใน 6 เดือนแรกหลังผ่าตัด เพื่อป้องกันการเกิดอาการบาดเจ็บต่อเนื้อเยื่อที่แผลผ่าตัด***''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
+                                      Image.asset(
+                                        'assets/training/walk.png',
+                                        height: 200,
+                                      ),
                                     ],
                                   ),
                                 ),

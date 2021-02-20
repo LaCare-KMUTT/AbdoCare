@@ -41,6 +41,10 @@ class PainAdvice extends StatelessWidget {
                                 '''1. ให้ผู้ป่วยจินตนาการในสถานที่ๆรู้สึกสบายเช่น ทะเล หรือภูเขา''',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
+                          Image.asset(
+                            'assets/training/scenery.png',
+                            height: 100,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Column(
@@ -49,6 +53,10 @@ class PainAdvice extends StatelessWidget {
                                 Text('2. ให้ผู้ป่วยทำกิจกรรมอื่นๆ',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
+                                Image.asset(
+                                  'assets/training/watchTV.png',
+                                  height: 150,
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Column(
@@ -82,11 +90,6 @@ class PainAdvice extends StatelessWidget {
                                 Text('3. การหายใจเป็นจังหวะสม่ำเสมอ',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
-                                Image.asset(
-                                  'assets/image.png',
-                                  height: 100,
-                                  width: 80,
-                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Column(
@@ -117,11 +120,6 @@ class PainAdvice extends StatelessWidget {
                                 Text('4. เกร็งและผ่อนคลายกล้ามเนื้อ',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
-                                Image.asset(
-                                  'assets/image.png',
-                                  height: 100,
-                                  width: 80,
-                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Column(
