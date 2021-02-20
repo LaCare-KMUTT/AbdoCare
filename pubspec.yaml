@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   step_progress_indicator: ^0.2.5+8
   expandable: ^4.1.4
+  youtube_player_flutter: ^7.0.0+7
 
 dev_dependencies:
   flutter_test:
@@ -73,7 +74,23 @@ flutter:
     - assets/icon/Bowels.png
     - assets/icon/Bladder.png
     - assets/Painform.png
-   
+    - assets/training/walk.png
+    - assets/training/sit.png
+    - assets/training/housework.png
+    - assets/training/drive.png
+    - assets/training/work.png
+    - assets/training/hospital.png
+    - assets/training/watchTV.png
+    - assets/training/scenery.png 
+    - assets/training/protein.png 
+    - assets/training/milk.png 
+    - assets/training/fruit.png 
+    - assets/training/vegetable.png 
+    - assets/training/medicine.png 
+    - assets/training/protein2.png 
+    - assets/training/sleep.png 
+    - assets/training/water.png 
+    
   fonts:
     - family: Prompt
       fonts:
