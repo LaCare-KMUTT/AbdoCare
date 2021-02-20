@@ -9,8 +9,6 @@ class RespiratoryAdviceDay0 extends StatefulWidget {
 }
 
 class _RespiratoryAdviceDay0State extends State<RespiratoryAdviceDay0> {
-  String videoId = YoutubePlayer.convertUrlToId(
-      "https://www.youtube.com/watch?v=3gU1OLKBcys");
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -42,21 +40,23 @@ class _RespiratoryAdviceDay0State extends State<RespiratoryAdviceDay0> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 8),
+                            padding: const EdgeInsets.only(top: 8, bottom: 8),
                             child: Text(
                                 '''การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ เช่น ภาวะปอดแฟบ ปอดอักเสบหรือการติดเชื้อระบบหายใจส่วนล่าง ควรปฏิบัติกิจกรรมดังนี้'''),
                           ),
                           Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
                             child: YoutubePlayer(
                               controller: YoutubePlayerController(
-                                initialVideoId: videoId, // try to add video
-                                flags: YoutubePlayerFlags(autoPlay: true),
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    "https://youtu.be/ih-dgzAsAdg"),
+                                flags: YoutubePlayerFlags(autoPlay: false),
                               ),
                               showVideoProgressIndicator: true,
-                              progressIndicatorColor: Colors.blue,
+                              progressIndicatorColor: Colors.amber,
                               progressColors: ProgressBarColors(
-                                  playedColor: Colors.blue,
-                                  handleColor: Colors.blueAccent),
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
                             ),
                           ),
                           Padding(

@@ -1,8 +1,14 @@
 // Digestive rehabilitation advice to prevent intestinal complications
 // Post-op @ Hospital Day 2-7
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class DigestiveAdviceDay2 extends StatelessWidget {
+class DigestiveAdviceDay2 extends StatefulWidget {
+  @override
+  _DigestiveAdviceDay2State createState() => _DigestiveAdviceDay2State();
+}
+
+class _DigestiveAdviceDay2State extends State<DigestiveAdviceDay2> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -37,6 +43,21 @@ class DigestiveAdviceDay2 extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
                                 '''การออกกำลังกายเพื่อกระตุ้นการเคลื่อนไหวของลำไส้ให้มีประสิทธิภาพมีดังนี้'''),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    "https://youtu.be/MB7NVIb-bck"),
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
