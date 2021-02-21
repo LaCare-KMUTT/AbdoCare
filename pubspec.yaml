@@ -23,10 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   flutter_dialogflow: ^0.1.3
   bubble: ^1.1.9+1
@@ -44,6 +40,7 @@ dependencies:
   step_progress_indicator: ^0.2.5+8
   expandable: ^4.1.4
   firebase_messaging: ^7.0.3
+  youtube_player_flutter: ^7.0.0+7
 
 dev_dependencies:
   flutter_test:
@@ -74,7 +71,23 @@ flutter:
     - assets/icon/Bowels.png
     - assets/icon/Bladder.png
     - assets/Painform.png
-   
+    - assets/training/walk.png
+    - assets/training/sit.png
+    - assets/training/housework.png
+    - assets/training/drive.png
+    - assets/training/work.png
+    - assets/training/hospital.png
+    - assets/training/watchTV.png
+    - assets/training/scenery.png 
+    - assets/training/protein.png 
+    - assets/training/milk.png 
+    - assets/training/fruit.png 
+    - assets/training/vegetable.png 
+    - assets/training/medicine.png 
+    - assets/training/protein2.png 
+    - assets/training/sleep.png 
+    - assets/training/water.png 
+    
   fonts:
     - family: Prompt
       fonts:

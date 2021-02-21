@@ -1,8 +1,14 @@
 // Advice for Prevent blood clots
 // Post-op @ Hospital Day 1
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class BloodclotsAdviceDay1 extends StatelessWidget {
+class BloodclotsAdviceDay1 extends StatefulWidget {
+  @override
+  _BloodclotsAdviceDay1State createState() => _BloodclotsAdviceDay1State();
+}
+
+class _BloodclotsAdviceDay1State extends State<BloodclotsAdviceDay1> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -35,9 +41,24 @@ class BloodclotsAdviceDay1 extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 8),
+                            padding: const EdgeInsets.only(top: 8, bottom: 8),
                             child: Text(
                                 '''การป้องกันการเกิดภาวะลิ่มเลือดอุดตันคือ การออกกำลังกายขา โดยทำทีละข้าง เริ่มจากข้างขวา'''),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    "https://youtu.be/hCpHl0A_6TE"),
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),

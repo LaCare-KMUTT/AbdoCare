@@ -46,6 +46,10 @@ class SurgicalIncisionAdvice extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                               ),
+                              Image.asset(
+                                'assets/training/hospital.png',
+                                height: 150,
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8),
                                 child: Column(

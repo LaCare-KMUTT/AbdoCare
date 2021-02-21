@@ -1,8 +1,14 @@
 // Advice for Prevent respiratory complication
 // Post-op @ Hospital Day 0
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class RespiratoryAdviceDay0 extends StatelessWidget {
+class RespiratoryAdviceDay0 extends StatefulWidget {
+  @override
+  _RespiratoryAdviceDay0State createState() => _RespiratoryAdviceDay0State();
+}
+
+class _RespiratoryAdviceDay0State extends State<RespiratoryAdviceDay0> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -35,13 +41,34 @@ class RespiratoryAdviceDay0 extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 8),
+                            padding: const EdgeInsets.only(top: 8, bottom: 8),
                             child: Text(
-                                '''การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ เช่น ภาวะปอดแฟบ ปอดอักเสบหรือการติดเชื้อระบบหายใจส่วนล่าง ควรปฏิบัติกิจกรรม ดังนี้'''),
+                                '''การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ เช่น ภาวะปอดแฟบ ปอดอักเสบหรือการติดเชื้อระบบหายใจส่วนล่าง ควรปฏิบัติกิจกรรมดังนี้'''),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    "https://youtu.be/ih-dgzAsAdg"),
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
-                            child: Text('1.	นอนท่าศีรษะสูง 30 - 45 องศา',
+                            child: Text('1. นอนท่าศีรษะสูง 30 - 45 องศา',
+                                style: Theme.of(context).textTheme.bodyText1),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8),
+                            child: Text(
+                                '2.	การเปลี่ยนท่านอน/พลิกตะแคงตัวทุก 2 ชั่วโมง',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Padding(
@@ -50,7 +77,7 @@ class RespiratoryAdviceDay0 extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
-                                    '2. การออกกำลังการหายใจ 5-10 ครั้ง/รอบ/ชั่วโมง คือ',
+                                    '3. การออกกำลังการหายใจ 5-10 ครั้ง/รอบ/ชั่วโมง มีขั้นตอนดังนี้',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 Padding(
@@ -60,17 +87,17 @@ class RespiratoryAdviceDay0 extends StatelessWidget {
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       Text(
-                                          '''2.1 ใช้มือทั้งสองข้างจับที่ท้องจะได้รู้สึกเวลาหน้าอกขยาย''',
+                                          '''3.1 ใช้มือทั้งสองข้างจับที่ท้องจะได้รู้สึกเวลาหน้าอกขยาย''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''2.2 หายใจเข้าทางจมูกจนรู้สึกว่าหน้าท้องขยาย''',
+                                          '''3.2 หายใจเข้าทางจมูกจนรู้สึกว่าหน้าท้องขยาย''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''2.3.	หายใจออกทางปากขณะกล้ามเนื้อหน้าหน้าท้องหดตัว''',
+                                          '''3.3 หายใจออกทางปากขณะกล้ามเนื้อหน้าหน้าท้องหดตัว''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
@@ -86,7 +113,7 @@ class RespiratoryAdviceDay0 extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
-                                    '''3. การไออย่างมีประสิทธิภาพเมื่อมีเสมหะ คือ''',
+                                    '''4. การไออย่างมีประสิทธิภาพเมื่อมีเสมหะ มีขั้นตอนดังนี้''',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 Padding(
@@ -96,17 +123,17 @@ class RespiratoryAdviceDay0 extends StatelessWidget {
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       Text(
-                                          '''3.1. ใช้มือประคองแผลผ่าตัด หรือหมอนใบเล็กหรือผ้าเช็ดตัวม้วนกดแผลผ่าตัดให้แน่น''',
+                                          '''4.1. ใช้มือประคองแผลผ่าตัด หรือหมอนใบเล็กหรือผ้าเช็ดตัวม้วนกดแผลผ่าตัดให้แน่น''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''3.2 หายใจเข้าลึกๆ และหายใจออกทางปาก 3 ครั้ง''',
+                                          '''4.2 หายใจเข้าลึกๆ และหายใจออกทางปาก 3 ครั้ง''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''3.3. ครั้งที่ 3 กลั้นหายใจ 1 – 2 วินาที และไอเอาเสมหะออกมา''',
+                                          '''4.3. ครั้งที่ 3 กลั้นหายใจ 1 – 2 วินาที และไอเอาเสมหะออกมา''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
@@ -115,12 +142,6 @@ class RespiratoryAdviceDay0 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: Text(
-                                '4.	การเปลี่ยนท่านอน/พลิกตะแคงตัวทุก 2 ชั่วโมง',
-                                style: Theme.of(context).textTheme.bodyText1),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
