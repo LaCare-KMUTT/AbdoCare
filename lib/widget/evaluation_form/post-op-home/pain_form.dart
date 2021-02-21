@@ -18,11 +18,24 @@ class _PainFormState extends State<PainForm> {
   String result = "ปวดปานกลาง";
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
 
-  LinearGradient gradient = LinearGradient(colors: <Color>[
-    Colors.greenAccent[400],
-    Colors.orangeAccent[400],
-    Colors.redAccent[700],
-  ]);
+  LinearGradient gradient = LinearGradient(
+    colors: <Color>[
+      Colors.greenAccent[400],
+      Colors.orangeAccent[400],
+      Colors.redAccent[700],
+    ],
+  );
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -259,8 +272,7 @@ class GradientRectSliderTrackShape extends SliderTrackShape
   }
 }
 
-void showAdvise1(BuildContext context, value) {
-  // Create AlertDialog
+void showAdvise1(BuildContext context, int value) {
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     title: Column(
@@ -315,20 +327,19 @@ void showAdvise1(BuildContext context, value) {
       ),
     ],
   );
-  // show the dialog
+
   showDialog(
     context: context,
     builder: (context) => alert,
   );
 }
 
-void showAdvise2(BuildContext context, value) {
-  // Create AlertDialog
+void showAdvise2(BuildContext context, int value) {
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     title: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      children: <Widget>[
         Text("ระดับคะแนนคือ $value",
             style: Theme.of(context).textTheme.bodyText2),
       ],
@@ -383,7 +394,7 @@ class Advise2Page extends StatelessWidget {
         ),
         body: Container(
           child: ListView(
-            children: [
+            children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Card(
@@ -393,10 +404,10 @@ class Advise2Page extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Column(
-                      children: [
+                      children: <Widget>[
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
+                          children: <Widget>[
                             Text('การจัดการความปวดด้วยตนเอง มีดังนี้'),
                             Text(
                                 '1. ให้ผู้ป่วยจินตนาการในสถานที่ๆรู้สึกสบายเช่น ทะเล หรือภูเขา',
@@ -407,7 +418,7 @@ class Advise2Page extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
+                                children: <Widget>[
                                   Text('2.1 ดูโทรทัศน์ ',
                                       style: Theme.of(context)
                                           .textTheme
@@ -450,7 +461,7 @@ class Advise2Page extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
+                                children: <Widget>[
                                   Text(
                                       '4.1 ฝึกเกร็งกล้ามเนื้อกลุ่มต่างๆให้ตึงตัวก่อน เช่น น่อง ต้นขา แผ่นหลัง หน้าท้อง สะโพก',
                                       style: Theme.of(context)
