@@ -160,12 +160,13 @@ class _PainFormState extends State<PainForm> {
                       child: Text('สำเร็จ',
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       color: Color(0xFF2ED47A),
-                      onPressed: () {
+                      onPressed: () async {
                         Map<String, dynamic> saveToDatabase = {
                           'Answer': value,
                         };
-                        var formId = _firebaseService.addDataToFormsCollection(
-                            formName: 'pain', data: saveToDatabase);
+                        var formId =
+                            await _firebaseService.addDataToFormsCollection(
+                                formName: 'pain', data: saveToDatabase);
                         print('Value in pain_form = $value ');
                         print('state = ${_anSubCollection['state']}');
                         if ((_anSubCollection['state'] ==
@@ -178,13 +179,14 @@ class _PainFormState extends State<PainForm> {
                           if (checkNotificationCriteria(value)) {
                             var creation = _calculationService.formatDate(
                                 date: DateTime.now());
+                            var patientState = _anSubCollection['state'];
                             _firebaseService.addNotification({
                               'formName': 'pain',
                               'formId': formId,
                               'userId':
                                   UserStore.getValueFromStore('storedUserId'),
                               'creation': creation,
-                              'patientState': _anSubCollection['state'],
+                              'patientState': patientState,
                               'seen': false,
                             });
                           }
