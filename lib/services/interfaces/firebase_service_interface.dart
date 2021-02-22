@@ -47,5 +47,5 @@ abstract class IFirebaseService {
   });
 
   Future<List<Map<String, dynamic>>> getAppointments();
-  Future<void> addNotification(Map<String, dynamic> data);
+  Future<String> addNotification(Map<String, dynamic> data);
 }
