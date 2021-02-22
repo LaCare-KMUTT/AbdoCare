@@ -258,7 +258,7 @@ class FirebaseService extends IFirebaseService {
         .then((value) =>
             print('Successfully added $value to Notificaitons Collection'))
         .catchError((e) {
-      print('$e failed to add notification to Notification Collections');
+      print('$e failed to add notification to Notifications Collection');
     });
   }
 }
