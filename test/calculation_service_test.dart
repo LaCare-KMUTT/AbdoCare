@@ -77,5 +77,16 @@ void main() {
       expect(day2, 1);
       expect(day1, day2);
     });
+
+    test(
+        'calculationDayDifference  should work when input are in buddhist year',
+        () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+      var day1 = _calculationService.formatDate(date: DateTime(1999, 03, 12));
+      var day2 = _calculationService.formatDate(date: DateTime(1999, 03, 15));
+      var dayDiffernce = _calculationService.calculateDayDifference(
+          day: day1, compareTo: day2);
+      expect(dayDiffernce, 3);
+    });
   });
 }
