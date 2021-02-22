@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 
 import '../widget/chatbot/buttom_nav_bar.dart';
+import 'test.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({Key key, this.title}) : super(key: key);
@@ -63,7 +64,12 @@ class _ChatPageState extends State<ChatPage> {
               size: 30,
             ),
             tooltip: 'ช่วยเหลือ',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+              );
+            },
           ),
         ],
         leading: IconButton(
@@ -85,9 +91,10 @@ class _ChatPageState extends State<ChatPage> {
                 child: ListView.builder(
                     reverse: true,
                     itemCount: messsages.length,
-                    itemBuilder: (context, index) => chat(
-                        messsages[index]["message"].toString(),
-                        messsages[index]["data"]))),
+                    itemBuilder: (context, index) {
+                      return chat(messsages[index]["message"],
+                          messsages[index]["data"]);
+                    })),
             Container(
               height: 40.0,
               child: ListView(

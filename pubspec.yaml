@@ -44,6 +44,7 @@ dependencies:
   step_progress_indicator: ^0.2.5+8
   expandable: ^4.1.4
   youtube_player_flutter: ^7.0.0+7
+  flutter_dialogflow_v2: ^0.3.2
 
 dev_dependencies:
   flutter_test:
