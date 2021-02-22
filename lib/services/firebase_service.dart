@@ -146,7 +146,7 @@ class FirebaseService extends IFirebaseService {
     return subCollectionMap;
   }
 
-  Future<void> addDataToFormsCollection({
+  Future<String> addDataToFormsCollection({
     @required String formName,
     @required Map<String, dynamic> data,
   }) async {
@@ -184,7 +184,7 @@ class FirebaseService extends IFirebaseService {
         .update({
           'forms': FieldValue.arrayUnion([
             {
-              'formsId': formsId,
+              'formId': formsId,
               'formName': formName,
               'formCreation': creation,
             }
@@ -195,6 +195,7 @@ class FirebaseService extends IFirebaseService {
         .catchError((onError) {
           print('$onError on adding forms things to an subCollection');
         });
+    return formsId;
   }
 
   void saveDataToSharedPref() async {

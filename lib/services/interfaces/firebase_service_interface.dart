@@ -41,7 +41,7 @@ abstract class IFirebaseService {
 
   void saveDataToSharedPref();
 
-  Future<void> addDataToFormsCollection({
+  Future<String> addDataToFormsCollection({
     @required String formName,
     @required Map<String, dynamic> data,
   });

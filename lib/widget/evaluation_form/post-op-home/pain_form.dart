@@ -164,9 +164,10 @@ class _PainFormState extends State<PainForm> {
                         Map<String, dynamic> saveToDatabase = {
                           'Answer': value,
                         };
-                        _firebaseService.addDataToFormsCollection(
+                        var formId = _firebaseService.addDataToFormsCollection(
                             formName: 'pain', data: saveToDatabase);
-                        print(value);
+                        print('Value in pain_form = $value ');
+                        print('state = ${_anSubCollection['state']}');
                         if ((_anSubCollection['state'] ==
                                     'Post-Operation@Hospital' &&
                                 value >= 7) ||
@@ -175,8 +176,17 @@ class _PainFormState extends State<PainForm> {
                                 value >= 4)) {
                           showAdvise1(context, value);
                           if (checkNotificationCriteria(value)) {
-                            _firebaseService
-                                .addNotification({'hello': 'world'});
+                            var creation = _calculationService.formatDate(
+                                date: DateTime.now());
+                            _firebaseService.addNotification({
+                              'formName': 'pain',
+                              'formId': formId,
+                              'userId':
+                                  UserStore.getValueFromStore('storedUserId'),
+                              'creation': creation,
+                              'patientState': _anSubCollection['state'],
+                              'seen': false,
+                            });
                           }
                         } else {
                           showAdvise2(context, value);
