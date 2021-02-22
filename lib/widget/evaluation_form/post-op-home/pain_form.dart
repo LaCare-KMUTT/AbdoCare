@@ -2,8 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
+import '../../../stores/user_store.dart';
+import '../../../ultilities/form_utility/pain_form_utility.dart';
 import 'post-op-home_page.dart';
 
 class PainForm extends StatefulWidget {
@@ -17,6 +20,9 @@ class _PainFormState extends State<PainForm> {
   int value = 5;
   String result = "ปวดปานกลาง";
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
+  final ICalculationService _calculationService =
+      locator<ICalculationService>();
+  var _anSubCollection;
 
   LinearGradient gradient = LinearGradient(
     colors: <Color>[
@@ -29,6 +35,27 @@ class _PainFormState extends State<PainForm> {
   @override
   void initState() {
     super.initState();
+    initData();
+  }
+
+  void initData() async {
+    _anSubCollection = await _firebaseService.getLatestAnSubCollection(
+        userId: UserStore.getValueFromStore('storedUserId'));
+    print('_anSubCollectionHere $_anSubCollection');
+  }
+
+  bool checkNotificationCriteria(int score) {
+    var state = _anSubCollection['state'];
+    var latestStateChange = _anSubCollection['latestStateChange'].toDate();
+    var dayInCurrentState = _calculationService.calculateDayDifference(
+        day: latestStateChange,
+        compareTo: _calculationService.formatDate(date: DateTime.now()));
+    var shouldNotify = PainFormUtility()
+        .withState(state)
+        .withDayInState(dayInCurrentState)
+        .getPainFormCriteria(score);
+    print('should notify = $shouldNotify');
+    return shouldNotify;
   }
 
   @override
@@ -57,7 +84,7 @@ class _PainFormState extends State<PainForm> {
       ),
       body: Container(
         child: ListView(
-          children: [
+          children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Card(
@@ -67,7 +94,7 @@ class _PainFormState extends State<PainForm> {
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       Image.asset(
                         'assets/Painform.png',
                         height: 180,
@@ -126,7 +153,7 @@ class _PainFormState extends State<PainForm> {
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: <Widget>[
                   RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
@@ -140,8 +167,17 @@ class _PainFormState extends State<PainForm> {
                         _firebaseService.addDataToFormsCollection(
                             formName: 'pain', data: saveToDatabase);
                         print(value);
-                        if (value >= 7) {
+                        if ((_anSubCollection['state'] ==
+                                    'Post-Operation@Hospital' &&
+                                value >= 7) ||
+                            (_anSubCollection['state'] ==
+                                    'Post-Operation@Home' &&
+                                value >= 4)) {
                           showAdvise1(context, value);
+                          if (checkNotificationCriteria(value)) {
+                            _firebaseService
+                                .addNotification({'hello': 'world'});
+                          }
                         } else {
                           showAdvise2(context, value);
                         }
@@ -441,7 +477,7 @@ class Advise2Page extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
+                                children: <Widget>[
                                   Text(
                                       '3.1 สูดลมหายใจเต็มปอดช้าๆ นับหนึ่งกลั้นไว้สักครู่ และ ค่อยๆหายใจออกช้าๆ',
                                       style: Theme.of(context)
