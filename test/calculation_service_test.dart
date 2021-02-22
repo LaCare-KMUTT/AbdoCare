@@ -84,9 +84,18 @@ void main() {
       ICalculationService _calculationService = locator<ICalculationService>();
       var day1 = _calculationService.formatDate(date: DateTime(1999, 03, 12));
       var day2 = _calculationService.formatDate(date: DateTime(1999, 03, 15));
-      var dayDiffernce = _calculationService.calculateDayDifference(
+      var dayDifference = _calculationService.calculateDayDifference(
           day: day1, compareTo: day2);
-      expect(dayDiffernce, 3);
+      expect(dayDifference, 3);
+    });
+
+    test('calculationDayDifference should return 0 when dates are the same',
+        () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+      var dayDifference = _calculationService.calculateDayDifference(
+          day: DateTime(1999, 03, 12, 17, 30),
+          compareTo: DateTime(1999, 03, 12, 22, 30));
+      expect(dayDifference, 0);
     });
   });
 }
