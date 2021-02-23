@@ -1,9 +1,9 @@
-import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
-
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../widget/chatbot/buttom_nav_bar.dart';
-import 'test.dart';
+import '../widget/training_information/post-op-hos-day2-7/digestive_rehabilitation_advice.dart';
+import '../widget/training_information/post-op-hos-day2-7/pulmanary_rehabilitation_advice.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({Key key, this.title}) : super(key: key);
@@ -24,6 +24,8 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  final List<dynamic> _messages = <dynamic>[];
+  final TextEditingController _textController = TextEditingController();
   List<String> optionlist = [
     "รับประทานอาหาร",
     "อาบน้ำ",
@@ -34,29 +36,13 @@ class _ChatPageState extends State<ChatPage> {
     "ลืมทานยา",
     "เลื่อนนัด"
   ];
-  void response(query) async {
-    AuthGoogle authGoogle =
-        await AuthGoogle(fileJson: "assets/abdo-bot-briv-9ed7278f51f5.json")
-            .build();
-    Dialogflow dialogflow =
-        Dialogflow(authGoogle: authGoogle, language: Language.thai);
-    AIResponse aiResponse = await dialogflow.detectIntent(query);
-    setState(() {
-      messsages.insert(0, {"data": 0, "message": aiResponse.getMessage()});
-    });
-    print(aiResponse.getListMessage()[0]["text"]["text"][0].toString());
-  }
-
-  final messageInsert = TextEditingController();
-  List<Map> messsages = [];
-
+  BuildContext buildContext;
   @override
   Widget build(BuildContext context) {
+    this.buildContext = context;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "AbdoCare",
-        ),
+        title: Text("Abdocare"),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -64,12 +50,7 @@ class _ChatPageState extends State<ChatPage> {
               size: 30,
             ),
             tooltip: 'ช่วยเหลือ',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyHomePage()),
-              );
-            },
+            onPressed: () {},
           ),
         ],
         leading: IconButton(
@@ -84,154 +65,394 @@ class _ChatPageState extends State<ChatPage> {
           },
         ),
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Flexible(
-                child: ListView.builder(
-                    reverse: true,
-                    itemCount: messsages.length,
-                    itemBuilder: (context, index) {
-                      return chat(messsages[index]["message"],
-                          messsages[index]["data"]);
-                    })),
-            Container(
-              height: 40.0,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+      body: Column(children: <Widget>[
+        Flexible(
+            child: ListView.builder(
+          reverse: true,
+          itemBuilder: (context, index) => _messages[index],
+          itemCount: _messages.length,
+        )),
+        Container(
+          height: 40.0,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      for (var item in optionlist)
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: ActionChip(
-                              backgroundColor: Color(0xFFF1B43F),
-                              label: Text(item),
-                              onPressed: () {
-                                setState(() {
-                                  messsages
-                                      .insert(0, {"data": 1, "message": item});
-                                });
-                                response(item);
-                              }),
-                        ),
-                    ],
-                  )
+                  for (var item in optionlist)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: ActionChip(
+                          backgroundColor: Color(0xFFF1B43F),
+                          label: Text(item),
+                          onPressed: () {
+                            setState(() {
+                              _messages.insert(
+                                0,
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: <Widget>[
+                                          Container(
+                                            constraints:
+                                                BoxConstraints(maxWidth: 250),
+                                            decoration: BoxDecoration(
+                                                color: Color(0xFFFCECBC),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(15.0))),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(10),
+                                              child: Text(
+                                                item,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(left: 5.0),
+                                      child: CircleAvatar(
+                                        backgroundImage:
+                                            AssetImage("assets/default.jpg"),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
+                            response(item);
+                          }),
+                    ),
                 ],
-              ),
-            ),
-            Divider(
-              height: 5.0,
-              color: Color(0xFFC37447),
-            ),
-            ListTile(
-              title: Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Colors.grey[300],
-                ),
-                padding: EdgeInsets.only(left: 15),
-                child: TextField(
-                  controller: messageInsert,
-                  decoration: InputDecoration(
-                    hintText: "พิมพ์ข้อความ...",
-                    hintStyle: TextStyle(color: Colors.black26),
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                  ),
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                  onChanged: (value) {},
-                ),
-              ),
-              trailing: IconButton(
-                  icon: Icon(
-                    Icons.send,
-                    size: 30.0,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () {
-                    if (messageInsert.text.isEmpty) {
-                      print("empty message");
-                    } else {
-                      setState(() {
-                        messsages.insert(
-                            0, {"data": 1, "message": messageInsert.text});
-                      });
-                      response(messageInsert.text);
-                      messageInsert.clear();
-                    }
-                    FocusScopeNode currentFocus = FocusScope.of(context);
-                    if (!currentFocus.hasPrimaryFocus) {
-                      currentFocus.unfocus();
-                    }
-                  }),
-            ),
-          ],
+              )
+            ],
+          ),
         ),
-      ),
+        Divider(
+          height: 5.0,
+          color: Color(0xFFC37447),
+        ),
+        Container(
+          child: _buildTextComposer(),
+        ),
+      ]),
       bottomNavigationBar: ButtomNavBar(),
     );
   }
 
-  Widget chat(dynamic message, int data) => Container(
-        padding: EdgeInsets.only(left: 5, right: 5),
-        child: Row(
-          mainAxisAlignment:
-              data == 1 ? MainAxisAlignment.end : MainAxisAlignment.start,
-          children: [
-            data == 0
-                ? Container(
-                    height: 30,
-                    width: 30,
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage("assets/robot.jpg"),
+  Widget _buildTextComposer() {
+    return ListTile(
+      title: Container(
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Colors.grey[300],
+        ),
+        padding: EdgeInsets.only(left: 15),
+        child: TextField(
+          controller: _textController,
+          onSubmitted: _handleSubmitted,
+          decoration: InputDecoration(
+            hintText: "พิมพ์ข้อความ...",
+            hintStyle: TextStyle(color: Colors.black26),
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
+          ),
+        ),
+      ),
+      trailing: IconButton(
+          icon: Icon(
+            Icons.send,
+            size: 30.0,
+            color: Theme.of(context).primaryColor,
+          ),
+          onPressed: () {
+            if (_textController.text.isEmpty) {
+              print("empty message");
+            } else {
+              _handleSubmitted(_textController.text);
+            }
+          }),
+    );
+  }
+
+  void response(dynamic query) async {
+    _textController.clear();
+    AuthGoogle authGoogle =
+        await AuthGoogle(fileJson: "assets/abdo-bot-briv-9ed7278f51f5.json")
+            .build();
+    Dialogflow dialogflow = Dialogflow(authGoogle: authGoogle);
+    AIResponse response = await dialogflow.detectIntent(query);
+    if (response.getMessage() == "ออกกำลังกายบนเตียง") {
+      setState(() {
+        _messages.insert(
+          0,
+          Row(
+            children: [
+              Container(
+                child: CircleAvatar(
+                  child: Image.asset("assets/robot.jpg"),
+                  backgroundColor: Colors.transparent,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 300),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    border: Border.all(
+                      color: Colors.grey[300],
                     ),
-                  )
-                : Container(),
-            Padding(
-              padding: EdgeInsets.only(bottom: 5),
-              child: Bubble(
-                  radius: Radius.circular(15.0),
-                  color: data == 0 ? Color(0xFFF1B43F) : Color(0xFFFCECBC),
-                  elevation: 0.0,
-                  child: Padding(
-                    padding: EdgeInsets.all(3.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 5.0,
-                        ),
-                        Flexible(
-                            child: Container(
-                          constraints: BoxConstraints(maxWidth: 200),
-                          child: Text(
-                            message,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: YoutubePlayer(
+                          controller: YoutubePlayerController(
+                            initialVideoId: YoutubePlayer.convertUrlToId(
+                                "https://youtu.be/MB7NVIb-bck"),
+                            flags: YoutubePlayerFlags(autoPlay: false),
                           ),
-                        ))
-                      ],
+                          showVideoProgressIndicator: true,
+                          progressIndicatorColor: Colors.amber,
+                          progressColors: ProgressBarColors(
+                              playedColor: Color(0xFFC37447),
+                              handleColor: Colors.amber),
+                        ),
+                      ),
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(15.0),
+                                bottomRight: Radius.circular(15.0))),
+                        color: Color(0xFFF1B43F),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DigestiveAdviceDay2()));
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          child: Center(
+                            child: Text(
+                              'รายละเอียดเพิ่มเติม',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      });
+    } else if (response.getMessage() == "การฟื้นฟูสมรรถภาพปอด") {
+      setState(() {
+        _messages.insert(
+          0,
+          Row(
+            children: [
+              Container(
+                child: CircleAvatar(
+                  child: Image.asset("assets/robot.jpg"),
+                  backgroundColor: Colors.transparent,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 300),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    border: Border.all(
+                      color: Colors.grey[300],
                     ),
-                  )),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: YoutubePlayer(
+                          controller: YoutubePlayerController(
+                            initialVideoId: YoutubePlayer.convertUrlToId(
+                                "https://youtu.be/fgKkGjSHISg"),
+                            flags: YoutubePlayerFlags(autoPlay: false),
+                          ),
+                          showVideoProgressIndicator: true,
+                          progressIndicatorColor: Colors.amber,
+                          progressColors: ProgressBarColors(
+                              playedColor: Color(0xFFC37447),
+                              handleColor: Colors.amber),
+                        ),
+                      ),
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(15.0),
+                                bottomRight: Radius.circular(15.0))),
+                        color: Color(0xFFF1B43F),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PulmonaryAdviceDay2()));
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          child: Center(
+                            child: Text(
+                              'รายละเอียดเพิ่มเติม',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      });
+    } else if (response.getMessage() != null && response.getMessage() != "") {
+      SimpleMessage message = SimpleMessage(
+        text: response.getMessage(),
+        name: "Bot",
+        type: false,
+      );
+      setState(() {
+        _messages.insert(0, message);
+        print(response.getListMessage());
+      });
+    }
+  }
+
+  void _handleSubmitted(String text) {
+    if (text.isEmpty) {
+      print("empty message");
+    } else {
+      SimpleMessage message = SimpleMessage(
+        text: text,
+        name: "Patient",
+        type: true,
+      );
+      setState(() {
+        _messages.insert(0, message);
+      });
+      response(text);
+      _textController.clear();
+    }
+  }
+}
+
+class SimpleMessage extends StatelessWidget {
+  SimpleMessage({this.text, this.name, this.type});
+
+  final String text;
+  final String name;
+  final bool type;
+
+  List<Widget> otherMessage(dynamic context) {
+    return <Widget>[
+      Container(
+        child: CircleAvatar(
+          child: Image.asset("assets/robot.jpg"),
+          backgroundColor: Colors.transparent,
+        ),
+      ),
+      Expanded(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10, bottom: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                constraints: BoxConstraints(maxWidth: 250),
+                decoration: BoxDecoration(
+                    color: Color(0xFFF1B43F),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ];
+  }
+
+  List<Widget> myMessage(dynamic context) {
+    return <Widget>[
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Container(
+              constraints: BoxConstraints(maxWidth: 250),
+              decoration: BoxDecoration(
+                  color: Color(0xFFFCECBC),
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal),
+                ),
+              ),
             ),
-            data == 1
-                ? Container(
-                    height: 30,
-                    width: 30,
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage("assets/default.jpg"),
-                    ),
-                  )
-                : Container(),
           ],
         ),
-      );
+      ),
+      Container(
+        margin: const EdgeInsets.only(left: 5.0),
+        child: CircleAvatar(
+          backgroundImage: AssetImage("assets/default.jpg"),
+        ),
+      ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: this.type ? myMessage(context) : otherMessage(context),
+      ),
+    );
+  }
 }
