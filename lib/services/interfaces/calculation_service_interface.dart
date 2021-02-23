@@ -6,4 +6,6 @@ abstract class ICalculationService {
   DateTime formatDate({DateTime date, String dateString});
   String formatDateToThaiString(
       {DateTime date, String dateString, @required bool isBuddhist});
+  int calculateDayDifference(
+      {@required DateTime day, @required DateTime compareTo});
 }

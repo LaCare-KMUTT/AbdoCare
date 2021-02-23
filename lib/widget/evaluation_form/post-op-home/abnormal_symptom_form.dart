@@ -22,6 +22,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('อาการแสดงที่ผิดปกติ'),
         leading: IconButton(
           icon: const Icon(

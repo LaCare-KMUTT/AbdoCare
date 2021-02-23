@@ -40,6 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text('ข้อมูลส่วนตัว'),
         ),
         body: StreamBuilder<DocumentSnapshot>(

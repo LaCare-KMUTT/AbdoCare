@@ -146,7 +146,7 @@ class FirebaseService extends IFirebaseService {
     return subCollectionMap;
   }
 
-  Future<void> addDataToFormsCollection({
+  Future<String> addDataToFormsCollection({
     @required String formName,
     @required Map<String, dynamic> data,
   }) async {
@@ -184,7 +184,7 @@ class FirebaseService extends IFirebaseService {
         .update({
           'forms': FieldValue.arrayUnion([
             {
-              'formsId': formsId,
+              'formId': formsId,
               'formName': formName,
               'formCreation': creation,
             }
@@ -195,6 +195,7 @@ class FirebaseService extends IFirebaseService {
         .catchError((onError) {
           print('$onError on adding forms things to an subCollection');
         });
+    return formsId;
   }
 
   void saveDataToSharedPref() async {
@@ -248,5 +249,16 @@ class FirebaseService extends IFirebaseService {
     var map = querySnapshot.map((doc) => doc.data()).toList();
     print('Map in getAppointments $map');
     return map;
+  }
+
+  Future<void> addNotification(Map<String, dynamic> data) async {
+    await _firestore
+        .collection('Notifications')
+        .add(data)
+        .then((value) =>
+            print('Successfully added $value to Notificaitons Collection'))
+        .catchError((e) {
+      print('$e failed to add notification to Notifications Collection');
+    });
   }
 }

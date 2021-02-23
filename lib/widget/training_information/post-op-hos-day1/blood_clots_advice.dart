@@ -12,6 +12,7 @@ class _BloodclotsAdviceDay1State extends State<BloodclotsAdviceDay1> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("คำแนะนำ"),
         leading: IconButton(
           icon: const Icon(
