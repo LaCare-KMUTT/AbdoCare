@@ -13,6 +13,7 @@ class _PreOpPageState extends State<PreOpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('แบบประเมิน'),
         leading: IconButton(
           icon: const Icon(

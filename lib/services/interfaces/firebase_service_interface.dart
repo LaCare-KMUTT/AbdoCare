@@ -41,10 +41,11 @@ abstract class IFirebaseService {
 
   void saveDataToSharedPref();
 
-  Future<void> addDataToFormsCollection({
+  Future<String> addDataToFormsCollection({
     @required String formName,
     @required Map<String, dynamic> data,
   });
 
   Future<List<Map<String, dynamic>>> getAppointments();
+  Future<void> addNotification(Map<String, dynamic> data);
 }
