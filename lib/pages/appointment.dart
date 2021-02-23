@@ -13,6 +13,7 @@ class _AppointPageState extends State<AppointPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('ตารางนัด'),
         leading: IconButton(
           icon: const Icon(

@@ -19,29 +19,31 @@ class _LoginPageState extends State<LoginPage> {
   bool _validateUniqueKey = false;
 
   @override
-  Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('AbdoCare'),
-      ),
-      body: Container(
-        child: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(50, screenSize.height / 4, 50, 0),
-              child: TextField(
-                controller: _hnController,
-                obscureText: false,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'หมายเลขผู้ป่วยนอก(HN)',
-                  errorText:
-                      _validateHN ? 'กรุณาใส่หมายเลขผู้ป่วยนอก(HN)' : null,
-                ),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'AbdoCare',
+          ),
+        ),
+        body: Container(
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(50, 150, 50, 0),
+                child: TextField(
+                  controller: _hnController,
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'หมายเลขผู้ป่วยนอก(HN)',
+                    errorText:
+                        _validateHN ? 'กรุณาใส่หมายเลขผู้ป่วยนอก(HN)' : null,
+                  ),
+
+                
                 inputFormatters: [UpperCaseText()],
               ),
             ),

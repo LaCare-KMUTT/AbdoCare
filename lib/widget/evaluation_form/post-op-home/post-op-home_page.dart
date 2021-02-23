@@ -17,6 +17,7 @@ class _PostOpHomeState extends State<PostOpHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('แบบประเมิน'),
         leading: IconButton(
           icon: const Icon(

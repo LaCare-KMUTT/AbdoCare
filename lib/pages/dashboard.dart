@@ -10,6 +10,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text('สรุปผลประจำวัน'),
           leading: IconButton(
             icon: const Icon(

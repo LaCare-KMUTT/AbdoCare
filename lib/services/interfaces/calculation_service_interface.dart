@@ -7,4 +7,6 @@ abstract class ICalculationService {
   String calculateBML(int oldWeight, int weight);
   String formatDateToThaiString(
       {DateTime date, String dateString, @required bool isBuddhist});
+  int calculateDayDifference(
+      {@required DateTime day, @required DateTime compareTo});
 }

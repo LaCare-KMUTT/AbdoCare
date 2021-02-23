@@ -1,11 +1,18 @@
 // pulmonary rehabilitation advice to prevent lung complications
 // Post-op @ Hospital Day 2-7
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class PulmonaryAdviceDay2 extends StatelessWidget {
+class PulmonaryAdviceDay2 extends StatefulWidget {
+  @override
+  _PulmonaryAdviceDay2State createState() => _PulmonaryAdviceDay2State();
+}
+
+class _PulmonaryAdviceDay2State extends State<PulmonaryAdviceDay2> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("คำแนะนำ"),
         leading: IconButton(
           icon: const Icon(
@@ -34,9 +41,24 @@ class PulmonaryAdviceDay2 extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 8),
+                            padding: const EdgeInsets.only(top: 8, bottom: 8),
                             child: Text(
                                 '''การฟื้นฟูสมรรถภาพของปอด โดยให้ปฏิบัติอย่างน้อยวันละ 3 รอบๆ ละ 5 ครั้ง ดังนี้'''),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    "https://youtu.be/fgKkGjSHISg"),
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
@@ -121,7 +143,7 @@ class PulmonaryAdviceDay2 extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
-                                    '''3.	การบริหารการหายใจโดยใช้เครื่องบริหาร ปฏิบัติ 5-10 ครั้ง/ชั่วโมง ในช่วงเวลาที่ว่าง (พยายามดูดได้อย่างน้อยวันละ 100 ครั้ง/วัน ขั้นตอนการปฏิบัติดังนี้''',
+                                    '''3.	การบริหารการหายใจโดยใช้เครื่องบริหาร โดยปฏิบัติ 5-10 ครั้ง/ชั่วโมง ในช่วงเวลาที่ว่าง (พยายามดูดได้อย่างน้อยวันละ 100 ครั้ง/วัน ขั้นตอนการปฏิบัติดังนี้''',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 Padding(

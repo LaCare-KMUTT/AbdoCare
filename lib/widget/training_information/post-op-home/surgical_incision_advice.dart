@@ -4,6 +4,7 @@ class SurgicalIncisionAdvice extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("คำแนะนำ"),
         leading: IconButton(
           icon: const Icon(
@@ -44,6 +45,10 @@ class SurgicalIncisionAdvice extends StatelessWidget {
                                     '''1. หากผู้ป่วยอยู่ใกล้กับสถานพยาบาลหรือมีความสะดวกในการเดินทางไปยังสถานพยาบาล เช่น โรงพยาบาล ศูนย์ส่งเสริมสุขภาพตำบล หรือ คลินิก แนะนำให้ผู้ป่วยไปทำแผลในสถานพยาบาลใกล้บ้านนั้น''',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
+                              ),
+                              Image.asset(
+                                'assets/training/hospital.png',
+                                height: 150,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8),
