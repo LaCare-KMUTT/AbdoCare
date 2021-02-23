@@ -3,8 +3,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
+import '../../../stores/user_store.dart';
 import 'post-op-home_page.dart';
 
 class SurgicalIncisionForm extends StatefulWidget {
@@ -21,9 +24,12 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
   var _value2 = false;
   var _value3 = false;
   var _value4 = false;
+  var _anSubCollection;
 
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
-  Future<Null> getImage(ImageSource imageSource) async {
+  final ICalculationService _calculationService =
+      locator<ICalculationService>();
+  Future<void> getImage(ImageSource imageSource) async {
     final pickedFile = await picker.getImage(source: imageSource);
 
     setState(() {
@@ -33,6 +39,21 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
         print('No image selected.');
       }
     });
+  }
+
+  void initData() async {
+    _anSubCollection = await _firebaseService.getLatestAnSubCollection(
+        userId: UserStore.getValueFromStore('storedUserId'));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -133,22 +154,24 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: <Widget>[
                   RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
                       child: Text('สำเร็จ',
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       color: Color(0xFF2ED47A),
-                      onPressed: () {
+                      onPressed: () async {
                         Map<String, dynamic> formDataToDB = {
                           'Choice1': _value,
                           'Choice2': _value2,
                           'Choice3': _value3,
                           'Choice4': _value4,
                         };
-                        _firebaseService.addDataToFormsCollection(
-                            formName: 'Surgical Incision', data: formDataToDB);
+                        var formId =
+                            await _firebaseService.addDataToFormsCollection(
+                                formName: 'Surgical Incision',
+                                data: formDataToDB);
                         if (_value | _value2 == true) {
                           showAdvise1(context);
                         }
@@ -159,7 +182,20 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                                   builder: (context) => AdvisePage()));
                         }
                         if (_value4 == true) {
-                          showAdvise2(context);
+                          //TODO Upload photo option
+                          await showAdvise2(context);
+                          var dataToDb = {
+                            'creation': _calculationService.formatDate(
+                                date: DateTime.now()),
+                            'formName': 'Surgical Incision',
+                            'formId': formId,
+                            'userId':
+                                UserStore.getValueFromStore('storedUserId'),
+                            'seen': false,
+                            'patientState': _anSubCollection['state'],
+                            'photoURL': 'DummyURL',
+                          };
+                          await _firebaseService.addNotification(dataToDb);
                         } else if (_value | _value2 | _value3 | _value4 ==
                             false) {
                           alert(context);
@@ -201,7 +237,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 Text("ให้ผู้ป่วยมาพบแพทย์ทันที",
                     style: Theme.of(context).textTheme.bodyText1),
               ],
@@ -236,13 +272,13 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
     );
   }
 
-  void showAdvise2(BuildContext context) {
+  Future<void> showAdvise2(BuildContext context) async {
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Text("ให้ผู้ป่วยส่งรูปแผลของตน",
               style: Theme.of(context).textTheme.bodyText2),
           Text("เพื่อให้พยาบาลประเมิน",
@@ -251,7 +287,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 Center(
                   child: _image == null
                       ? Image.asset(
@@ -268,7 +304,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                 IconButton(
                     icon: Icon(Icons.add_a_photo),
                     iconSize: 40,
-                    onPressed: () => getImage(ImageSource.camera))
+                    onPressed: () async => await getImage(ImageSource.camera))
               ],
             ),
           ),
@@ -325,7 +361,7 @@ class AdvisePage extends StatelessWidget {
         child: ListView(
           children: [
             Column(
-              children: [
+              children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: Card(
@@ -335,7 +371,7 @@ class AdvisePage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Column(
-                        children: [
+                        children: <Widget>[
                           Text(
                               '''การดูแลเพื่อส่งเสริมการหายของแผลและป้องกันการติดเชื้อที่แผลผ่าตัด มีดังนี้'''),
                           Column(
@@ -354,7 +390,7 @@ class AdvisePage extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
-                                  children: [
+                                  children: <Widget>[
                                     Text(
                                         '''3.1 รับประทานอาหารประเภทโปรตีน เช่น ไข่ขาว เนื้อไก่เนื้อปลา''',
                                         style: Theme.of(context)
@@ -390,12 +426,12 @@ class AdvisePage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Column(
-                        children: [
+                        children: <Widget>[
                           Text(
                               '''การดูแลแผลผ่าตัด การทำแผล มีวิธีการทำแผลดังนี้'''),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
+                            children: <Widget>[
                               Text(
                                   '''1. หากผู้ป่วยอยู่ใกล้กับสถานพยาบาลหรือมีความสะดวกในการเดินทางไปยังสถานพยาบาล เช่น โรงพยาบาล ศูนย์ส่งเสริมสุขภาพตำบล หรือ คลินิก แนะนำให้ผู้ป่วยไปทำแผลในสถานพยาบาลใกล้บ้านนั้น''',
                                   style: Theme.of(context).textTheme.bodyText1),
@@ -407,7 +443,7 @@ class AdvisePage extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
-                                  children: [
+                                  children: <Widget>[
                                     Text(
                                         '''2.1 จัดเตรียมอุปกรณ์สำหรับทำแผล ได้แก่ ชุดทำแผล และ น้ำยาสำหรับทำความสะอาดแผล พลาสเตอร์ หรือแผ่นผิดแผลกันน้ำ''',
                                         style: Theme.of(context)
