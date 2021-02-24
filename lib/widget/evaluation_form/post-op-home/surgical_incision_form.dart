@@ -29,12 +29,13 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
   final ICalculationService _calculationService =
       locator<ICalculationService>();
+
   Future<void> getImage(ImageSource imageSource) async {
     final pickedFile = await picker.getImage(source: imageSource);
-
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        print('_image ====== $_image');
       } else {
         print('No image selected.');
       }
@@ -44,11 +45,13 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
   void initData() async {
     _anSubCollection = await _firebaseService.getLatestAnSubCollection(
         userId: UserStore.getValueFromStore('storedUserId'));
+    print('_anSubCollectionHere $_anSubCollection');
   }
 
   @override
   void initState() {
     super.initState();
+    initData();
   }
 
   @override
@@ -75,7 +78,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
           ),
         ),
         body: ListView(
-          children: [
+          children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Card(
@@ -85,7 +88,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       Text('ทำเครื่องหมาย √ ในข้อที่ท่านมีอาการ'),
                       CheckboxListTile(
                         value: _value,
@@ -183,19 +186,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                         }
                         if (_value4 == true) {
                           //TODO Upload photo option
-                          await showAdvise2(context);
-                          var dataToDb = {
-                            'creation': _calculationService.formatDate(
-                                date: DateTime.now()),
-                            'formName': 'Surgical Incision',
-                            'formId': formId,
-                            'userId':
-                                UserStore.getValueFromStore('storedUserId'),
-                            'seen': false,
-                            'patientState': _anSubCollection['state'],
-                            'photoURL': 'DummyURL',
-                          };
-                          await _firebaseService.addNotification(dataToDb);
+                          await showAdvise2(context, formId);
                         } else if (_value | _value2 | _value3 | _value4 ==
                             false) {
                           alert(context);
@@ -231,7 +222,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Text("แจ้งเตือน", style: Theme.of(context).textTheme.bodyText2),
           Padding(
             padding: const EdgeInsets.only(top: 20),
@@ -272,7 +263,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
     );
   }
 
-  Future<void> showAdvise2(BuildContext context) async {
+  void showAdvise2(BuildContext context, String formId) {
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -304,7 +295,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                 IconButton(
                     icon: Icon(Icons.add_a_photo),
                     iconSize: 40,
-                    onPressed: () async => await getImage(ImageSource.camera))
+                    onPressed: () => getImage(ImageSource.camera))
               ],
             ),
           ),
@@ -322,7 +313,19 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
               ),
             ),
           ),
-          onPressed: () {
+          onPressed: () async {
+            var state = _anSubCollection['state'];
+            var dataToDb = {
+              'creation': _calculationService.formatDate(date: DateTime.now()),
+              'formName': 'Surgical Incision',
+              'formId': formId,
+              'userId': UserStore.getValueFromStore('storedUserId'),
+              'seen': false,
+              'patientState': state,
+              'photoURL': 'DummyURL',
+            };
+            print('_imageURL in this shit $_image');
+            await _firebaseService.addNotification(dataToDb);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => PostOpHomePage()),
