@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
+import '../../../services/interfaces/storage_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
 import 'post-op-home_page.dart';
@@ -29,6 +30,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
   final ICalculationService _calculationService =
       locator<ICalculationService>();
+  final IStorageService _storageService = locator<IStorageService>();
 
   Future<void> getImage(ImageSource imageSource) async {
     final pickedFile = await picker.getImage(source: imageSource);
@@ -185,7 +187,6 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                                   builder: (context) => AdvisePage()));
                         }
                         if (_value4 == true) {
-                          //TODO Upload photo option
                           await showAdvise2(context, formId);
                         } else if (_value | _value2 | _value3 | _value4 ==
                             false) {
@@ -314,6 +315,8 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
             ),
           ),
           onPressed: () async {
+            String imgUrl =
+                await _storageService.uploadImageToFirebase(imageFile: _image);
             var state = _anSubCollection['state'];
             var dataToDb = {
               'creation': _calculationService.formatDate(date: DateTime.now()),
@@ -322,9 +325,8 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
               'userId': UserStore.getValueFromStore('storedUserId'),
               'seen': false,
               'patientState': state,
-              'photoURL': 'DummyURL',
+              'photoURL': imgUrl,
             };
-            print('_imageURL in this shit $_image');
             await _firebaseService.addNotification(dataToDb);
             Navigator.push(
               context,

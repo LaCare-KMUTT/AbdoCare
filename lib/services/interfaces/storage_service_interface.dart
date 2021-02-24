@@ -1,3 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
-abstract class IStorageService {}
+// ignore: one_member_abstracts
+abstract class IStorageService {
+  Future<String> uploadImageToFirebase({@required File imageFile});
+}
