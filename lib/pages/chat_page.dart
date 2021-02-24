@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../widget/chatbot/buttom_nav_bar.dart';
-import '../widget/training_information/post-op-hos-day2-7/digestive_rehabilitation_advice.dart';
-import '../widget/training_information/post-op-hos-day2-7/pulmanary_rehabilitation_advice.dart';
+import '../widget/chatbot/chat_training.dart';
+import '../widget/training_information/@enum/topic_mode.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({Key key, this.title}) : super(key: key);
@@ -25,6 +24,11 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final List<dynamic> _messages = <dynamic>[];
+  List<String> chatTraining = [
+    "ออกกำลังกายบนเตียง",
+    "การฟื้นฟูสมรรถภาพปอด",
+  ];
+  var result = false;
   final TextEditingController _textController = TextEditingController();
   List<String> optionlist = [
     "รับประทานอาหาร",
@@ -195,149 +199,20 @@ class _ChatPageState extends State<ChatPage> {
             .build();
     Dialogflow dialogflow = Dialogflow(authGoogle: authGoogle);
     AIResponse response = await dialogflow.detectIntent(query);
-    if (response.getMessage() == "ออกกำลังกายบนเตียง") {
-      setState(() {
-        _messages.insert(
-          0,
-          Row(
-            children: [
-              Container(
-                child: CircleAvatar(
-                  child: Image.asset("assets/robot.jpg"),
-                  backgroundColor: Colors.transparent,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: 300),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    border: Border.all(
-                      color: Colors.grey[300],
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: YoutubePlayer(
-                          controller: YoutubePlayerController(
-                            initialVideoId: YoutubePlayer.convertUrlToId(
-                                "https://youtu.be/MB7NVIb-bck"),
-                            flags: YoutubePlayerFlags(autoPlay: false),
-                          ),
-                          showVideoProgressIndicator: true,
-                          progressIndicatorColor: Colors.amber,
-                          progressColors: ProgressBarColors(
-                              playedColor: Color(0xFFC37447),
-                              handleColor: Colors.amber),
-                        ),
-                      ),
-                      FlatButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15.0),
-                                bottomRight: Radius.circular(15.0))),
-                        color: Color(0xFFF1B43F),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DigestiveAdviceDay2()));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 50,
-                          child: Center(
-                            child: Text(
-                              'รายละเอียดเพิ่มเติม',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      });
-    } else if (response.getMessage() == "การฟื้นฟูสมรรถภาพปอด") {
-      setState(() {
-        _messages.insert(
-          0,
-          Row(
-            children: [
-              Container(
-                child: CircleAvatar(
-                  child: Image.asset("assets/robot.jpg"),
-                  backgroundColor: Colors.transparent,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: 300),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    border: Border.all(
-                      color: Colors.grey[300],
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: YoutubePlayer(
-                          controller: YoutubePlayerController(
-                            initialVideoId: YoutubePlayer.convertUrlToId(
-                                "https://youtu.be/fgKkGjSHISg"),
-                            flags: YoutubePlayerFlags(autoPlay: false),
-                          ),
-                          showVideoProgressIndicator: true,
-                          progressIndicatorColor: Colors.amber,
-                          progressColors: ProgressBarColors(
-                              playedColor: Color(0xFFC37447),
-                              handleColor: Colors.amber),
-                        ),
-                      ),
-                      FlatButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15.0),
-                                bottomRight: Radius.circular(15.0))),
-                        color: Color(0xFFF1B43F),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PulmonaryAdviceDay2()));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 50,
-                          child: Center(
-                            child: Text(
-                              'รายละเอียดเพิ่มเติม',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      });
-    } else if (response.getMessage() != null && response.getMessage() != "") {
+    for (var i = 0; i < chatTraining.length; i++) {
+      if (response.getMessage() == chatTraining[i]) {
+        result = true;
+        setState(() {
+          _messages.insert(0, ChatTraining(answer: response.getMessage()));
+        });
+        break;
+      } else {
+        result = false;
+      }
+    }
+    if (response.getMessage() != null &&
+        response.getMessage() != "" &&
+        result == false) {
       SimpleMessage message = SimpleMessage(
         text: response.getMessage(),
         name: "Bot",
@@ -345,7 +220,6 @@ class _ChatPageState extends State<ChatPage> {
       );
       setState(() {
         _messages.insert(0, message);
-        print(response.getListMessage());
       });
     }
   }
