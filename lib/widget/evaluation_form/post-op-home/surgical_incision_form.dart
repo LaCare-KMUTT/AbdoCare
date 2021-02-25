@@ -33,14 +33,10 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
   final IStorageService _storageService = locator<IStorageService>();
 
   Future<void> getImage(ImageSource imageSource) async {
-    final pickedFile = await picker.getImage(source: imageSource);
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-        print('_image ====== $_image');
-      } else {
-        print('No image selected.');
-      }
+    await picker.getImage(source: imageSource).then((image) {
+      setState(() {
+        _image = File(image.path);
+      });
     });
   }
 
