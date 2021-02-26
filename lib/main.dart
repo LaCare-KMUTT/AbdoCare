@@ -52,8 +52,6 @@ class MyApp extends StatelessWidget {
                 return LoginPage();
               }
             }),
-
-        // LoginPage(),
         routes: {
           '/profile_page': (context) => ProfilePage(),
           '/login_page': (context) => LoginPage(),
