@@ -17,7 +17,6 @@ class SurgicalIncisionForm extends StatefulWidget {
 }
 
 class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
-  final picker = ImagePicker();
   var _value = false;
   var _value2 = false;
   var _value3 = false;
