@@ -25,22 +25,29 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.3
   flutter_dialogflow: ^0.1.3
-  bubble: ^1.1.9+1
-  firebase_core: ^0.5.2
+
+  #Firebase Stuffs
+  firebase_core: ^0.7.0
   rflutter_alert: ^1.1.0
-  cloud_firestore: ^0.14.3
-  cloud_functions: ^0.7.0+1
-  firebase_auth: ^0.18.3
+  cloud_firestore: ^0.16.0+1
+  cloud_functions: ^0.9.0
+  firebase_storage: "^7.0.0"
+  firebase_auth: ^0.20.1
+  #firebase_messaging Temp verison (They're fixing this may cause error on ios)
+  firebase_messaging: ^8.0.0-dev.14
+
+  bubble: ^1.1.9+1
   intl: ^0.16.1
   charts_flutter: ^0.9.0
   get_it: ^5.0.3
   syncfusion_flutter_gauges: ^18.4.33
   image_picker: ^0.6.7+21
-  shared_preferences: ^0.5.12+4
   step_progress_indicator: ^0.2.5+8
   expandable: ^4.1.4
-  firebase_messaging: ^7.0.3
   youtube_player_flutter: ^7.0.0+7
+
+  #To save local cache
+  shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   flutter_test:
