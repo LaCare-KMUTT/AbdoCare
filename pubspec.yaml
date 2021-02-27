@@ -95,7 +95,7 @@ flutter:
     - assets/training/protein2.png 
     - assets/training/sleep.png 
     - assets/training/water.png 
-    
+
   fonts:
     - family: Prompt
       fonts:

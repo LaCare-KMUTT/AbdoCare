@@ -1,7 +1,90 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ADLTable extends StatelessWidget {
+class ADLTable extends StatefulWidget {
+  @override
+  _ADLTableState createState() => _ADLTableState();
+}
+
+class _ADLTableState extends State<ADLTable> {
+  int score;
+  String topic;
+  Widget adlIcon(BuildContext context, String topic, int score) {
+    Widget child;
+    // For 2 choice
+    if (topic == "Grooming" || topic == "Bathing") {
+      if (score == 0) {
+        child = Icon(
+          Icons.sentiment_very_dissatisfied,
+          color: Colors.red,
+          size: 80,
+        );
+      } else if (score == 1) {
+        child = Icon(
+          Icons.sentiment_very_satisfied_outlined,
+          color: Colors.green,
+          size: 80,
+        );
+      }
+    }
+    // For 3 choice
+    else if (topic == "Feeding" ||
+        topic == "Toilet" ||
+        topic == "Dressing" ||
+        topic == "Stairs" ||
+        topic == "Bowels" ||
+        topic == "Bladder") {
+      if (score == 0) {
+        child = Icon(
+          Icons.sentiment_very_dissatisfied,
+          color: Colors.red,
+          size: 80,
+        );
+      } else if (score == 1) {
+        child = Icon(
+          Icons.sentiment_satisfied_outlined,
+          color: Colors.yellow[600],
+          size: 80,
+        );
+      } else if (score == 2) {
+        child = Icon(
+          Icons.sentiment_very_satisfied_outlined,
+          color: Colors.green,
+          size: 80,
+        );
+      }
+    }
+    // For 4 choice
+    else if (topic == "Transfer" || topic == "Mobility") {
+      if (score == 0) {
+        child = Icon(
+          Icons.sentiment_very_dissatisfied,
+          color: Colors.red,
+          size: 80,
+        );
+      } else if (score == 1) {
+        child = Icon(
+          Icons.sentiment_satisfied,
+          color: Colors.orange,
+          size: 80,
+        );
+      } else if (score == 2) {
+        child = Icon(
+          Icons.sentiment_satisfied_outlined,
+          color: Colors.yellow[600],
+          size: 80,
+        );
+      } else if (score == 3) {
+        child = Icon(
+          Icons.sentiment_very_satisfied_outlined,
+          color: Colors.green,
+          size: 80,
+        );
+      }
+    }
+    return Container(child: child);
+  }
+
   @override
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -53,13 +136,8 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 20),
-                    child: Icon(
-                      Icons.sentiment_very_satisfied_outlined,
-                      color: Colors.green,
-                      size: 80,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Feeding", score = 1)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -79,13 +157,8 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 20),
-                    child: Icon(
-                      Icons.sentiment_very_dissatisfied,
-                      color: Colors.red,
-                      size: 80,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Grooming", score = 1)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -105,13 +178,8 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 20),
-                    child: Icon(
-                      Icons.sentiment_satisfied_outlined,
-                      color: Colors.yellow[600],
-                      size: 80,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Transfer", score = 2)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -133,13 +201,8 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 20),
-                    child: Icon(
-                      Icons.sentiment_satisfied,
-                      color: Colors.orange,
-                      size: 80,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Toilet", score = 0)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -161,13 +224,8 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 20),
-                    child: Icon(
-                      Icons.sentiment_satisfied_outlined,
-                      color: Colors.yellow[600],
-                      size: 80,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Mobility", score = 1)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -189,13 +247,100 @@ class ADLTable extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 20),
-                    child: Icon(
-                      Icons.sentiment_very_satisfied_outlined,
-                      color: Colors.green,
-                      size: 80,
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Dressing", score = 1)),
+                ]),
+                TableRow(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "การขึ้นลงบันได 1 ชั้น",
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black),
+                        ),
+                        Image.asset(
+                          'assets/icon/Stairs.png',
+                          height: 100,
+                        ),
+                      ],
                     ),
                   ),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Stairs", score = 2)),
+                ]),
+                TableRow(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "การอาบน้ำ",
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black),
+                        ),
+                        Image.asset(
+                          'assets/icon/Bathing.png',
+                          height: 100,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Bathing", score = 0)),
+                ]),
+                TableRow(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "การกลั้นการถ่ายอุจจาระในระยะ 1 สัปดาห์ที่ผ่านมา",
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black),
+                        ),
+                        Image.asset(
+                          'assets/icon/Bowels.png',
+                          height: 100,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Bowels", score = 2)),
+                ]),
+                TableRow(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "การกลั้นปัสสาวะในระยะ 1 สัปดาห์ที่ผ่านมา",
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black),
+                        ),
+                        Image.asset(
+                          'assets/icon/Bladder.png',
+                          height: 100,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      child: adlIcon(context, topic = "Bladder", score = 1)),
                 ]),
               ],
             ),

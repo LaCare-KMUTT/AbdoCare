@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
+
 import '../widget/chatbot/buttom_nav_bar.dart';
 import '../widget/chatbot/chat_training.dart';
-import '../widget/training_information/@enum/topic_mode.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({Key key, this.title}) : super(key: key);
@@ -28,7 +28,7 @@ class _ChatPageState extends State<ChatPage> {
     "ออกกำลังกายบนเตียง",
     "การฟื้นฟูสมรรถภาพปอด",
   ];
-  var result = false;
+  bool result = false;
   final TextEditingController _textController = TextEditingController();
   List<String> optionlist = [
     "รับประทานอาหาร",
