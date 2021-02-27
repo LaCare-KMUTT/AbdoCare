@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
 
-import 'pages/appointment.dart';
+import 'pages/appointment_page.dart';
 import 'pages/chat_page.dart';
 import 'pages/dashboard.dart';
 import 'pages/evaluation_page.dart';
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
           '/login_page': (context) => LoginPage(),
           '/chat_page': (context) => ChatPage(),
           '/evaluation_page': (context) => EvaluationPage(),
-          '/appoint_page': (context) => AppointPage(),
+          '/appoint_page': (context) => AppointmentPage(),
           '/dashboard_page': (context) => DashboardPage(),
           '/training_page': (context) => TrainingPage(),
           '/passcode_page': (context) => PasscodePage(),

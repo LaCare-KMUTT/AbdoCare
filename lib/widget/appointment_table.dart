@@ -5,12 +5,12 @@ import '../services/interfaces/calculation_service_interface.dart';
 import '../services/service_locator.dart';
 import 'shared/loading_widget.dart';
 
-class ShowAppointment extends StatefulWidget {
+class AppointmentTable extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _ShowAppointmentState();
+  State<StatefulWidget> createState() => _AppointmentTableState();
 }
 
-class _ShowAppointmentState extends State<ShowAppointment> {
+class _AppointmentTableState extends State<AppointmentTable> {
   final ICalculationService _calculationService =
       locator<ICalculationService>();
 

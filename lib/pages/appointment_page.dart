@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import '../widget/chatbot/appointment_nav_bar.dart';
-import '../widget/show_appointment.dart';
 
-class AppointPage extends StatefulWidget {
-  AppointPage({Key key}) : super(key: key);
+import '../widget/appointment_table.dart';
+import '../widget/chatbot/appointment_nav_bar.dart';
+
+class AppointmentPage extends StatefulWidget {
+  AppointmentPage({Key key}) : super(key: key);
   @override
-  State<StatefulWidget> createState() => _AppointPageState();
+  State<StatefulWidget> createState() => _AppointmentPageState();
 }
 
-class _AppointPageState extends State<AppointPage> {
+class _AppointmentPageState extends State<AppointmentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ class _AppointPageState extends State<AppointPage> {
           },
         ),
       ),
-      body: ShowAppointment(),
+      body: AppointmentTable(),
       bottomNavigationBar: AppointmentNavBar(),
     );
   }
