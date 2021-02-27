@@ -121,7 +121,7 @@ class FirebaseService extends IFirebaseService {
       print('docId = $docId, $subCollection $subCollectionDoc');
     }).catchError((onError) {
       print(
-          '$onError Failed on update $data to $collection $docId $subCollection $subCollectionDoc');
+          '''$onError Failed on update $data to $collection $docId $subCollection $subCollectionDoc''');
     });
   }
 

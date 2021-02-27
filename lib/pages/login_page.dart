@@ -19,31 +19,31 @@ class _LoginPageState extends State<LoginPage> {
   bool _validateUniqueKey = false;
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'AbdoCare',
-          ),
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'AbdoCare',
         ),
-        body: Container(
-          child: ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(50, 150, 50, 0),
-                child: TextField(
-                  controller: _hnController,
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'หมายเลขผู้ป่วยนอก(HN)',
-                    errorText:
-                        _validateHN ? 'กรุณาใส่หมายเลขผู้ป่วยนอก(HN)' : null,
-                  ),
-
-                
+      ),
+      body: Container(
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(50, 150, 50, 0),
+              child: TextField(
+                controller: _hnController,
+                obscureText: true,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'หมายเลขผู้ป่วยนอก(HN)',
+                  errorText:
+                      _validateHN ? 'กรุณาใส่หมายเลขผู้ป่วยนอก(HN)' : null,
+                ),
                 inputFormatters: [UpperCaseText()],
               ),
             ),
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       } else {
                         print('login failed');
-                        _showErrorSignInDialog();
+                        _showErrorSignInDialog(context);
                       }
                     },
                   ),
@@ -129,46 +129,46 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
 
-  void _showErrorSignInDialog() {
-    var alertStyle = AlertStyle(
-      animationType: AnimationType.fromBottom,
-      descStyle: TextStyle(fontWeight: FontWeight.bold),
-      descTextAlign: TextAlign.center,
-      animationDuration: Duration(milliseconds: 400),
-      alertBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-        side: BorderSide(
-          color: Colors.grey[50],
-        ),
+void _showErrorSignInDialog(BuildContext context) {
+  var alertStyle = AlertStyle(
+    animationType: AnimationType.fromBottom,
+    descStyle: TextStyle(fontWeight: FontWeight.bold),
+    descTextAlign: TextAlign.center,
+    animationDuration: Duration(milliseconds: 400),
+    alertBorder: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+      side: BorderSide(
+        color: Colors.grey[50],
       ),
-      titleStyle: TextStyle(
+    ),
+    titleStyle: TextStyle(
+      color: Color(0xFFC37447),
+    ),
+    alertAlignment: Alignment.center,
+  );
+  Alert(
+    context: context,
+    type: AlertType.warning,
+    style: alertStyle,
+    title: "ขออภัยค่ะ",
+    content: Text(
+      'ไม่สามารถลงทะเบียนได้เนื่องจากท่านกรอกข้อมูลไม่ถูกต้องค่ะ',
+      style: Theme.of(context).textTheme.bodyText1,
+      textAlign: TextAlign.center,
+    ),
+    buttons: [
+      DialogButton(
+        child: Text(
+          "ตกลง",
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
+        onPressed: () {
+          Navigator.pop(context);
+        },
         color: Color(0xFFC37447),
       ),
-      alertAlignment: Alignment.center,
-    );
-    Alert(
-      context: context,
-      type: AlertType.warning,
-      style: alertStyle,
-      title: "ขออภัยค่ะ",
-      content: Text(
-        'ไม่สามารถลงทะเบียนได้เนื่องจากท่านกรอกข้อมูลไม่ถูกต้องค่ะ',
-        style: Theme.of(context).textTheme.bodyText1,
-        textAlign: TextAlign.center,
-      ),
-      buttons: [
-        DialogButton(
-          child: Text(
-            "ตกลง",
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Color(0xFFC37447),
-        ),
-      ],
-    ).show();
-  }
+    ],
+  ).show();
 }

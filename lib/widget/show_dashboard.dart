@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
