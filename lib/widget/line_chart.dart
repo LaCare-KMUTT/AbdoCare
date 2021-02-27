@@ -7,19 +7,19 @@ class LineChart extends StatelessWidget {
   LineChart({@required this.data2});
   final customTickFormatter = charts.BasicNumericTickFormatterSpec((value) {
     if (value == 0) {
-      return "19 ก.ย";
+      return "19 ม.ค";
     } else if (value == 1) {
-      return "20 ก.ย";
+      return "20 ม.ค";
     } else if (value == 2) {
-      return "21 ก.ย";
+      return "21 ม.ค";
     } else if (value == 3) {
-      return "22 ก.ย";
+      return "22 ม.ค";
     } else if (value == 4) {
-      return "23 ก.ย";
+      return "23 ม.ค";
     } else if (value == 5) {
-      return "24 ก.ย";
+      return "24 ม.ค";
     } else if (value == 6) {
-      return "25 ก.ย";
+      return "25 ม.ค";
     }
   });
 

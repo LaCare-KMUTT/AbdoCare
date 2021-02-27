@@ -28,6 +28,11 @@ class CalculationService extends ICalculationService {
     return bmi.toStringAsFixed(2);
   }
 
+  String calculateBML(int oldWeight, int weight) {
+    var bml = ((oldWeight - weight) / oldWeight) * 100;
+    return bml.toStringAsFixed(2);
+  }
+
   DateTime formatDate({DateTime date, String dateString}) {
     if (date == null && dateString != null) {
       date = DateTime.parse(dateString);
@@ -44,7 +49,7 @@ class CalculationService extends ICalculationService {
     var formattedString =
         formatted.replaceAll(normalYear.toString(), buddhistYear.toString());
     var formattedDate = DateTime.parse(formattedString);
-    print('parse $date to $formattedDate');
+    // print('parse $date to $formattedDate');
     return formattedDate;
   }
 
