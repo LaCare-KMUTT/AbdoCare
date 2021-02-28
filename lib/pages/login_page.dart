@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../models/login_model.dart';
-import '../services/format_text.dart';
 import '../services/service_locator.dart';
+import '../ultilities/form_utility/format_text.dart';
 import '../widget/shared/alert_style.dart';
 import 'set_pin_page.dart';
 
