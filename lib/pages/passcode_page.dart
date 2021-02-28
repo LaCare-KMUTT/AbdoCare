@@ -24,7 +24,7 @@ class _PasscodePageState extends State<PasscodePage> {
               begin: Alignment.bottomCenter,
             ),
           ),
-          child: Pin(_getPin, PinMode.login),
+          child: PinPage(_getPin, PinMode.login),
         ),
       );
 }

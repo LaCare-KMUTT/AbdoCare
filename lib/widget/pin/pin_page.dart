@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-import '../../services/interfaces/firebase_service_interface.dart';
+import '../../models/pin_view_model.dart';
 import '../../services/service_locator.dart';
+import '../shared/alert_style.dart';
 import './@enum/pin_mode.dart';
 import './keyboard_number.dart';
 import './pin_number.dart';
 
-class Pin extends StatefulWidget {
+class PinPage extends StatefulWidget {
   final PinMode mode;
 
-  Pin(this.getPin, this.mode);
+  PinPage(this.getPin, this.mode);
 
   final void Function({
     @required String strPin,
   }) getPin;
 
   @override
-  State<StatefulWidget> createState() => _PinState();
+  State<StatefulWidget> createState() => _PinPageState();
 }
 
-class _PinState extends State<Pin> {
-  final IFirebaseService _firebaseService = locator<IFirebaseService>();
+class _PinPageState extends State<PinPage> {
+  final _pinViewModel = locator<PinViewModel>();
 
   List<String> currentPin = ["", "", "", "", "", ""];
   TextEditingController pinOneController = TextEditingController();
@@ -37,7 +38,6 @@ class _PinState extends State<Pin> {
     ),
   );
   int pinIndex = 0;
-  bool isCheckPin = false;
 
   @override
   Widget build(BuildContext context) => SafeArea(
@@ -73,19 +73,19 @@ class _PinState extends State<Pin> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     KeyboardNumber(
-                      n: 1,
+                      number: 1,
                       onPressed: () {
                         pinIndexSetup("1");
                       },
                     ),
                     KeyboardNumber(
-                      n: 2,
+                      number: 2,
                       onPressed: () {
                         pinIndexSetup("2");
                       },
                     ),
                     KeyboardNumber(
-                      n: 3,
+                      number: 3,
                       onPressed: () {
                         pinIndexSetup("3");
                       },
@@ -96,19 +96,19 @@ class _PinState extends State<Pin> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     KeyboardNumber(
-                      n: 4,
+                      number: 4,
                       onPressed: () {
                         pinIndexSetup("4");
                       },
                     ),
                     KeyboardNumber(
-                      n: 5,
+                      number: 5,
                       onPressed: () {
                         pinIndexSetup("5");
                       },
                     ),
                     KeyboardNumber(
-                      n: 6,
+                      number: 6,
                       onPressed: () {
                         pinIndexSetup("6");
                       },
@@ -119,19 +119,19 @@ class _PinState extends State<Pin> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     KeyboardNumber(
-                      n: 7,
+                      number: 7,
                       onPressed: () {
                         pinIndexSetup("7");
                       },
                     ),
                     KeyboardNumber(
-                      n: 8,
+                      number: 8,
                       onPressed: () {
                         pinIndexSetup("8");
                       },
                     ),
                     KeyboardNumber(
-                      n: 9,
+                      number: 9,
                       onPressed: () {
                         pinIndexSetup("9");
                       },
@@ -149,7 +149,7 @@ class _PinState extends State<Pin> {
                       ),
                     ),
                     KeyboardNumber(
-                      n: 0,
+                      number: 0,
                       onPressed: () {
                         pinIndexSetup("0");
                       },
@@ -190,28 +190,6 @@ class _PinState extends State<Pin> {
     }
   }
 
-  Future<String> getPasscode() async {
-    var uid = _firebaseService.getUserId();
-    print('UID IN pin_page $uid');
-    var passcode = await _firebaseService.getAStringValueFromField(
-        collection: 'Users', docId: uid, field: 'password');
-    return passcode;
-  }
-
-  Future<bool> _checkPin(String pin) async {
-    var passcode = await getPasscode();
-    print('this is passcode :$passcode');
-    if (passcode == pin) {
-      print('$pin equal passcode');
-      print('passcode : $passcode');
-      return true;
-    } else {
-      print('wrong passcode : $pin');
-      print('correct is : $passcode');
-      return false;
-    }
-  }
-
   void pinIndexSetup(String text) async {
     if (pinIndex == 0) {
       pinIndex = 1;
@@ -229,7 +207,6 @@ class _PinState extends State<Pin> {
           context: context,
           type: AlertType.warning,
           title: "ยืนยันรหัสผ่าน",
-          //desc: "Flutter is more awesome with RFlutter Alert.",
           buttons: [
             DialogButton(
               child: Text(
@@ -248,7 +225,6 @@ class _PinState extends State<Pin> {
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
               onPressed: () {
-                print('hello widget.mode ${widget.mode}');
                 widget.getPin(strPin: strPin);
                 Navigator.pushReplacementNamed(context, '/profile_page');
               },
@@ -257,7 +233,7 @@ class _PinState extends State<Pin> {
           ],
         ).show();
       } else if (widget.mode == PinMode.login) {
-        isCheckPin = await _checkPin(strPin);
+        var isCheckPin = await _pinViewModel.checkPin(strPin);
         print('isCheckpin =  $isCheckPin');
         if (isCheckPin != null) {
           print('isCheckpin after check null =  $isCheckPin');
@@ -273,22 +249,6 @@ class _PinState extends State<Pin> {
   }
 
   void _showErrorSignInDialog() {
-    var alertStyle = AlertStyle(
-      animationType: AnimationType.fromBottom,
-      descStyle: TextStyle(fontWeight: FontWeight.bold),
-      descTextAlign: TextAlign.center,
-      animationDuration: Duration(milliseconds: 400),
-      alertBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-        side: BorderSide(
-          color: Colors.grey[50],
-        ),
-      ),
-      titleStyle: TextStyle(
-        color: Color(0xFFC37447),
-      ),
-      alertAlignment: Alignment.center,
-    );
     Alert(
       context: context,
       type: AlertType.warning,
