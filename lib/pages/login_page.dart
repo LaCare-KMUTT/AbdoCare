@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import '../models/login_model.dart';
 import '../services/format_text.dart';
-import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
+import '../widget/shared/alert_style.dart';
 import 'set_pin_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,11 +13,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final IFirebaseService _firebaseService = locator<IFirebaseService>();
   final _uniqueKeycontroller = TextEditingController();
   final _hnController = TextEditingController();
-  bool _validateHN = false;
-  bool _validateUniqueKey = false;
+  final LoginModel _loginModel = locator<LoginModel>();
+  final bool _validateHN = false;
+  final bool _validateUniqueKey = false;
 
   @override
   Widget build(BuildContext context) {
@@ -73,22 +74,13 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text('ลงทะเบียน',
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     onPressed: () async {
-                      setState(() {
-                        _uniqueKeycontroller.text.isEmpty ||
-                                _uniqueKeycontroller.text.length != 6
-                            ? _validateUniqueKey = true
-                            : _validateUniqueKey = false;
-
-                        _hnController.text.isEmpty ||
-                                _hnController.text.length !=
-                                    7 // TODO Define HN length.
-                            ? _validateHN = true
-                            : _validateHN = false;
-                      });
-                      if (_validateHN == false && _validateUniqueKey == false) {
-                        if (await _firebaseService.signIn(
-                            hn: _hnController.text.trim(),
-                            uniqueKey: _uniqueKeycontroller.text.trim())) {
+                      _loginModel.hn = _hnController.text.trim();
+                      _loginModel.password = _uniqueKeycontroller.text.trim();
+                      _loginModel.checkHn();
+                      _loginModel.checkUniqueKey();
+                      if (!_loginModel.validateHn &&
+                          !_loginModel.validateUniqueKey) {
+                        if (await _loginModel.signIn()) {
                           print("login success!");
                           Navigator.pushReplacement(
                             context,
@@ -132,22 +124,6 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 void _showErrorSignInDialog(BuildContext context) {
-  var alertStyle = AlertStyle(
-    animationType: AnimationType.fromBottom,
-    descStyle: TextStyle(fontWeight: FontWeight.bold),
-    descTextAlign: TextAlign.center,
-    animationDuration: Duration(milliseconds: 400),
-    alertBorder: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-      side: BorderSide(
-        color: Colors.grey[50],
-      ),
-    ),
-    titleStyle: TextStyle(
-      color: Color(0xFFC37447),
-    ),
-    alertAlignment: Alignment.center,
-  );
   Alert(
     context: context,
     type: AlertType.warning,
