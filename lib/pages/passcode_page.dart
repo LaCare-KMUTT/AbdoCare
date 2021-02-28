@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widget/pin/@enum/pin_mode.dart';
-import '../widget/pin/pin_page.dart';
+import '../widget/pin/pin.dart';
 
 class PasscodePage extends StatefulWidget {
   @override
@@ -24,7 +24,7 @@ class _PasscodePageState extends State<PasscodePage> {
               begin: Alignment.bottomCenter,
             ),
           ),
-          child: PinPage(_getPin, PinMode.login),
+          child: Pin(_getPin, PinMode.login),
         ),
       );
 }

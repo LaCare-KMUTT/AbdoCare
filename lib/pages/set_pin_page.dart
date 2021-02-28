@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/pin_view_model.dart';
 import '../services/service_locator.dart';
 import '../widget/pin/@enum/pin_mode.dart';
-import '../widget/pin/pin_page.dart';
+import '../widget/pin/pin.dart';
 
 class SetPinPage extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _SetPinPageState extends State<SetPinPage> {
               begin: Alignment.bottomCenter,
             ),
           ),
-          child: PinPage(_setPin, PinMode.setPin),
+          child: Pin(_setPin, PinMode.setPin),
         ),
       );
 }

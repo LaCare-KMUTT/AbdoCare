@@ -4,24 +4,24 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../models/pin_view_model.dart';
 import '../../services/service_locator.dart';
 import '../shared/alert_style.dart';
-import './@enum/pin_mode.dart';
-import './keyboard_number.dart';
-import './pin_number.dart';
+import '@enum/pin_mode.dart';
+import 'keyboard_number.dart';
+import 'pin_number.dart';
 
-class PinPage extends StatefulWidget {
+class Pin extends StatefulWidget {
   final PinMode mode;
 
-  PinPage(this.getPin, this.mode);
+  Pin(this.getPin, this.mode);
 
   final void Function({
     @required String strPin,
   }) getPin;
 
   @override
-  State<StatefulWidget> createState() => _PinPageState();
+  State<StatefulWidget> createState() => _PinState();
 }
 
-class _PinPageState extends State<PinPage> {
+class _PinState extends State<Pin> {
   final _pinViewModel = locator<PinViewModel>();
 
   List<String> currentPin = ["", "", "", "", "", ""];
