@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'pages/appointment_page.dart';
 import 'pages/chat_page.dart';
-import 'pages/dashboard.dart';
+import 'pages/dashboard_page.dart';
 import 'pages/evaluation_page.dart';
 import 'pages/login_page.dart';
 import 'pages/passcode_page.dart';
