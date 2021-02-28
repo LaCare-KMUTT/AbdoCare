@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widget/appointment_nav_bar.dart';
 import '../widget/appointment_table.dart';
-import '../widget/chatbot/appointment_nav_bar.dart';
 
 class AppointmentPage extends StatefulWidget {
   AppointmentPage({Key key}) : super(key: key);
