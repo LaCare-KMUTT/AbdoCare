@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../pages/rich_menu_page.dart';
+import '../rich_menu.dart';
 
 class ButtomNavBar extends StatelessWidget {
   @override
@@ -20,7 +20,7 @@ class ButtomNavBar extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 bottom:
                                     MediaQuery.of(context).viewInsets.bottom),
-                            child: RichMenuPage(),
+                            child: RichMenu(),
                           ),
                         ));
               },
