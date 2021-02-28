@@ -8,12 +8,12 @@ import 'ADL_chart.dart';
 import 'line_chart.dart';
 import 'radial_gauge_chart .dart';
 
-class ShowDashboard extends StatefulWidget {
+class Dashboard extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _ShowDashboardState();
+  State<StatefulWidget> createState() => _DashboardState();
 }
 
-class _ShowDashboardState extends State<ShowDashboard> {
+class _DashboardState extends State<Dashboard> {
   final List<PointSeries> data2 = [
     PointSeries(day: 0, point: 10),
     PointSeries(day: 1, point: 8),
