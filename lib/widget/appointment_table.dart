@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/appointment_list.dart';
+import '../models/appointment_list_model.dart';
 import '../services/interfaces/calculation_service_interface.dart';
 import '../services/service_locator.dart';
 import 'shared/loading_widget.dart';
