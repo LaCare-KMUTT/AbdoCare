@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../models/profile_model.dart';
 import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
+import '../widget/shared/loading_widget.dart';
 import './set_pin_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -17,24 +19,9 @@ class _ProfilePageState extends State<ProfilePage> {
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
   final ICalculationService _calculationService =
       locator<ICalculationService>();
+  final ProfileModel _profileModel = locator<ProfileModel>();
   var _userId;
-  var _userCollection;
   String patientTel;
-  @override
-  void initState() {
-    super.initState();
-    var userId = _firebaseService.getUserId();
-    if (userId.isNotEmpty) {
-      print('$userId is here');
-    } else {
-      print('$userId not found');
-    }
-    setState(() {
-      _userId = userId;
-      _userCollection = _firebaseService.getCollectionSnapshotByDocId(
-          collection: 'Users', docId: _userId);
-    });
-  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -43,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
           title: Text('ข้อมูลส่วนตัว'),
         ),
         body: StreamBuilder<DocumentSnapshot>(
-            stream: _userCollection,
+            stream: _profileModel.getUserProfileSnapshot(),
             builder: (context, userCollection) {
               if (!userCollection.hasData) {
                 return Center(
@@ -56,18 +43,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 );
               } else {
                 return FutureBuilder<Map<String, dynamic>>(
-                    future: _firebaseService.getLatestAnSubCollection(
-                        userId: _userId),
+                    future: _profileModel.getAnProfileMap(),
                     builder: (context, anSubCollection) {
                       if (!anSubCollection.hasData) {
-                        return Center(
-                          child: Column(
-                            children: <Widget>[
-                              CircularProgressIndicator(),
-                              Text('Loading...'),
-                            ],
-                          ),
-                        );
+                        return loadingProgress;
                       }
                       return ListView(
                         shrinkWrap: true,

@@ -11,9 +11,7 @@ class PasscodePage extends StatefulWidget {
 class _PasscodePageState extends State<PasscodePage> {
   void _getPin({
     @required String strPin,
-  }) {
-    print('dummy function _getPin');
-  }
+  }) {}
 
   @override
   Widget build(BuildContext context) => Scaffold(

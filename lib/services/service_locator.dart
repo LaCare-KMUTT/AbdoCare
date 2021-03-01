@@ -4,6 +4,7 @@ import '../models/chat_model.dart';
 import '../models/login_model.dart';
 import '../models/message_model.dart';
 import '../models/pin_view_model.dart';
+import '../models/profile_model.dart';
 import 'calculation_service.dart';
 import 'firebase_service.dart';
 import 'interfaces/calculation_service_interface.dart';
@@ -22,4 +23,5 @@ void setupServiceLocator() {
   locator.registerLazySingleton<MessageModel>(() => MessageModel());
   locator.registerLazySingleton<LoginModel>(() => LoginModel());
   locator.registerLazySingleton<PinViewModel>(() => PinViewModel());
+  locator.registerLazySingleton<ProfileModel>(() => ProfileModel());
 }
