@@ -1,12 +1,13 @@
-import 'package:AbdoCare/widget/training_information/training_menu_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../@enum/patient_state.dart';
+import '../@enum/training_topic.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
 import '../view_models/training_view_model.dart';
 import '../widget/shared/loading_widget.dart';
-import '../@enum/training_topic.dart';
+import '../widget/training_information/training_menu_card.dart';
 import 'chat_page.dart';
 
 class TrainingPage extends StatefulWidget {
@@ -66,7 +67,8 @@ class _TrainingPageState extends State<TrainingPage> {
                 builder: (context, anSubCollection) {
                   if (!anSubCollection.hasData) {
                     return loadingProgress;
-                  } else if (anSubCollection.data['state'] == "Pre-Operation") {
+                  } else if (anSubCollection.data['state'] ==
+                      enumToString(PatientState.preOperation)) {
                     return ListView(
                       shrinkWrap: true,
                       children: <Widget>[
@@ -85,7 +87,7 @@ class _TrainingPageState extends State<TrainingPage> {
                       ],
                     );
                   } else if (anSubCollection.data['state'] ==
-                      "Post-Operation@Hospital") {
+                      enumToString(PatientState.postOperationHospital)) {
                     return ListView(
                       shrinkWrap: true,
                       children: [
@@ -112,7 +114,7 @@ class _TrainingPageState extends State<TrainingPage> {
                       ],
                     );
                   } else if (anSubCollection.data['state'] ==
-                      "Post-Operation@Home") {
+                      enumToString(PatientState.postOperationHome)) {
                     return ListView(
                       shrinkWrap: true,
                       children: [
