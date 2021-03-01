@@ -112,55 +112,77 @@ class TrainingViewModel {
   TrainingViewModel();
 
   void navigateOnTopic(TrainingTopic selected, BuildContext context) {
-    if (selected == TrainingTopic.respiratoryDay0) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => RespiratoryAdviceDay0()));
-    } else if (selected == TrainingTopic.painDay01) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => PainAdviceDay0()));
-    } else if (selected == TrainingTopic.drainDay01) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DrainAdviceDay0()));
-    } else if (selected == TrainingTopic.respiratoryDay1) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => RespiratoryAdviceDay1()));
-    } else if (selected == TrainingTopic.bloodclotDay1) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => BloodclotsAdviceDay1()));
-    } else if (selected == TrainingTopic.nutritionDay1) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => NutritionAdviceDay1()));
-    } else if (selected == TrainingTopic.painDay2) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => PainAdviceDay2()));
-    } else if (selected == TrainingTopic.drainDay2) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => DrainSecretionAdviceDay2()));
-    } else if (selected == TrainingTopic.pulmanaryDay2) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => PulmonaryAdviceDay2()));
-    } else if (selected == TrainingTopic.digestiveDay2) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => DigestiveAdviceDay2()));
-    } else if (selected == TrainingTopic.behaveDay2) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BehaveAdviceDay2()));
-    } else if (selected == TrainingTopic.painHome) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => PainAdvice()));
-    } else if (selected == TrainingTopic.infectionHome ||
-        selected == TrainingTopic.infectionDay2) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => InfectionAdvice()));
-    } else if (selected == TrainingTopic.surgicalIncisionHome) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => SurgicalIncisionAdvice()));
-    } else if (selected == TrainingTopic.dailyActivityHome) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => DailyActivityAdvice()));
-    } else if (selected == TrainingTopic.foodHome) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => FoodAdvice()));
+    switch (selected) {
+      case TrainingTopic.respiratoryDay0:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => RespiratoryAdviceDay0()));
+        break;
+      case TrainingTopic.painDay01:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => PainAdviceDay0()));
+        break;
+      case TrainingTopic.drainDay01:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DrainAdviceDay0()));
+        break;
+      case TrainingTopic.respiratoryDay1:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => RespiratoryAdviceDay1()));
+        break;
+      case TrainingTopic.bloodclotDay1:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BloodclotsAdviceDay1()));
+        break;
+      case TrainingTopic.nutritionDay1:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => NutritionAdviceDay1()));
+        break;
+      case TrainingTopic.painDay2:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => PainAdviceDay2()));
+        break;
+      case TrainingTopic.drainDay2:
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DrainSecretionAdviceDay2()));
+        break;
+      case TrainingTopic.pulmanaryDay2:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PulmonaryAdviceDay2()));
+        break;
+      case TrainingTopic.digestiveDay2:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DigestiveAdviceDay2()));
+        break;
+      case TrainingTopic.behaveDay2:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BehaveAdviceDay2()));
+        break;
+      case TrainingTopic.painHome:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => PainAdvice()));
+        break;
+      case TrainingTopic.infectionHome:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => InfectionAdvice()));
+        break;
+      case TrainingTopic.infectionDay2:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => InfectionAdvice()));
+        break;
+      case TrainingTopic.surgicalIncisionHome:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => SurgicalIncisionAdvice()));
+        break;
+      case TrainingTopic.dailyActivityHome:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DailyActivityAdvice()));
+        break;
+      case TrainingTopic.foodHome:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => FoodAdvice()));
+        break;
     }
   }
 }

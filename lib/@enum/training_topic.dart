@@ -3,7 +3,6 @@ enum TrainingTopic {
   painDay01,
   drainDay01,
   respiratoryDay1,
-  drainDay1,
   bloodclotDay1,
   nutritionDay1,
   painDay2,
