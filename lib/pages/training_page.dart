@@ -1,3 +1,4 @@
+import 'package:AbdoCare/widget/shared/loading_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../services/interfaces/firebase_service_interface.dart';
@@ -211,14 +212,7 @@ class _TrainingPageState extends State<TrainingPage> {
         stream: _userCollection,
         builder: (context, userCollection) {
           if (!userCollection.hasData) {
-            return Center(
-              child: Column(
-                children: <Widget>[
-                  CircularProgressIndicator(),
-                  Text('Loading...'),
-                ],
-              ),
-            );
+            return loadingProgress;
           } else {
             return FutureBuilder<Map<String, dynamic>>(
                 future:

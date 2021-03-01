@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/pin_view_model.dart';
 import '../services/service_locator.dart';
+import '../view_models/pin_view_model.dart';
 import '../widget/pin/@enum/pin_mode.dart';
 import '../widget/pin/pin.dart';
 
