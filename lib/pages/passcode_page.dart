@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widget/pin/@enum/pin_mode.dart';
+import '../@enum/pin_mode.dart';
 import '../widget/pin/pin.dart';
 
 class PasscodePage extends StatefulWidget {

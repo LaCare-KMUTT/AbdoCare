@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import '../../@enum/pin_mode.dart';
 import '../../services/service_locator.dart';
 import '../../view_models/pin_view_model.dart';
 import '../shared/alert_style.dart';
-import '@enum/pin_mode.dart';
 import 'keyboard_number.dart';
 import 'pin_number.dart';
 

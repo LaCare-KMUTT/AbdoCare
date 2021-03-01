@@ -1,3 +1,4 @@
+import 'package:AbdoCare/view_models/training_view_model.dart';
 import 'package:get_it/get_it.dart';
 
 import '../models/chat_model.dart';
@@ -24,4 +25,5 @@ void setupServiceLocator() {
   locator.registerLazySingleton<LoginModel>(() => LoginModel());
   locator.registerLazySingleton<PinViewModel>(() => PinViewModel());
   locator.registerLazySingleton<ProfileModel>(() => ProfileModel());
+  locator.registerLazySingleton<TrainingViewModel>(() => TrainingViewModel());
 }
