@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../@enum/patient_state.dart';
 import '../@enum/training_topic.dart';
+import '../models/training_model.dart';
+import '../services/interfaces/firebase_service_interface.dart';
+import '../services/service_locator.dart';
+import '../stores/user_store.dart';
 import '../widget/training_information/post-op-home/daily_activity_advice.dart';
 import '../widget/training_information/post-op-home/food_advice.dart';
 import '../widget/training_information/post-op-home/infection_advice.dart';
@@ -17,99 +22,78 @@ import '../widget/training_information/post-op-hos-day2-7/digestive_rehabilitati
 import '../widget/training_information/post-op-hos-day2-7/drain_secretion_advice.dart';
 import '../widget/training_information/post-op-hos-day2-7/pain_advice_day2.dart';
 import '../widget/training_information/post-op-hos-day2-7/pulmanary_rehabilitation_advice.dart';
+import '../widget/training_information/training_menu_card.dart';
 
 class TrainingViewModel {
-  List<Map<String, Object>> postOpHospital = [
-    {
-      "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
-      "state": "post-op @ Hospital Day 0",
-      "selectedtopic": TrainingTopic.respiratoryDay0,
-    },
-    {
-      "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
-      "state": "post-op @ Hospital Day 0",
-      "selectedtopic": TrainingTopic.painDay01,
-    },
-    {
-      "topic": "การจัดการแผลผ่าตัดและสายระบายต่างๆ",
-      "state": "post-op @ Hospital Day 0",
-      "selectedtopic": TrainingTopic.drainDay01,
-    },
-    {
-      "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
-      "state": "post-op @ Hospital Day 1",
-      "selectedtopic": TrainingTopic.respiratoryDay1,
-    },
-    {
-      "topic": "การป้องกันการเกิดภาวะลิ่มเลือดอุดตัน",
-      "state": "post-op @ Hospital Day 1",
-      "selectedtopic": TrainingTopic.bloodclotDay1,
-    },
-    {
-      "topic": "การจัดการภาวะโภชนาการ",
-      "state": "post-op @ Hospital Day 1",
-      "selectedtopic": TrainingTopic.nutritionDay1,
-    },
-    {
-      "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
-      "state": "post-op @ Hospital Day 2",
-      "selectedtopic": TrainingTopic.painDay2,
-    },
-    {
-      "topic": "การเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
-      "state": "post-op @ Hospital Day 2",
-      "selectedtopic": TrainingTopic.infectionDay2,
-    },
-    {
-      "topic": "การเฝ้าระวังความผิดปกติของการระบายสิ่งคัดหลั่ง",
-      "state": "post-op @ Hospital Day 2",
-      "selectedtopic": TrainingTopic.drainDay2,
-    },
-    {
-      "topic": "การฟื้นฟูสมรรถภาพของปอด",
-      "state": "post-op @ Hospital Day 2",
-      "selectedtopic": TrainingTopic.pulmanaryDay2,
-    },
-    {
-      "topic": "การฟื้นฟูระบบทางเดินอาหาร",
-      "state": "post-op @ Hospital Day 2",
-      "selectedtopic": TrainingTopic.digestiveDay2,
-    },
-    {
-      "topic": "การแนะนำการปฏิบัติตัวที่เหมาะสมก่อนกลับบ้าน",
-      "state": "post-op @ Hospital Day 2",
-      "selectedtopic": TrainingTopic.behaveDay2,
-    },
-  ];
+  final _firebaseService = locator<IFirebaseService>();
+  final _trainingModel = locator<TrainingModel>();
 
-  List<Map<String, Object>> postOpHome = [
-    {
-      "topic": "การจัดการความปวดขณะพักฟื้นอยู่ที่บ้าน",
-      "state": "post-op @ Home",
-      "selectedtopic": TrainingTopic.painHome,
-    },
-    {
-      "topic": "การเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
-      "state": "post-op @ Home",
-      "selectedtopic": TrainingTopic.infectionHome,
-    },
-    {
-      "topic": "การดูแลแผลผ่าตัด",
-      "state": "post-op @ Home",
-      "selectedtopic": TrainingTopic.surgicalIncisionHome,
-    },
-    {
-      "topic": "การปฏิบัติกิจวัตรประจำวันหลังการผ่าตัด",
-      "state": "post-op @ Home",
-      "selectedtopic": TrainingTopic.dailyActivityHome,
-    },
-    {
-      "topic": "การรับประทานอาหารที่เหมาะสม",
-      "state": "post-op @ Home",
-      "selectedtopic": TrainingTopic.foodHome,
-    },
-  ];
   TrainingViewModel();
+
+  Future<Map<String, Widget>> getTrainings(BuildContext context) async {
+    String patientState;
+    List<Map<String, Object>> recomendedList = [];
+    List<Map<String, Object>> mustShowList = [];
+    List<Widget> mustShowCardList = [];
+    List<Widget> recommendedCardList = [];
+    Column mustShowToColumn = Column();
+    Column recommendedToColumn = Column();
+
+    patientState = await _firebaseService
+        .getLatestAnSubCollection(
+            userId: UserStore.getValueFromStore('storedUserId'))
+        .then((value) {
+      return value['state'];
+    });
+
+    if (patientState == enumToString(PatientState.preOperation)) {
+      mustShowList.addAll(_trainingModel.postOpHospitalList);
+      mustShowList.addAll(_trainingModel.postOpHomeList);
+    } else if (patientState ==
+        enumToString(PatientState.postOperationHospital)) {
+      mustShowList.addAll(_trainingModel.postOpHospitalList);
+      recomendedList.addAll(_trainingModel.postOpHomeList);
+    } else if (patientState == enumToString(PatientState.postOperationHome)) {
+      mustShowList.addAll(_trainingModel.postOpHomeList);
+      recomendedList.addAll(_trainingModel.postOpHospitalList);
+    }
+    for (var item in mustShowList) {
+      mustShowCardList.add(TrainingMenuCard().getTrainingCard(context, item));
+    }
+    for (var item in recomendedList) {
+      recommendedCardList
+          .add(TrainingMenuCard().getTrainingCard(context, item));
+    }
+    if (mustShowCardList != null) {
+      mustShowCardList.insert(
+          0,
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text('คำแนะนำที่ควรทราบ'),
+          ));
+
+      mustShowToColumn = Column(
+        children: mustShowCardList,
+      );
+    }
+    if (recommendedCardList != null) {
+      recommendedCardList.insert(
+          0,
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text('คำแนะนำอื่นๆ'),
+          ));
+
+      recommendedToColumn = Column(children: recommendedCardList);
+    }
+
+    Map<String, Widget> cardLists = {
+      'mustShow': mustShowToColumn,
+      'recommended': recommendedToColumn,
+    };
+
+    return cardLists;
+  }
 
   void navigateOnTopic(TrainingTopic selected, BuildContext context) {
     switch (selected) {

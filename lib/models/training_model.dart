@@ -1,7 +1,7 @@
 import '../@enum/training_topic.dart';
 
 class TrainingModel {
-  List<Map<String, Object>> postOpHospital = [
+  List<Map<String, Object>> postOpHospitalList = [
     {
       "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
       "state": "post-op @ Hospital Day 0",
@@ -64,7 +64,7 @@ class TrainingModel {
     },
   ];
 
-  List<Map<String, Object>> postOpHome = [
+  List<Map<String, Object>> postOpHomeList = [
     {
       "topic": "การจัดการความปวดขณะพักฟื้นอยู่ที่บ้าน",
       "state": "post-op @ Home",
