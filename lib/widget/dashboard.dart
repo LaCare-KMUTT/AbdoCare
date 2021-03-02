@@ -7,6 +7,7 @@ import '../services/service_locator.dart';
 import 'adl_chart.dart';
 import 'line_chart.dart';
 import 'radial_gauge_chart.dart';
+import 'shared/loading_widget.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -50,14 +51,7 @@ class _DashboardState extends State<Dashboard> {
         stream: _userCollection,
         builder: (context, userCollection) {
           if (!userCollection.hasData) {
-            return Center(
-              child: Column(
-                children: <Widget>[
-                  CircularProgressIndicator(),
-                  Text('Loading...'),
-                ],
-              ),
-            );
+            return loadingProgress;
           } else {
             return FutureBuilder<Map<String, dynamic>>(
                 future:
