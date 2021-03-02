@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class KeyboardNumber extends StatelessWidget {
-  final int n;
+  final int number;
   final Function() onPressed;
-  KeyboardNumber({this.n, this.onPressed});
+  KeyboardNumber({this.number, this.onPressed});
   @override
   Widget build(BuildContext context) => Container(
         width: 60.0,
@@ -21,7 +21,7 @@ class KeyboardNumber extends StatelessWidget {
           ),
           height: 90.0,
           child: Text(
-            "$n",
+            "$number",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 24 * MediaQuery.of(context).textScaleFactor,

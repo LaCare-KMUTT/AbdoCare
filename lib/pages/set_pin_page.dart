@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../services/interfaces/firebase_service_interface.dart';
+import '../@enum/pin_mode.dart';
 import '../services/service_locator.dart';
-import '../widget/pin/@enum/pin_mode.dart';
-import '../widget/pin/pin_page.dart';
+import '../view_models/pin_view_model.dart';
+import '../widget/pin/pin.dart';
 
 class SetPinPage extends StatefulWidget {
   @override
@@ -11,14 +11,11 @@ class SetPinPage extends StatefulWidget {
 }
 
 class _SetPinPageState extends State<SetPinPage> {
-  final IFirebaseService _firebaseService = locator<IFirebaseService>();
+  final PinViewModel _pinViewModel = locator<PinViewModel>();
   void _setPin({
     @required String strPin,
   }) {
-    _firebaseService.updateDataToCollectionField(
-        collection: 'Users',
-        docId: _firebaseService.getUserId(),
-        updateField: {'password': strPin});
+    _pinViewModel.setPin(strPin: strPin);
   }
 
   @override

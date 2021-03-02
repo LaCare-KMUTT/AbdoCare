@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../widget/evaluation_form/post-op-home/post-op-home_page.dart';
+import 'evaluation_form/post-op-home/post-op-home_page.dart';
 
-class RichMenuPage extends StatefulWidget {
+class RichMenu extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _RichMenuPageState();
+  State<StatefulWidget> createState() => _RichMenuState();
 }
 
-class _RichMenuPageState extends State<RichMenuPage> {
+class _RichMenuState extends State<RichMenu> {
   @override
   Widget build(BuildContext context) => Container(
         color: Colors.grey[900].withOpacity(0.62),

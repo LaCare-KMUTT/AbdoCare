@@ -1,3 +1,5 @@
+import '../../../@enum/patient_state.dart';
+
 class PainFormUtility {
   var _state;
   var _dayInState;
@@ -18,7 +20,7 @@ class PainFormUtility {
   bool getPainFormCriteria(int score) {
     bool result = false;
     assert(score >= 0 && score <= 10);
-    if (_state == 'Post-Operation@Hospital') {
+    if (_state == enumToString(PatientState.postOperationHospital)) {
       if (_dayInState == 0) {
         score >= 8 ? result = true : false;
       } else if (_dayInState == 1) {

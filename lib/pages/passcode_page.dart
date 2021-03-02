@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widget/pin/@enum/pin_mode.dart';
-import '../widget/pin/pin_page.dart';
+import '../@enum/pin_mode.dart';
+import '../widget/pin/pin.dart';
 
 class PasscodePage extends StatefulWidget {
   @override
@@ -11,9 +11,7 @@ class PasscodePage extends StatefulWidget {
 class _PasscodePageState extends State<PasscodePage> {
   void _getPin({
     @required String strPin,
-  }) {
-    print('dummy function _getPin');
-  }
+  }) {}
 
   @override
   Widget build(BuildContext context) => Scaffold(
