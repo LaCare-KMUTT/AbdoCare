@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
-import 'adl_chart.dart';
+import 'adl_table.dart';
 import 'line_chart.dart';
 import 'radial_gauge_chart.dart';
 import 'shared/loading_widget.dart';
