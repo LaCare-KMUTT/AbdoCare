@@ -407,20 +407,28 @@ class _ChatTrainingState extends State<ChatTraining> {
           ),
         ),
         (() {
-          if (widget.answer == "ออกกำลังกายบนเตียง") {
-            return _digestiveAdvice();
-          } else if (widget.answer == "การฟื้นฟูสมรรถภาพปอด") {
-            return _pulmonaryAdvice();
-          } else if (widget.answer == "การดูแลสายระบาย") {
-            return _drainSecretionAdvice();
-          } else if (widget.answer == "การปฎิบัติตัวที่เหมาะสมก่อนกลับบ้าน") {
-            return _behaveAdvice();
-          } else if (widget.answer == "การส่งเสริมการหายของแผล") {
-            return _infectionAdvice();
-          } else if (widget.answer == "การลุกออกจากเตียง") {
-            return _nutritionAdvice();
-          } else if (widget.answer == "การปฎิบัติกิจวัตรประจำวัน") {
-            return _dailyActivityAdvice();
+          switch (widget.answer) {
+            case "ออกกำลังกายบนเตียง":
+              return _digestiveAdvice();
+              break;
+            case "การฟื้นฟูสมรรถภาพปอด":
+              return _pulmonaryAdvice();
+              break;
+            case "การดูแลสายระบาย":
+              return _drainSecretionAdvice();
+              break;
+            case "การปฎิบัติตัวที่เหมาะสมก่อนกลับบ้าน":
+              return _behaveAdvice();
+              break;
+            case "การส่งเสริมการหายของแผล":
+              return _infectionAdvice();
+              break;
+            case "การลุกออกจากเตียง":
+              return _nutritionAdvice();
+              break;
+            case "การปฎิบัติกิจวัตรประจำวัน":
+              return _dailyActivityAdvice();
+              break;
           }
         }()),
       ]),
