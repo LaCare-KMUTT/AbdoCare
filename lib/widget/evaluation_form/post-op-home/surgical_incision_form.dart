@@ -134,26 +134,31 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                           'Choice2': _value2,
                           'Choice3': _value3,
                           'Choice4': _value4,
+                          'imgURL': '-',
                         };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'Surgical Incision',
-                                data: formDataToDB);
-                        if (_value | _value2 == true) {
-                          showAdvise1(context);
-                        }
-                        if (_value3 == true) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AdvisePage()));
-                        }
                         if (_value4 == true) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => UploadPhoto(formId)),
+                                builder: (context) =>
+                                    UploadPhoto(formDataToDB)),
                           );
+                        }
+
+                        if (_value | _value2 == true) {
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Surgical Incision',
+                              data: formDataToDB);
+                          showAdvise1(context);
+                        }
+                        if (_value3 == true) {
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Surgical Incision',
+                              data: formDataToDB);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdvisePage()));
                         } else if (_value | _value2 | _value3 | _value4 ==
                             false) {
                           alert(context);
