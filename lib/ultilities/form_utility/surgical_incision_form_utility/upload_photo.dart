@@ -118,7 +118,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
               'userId': UserStore.getValueFromStore('storedUserId'),
               'seen': false,
               'patientState': state,
-              'photoURL': imgUrl,
+              'imgURL': imgUrl,
             };
             await _firebaseService.addNotification(dataToDb);
             Navigator.of(context).pop();
