@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../@enum/evaluation_form_topic.dart';
 import '../@enum/patient_state.dart';
 import '../models/evaluation_model.dart';
+import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
 import '../stores/user_store.dart';
@@ -14,36 +15,41 @@ import '../widget/evaluation_form/post-op-home/surgical_incision_form.dart';
 class EvaluationViewModel {
   final _firebaseService = locator<IFirebaseService>();
   final _evaluationModel = locator<EvaluationModel>();
+  final ICalculationService _calculationService =
+      locator<ICalculationService>();
 
   Future<Map<String, Widget>> getevaluations(BuildContext context) async {
     String patientState;
+    var _anSubCollection;
     List<Map<String, Object>> mustShowList = [];
     List<Widget> mustShowCardList = [];
     Column mustShowToColumn = Column();
-
     patientState = await _firebaseService
         .getLatestAnSubCollection(
             userId: UserStore.getValueFromStore('storedUserId'))
         .then((value) {
       return value['state'];
     });
+    _anSubCollection = await _firebaseService.getLatestAnSubCollection(
+        userId: UserStore.getValueFromStore('storedUserId'));
+    var latestStateChange = _anSubCollection['latestStateChange'].toDate();
+    var dayInCurrentState = _calculationService.calculateDayDifference(
+        day: latestStateChange,
+        compareTo: _calculationService.formatDate(date: DateTime.now()));
 
     if (patientState == enumToString(PatientState.preOperation)) {
       //mustShowList.addAll(_trainingModel.postOpHospitalList);
     } else if (patientState ==
         enumToString(PatientState.postOperationHospital)) {
-      // if (_dayInState == 0) {
-      //   mustShowList.addAll(_evaluationModel.postOpHospitalDay0List);
-      // }
-      // if (_dayInState == 1) {
-      //   mustShowList.addAll(_evaluationModel.postOpHospitalDay1List);
-      // }
-      // if (_dayInState >= 2 && _dayInState <= 7) {
-      //   mustShowList.addAll(_evaluationModel.postOpHospitalDay2List);
-      // }
-      mustShowList.addAll(_evaluationModel.postOpHospitalDay0List);
-      mustShowList.addAll(_evaluationModel.postOpHospitalDay1List);
-      mustShowList.addAll(_evaluationModel.postOpHospitalDay2List);
+      if (dayInCurrentState == 0) {
+        mustShowList.addAll(_evaluationModel.postOpHospitalDay0List);
+      }
+      if (dayInCurrentState == 1) {
+        mustShowList.addAll(_evaluationModel.postOpHospitalDay1List);
+      }
+      if (dayInCurrentState >= 2) {
+        mustShowList.addAll(_evaluationModel.postOpHospitalDay2List);
+      }
     } else if (patientState == enumToString(PatientState.postOperationHome)) {
       mustShowList.addAll(_evaluationModel.postOpHomeList);
     }
