@@ -1,9 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
-import 'post-op-home_page.dart';
 
 class AbnormalSymptomForm extends StatefulWidget {
   @override
@@ -30,10 +28,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
           ),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PostOpHomePage()),
-            );
+            Navigator.pushNamed(context, '/evaluation_page');
           },
         ),
       ),
@@ -216,10 +211,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
             ),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PostOpHomePage()),
-            );
+            Navigator.pushNamed(context, '/evaluation_page');
           },
         ),
       ],
@@ -263,10 +255,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
             ),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PostOpHomePage()),
-            );
+            Navigator.pushNamed(context, '/evaluation_page');
           },
         ),
       ],

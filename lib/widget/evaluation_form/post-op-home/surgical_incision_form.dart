@@ -6,7 +6,6 @@ import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../ultilities/form_utility/surgical_incision_form_utility/surgical_incision_advise.dart';
 import '../../../ultilities/form_utility/surgical_incision_form_utility/upload_photo.dart';
-import 'post-op-home_page.dart';
 
 class SurgicalIncisionForm extends StatefulWidget {
   @override
@@ -34,10 +33,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
             ),
             tooltip: 'กลับ',
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PostOpHomePage()),
-              );
+              Navigator.pushNamed(context, '/evaluation_page');
             },
           ),
         ),
@@ -216,10 +212,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
             ),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PostOpHomePage()),
-            );
+            Navigator.pushNamed(context, '/evaluation_page');
           },
         ),
       ],

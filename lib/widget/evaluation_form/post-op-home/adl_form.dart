@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
-import 'post-op-home_page.dart';
 
 class ADLForm extends StatefulWidget {
   @override
@@ -63,10 +62,7 @@ class _ADLFormState extends State<ADLForm> {
           icon: const Icon(Icons.arrow_back_ios),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PostOpHomePage()),
-            );
+            Navigator.pushNamed(context, '/evaluation_page');
           },
         ),
       ),
@@ -1815,10 +1811,7 @@ void showAlertDialog(BuildContext context) {
       ),
     ),
     onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => PostOpHomePage()),
-      );
+      Navigator.pushNamed(context, '/evaluation_page');
     },
   );
 
