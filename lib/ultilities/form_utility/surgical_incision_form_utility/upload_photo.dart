@@ -10,17 +10,18 @@ import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
 
 class UploadPhoto extends StatefulWidget {
-  final String fromId;
-  UploadPhoto(this.fromId);
+  // final String fromId;
+  final Map<String, dynamic> formDataToDB;
+  UploadPhoto(this.formDataToDB);
   @override
-  _UploadPhotoState createState() => _UploadPhotoState(fromId);
+  _UploadPhotoState createState() => _UploadPhotoState(formDataToDB);
 }
 
 class _UploadPhotoState extends State<UploadPhoto> {
   File _image;
-  final String formId;
+  final Map<String, dynamic> formDataToDB;
   final picker = ImagePicker();
-  _UploadPhotoState(this.formId);
+  _UploadPhotoState(this.formDataToDB);
   var _anSubCollection;
 
   final _firebaseService = locator<IFirebaseService>();
@@ -108,20 +109,28 @@ class _UploadPhotoState extends State<UploadPhoto> {
             ),
           ),
           onPressed: () async {
-            String imgUrl =
-                await _storageService.uploadImageToFirebase(imageFile: _image);
-            var state = _anSubCollection['state'];
-            var dataToDb = {
-              'creation': _calculationService.formatDate(date: DateTime.now()),
-              'formName': 'Surgical Incision',
-              'formId': formId,
-              'userId': UserStore.getValueFromStore('storedUserId'),
-              'seen': false,
-              'patientState': state,
-              'photoURL': imgUrl,
-            };
-            await _firebaseService.addNotification(dataToDb);
-            Navigator.of(context).pop();
+            if (_image != null) {
+              String imgUrl = await _storageService.uploadImageToFirebase(
+                  imageFile: _image);
+              formDataToDB['imgURL'] = imgUrl;
+              print('printFormDataToDb in upload_photo $formDataToDB');
+              var formId = await _firebaseService.addDataToFormsCollection(
+                  formName: 'Surgical Incision', data: formDataToDB);
+
+              var state = _anSubCollection['state'];
+              var dataToDb = {
+                'creation':
+                    _calculationService.formatDate(date: DateTime.now()),
+                'formName': 'Surgical Incision',
+                'formId': formId,
+                'userId': UserStore.getValueFromStore('storedUserId'),
+                'seen': false,
+                'patientState': state,
+                'imgURL': imgUrl,
+              };
+              await _firebaseService.addNotification(dataToDb);
+              Navigator.of(context).pop();
+            }
           },
         ),
       ],
