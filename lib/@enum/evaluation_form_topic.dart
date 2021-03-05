@@ -1,0 +1,20 @@
+enum EvaluationFormTopic {
+  recoveryreadiness0,
+  respiratory0,
+  drain0,
+  pain0,
+  urology0,
+  respiratory1,
+  drain1,
+  pain1,
+  bloodclot1,
+  nutrition1,
+  pain2,
+  infection2,
+  pulmanary2,
+  digestive2,
+  painHome,
+  surgicalIncisionHome,
+  abnormalSymptomHome,
+  adlHome
+}
