@@ -190,6 +190,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('10 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: '10 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value7,
                               onChanged: (value) {
                                 setState(() {
@@ -201,6 +202,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('น้อยกว่า 10 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: 'น้อยกว่า 10 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value7,
                               onChanged: (value) {
                                 setState(() {
@@ -212,6 +214,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ไม่ปฏิบัติ'),
                           leading: Radio(
                               value: 'ไม่ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value7,
                               onChanged: (value) {
                                 setState(() {
@@ -232,6 +235,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('5 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: '5 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value8,
                               onChanged: (value) {
                                 setState(() {
@@ -243,6 +247,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('น้อยกว่า 5 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: 'น้อยกว่า 5 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value8,
                               onChanged: (value) {
                                 setState(() {
@@ -254,6 +259,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ไม่ปฏิบัติ'),
                           leading: Radio(
                               value: 'ไม่ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value8,
                               onChanged: (value) {
                                 setState(() {
@@ -274,6 +280,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('5 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: '5 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value9,
                               onChanged: (value) {
                                 setState(() {
@@ -285,6 +292,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('น้อยกว่า 5 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: 'น้อยกว่า 5 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value9,
                               onChanged: (value) {
                                 setState(() {
@@ -296,6 +304,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ไม่ปฏิบัติ'),
                           leading: Radio(
                               value: 'ไม่ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value9,
                               onChanged: (value) {
                                 setState(() {
@@ -316,6 +325,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('5 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: '5 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value10,
                               onChanged: (value) {
                                 setState(() {
@@ -327,6 +337,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('น้อยกว่า 5 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: 'น้อยกว่า 5 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value10,
                               onChanged: (value) {
                                 setState(() {
@@ -338,6 +349,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ไม่ปฏิบัติ'),
                           leading: Radio(
                               value: 'ไม่ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value10,
                               onChanged: (value) {
                                 setState(() {
@@ -358,6 +370,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('10 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: '10 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value11,
                               onChanged: (value) {
                                 setState(() {
@@ -369,6 +382,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('น้อยกว่า 10 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: 'น้อยกว่า 10 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value11,
                               onChanged: (value) {
                                 setState(() {
@@ -380,6 +394,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ไม่ปฏิบัติ'),
                           leading: Radio(
                               value: 'ไม่ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value11,
                               onChanged: (value) {
                                 setState(() {
@@ -400,6 +415,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('10 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: '10 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value12,
                               onChanged: (value) {
                                 setState(() {
@@ -411,6 +427,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('น้อยกว่า 10 ครั้ง/รอบ/ชั่วโมง'),
                           leading: Radio(
                               value: 'น้อยกว่า 10 ครั้ง/รอบ/ชั่วโมง',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value12,
                               onChanged: (value) {
                                 setState(() {
@@ -422,6 +439,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ไม่ปฏิบัติ'),
                           leading: Radio(
                               value: 'ไม่ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value12,
                               onChanged: (value) {
                                 setState(() {
@@ -442,6 +460,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ปฏิบัติ'),
                           leading: Radio(
                               value: 'ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value13,
                               onChanged: (value) {
                                 setState(() {
@@ -453,6 +472,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ไม่ปฏิบัติ'),
                           leading: Radio(
                               value: 'ไม่ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value13,
                               onChanged: (value) {
                                 setState(() {
@@ -473,6 +493,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ปฏิบัติ'),
                           leading: Radio(
                               value: 'ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value14,
                               onChanged: (value) {
                                 setState(() {
@@ -484,6 +505,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           title: const Text('ไม่ปฏิบัติ'),
                           leading: Radio(
                               value: 'ไม่ปฏิบัติ',
+                              activeColor: Color(0xFFC37447),
                               groupValue: _value14,
                               onChanged: (value) {
                                 setState(() {
