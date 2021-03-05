@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widget/evaluation_form/post-op-home/post-op-home_page.dart';
-import '../widget/evaluation_form/pre-op/pre-op_page.dart';
+import '../services/service_locator.dart';
+import '../view_models/evaluation_view_model.dart';
+import '../widget/shared/loading_widget.dart';
+import 'chat_page.dart';
 
 class EvaluationPage extends StatefulWidget {
   @override
@@ -8,72 +10,43 @@ class EvaluationPage extends StatefulWidget {
 }
 
 class _EvaluationPageState extends State<EvaluationPage> {
+  final EvaluationViewModel _evaluationViewModel =
+      locator<EvaluationViewModel>();
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('แบบประเมินพัฒนาการของผู้ป่วย'),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 30,
-            ),
-            tooltip: 'กลับ',
-            onPressed: () {
-              Navigator.pushNamed(context, '/chat_page');
-            },
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('แบบประเมินพัฒนาการของผู้ป่วย'),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
           ),
+          tooltip: 'กลับ',
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ChatPage()),
+            );
+          },
         ),
-        body: Container(
-          child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 100, right: 100),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PreOpPage()),
-                    );
-                  },
-                  child: Text('Pre-op'),
+      ),
+      body: FutureBuilder<Map<String, Widget>>(
+          future: _evaluationViewModel.getevaluations(context),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return loadingProgress;
+            }
+            return ListView(
+              shrinkWrap: true,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: snapshot.data['mustShow'],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 100, right: 100),
-                child: RaisedButton(
-                  onPressed: () {},
-                  child: Text('Post-op @ hospital Day 0'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 100, right: 100),
-                child: RaisedButton(
-                  onPressed: () {},
-                  child: Text('Post-op @ hospital Day 1'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 100, right: 100),
-                child: RaisedButton(
-                  onPressed: () {},
-                  child: Text('Post-op @ hospital Day 2-7'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 100, right: 100),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PostOpHomePage()),
-                    );
-                  },
-                  child: Text('Post-op @ home Day 7-30'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+              ],
+            );
+          }),
+    );
+  }
 }
