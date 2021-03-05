@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:AbdoCare/services/interfaces/calculation_service_interface.dart';
+import 'package:AbdoCare/stores/user_store.dart';
 import 'package:AbdoCare/widget/training_information/post-op-hos-day2-7/digestive_rehabilitation_advice.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -28,6 +30,21 @@ class _DigestiveFormState extends State<DigestiveForm> {
   String result;
 
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
+  final ICalculationService _calculationService =
+      locator<ICalculationService>();
+  var _anSubCollection;
+  @override
+  void initState() {
+    super.initState();
+    initData();
+  }
+
+  void initData() async {
+    _anSubCollection = await _firebaseService.getLatestAnSubCollection(
+        userId: UserStore.getValueFromStore('storedUserId'));
+    print('_anSubCollectionHere $_anSubCollection');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -492,7 +509,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                     child: Text('สำเร็จ',
                         style: TextStyle(fontSize: 18, color: Colors.white)),
                     color: Color(0xFF2ED47A),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_value1 |
                                   _value2 |
                                   _value3 |
@@ -526,8 +543,9 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           'Exercise7': _value13,
                           'Exercise8': _value14,
                         };
-                        _firebaseService.addDataToFormsCollection(
-                            formName: 'Digestive', data: formDataToDB);
+                        var formId =
+                            await _firebaseService.addDataToFormsCollection(
+                                formName: 'Digestive', data: formDataToDB);
                         print("finish add data");
                         if (_value1 == true &&
                             _value2 == false &&
@@ -548,6 +566,18 @@ class _DigestiveFormState extends State<DigestiveForm> {
                         } else {
                           result = "NoPass";
                           showAdvise1(context, result);
+                          var creation = _calculationService.formatDate(
+                              date: DateTime.now());
+                          var patientState = _anSubCollection['state'];
+                          _firebaseService.addNotification({
+                            'formName': 'Digestive',
+                            'formId': formId,
+                            'userId':
+                                UserStore.getValueFromStore('storedUserId'),
+                            'creation': creation,
+                            'patientState': patientState,
+                            'seen': false,
+                          });
                         }
                       }
                     }),
