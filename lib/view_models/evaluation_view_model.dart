@@ -11,6 +11,7 @@ import '../widget/evaluation_form/post-op-home/abnormal_symptom_form.dart';
 import '../widget/evaluation_form/post-op-home/adl_form.dart';
 import '../widget/evaluation_form/post-op-home/pain_form.dart';
 import '../widget/evaluation_form/post-op-home/surgical_incision_form.dart';
+import '../widget/evaluation_form/post-op-hos-day2-7/digestive_form.dart';
 
 class EvaluationViewModel {
   final _firebaseService = locator<IFirebaseService>();
@@ -131,7 +132,7 @@ class EvaluationViewModel {
         break;
       case EvaluationFormTopic.digestive2:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
+            context, MaterialPageRoute(builder: (context) => DigestiveForm()));
         break;
       case EvaluationFormTopic.painHome:
         Navigator.push(
