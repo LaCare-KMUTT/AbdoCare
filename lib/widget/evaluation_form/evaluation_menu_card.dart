@@ -26,14 +26,26 @@ class EvaluationMenuCard {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Icon(
-                        //TODO when completed the evaluation form.
-                        //Icons.check_box_outline_blank,
-                        //color: Colors.grey,
-                        Icons.check_box,
-                        size: 40.0,
-                        color: Colors.green,
-                      ),
+                      child: (() {
+                        //Hard code for set the evaluation form check box
+                        int check = 0;
+                        //When evaluation form complete
+                        if (check == 0) {
+                          return Icon(
+                            Icons.check_box,
+                            color: Colors.green,
+                            size: 40.0,
+                          );
+                        }
+                        //When evaluation form incomplete
+                        else {
+                          return Icon(
+                            Icons.check_box_outline_blank,
+                            color: Colors.grey,
+                            size: 40.0,
+                          );
+                        }
+                      }()),
                     ),
                     Expanded(
                       child: Container(
