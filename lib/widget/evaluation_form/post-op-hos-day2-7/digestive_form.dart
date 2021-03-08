@@ -1,11 +1,11 @@
 import 'dart:ui';
-import 'package:AbdoCare/services/interfaces/calculation_service_interface.dart';
-import 'package:AbdoCare/stores/user_store.dart';
-import 'package:AbdoCare/widget/training_information/post-op-hos-day2-7/digestive_rehabilitation_advice.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
+import '../../../stores/user_store.dart';
+import '../../training_information/post-op-hos-day2-7/digestive_rehabilitation_advice.dart';
 
 class DigestiveForm extends StatefulWidget {
   @override
@@ -568,7 +568,6 @@ class _DigestiveFormState extends State<DigestiveForm> {
                         var formId =
                             await _firebaseService.addDataToFormsCollection(
                                 formName: 'Digestive', data: formDataToDB);
-                        print("finish add data");
                         if (_value1 == true &&
                             _value2 == false &&
                             _value3 == false &&
