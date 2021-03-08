@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../@enum/evaluation_form_topic.dart';
 import '../@enum/patient_state.dart';
 import '../models/evaluation_model.dart';
@@ -11,6 +12,8 @@ import '../widget/evaluation_form/post-op-home/abnormal_symptom_form.dart';
 import '../widget/evaluation_form/post-op-home/adl_form.dart';
 import '../widget/evaluation_form/post-op-home/pain_form.dart';
 import '../widget/evaluation_form/post-op-home/surgical_incision_form.dart';
+import '../widget/evaluation_form/post-op-hos-day1/blood_clot_form.dart';
+import '../widget/evaluation_form/post-op-hos-day1/nutrition_form.dart';
 import '../widget/evaluation_form/post-op-hos-day2-7/digestive_form.dart';
 import '../widget/evaluation_form/post-op-hos-day2-7/infection_form.dart';
 import '../widget/evaluation_form/post-op-hos-day2-7/pulmanary_form.dart';
@@ -46,6 +49,8 @@ class EvaluationViewModel {
         enumToString(PatientState.postOperationHospital)) {
       if (dayInCurrentState == 0) {
         mustShowList.addAll(_evaluationModel.postOpHospitalDay0List);
+
+        mustShowList.addAll(_evaluationModel.postOpHospitalDay1List);
       }
       if (dayInCurrentState == 1) {
         mustShowList.addAll(_evaluationModel.postOpHospitalDay1List);
@@ -110,17 +115,13 @@ class EvaluationViewModel {
         break;
       case EvaluationFormTopic.bloodclot1:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
+            context, MaterialPageRoute(builder: (context) => BloodClotForm()));
         break;
       case EvaluationFormTopic.nutrition1:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
+            context, MaterialPageRoute(builder: (context) => NutritionForm()));
         break;
       case EvaluationFormTopic.pain2:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
-        break;
-      case EvaluationFormTopic.painHome:
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => PainForm()));
         break;
