@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../@enum/evaluation_form_topic.dart';
 import '../@enum/patient_state.dart';
 import '../models/evaluation_model.dart';
@@ -13,6 +12,7 @@ import '../widget/evaluation_form/post-op-home/adl_form.dart';
 import '../widget/evaluation_form/post-op-home/pain_form.dart';
 import '../widget/evaluation_form/post-op-home/surgical_incision_form.dart';
 import '../widget/evaluation_form/post-op-hos-day1/blood_clot_form.dart';
+import '../widget/evaluation_form/post-op-hos-day1/drain_form.dart';
 import '../widget/evaluation_form/post-op-hos-day1/nutrition_form.dart';
 import '../widget/evaluation_form/post-op-hos-day2-7/digestive_form.dart';
 import '../widget/evaluation_form/post-op-hos-day2-7/infection_form.dart';
@@ -49,8 +49,6 @@ class EvaluationViewModel {
         enumToString(PatientState.postOperationHospital)) {
       if (dayInCurrentState == 0) {
         mustShowList.addAll(_evaluationModel.postOpHospitalDay0List);
-
-        mustShowList.addAll(_evaluationModel.postOpHospitalDay1List);
       }
       if (dayInCurrentState == 1) {
         mustShowList.addAll(_evaluationModel.postOpHospitalDay1List);
@@ -107,7 +105,7 @@ class EvaluationViewModel {
         break;
       case EvaluationFormTopic.drain1:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
+            context, MaterialPageRoute(builder: (context) => DrainForm()));
         break;
       case EvaluationFormTopic.pain1:
         Navigator.push(
