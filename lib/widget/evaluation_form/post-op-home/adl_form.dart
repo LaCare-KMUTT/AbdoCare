@@ -127,7 +127,7 @@ class _ADLFormState extends State<ADLForm> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Text(
-                              'รับประทานอาหารเมื่อเตรียมสำรับไว้ให้เรียบร้อยต่อหน้า',
+                              '''รับประทานอาหารเมื่อเตรียมสำรับไว้ให้เรียบร้อยต่อหน้า''',
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ),
@@ -143,7 +143,7 @@ class _ADLFormState extends State<ADLForm> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                    "ไม่สามารถตักอาหารเข้าปากได้ ต้องมีคนป้อนให้"),
+                                    """ไม่สามารถตักอาหารเข้าปากได้ ต้องมีคนป้อนให้"""),
                               ],
                             ),
                           ),
@@ -176,9 +176,9 @@ class _ADLFormState extends State<ADLForm> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                    "ตักอาหารเองได้แต่ต้องมีคนช่วย เช่น ช่วยใช้"),
+                                    '''ตักอาหารเองได้แต่ต้องมีคนช่วย เช่น ช่วยใช้'''),
                                 Text(
-                                    'ช้อนตักเตรียมไว้ให้หรือตัดเป็นเล็กๆไว้ล่วงหน้า')
+                                    '''ช้อนตักเตรียมไว้ให้หรือตัดเป็นเล็กๆไว้ล่วงหน้า''')
                               ],
                             ),
                           ),
@@ -298,7 +298,7 @@ class _ADLFormState extends State<ADLForm> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Text(
-                              'ล้างหน้า หวีผม แปรงฟัน โกนหนวด ในระยะเวลา 24 - 28 ชั่วโมงที่ผ่านมา',
+                              '''ล้างหน้า หวีผม แปรงฟัน โกนหนวด ในระยะเวลา 24 - 28 ชั่วโมงที่ผ่านมา''',
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ),
@@ -345,7 +345,7 @@ class _ADLFormState extends State<ADLForm> {
                               children: [
                                 Text("ทำเองได้"),
                                 Text(
-                                    "(รวมทั้งที่ทำได้เองถ้าเตรียมอุปกรณ์ไว้ให้)"),
+                                    '''(รวมทั้งที่ทำได้เองถ้าเตรียมอุปกรณ์ไว้ให้)'''),
                               ],
                             ),
                           ),
@@ -358,12 +358,12 @@ class _ADLFormState extends State<ADLForm> {
                           backgroundColor: Colors.white,
                           selectedColor: Color(0xffE5FBEE),
                           selected: selectedChoice2 ==
-                              "ทำเองได้(รวมทั้งที่ทำได้เองถ้าเตรียมอุปกรณ์ไว้ให้)",
+                              '''ทำเองได้(รวมทั้งที่ทำได้เองถ้าเตรียมอุปกรณ์ไว้ให้)''',
                           onSelected: (selected2) {
                             setState(() {
                               score2 = 1;
                               selectedChoice2 =
-                                  "ทำเองได้(รวมทั้งที่ทำได้เองถ้าเตรียมอุปกรณ์ไว้ให้)";
+                                  '''ทำเองได้(รวมทั้งที่ทำได้เองถ้าเตรียมอุปกรณ์ไว้ให้)''';
                               print(selectedChoice2);
                             });
                           },
@@ -483,7 +483,7 @@ class _ADLFormState extends State<ADLForm> {
                                 Text(
                                     "ต้องการความช่วยเหลืออย่างมากจึงจะนั่งได้"),
                                 Text(
-                                    "เช่นต้องช่วยพยุงหรือดันขึ้นมาจึงจะนั่งอยู่ได้"),
+                                    """เช่นต้องช่วยพยุงหรือดันขึ้นมาจึงจะนั่งอยู่ได้"""),
                               ],
                             ),
                           ),
@@ -537,7 +537,7 @@ class _ADLFormState extends State<ADLForm> {
                             setState(() {
                               score3 = 2;
                               selectedChoice3 =
-                                  "ต้องการความช่วยเหลือบ้างเช่น ช่วยพยุงเล็กน้อย";
+                                  """ต้องการความช่วยเหลือบ้างเช่น ช่วยพยุงเล็กน้อย""";
                               print(selectedChoice3);
                             });
                           },
@@ -716,7 +716,7 @@ class _ADLFormState extends State<ADLForm> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                    "ช่วยตัวเองได้ดี ขึ้นนั่งและลงจากโถส้วมเองได้"),
+                                    """ช่วยตัวเองได้ดี ขึ้นนั่งและลงจากโถส้วมเองได้"""),
                                 Text("ทำความสะอาดได้เรียบร้อยหลังจากเสร็จธุระ")
                               ],
                             ),
@@ -848,7 +848,7 @@ class _ADLFormState extends State<ADLForm> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                    "ต้องใช้รถเข็นช่วยตัวเองให้เคลื่อนที่ได้เอง"),
+                                    """ต้องใช้รถเข็นช่วยตัวเองให้เคลื่อนที่ได้เอง"""),
                                 Text('และจะต้องเข้าออกมุมห้องหรือประตูได้')
                               ],
                             ),
@@ -1081,7 +1081,7 @@ class _ADLFormState extends State<ADLForm> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                    "ช่วยตัวเองได้ดี (รวมทั้งการติดกระดุม รูดซิบ"),
+                                    """ช่วยตัวเองได้ดี (รวมทั้งการติดกระดุม รูดซิบ"""),
                                 Text(
                                     "หรือใช้เสื้อผ้าที่ดัดแปลงให้เหมาะสมก็ได้)")
                               ],
@@ -1477,7 +1477,7 @@ class _ADLFormState extends State<ADLForm> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                    "กลั้นไม่ได้ หรือต้องการการสวนอุจจาระอยู่เสมอ"),
+                                    """กลั้นไม่ได้ หรือต้องการการสวนอุจจาระอยู่เสมอ"""),
                               ],
                             ),
                           ),
@@ -1494,7 +1494,7 @@ class _ADLFormState extends State<ADLForm> {
                             setState(() {
                               score9 = 0;
                               selectedChoice9 =
-                                  "กลั้นไม่ได้ หรือต้องการการสวนอุจจาระอยู่เสมอ";
+                                  """กลั้นไม่ได้ หรือต้องการการสวนอุจจาระอยู่เสมอ""";
                               print(selectedChoice9);
                             });
                           },
@@ -1676,7 +1676,7 @@ class _ADLFormState extends State<ADLForm> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                    "กลั้นไม่ได้บางครั้ง (เป็นน้อยกว่าวันละ1ครั้ง)"),
+                                    """กลั้นไม่ได้บางครั้ง (เป็นน้อยกว่าวันละ1ครั้ง)"""),
                               ],
                             ),
                           ),
@@ -1695,7 +1695,7 @@ class _ADLFormState extends State<ADLForm> {
                             setState(() {
                               score10 = 1;
                               selectedChoice10 =
-                                  "กลั้นไม่ได้บางครั้ง (เป็นน้อยกว่าวันละ1ครั้ง)";
+                                  """กลั้นไม่ได้บางครั้ง (เป็นน้อยกว่าวันละ1ครั้ง)""";
                               print(selectedChoice10);
                             });
                           },
