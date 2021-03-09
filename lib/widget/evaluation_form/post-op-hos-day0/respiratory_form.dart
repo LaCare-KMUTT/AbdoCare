@@ -5,14 +5,14 @@ import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
-import '../../training_information/post-op-hos-day1/respiratory_advice.dart';
+import '../../training_information/post-op-hos-day0/respiratory_advice.dart';
 
-class RespiratoryDay1Form extends StatefulWidget {
+class RespiratoryDay0Form extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _RespiratoryDay1FormState();
+  State<StatefulWidget> createState() => _RespiratoryDay0FormState();
 }
 
-class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
+class _RespiratoryDay0FormState extends State<RespiratoryDay0Form> {
   var _value1;
   var _value2;
   var _value3;
@@ -42,7 +42,7 @@ class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('ภาวะแทรกซ้อนระบบทางเดินหายใจ'),
+        title: Text('ระบบทางเดินหายใจหลังผ่าตัด'),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -73,7 +73,7 @@ class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
                           child: YoutubePlayer(
                             controller: YoutubePlayerController(
                               initialVideoId: YoutubePlayer.convertUrlToId(
-                                  "https://youtu.be/5Vw4KJrLqTo"),
+                                  "https://youtu.be/ih-dgzAsAdg"),
                               flags: YoutubePlayerFlags(autoPlay: false),
                             ),
                             showVideoProgressIndicator: true,
@@ -87,7 +87,7 @@ class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
                         Row(
                           children: [
                             Text(
-                              '1. นอนท่าศีรษะสูง 45° – 60°',
+                              '1. นอนท่าศีรษะสูง 30° – 45°',
                               style: Theme.of(context).textTheme.bodyText1,
                               textAlign: TextAlign.left,
                             ),
@@ -473,7 +473,7 @@ class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => RespiratoryAdviceDay1()),
+              MaterialPageRoute(builder: (context) => RespiratoryAdviceDay0()),
             );
           },
         ),
