@@ -11,6 +11,8 @@ import '../widget/evaluation_form/post-op-home/abnormal_symptom_form.dart';
 import '../widget/evaluation_form/post-op-home/adl_form.dart';
 import '../widget/evaluation_form/post-op-home/pain_form.dart';
 import '../widget/evaluation_form/post-op-home/surgical_incision_form.dart';
+import '../widget/evaluation_form/post-op-hos-day0/respiratory_form.dart';
+import '../widget/evaluation_form/post-op-hos-day0/urology_form.dart';
 import '../widget/evaluation_form/post-op-hos-day1/blood_clot_form.dart';
 import '../widget/evaluation_form/post-op-hos-day1/drain_form.dart';
 import '../widget/evaluation_form/post-op-hos-day1/nutrition_form.dart';
@@ -80,17 +82,13 @@ class EvaluationViewModel {
 
   void navigateOnTopic(EvaluationFormTopic selected, BuildContext context) {
     switch (selected) {
-      case EvaluationFormTopic.recoveryreadiness0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
-        break;
       case EvaluationFormTopic.respiratory0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => RespiratoryDay0Form()));
         break;
       case EvaluationFormTopic.drain0:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
+            context, MaterialPageRoute(builder: (context) => DrainForm()));
         break;
       case EvaluationFormTopic.pain0:
         Navigator.push(
@@ -98,11 +96,11 @@ class EvaluationViewModel {
         break;
       case EvaluationFormTopic.urology0:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
+            context, MaterialPageRoute(builder: (context) => UrologyForm()));
         break;
       case EvaluationFormTopic.respiratory1:
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => RespiratoryForm()));
+            MaterialPageRoute(builder: (context) => RespiratoryDay1Form()));
         break;
       case EvaluationFormTopic.drain1:
         Navigator.push(

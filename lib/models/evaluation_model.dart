@@ -3,10 +3,6 @@ import '../@enum/evaluation_form_topic.dart';
 class EvaluationModel {
   List<Map<String, Object>> postOpHospitalDay0List = [
     {
-      "formname": "แบบประเมินความพร้อมการฟื้นสภาพหลังผ่าตัด",
-      "selectedform": EvaluationFormTopic.recoveryreadiness0,
-    },
-    {
       "formname": "แบบประเมินระบบทางเดินหายใจหลังผ่าตัด",
       "selectedform": EvaluationFormTopic.respiratory0,
     },

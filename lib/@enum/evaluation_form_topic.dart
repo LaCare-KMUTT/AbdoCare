@@ -1,5 +1,4 @@
 enum EvaluationFormTopic {
-  recoveryreadiness0,
   respiratory0,
   drain0,
   pain0,
