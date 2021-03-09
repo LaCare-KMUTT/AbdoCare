@@ -402,7 +402,7 @@ class _ChatTrainingState extends State<ChatTraining> {
       child: Row(children: [
         Container(
           child: CircleAvatar(
-            child: Image.asset("assets/robot.jpg"),
+            child: Image.asset("assets/nurse.png"),
             backgroundColor: Colors.transparent,
           ),
         ),
