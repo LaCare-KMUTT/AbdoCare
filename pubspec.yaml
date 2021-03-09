@@ -70,8 +70,6 @@ flutter_icons:
 flutter:
   assets:
     - assets/image.png
-    - assets/robot.jpg
-    - assets/default.jpg
     - assets/abdo-bot-briv-9ed7278f51f5.json
     - assets/Hospital_logo.png
     - assets/STIN_logo.png
@@ -102,6 +100,8 @@ flutter:
     - assets/training/protein2.png 
     - assets/training/sleep.png 
     - assets/training/water.png 
+    - assets/nurse.png
+    - assets/user.png
 
   fonts:
     - family: Prompt
