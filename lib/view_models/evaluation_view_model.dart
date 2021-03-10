@@ -41,16 +41,18 @@ class EvaluationViewModel {
     });
     _anSubCollection = await _firebaseService.getLatestAnSubCollection(
         userId: UserStore.getValueFromStore('storedUserId'));
-    var latestStateChange = _anSubCollection['latestStateChange'].toDate();
-    var dayInCurrentState = _calculationService.calculateDayDifference(
-        day: latestStateChange,
-        compareTo: _calculationService.formatDate(date: DateTime.now()));
 
     if (patientState == enumToString(PatientState.preOperation)) {
       mustShowCardList.add(EvaluationMenuCard().getEvaluationdefault(
           context, "ไม่มีแบบประเมินก่อนเข้ารับการผ่าตัดค่ะ"));
     } else if (patientState ==
         enumToString(PatientState.postOperationHospital)) {
+      mustShowList.addAll(_evaluationModel.postOpHospitalDay0List);
+      var latestStateChange = _anSubCollection['latestStateChange'].toDate();
+      print(latestStateChange);
+      var dayInCurrentState = _calculationService.calculateDayDifference(
+          day: latestStateChange,
+          compareTo: _calculationService.formatDate(date: DateTime.now()));
       if (dayInCurrentState == 0) {
         mustShowList.addAll(_evaluationModel.postOpHospitalDay0List);
       }
