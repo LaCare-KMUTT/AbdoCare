@@ -29,6 +29,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Abdocare"),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: const Icon(
