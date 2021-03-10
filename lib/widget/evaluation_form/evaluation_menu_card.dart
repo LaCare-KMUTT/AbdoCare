@@ -70,4 +70,21 @@ class EvaluationMenuCard {
     );
     return evaluationCard;
   }
+
+  Widget getEvaluationdefault(BuildContext context, String result) {
+    var evaluation = Container(
+        height: MediaQuery.of(context).size.height / 2,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset('assets/nurse2.png', height: 250, width: 250),
+            Text(
+              result,
+              style: TextStyle(fontSize: 20),
+            )
+          ],
+        ));
+    return evaluation;
+  }
 }

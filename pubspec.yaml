@@ -102,6 +102,7 @@ flutter:
     - assets/training/water.png 
     - assets/nurse.png
     - assets/user.png
+    - assets/nurse2.png
 
   fonts:
     - family: Prompt

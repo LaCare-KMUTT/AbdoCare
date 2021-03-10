@@ -47,7 +47,8 @@ class EvaluationViewModel {
         compareTo: _calculationService.formatDate(date: DateTime.now()));
 
     if (patientState == enumToString(PatientState.preOperation)) {
-      //mustShowList.addAll(_trainingModel.postOpHospitalList);
+      mustShowCardList.add(EvaluationMenuCard().getEvaluationdefault(
+          context, "ไม่มีแบบประเมินก่อนเข้ารับการผ่าตัดค่ะ"));
     } else if (patientState ==
         enumToString(PatientState.postOperationHospital)) {
       if (dayInCurrentState == 0) {
@@ -72,7 +73,6 @@ class EvaluationViewModel {
         children: mustShowCardList,
       );
     }
-
     Map<String, Widget> cardLists = {
       'mustShow': mustShowToColumn,
     };
