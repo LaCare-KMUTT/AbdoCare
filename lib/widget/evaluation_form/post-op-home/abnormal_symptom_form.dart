@@ -14,6 +14,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
   var _value3 = false;
   var _value4 = false;
   var _value5 = false;
+  String result;
 
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
   @override
@@ -140,10 +141,12 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       _firebaseService.addDataToFormsCollection(
                           formName: 'Abnormal Symptom', data: formDataToDB);
                       if (_value | _value2 | _value3 | _value4 == true) {
-                        showAdvise1(context);
+                        result = "NoPass";
+                        showAdvise(context, result);
                       }
                       if (_value5 == true) {
-                        showAdvise2(context);
+                        result = "Pass";
+                        showAdvise(context, result);
                       } else if (_value |
                               _value2 |
                               _value3 |
@@ -178,53 +181,7 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
         });
   }
 
-  void showAdvise1(BuildContext context) {
-    // Create AlertDialog
-    AlertDialog alert = AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      title: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("แจ้งเตือน", style: Theme.of(context).textTheme.bodyText2),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text("ให้ผู้ป่วยมาพบแพทย์ทันที",
-                    style: Theme.of(context).textTheme.bodyText1),
-              ],
-            ),
-          ),
-        ],
-      ),
-      actions: [
-        RaisedButton(
-          color: Color(0xFFC37447),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: Text(
-                "ตกลง",
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-          ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/evaluation_page');
-          },
-        ),
-      ],
-    );
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (context) => alert,
-    );
-  }
-
-  void showAdvise2(BuildContext context) {
-    // Create AlertDialog
+  void showAdvise(BuildContext context, String result) {
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
@@ -236,7 +193,21 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("ผ่าน", style: Theme.of(context).textTheme.bodyText1),
+                (() {
+                  if (result == "Pass") {
+                    return Text("ผ่าน",
+                        style: Theme.of(context).textTheme.bodyText1);
+                  } else {
+                    return Column(
+                      children: [
+                        Text("ไม่ผ่าน",
+                            style: Theme.of(context).textTheme.bodyText1),
+                        Text("แนะนำให้ผู้ป่วยมาพบแพทย์ทันที",
+                            style: Theme.of(context).textTheme.bodyText1),
+                      ],
+                    );
+                  }
+                }()),
               ],
             ),
           ),

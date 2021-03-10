@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 
@@ -33,23 +32,6 @@ class _ADLFormState extends State<ADLForm> {
   String selectedChoice8 = '';
   String selectedChoice9 = '';
   String selectedChoice10 = '';
-
-  void result(int score) {
-    if (totalscore >= 12) {
-      print('mild independence');
-      showAlertDialog(context);
-    } else if (9 <= totalscore) {
-      print('moderately independence');
-      showAlertDialog(context);
-    } else if (5 <= totalscore) {
-      print('severe independence');
-      showAlertDialog(context);
-    } else if (0 <= totalscore) {
-      print('total independence');
-      showAlertDialog(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1749,16 +1731,6 @@ class _ADLFormState extends State<ADLForm> {
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       color: Color(0xFF2ED47A),
                       onPressed: () {
-                        print('1. $selectedChoice1 $score1');
-                        print('2. $selectedChoice2 $score2');
-                        print('3. $selectedChoice3 $score3');
-                        print('4. $selectedChoice4 $score4');
-                        print('5. $selectedChoice5 $score5');
-                        print('6. $selectedChoice6 $score6');
-                        print('7. $selectedChoice7 $score7');
-                        print('8. $selectedChoice8 $score8');
-                        print('9. $selectedChoice9 $score9');
-                        print('10. $selectedChoice10 $score10');
                         totalscore = score1 +
                             score2 +
                             score3 +
@@ -1770,8 +1742,6 @@ class _ADLFormState extends State<ADLForm> {
                             score9 +
                             score10;
                         ;
-                        print(totalscore);
-                        result(totalscore);
                         Map<String, dynamic> formDataToDB = {
                           'Feeding': score1,
                           'Grooming': score2,
@@ -1787,6 +1757,7 @@ class _ADLFormState extends State<ADLForm> {
                         };
                         _firebaseService.addDataToFormsCollection(
                             formName: 'ADL', data: formDataToDB);
+                        showAlertDialog(context, totalscore);
                       }),
                 ],
               ),
@@ -1798,37 +1769,56 @@ class _ADLFormState extends State<ADLForm> {
   }
 }
 
-void showAlertDialog(BuildContext context) {
-  // Create button
-  Widget okButton = FlatButton(
-    child: Container(
-      width: MediaQuery.of(context).size.width,
-      child: Center(
-        child: Text(
-          "ตกลง",
-          style: Theme.of(context).textTheme.bodyText2,
-        ),
-      ),
-    ),
-    onPressed: () {
-      Navigator.pushNamed(context, '/evaluation_page');
-    },
-  );
-
-  // Create AlertDialog
+void showAlertDialog(BuildContext context, int total) {
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     title: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("เก่งมากเลยค่ะ", style: Theme.of(context).textTheme.bodyText1),
+        Text("ผลการประเมิน", style: Theme.of(context).textTheme.bodyText2),
+        Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              (() {
+                if (total >= 12) {
+                  return Text("Mild independence",
+                      style: Theme.of(context).textTheme.bodyText1);
+                } else if (total >= 9) {
+                  return Text("Moderately independence",
+                      style: Theme.of(context).textTheme.bodyText1);
+                } else if (total >= 5) {
+                  return Text("severe independence",
+                      style: Theme.of(context).textTheme.bodyText1);
+                } else {
+                  return Text("ไม่ผ่านค่ะ",
+                      style: Theme.of(context).textTheme.bodyText1);
+                }
+              }()),
+            ],
+          ),
+        ),
       ],
     ),
     actions: [
-      okButton,
+      RaisedButton(
+        color: Color(0xFFC37447),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Text(
+              "ตกลง",
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          ),
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/evaluation_page');
+        },
+      ),
     ],
   );
-  // show the dialog
   showDialog(
     context: context,
     builder: (context) => alert,
