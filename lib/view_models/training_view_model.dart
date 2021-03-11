@@ -96,6 +96,7 @@ class TrainingViewModel {
   }
 
   void navigateOnTopic(TrainingTopic selected, BuildContext context) {
+    String navigate = "training";
     switch (selected) {
       case TrainingTopic.respiratoryDay0:
         Navigator.push(context,
@@ -123,7 +124,9 @@ class TrainingViewModel {
         break;
       case TrainingTopic.painDay2:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainAdviceDay2()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => PainAdviceDay2(navigate: navigate)));
         break;
       case TrainingTopic.drainDay2:
         Navigator.push(
@@ -145,7 +148,9 @@ class TrainingViewModel {
         break;
       case TrainingTopic.painHome:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainAdvice()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => PainAdvice(navigate: navigate)));
         break;
       case TrainingTopic.infectionHome:
         Navigator.push(context,
