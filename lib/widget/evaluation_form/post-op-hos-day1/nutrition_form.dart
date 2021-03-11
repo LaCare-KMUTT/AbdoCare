@@ -307,6 +307,7 @@ class _NutritionFormState extends State<NutritionForm> {
   }
 
   void showAdvise1(BuildContext context, String result) {
+    String navigate = "Evaluate";
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
@@ -347,7 +348,9 @@ class _NutritionFormState extends State<NutritionForm> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NutritionAdviceDay1()),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      NutritionAdviceDay1(navigate: navigate)),
             );
           },
         ),

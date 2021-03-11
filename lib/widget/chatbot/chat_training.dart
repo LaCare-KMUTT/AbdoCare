@@ -287,6 +287,7 @@ class _ChatTrainingState extends State<ChatTraining> {
   }
 
   Widget _nutritionAdvice() {
+    String navigate = "Training";
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Container(
@@ -323,7 +324,9 @@ class _ChatTrainingState extends State<ChatTraining> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => NutritionAdviceDay1()));
+                        builder: (context) => NutritionAdviceDay1(
+                              navigate: navigate,
+                            )));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,

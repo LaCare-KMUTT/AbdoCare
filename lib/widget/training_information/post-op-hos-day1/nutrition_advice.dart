@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class NutritionAdviceDay1 extends StatefulWidget {
+  final String navigate;
+  NutritionAdviceDay1({Key key, @required this.navigate}) : super(key: key);
   @override
   _NutritionAdviceDay1State createState() => _NutritionAdviceDay1State();
 }
