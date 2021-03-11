@@ -111,7 +111,8 @@ class _ChatTrainingState extends State<ChatTraining> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => PulmonaryAdviceDay2()));
+                        builder: (context) =>
+                            PulmonaryAdviceDay2(navigate: navigate)));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,

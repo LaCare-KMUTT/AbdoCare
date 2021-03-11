@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class PulmonaryAdviceDay2 extends StatefulWidget {
+  final String navigate;
+  PulmonaryAdviceDay2({Key key, @required this.navigate}) : super(key: key);
   @override
   _PulmonaryAdviceDay2State createState() => _PulmonaryAdviceDay2State();
 }
@@ -20,7 +22,11 @@ class _PulmonaryAdviceDay2State extends State<PulmonaryAdviceDay2> {
           ),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.pop(context);
+            if (widget.navigate == "Evaluate") {
+              Navigator.pushNamed(context, '/evaluation_page');
+            } else {
+              Navigator.pop(context);
+            }
           },
         ),
       ),
