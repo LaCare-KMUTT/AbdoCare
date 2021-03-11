@@ -22,11 +22,11 @@ class _PulmonaryAdviceDay2State extends State<PulmonaryAdviceDay2> {
           ),
           tooltip: 'กลับ',
           onPressed: () {
-            if (widget.navigate == "Evaluate") {
-              Navigator.pushNamed(context, '/evaluation_page');
-            } else {
-              Navigator.pop(context);
-            }
+            // if (widget.navigate == "Evaluate") {
+            //   Navigator.pushNamed(context, '/evaluation_page');
+            // } else {
+            //   Navigator.pop(context);
+            // }
           },
         ),
       ),
