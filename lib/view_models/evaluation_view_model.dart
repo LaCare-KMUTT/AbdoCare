@@ -47,7 +47,6 @@ class EvaluationViewModel {
           context, "ไม่มีแบบประเมินก่อนเข้ารับการผ่าตัดค่ะ"));
     } else if (patientState ==
         enumToString(PatientState.postOperationHospital)) {
-      mustShowList.addAll(_evaluationModel.postOpHospitalDay0List);
       var latestStateChange = _anSubCollection['latestStateChange'].toDate();
       print(latestStateChange);
       var dayInCurrentState = _calculationService.calculateDayDifference(
