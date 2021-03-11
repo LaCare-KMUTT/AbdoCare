@@ -16,6 +16,7 @@ class ChatTraining extends StatefulWidget {
 }
 
 class _ChatTrainingState extends State<ChatTraining> {
+  String navigate = "Evaluate";
   Widget _digestiveAdvice() {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -53,7 +54,8 @@ class _ChatTrainingState extends State<ChatTraining> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DigestiveAdviceDay2()));
+                        builder: (context) =>
+                            DigestiveAdviceDay2(navigate: navigate)));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,

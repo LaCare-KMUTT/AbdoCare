@@ -114,8 +114,11 @@ class TrainingViewModel {
             MaterialPageRoute(builder: (context) => DrainAdviceDay0()));
         break;
       case TrainingTopic.respiratoryDay1:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => RespiratoryAdviceDay1()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    RespiratoryAdviceDay1(navigate: navigate)));
         break;
       case TrainingTopic.bloodclotDay1:
         Navigator.push(
@@ -147,8 +150,10 @@ class TrainingViewModel {
             MaterialPageRoute(builder: (context) => PulmonaryAdviceDay2()));
         break;
       case TrainingTopic.digestiveDay2:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DigestiveAdviceDay2()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DigestiveAdviceDay2(navigate: navigate)));
         break;
       case TrainingTopic.behaveDay2:
         Navigator.push(context,
