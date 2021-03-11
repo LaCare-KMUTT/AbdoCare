@@ -347,6 +347,7 @@ class _PulmanaryFormState extends State<PulmanaryForm> {
   }
 
   void showAdvise1(BuildContext context, String result) {
+    String navigate = "Evaluate";
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
@@ -387,7 +388,9 @@ class _PulmanaryFormState extends State<PulmanaryForm> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => PulmonaryAdviceDay2()),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      PulmonaryAdviceDay2(navigate: navigate)),
             );
           },
         ),

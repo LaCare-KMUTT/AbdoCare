@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PainAdvice extends StatelessWidget {
+  final String navigate;
+  PainAdvice({Key key, @required this.navigate}) : super(key: key);
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -12,7 +14,11 @@ class PainAdvice extends StatelessWidget {
           ),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.pop(context);
+            if (navigate == "Evaluate") {
+              Navigator.pushNamed(context, '/evaluation_page');
+            } else {
+              Navigator.pop(context);
+            }
           },
         ),
       ),

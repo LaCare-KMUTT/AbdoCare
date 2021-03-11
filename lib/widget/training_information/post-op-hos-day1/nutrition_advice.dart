@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class NutritionAdviceDay1 extends StatefulWidget {
+  final String navigate;
+  NutritionAdviceDay1({Key key, @required this.navigate}) : super(key: key);
   @override
   _NutritionAdviceDay1State createState() => _NutritionAdviceDay1State();
 }
@@ -20,7 +22,11 @@ class _NutritionAdviceDay1State extends State<NutritionAdviceDay1> {
           ),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.pop(context);
+            if (widget.navigate == "Evaluate") {
+              Navigator.pushNamed(context, '/evaluation_page');
+            } else {
+              Navigator.pop(context);
+            }
           },
         ),
       ),

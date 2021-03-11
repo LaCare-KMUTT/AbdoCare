@@ -475,6 +475,7 @@ class _BloodClotFormState extends State<BloodClotForm> {
   }
 
   void showAdvise1(BuildContext context, String result) {
+    String navigate = "Evaluate";
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
@@ -515,7 +516,9 @@ class _BloodClotFormState extends State<BloodClotForm> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => BloodclotsAdviceDay1()),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      BloodclotsAdviceDay1(navigate: navigate)),
             );
           },
         ),

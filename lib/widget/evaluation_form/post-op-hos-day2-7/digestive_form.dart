@@ -628,6 +628,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
   }
 
   void showAdvise1(BuildContext context, String result) {
+    String navigate = "Evaluate";
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
@@ -668,7 +669,9 @@ class _DigestiveFormState extends State<DigestiveForm> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => DigestiveAdviceDay2()),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      DigestiveAdviceDay2(navigate: navigate)),
             );
           },
         ),

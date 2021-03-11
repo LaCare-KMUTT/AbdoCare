@@ -96,10 +96,14 @@ class TrainingViewModel {
   }
 
   void navigateOnTopic(TrainingTopic selected, BuildContext context) {
+    String navigate = "Training";
     switch (selected) {
       case TrainingTopic.respiratoryDay0:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => RespiratoryAdviceDay0()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    RespiratoryAdviceDay0(navigate: navigate)));
         break;
       case TrainingTopic.painDay01:
         Navigator.push(
@@ -110,34 +114,49 @@ class TrainingViewModel {
             MaterialPageRoute(builder: (context) => DrainAdviceDay0()));
         break;
       case TrainingTopic.respiratoryDay1:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => RespiratoryAdviceDay1()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    RespiratoryAdviceDay1(navigate: navigate)));
         break;
       case TrainingTopic.bloodclotDay1:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BloodclotsAdviceDay1()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    BloodclotsAdviceDay1(navigate: navigate)));
         break;
       case TrainingTopic.nutritionDay1:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => NutritionAdviceDay1()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NutritionAdviceDay1(navigate: navigate)));
         break;
       case TrainingTopic.painDay2:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainAdviceDay2()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => PainAdviceDay2(navigate: navigate)));
         break;
       case TrainingTopic.drainDay2:
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DrainSecretionAdviceDay2()));
+                builder: (context) =>
+                    DrainSecretionAdviceDay2(navigate: navigate)));
         break;
       case TrainingTopic.pulmanaryDay2:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => PulmonaryAdviceDay2()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PulmonaryAdviceDay2(navigate: navigate)));
         break;
       case TrainingTopic.digestiveDay2:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DigestiveAdviceDay2()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DigestiveAdviceDay2(navigate: navigate)));
         break;
       case TrainingTopic.behaveDay2:
         Navigator.push(context,
@@ -145,7 +164,9 @@ class TrainingViewModel {
         break;
       case TrainingTopic.painHome:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainAdvice()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => PainAdvice(navigate: navigate)));
         break;
       case TrainingTopic.infectionHome:
         Navigator.push(context,

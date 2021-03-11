@@ -1,12 +1,13 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
+import '../../../@enum/patient_state.dart';
 import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
 import '../../../ultilities/form_utility/pain_form_utility/pain_form_utility.dart';
+import '../../training_information/post-op-home/pain_advice.dart';
+import '../../training_information/post-op-hos-day2-7/pain_advice_day2.dart';
 
 class PainForm extends StatefulWidget {
   @override
@@ -122,7 +123,6 @@ class _PainFormState extends State<PainForm> {
                           value: value.toDouble(),
                           min: 0,
                           max: 10,
-                          //divisions: 10,
                           activeColor: Colors.white,
                           onChanged: (value2) {
                             setState(() {
@@ -171,7 +171,8 @@ class _PainFormState extends State<PainForm> {
                             (_anSubCollection['state'] ==
                                     'Post-Operation@Home' &&
                                 value >= 4)) {
-                          showAdvise1(context, value);
+                          showAdvise1(
+                              context, value, _anSubCollection['state']);
                           if (checkNotificationCriteria(value)) {
                             var creation = _calculationService.formatDate(
                                 date: DateTime.now());
@@ -187,7 +188,8 @@ class _PainFormState extends State<PainForm> {
                             });
                           }
                         } else {
-                          showAdvise2(context, value);
+                          showAdvise2(
+                              context, value, _anSubCollection['state']);
                         }
                       }),
                 ],
@@ -208,7 +210,6 @@ class GradientRectSliderTrackShape extends SliderTrackShape
       {this.gradient =
           const LinearGradient(colors: [Colors.lightBlue, Colors.blue]),
       this.darkenInactive = true});
-
   @override
   void paint(
     PaintingContext context,
@@ -237,7 +238,6 @@ class GradientRectSliderTrackShape extends SliderTrackShape
     if (sliderTheme.trackHeight <= 0) {
       return;
     }
-
     final Rect trackRect = getPreferredRect(
       parentBox: parentBox,
       offset: offset,
@@ -245,7 +245,6 @@ class GradientRectSliderTrackShape extends SliderTrackShape
       isEnabled: isEnabled,
       isDiscrete: isDiscrete,
     );
-
     final ColorTween activeTrackColorTween = ColorTween(
         begin: sliderTheme.disabledActiveTrackColor,
         end: sliderTheme.activeTrackColor);
@@ -274,49 +273,47 @@ class GradientRectSliderTrackShape extends SliderTrackShape
     }
     final Radius trackRadius = Radius.circular(trackRect.height / 2);
     final Radius activeTrackRadius = Radius.circular(trackRect.height / 2 + 1);
-
     context.canvas.drawRRect(
       RRect.fromLTRBAndCorners(
-        trackRect.left,
-        (textDirection == TextDirection.ltr)
-            ? trackRect.top - (additionalActiveTrackHeight / 2)
-            : trackRect.top,
-        thumbCenter.dx,
-        (textDirection == TextDirection.ltr)
-            ? trackRect.bottom + (additionalActiveTrackHeight / 2)
-            : trackRect.bottom,
-        topLeft: (textDirection == TextDirection.ltr)
-            ? activeTrackRadius
-            : trackRadius,
-        bottomLeft: (textDirection == TextDirection.ltr)
-            ? activeTrackRadius
-            : trackRadius,
-      ),
+          trackRect.left,
+          (textDirection == TextDirection.ltr)
+              ? trackRect.top - (additionalActiveTrackHeight / 2)
+              : trackRect.top,
+          thumbCenter.dx,
+          (textDirection == TextDirection.ltr)
+              ? trackRect.bottom + (additionalActiveTrackHeight / 2)
+              : trackRect.bottom,
+          topLeft: (textDirection == TextDirection.ltr)
+              ? activeTrackRadius
+              : trackRadius,
+          bottomLeft: (textDirection == TextDirection.ltr)
+              ? activeTrackRadius
+              : trackRadius),
       leftTrackPaint,
     );
     context.canvas.drawRRect(
       RRect.fromLTRBAndCorners(
-        thumbCenter.dx,
-        (textDirection == TextDirection.rtl)
-            ? trackRect.top - (additionalActiveTrackHeight / 2)
-            : trackRect.top,
-        trackRect.right,
-        (textDirection == TextDirection.rtl)
-            ? trackRect.bottom + (additionalActiveTrackHeight / 2)
-            : trackRect.bottom,
-        topRight: (textDirection == TextDirection.rtl)
-            ? activeTrackRadius
-            : trackRadius,
-        bottomRight: (textDirection == TextDirection.rtl)
-            ? activeTrackRadius
-            : trackRadius,
-      ),
+          thumbCenter.dx,
+          (textDirection == TextDirection.rtl)
+              ? trackRect.top - (additionalActiveTrackHeight / 2)
+              : trackRect.top,
+          trackRect.right,
+          (textDirection == TextDirection.rtl)
+              ? trackRect.bottom + (additionalActiveTrackHeight / 2)
+              : trackRect.bottom,
+          topRight: (textDirection == TextDirection.rtl)
+              ? activeTrackRadius
+              : trackRadius,
+          bottomRight: (textDirection == TextDirection.rtl)
+              ? activeTrackRadius
+              : trackRadius),
       rightTrackPaint,
     );
   }
 }
 
-void showAdvise1(BuildContext context, int value) {
+void showAdvise1(BuildContext context, int value, String patientstate) {
+  String navigate = "Evaluate";
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     title: Column(
@@ -348,10 +345,20 @@ void showAdvise1(BuildContext context, int value) {
           ),
         ),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Advise2Page()),
-          );
+          if (patientstate ==
+              enumToString(PatientState.postOperationHospital)) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PainAdviceDay2(navigate: navigate)),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PainAdvice(navigate: navigate)),
+            );
+          }
         },
       ),
       RaisedButton(
@@ -375,7 +382,8 @@ void showAdvise1(BuildContext context, int value) {
   );
 }
 
-void showAdvise2(BuildContext context, int value) {
+void showAdvise2(BuildContext context, int value, String patientstate) {
+  String navigate = "Evaluate";
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     title: Column(
@@ -398,130 +406,26 @@ void showAdvise2(BuildContext context, int value) {
           ),
         ),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Advise2Page()),
-          );
+          if (patientstate ==
+              enumToString(PatientState.postOperationHospital)) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PainAdviceDay2(navigate: navigate)),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PainAdvice(navigate: navigate)),
+            );
+          }
         },
       ),
     ],
   );
-  // show the dialog
   showDialog(
     context: context,
     builder: (context) => alert,
   );
-}
-
-//Show Advise information
-class Advise2Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("คำแนะนำ"),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-            ),
-            tooltip: 'กลับ',
-            onPressed: () {
-              Navigator.pushNamed(context, '/evaluation_page');
-            },
-          ),
-        ),
-        body: Container(
-          child: ListView(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Text('การจัดการความปวดด้วยตนเอง มีดังนี้'),
-                            Text(
-                                '''1. ให้ผู้ป่วยจินตนาการในสถานที่ๆรู้สึกสบายเช่น ทะเล หรือภูเขา''',
-                                style: Theme.of(context).textTheme.bodyText1),
-                            Text('2. ให้ผู้ป่วยทำกิจกรรมอื่นๆ',
-                                style: Theme.of(context).textTheme.bodyText1),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: <Widget>[
-                                  Text('2.1 ดูโทรทัศน์ ',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                  Text('2.2 ฟังดนตรี',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                  Text(
-                                      '''2.3 พูดคุยกับสมาชิกภายในบ้านหรือบุคคลอื่น''',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                ],
-                              ),
-                            ),
-                            Text('3. การหายใจเป็นจังหวะสม่ำเสมอ',
-                                style: Theme.of(context).textTheme.bodyText1),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: <Widget>[
-                                  Text(
-                                      '''3.1 สูดลมหายใจเต็มปอดช้าๆ นับหนึ่งกลั้นไว้สักครู่ และ ค่อยๆหายใจออกช้าๆ''',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                  Text(
-                                      '''3.2 ระหว่างนี้อาจทำสมาธิจากการมุ่งความสนใจที่ลมหายใจเข้า-ออก''',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                ],
-                              ),
-                            ),
-                            Text('4. เกร็งและผ่อนคลายกล้ามเนื้อ',
-                                style: Theme.of(context).textTheme.bodyText1),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: <Widget>[
-                                  Text(
-                                      '''4.1 ฝึกเกร็งกล้ามเนื้อกลุ่มต่างๆให้ตึงตัวก่อน เช่น น่อง ต้นขา แผ่นหลัง หน้าท้อง สะโพก''',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                  Text(
-                                      '''4.2 จากนั้นเมื่อรู้สึกเกร็งนับ 1-3 แล้วคลายช้าๆ''',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ));
-  }
 }
