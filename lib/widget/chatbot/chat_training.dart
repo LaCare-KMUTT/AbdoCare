@@ -164,7 +164,8 @@ class _ChatTrainingState extends State<ChatTraining> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DrainSecretionAdviceDay2()));
+                        builder: (context) =>
+                            DrainSecretionAdviceDay2(navigate: navigate)));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,

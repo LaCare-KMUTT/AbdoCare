@@ -281,6 +281,7 @@ class _InfectionForm extends State<InfectionForm> {
   }
 
   void showAdvise1(BuildContext context, String result) {
+    String navigate = "Evaluate";
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
@@ -322,7 +323,8 @@ class _InfectionForm extends State<InfectionForm> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => DrainSecretionAdviceDay2()),
+                  builder: (context) =>
+                      DrainSecretionAdviceDay2(navigate: navigate)),
             );
           },
         ),

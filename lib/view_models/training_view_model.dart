@@ -143,7 +143,8 @@ class TrainingViewModel {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DrainSecretionAdviceDay2()));
+                builder: (context) =>
+                    DrainSecretionAdviceDay2(navigate: navigate)));
         break;
       case TrainingTopic.pulmanaryDay2:
         Navigator.push(context,
