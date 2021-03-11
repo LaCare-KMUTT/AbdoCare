@@ -118,8 +118,11 @@ class TrainingViewModel {
             MaterialPageRoute(builder: (context) => RespiratoryAdviceDay1()));
         break;
       case TrainingTopic.bloodclotDay1:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BloodclotsAdviceDay1()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    BloodclotsAdviceDay1(navigate: navigate)));
         break;
       case TrainingTopic.nutritionDay1:
         Navigator.push(
