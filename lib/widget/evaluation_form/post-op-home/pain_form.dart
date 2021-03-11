@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../../@enum/patient_state.dart';
 import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
@@ -344,7 +345,8 @@ void showAdvise1(BuildContext context, int value, String patientstate) {
           ),
         ),
         onPressed: () {
-          if (patientstate == 'Post-Operation@Hospital') {
+          if (patientstate ==
+              enumToString(PatientState.postOperationHospital)) {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -398,13 +400,14 @@ void showAdvise2(BuildContext context, int value, String patientstate) {
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: Text(
-              "การบรรเทาความปวดโดยไม่hhใช้ยา",
+              "การบรรเทาความปวดโดยไม่ใช้ยา",
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),
         ),
         onPressed: () {
-          if (patientstate == 'Post-Operation@Hospital') {
+          if (patientstate ==
+              enumToString(PatientState.postOperationHospital)) {
             Navigator.push(
               context,
               MaterialPageRoute(
