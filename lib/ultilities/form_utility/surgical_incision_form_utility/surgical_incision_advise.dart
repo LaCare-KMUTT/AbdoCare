@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../widget/evaluation_form/post-op-home/post-op-home_page.dart';
-
 class AdvisePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -13,10 +11,7 @@ class AdvisePage extends StatelessWidget {
             ),
             tooltip: 'กลับ',
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PostOpHomePage()),
-              );
+              Navigator.pushNamed(context, '/evaluation_page');
             },
           ),
         ),

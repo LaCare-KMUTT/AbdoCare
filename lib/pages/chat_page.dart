@@ -29,6 +29,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Abdocare"),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -108,7 +109,7 @@ class _ChatPageState extends State<ChatPage> {
                                       margin: const EdgeInsets.only(left: 5.0),
                                       child: CircleAvatar(
                                         backgroundImage:
-                                            AssetImage("assets/default.jpg"),
+                                            AssetImage("assets/user.png"),
                                       ),
                                     ),
                                   ],

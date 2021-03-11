@@ -1,10 +1,11 @@
 import 'package:get_it/get_it.dart';
-
 import '../models/chat_model.dart';
+import '../models/evaluation_model.dart';
 import '../models/login_model.dart';
 import '../models/message_model.dart';
 import '../models/profile_model.dart';
 import '../models/training_model.dart';
+import '../view_models/evaluation_view_model.dart';
 import '../view_models/pin_view_model.dart';
 import '../view_models/training_view_model.dart';
 import 'calculation_service.dart';
@@ -28,4 +29,7 @@ void setupServiceLocator() {
   locator.registerLazySingleton<ProfileModel>(() => ProfileModel());
   locator.registerLazySingleton<TrainingViewModel>(() => TrainingViewModel());
   locator.registerLazySingleton<TrainingModel>(() => TrainingModel());
+  locator.registerLazySingleton<EvaluationModel>(() => EvaluationModel());
+  locator
+      .registerLazySingleton<EvaluationViewModel>(() => EvaluationViewModel());
 }

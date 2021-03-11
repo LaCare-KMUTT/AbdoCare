@@ -11,7 +11,7 @@ class Message extends StatelessWidget {
     return <Widget>[
       Container(
         child: CircleAvatar(
-          child: Image.asset("assets/robot.jpg"),
+          child: Image.asset("assets/nurse.png"),
           backgroundColor: Colors.transparent,
         ),
       ),
@@ -72,7 +72,8 @@ class Message extends StatelessWidget {
       Container(
         margin: const EdgeInsets.only(left: 5.0),
         child: CircleAvatar(
-          backgroundImage: AssetImage("assets/default.jpg"),
+          backgroundImage: AssetImage("assets/user.png"),
+          backgroundColor: Colors.grey[300],
         ),
       ),
     ];
