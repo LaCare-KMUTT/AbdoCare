@@ -24,6 +24,8 @@ class _NutritionAdviceDay1State extends State<NutritionAdviceDay1> {
           onPressed: () {
             if (widget.navigate == "Evaluate") {
               Navigator.pushNamed(context, '/evaluation_page');
+            } else if (widget.navigate == "Chat") {
+              Navigator.pushNamed(context, '/chat_page');
             } else {
               Navigator.pop(context);
             }
