@@ -19,9 +19,6 @@ class DrainSecretionAdviceDay2 extends StatelessWidget {
           onPressed: () {
             if (navigate == "Evaluate") {
               Navigator.pushNamed(context, '/evaluation_page');
-            }
-            if (navigate == "Chat") {
-              Navigator.pushNamed(context, '/chat_page');
             } else {
               Navigator.pop(context);
             }

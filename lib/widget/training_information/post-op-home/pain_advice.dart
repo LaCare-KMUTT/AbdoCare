@@ -16,8 +16,6 @@ class PainAdvice extends StatelessWidget {
           onPressed: () {
             if (navigate == "Evaluate") {
               Navigator.pushNamed(context, '/evaluation_page');
-            } else if (navigate == "Chat") {
-              Navigator.pushNamed(context, '/chat_page');
             } else {
               Navigator.pop(context);
             }
