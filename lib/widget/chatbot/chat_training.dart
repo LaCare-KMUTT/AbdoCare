@@ -16,7 +16,7 @@ class ChatTraining extends StatefulWidget {
 }
 
 class _ChatTrainingState extends State<ChatTraining> {
-  String navigate = "Evaluate";
+  String navigate = "Training";
   Widget _digestiveAdvice() {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
