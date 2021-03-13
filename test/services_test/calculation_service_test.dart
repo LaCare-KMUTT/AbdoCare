@@ -10,7 +10,7 @@ void main() {
   test('calculateAge should be able to calculate', () {
     ICalculationService _calculationService = locator<ICalculationService>();
     var age = _calculationService.calculateAge(DateTime(2542, 03, 12));
-    expect(age, 21);
+    expect(age, 22);
   });
 
   test('calculate BMI should be correct', () {
