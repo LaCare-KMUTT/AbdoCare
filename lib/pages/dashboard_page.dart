@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widget/dashboard.dart';
+import '../widget/dashboard/dashboard.dart';
 
 class DashboardPage extends StatefulWidget {
   @override

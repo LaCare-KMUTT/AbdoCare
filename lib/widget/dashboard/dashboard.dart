@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../services/interfaces/calculation_service_interface.dart';
-import '../services/interfaces/firebase_service_interface.dart';
-import '../services/service_locator.dart';
+import '../../services/interfaces/calculation_service_interface.dart';
+import '../../services/interfaces/firebase_service_interface.dart';
+import '../../services/service_locator.dart';
 import 'ADL_chart.dart';
 import 'line_chart.dart';
 import 'radial_gauge_chart .dart';
