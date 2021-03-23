@@ -1731,33 +1731,46 @@ class _ADLFormState extends State<ADLForm> {
                           style: TextStyle(fontSize: 18, color: Colors.white)),
                       color: Color(0xFF2ED47A),
                       onPressed: () {
-                        totalscore = score1 +
-                            score2 +
-                            score3 +
-                            score4 +
-                            score5 +
-                            score6 +
-                            score7 +
-                            score8 +
-                            score9 +
-                            score10;
-                        ;
-                        Map<String, dynamic> formDataToDB = {
-                          'Feeding': score1,
-                          'Grooming': score2,
-                          'Tranfer': score3,
-                          'Toilet': score4,
-                          'Mobility': score5,
-                          'Dressing': score6,
-                          'Stairs': score7,
-                          'Bathing': score8,
-                          'Bowels': score9,
-                          'Bladder': score10,
-                          'TotalscoreADL': totalscore,
-                        };
-                        _firebaseService.addDataToFormsCollection(
-                            formName: 'ADL', data: formDataToDB);
-                        showAlertDialog(context, totalscore);
+                        if (selectedChoice1 == "" ||
+                            selectedChoice2 == "" ||
+                            selectedChoice3 == "" ||
+                            selectedChoice4 == "" ||
+                            selectedChoice5 == "" ||
+                            selectedChoice6 == "" ||
+                            selectedChoice7 == "" ||
+                            selectedChoice8 == "" ||
+                            selectedChoice9 == "" ||
+                            selectedChoice10 == "") {
+                          alert(context);
+                        } else {
+                          totalscore = score1 +
+                              score2 +
+                              score3 +
+                              score4 +
+                              score5 +
+                              score6 +
+                              score7 +
+                              score8 +
+                              score9 +
+                              score10;
+                          ;
+                          Map<String, dynamic> formDataToDB = {
+                            'Feeding': score1,
+                            'Grooming': score2,
+                            'Tranfer': score3,
+                            'Toilet': score4,
+                            'Mobility': score5,
+                            'Dressing': score6,
+                            'Stairs': score7,
+                            'Bathing': score8,
+                            'Bowels': score9,
+                            'Bladder': score10,
+                            'TotalscoreADL': totalscore,
+                          };
+                          _firebaseService.addDataToFormsCollection(
+                              formName: 'ADL', data: formDataToDB);
+                          showAlertDialog(context, totalscore);
+                        }
                       }),
                 ],
               ),
@@ -1767,6 +1780,23 @@ class _ADLFormState extends State<ADLForm> {
       ),
     );
   }
+}
+
+void alert(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (_) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.of(context).pop(true);
+        });
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          title: Text("กรุณาทำแบบประเมินให้ครบถ้วน",
+              style: Theme.of(context).textTheme.bodyText2,
+              textAlign: TextAlign.center),
+        );
+      });
 }
 
 void showAlertDialog(BuildContext context, int total) {
@@ -1783,17 +1813,37 @@ void showAlertDialog(BuildContext context, int total) {
             children: [
               (() {
                 if (total >= 12) {
-                  return Text("Mild independence",
-                      style: Theme.of(context).textTheme.bodyText1);
+                  return Column(
+                    children: [
+                      Text("คะแนนรวม = $total"),
+                      Text("Mild independence",
+                          style: Theme.of(context).textTheme.bodyText1),
+                    ],
+                  );
                 } else if (total >= 9) {
-                  return Text("Moderately independence",
-                      style: Theme.of(context).textTheme.bodyText1);
+                  return Column(
+                    children: [
+                      Text("คะแนนรวม = $total"),
+                      Text("Moderately independence",
+                          style: Theme.of(context).textTheme.bodyText1),
+                    ],
+                  );
                 } else if (total >= 5) {
-                  return Text("severe independence",
-                      style: Theme.of(context).textTheme.bodyText1);
+                  return Column(
+                    children: [
+                      Text("คะแนนรวม = $total"),
+                      Text("severe independence",
+                          style: Theme.of(context).textTheme.bodyText1),
+                    ],
+                  );
                 } else {
-                  return Text("ไม่ผ่านค่ะ",
-                      style: Theme.of(context).textTheme.bodyText1);
+                  return Column(
+                    children: [
+                      Text("คะแนนรวม = $total"),
+                      Text("ไม่ผ่านค่ะ",
+                          style: Theme.of(context).textTheme.bodyText1),
+                    ],
+                  );
                 }
               }()),
             ],
