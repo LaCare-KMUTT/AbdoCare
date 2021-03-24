@@ -22,8 +22,8 @@ class _ProfilePageState extends State<ProfilePage> {
       locator<ICalculationService>();
   final ProfileModel _profileModel = locator<ProfileModel>();
   String patientTel;
-  String weight;
-  String height;
+  int weight;
+  int height;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -198,9 +198,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                       anSubCollection.data['weight'].toString(),
                                   onChanged: (value) {
                                     setState(() {
-                                      weight = value;
+                                      weight = int.parse(value);
                                     });
                                   },
+                                  onSaved: (value) => weight,
                                 ),
                               ),
                               Padding(
@@ -226,7 +227,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       anSubCollection.data['height'].toString(),
                                   onChanged: (value) {
                                     setState(() {
-                                      height = value;
+                                      height = int.parse(value);
                                     });
                                   },
                                 ),
