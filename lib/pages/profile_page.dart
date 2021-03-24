@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import './set_pin_page.dart';
 import '../models/profile_model.dart';
 import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
+import '../stores/user_store.dart';
 import '../widget/shared/loading_widget.dart';
-import './set_pin_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -20,8 +21,9 @@ class _ProfilePageState extends State<ProfilePage> {
   final ICalculationService _calculationService =
       locator<ICalculationService>();
   final ProfileModel _profileModel = locator<ProfileModel>();
-  var _userId;
   String patientTel;
+  String weight;
+  String height;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -194,6 +196,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                       hintStyle: TextStyle(color: Colors.grey)),
                                   initialValue:
                                       anSubCollection.data['weight'].toString(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      weight = value;
+                                    });
+                                  },
                                 ),
                               ),
                               Padding(
@@ -217,6 +224,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                       hintStyle: TextStyle(color: Colors.grey)),
                                   initialValue:
                                       anSubCollection.data['height'].toString(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      height = value;
+                                    });
+                                  },
                                 ),
                               ),
                             ],
@@ -265,9 +277,41 @@ class _ProfilePageState extends State<ProfilePage> {
                                       _firebaseService
                                           .updateDataToCollectionField(
                                               collection: 'Users',
-                                              docId: _userId,
+                                              docId:
+                                                  UserStore.getValueFromStore(
+                                                      'storedUserId'),
                                               updateField: {
                                             'patientTel': patientTel,
+                                          });
+                                    }
+                                    if (weight != null) {
+                                      _firebaseService
+                                          .updateFieldToSubCollection(
+                                              collection: 'Users',
+                                              docId:
+                                                  UserStore.getValueFromStore(
+                                                      'storedUserId'),
+                                              subCollection: 'an',
+                                              subCollectionDoc:
+                                                  UserStore.getValueFromStore(
+                                                      'storedLatestAnId'),
+                                              data: {
+                                            'weight': weight,
+                                          });
+                                    }
+                                    if (height != null) {
+                                      _firebaseService
+                                          .updateFieldToSubCollection(
+                                              collection: 'Users',
+                                              docId:
+                                                  UserStore.getValueFromStore(
+                                                      'storedUserId'),
+                                              subCollection: 'an',
+                                              subCollectionDoc:
+                                                  UserStore.getValueFromStore(
+                                                      'storedLatestAnId'),
+                                              data: {
+                                            'height': height,
                                           });
                                     }
                                     Navigator.pushReplacementNamed(
