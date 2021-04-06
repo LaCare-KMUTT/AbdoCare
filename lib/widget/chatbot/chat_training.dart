@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../evaluation_form/post-op-home/adl_form.dart';
+import '../shared/chat_training_button_widget.dart';
 import '../training_information/post-op-home/daily_activity_advice.dart';
 import '../training_information/post-op-home/infection_advice.dart';
 import '../training_information/post-op-hos-day1/nutrition_advice.dart';
@@ -46,29 +47,19 @@ class _ChatTrainingState extends State<ChatTraining> {
               ),
             ),
             FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))),
-              color: Color(0xFFF1B43F),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            DigestiveAdviceDay2(navigate: navigate)));
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Center(
-                  child: Text(
-                    'รายละเอียดเพิ่มเติม',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0))),
+                color: Color(0xFFF1B43F),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DigestiveAdviceDay2(navigate: navigate)));
+                },
+                child: chatTrainingButton),
           ],
         ),
       ),
@@ -103,29 +94,19 @@ class _ChatTrainingState extends State<ChatTraining> {
               ),
             ),
             FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))),
-              color: Color(0xFFF1B43F),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            PulmonaryAdviceDay2(navigate: navigate)));
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Center(
-                  child: Text(
-                    'รายละเอียดเพิ่มเติม',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0))),
+                color: Color(0xFFF1B43F),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PulmonaryAdviceDay2(navigate: navigate)));
+                },
+                child: chatTrainingButton),
           ],
         ),
       ),
@@ -157,29 +138,19 @@ class _ChatTrainingState extends State<ChatTraining> {
                   ],
                 )),
             FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))),
-              color: Color(0xFFF1B43F),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            DrainSecretionAdviceDay2(navigate: navigate)));
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Center(
-                  child: Text(
-                    'รายละเอียดเพิ่มเติม',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0))),
+                color: Color(0xFFF1B43F),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DrainSecretionAdviceDay2(navigate: navigate)));
+                },
+                child: chatTrainingButton),
           ],
         ),
       ),
@@ -211,28 +182,18 @@ class _ChatTrainingState extends State<ChatTraining> {
                   ],
                 )),
             FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))),
-              color: Color(0xFFF1B43F),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => BehaveAdviceDay2()));
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Center(
-                  child: Text(
-                    'รายละเอียดเพิ่มเติม',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0))),
+                color: Color(0xFFF1B43F),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BehaveAdviceDay2()));
+                },
+                child: chatTrainingButton),
           ],
         ),
       ),
@@ -265,26 +226,18 @@ class _ChatTrainingState extends State<ChatTraining> {
                   ],
                 )),
             FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))),
-              color: Color(0xFFF1B43F),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => InfectionAdvice()));
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Center(
-                  child: Text(
-                    'รายละเอียดเพิ่มเติม',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0))),
+                color: Color(0xFFF1B43F),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => InfectionAdvice()));
+                },
+                child: chatTrainingButton),
           ],
         ),
       ),
@@ -320,30 +273,20 @@ class _ChatTrainingState extends State<ChatTraining> {
               ),
             ),
             FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))),
-              color: Color(0xFFF1B43F),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => NutritionAdviceDay1(
-                              navigate: navigate,
-                            )));
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Center(
-                  child: Text(
-                    'รายละเอียดเพิ่มเติม',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0))),
+                color: Color(0xFFF1B43F),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NutritionAdviceDay1(
+                                navigate: navigate,
+                              )));
+                },
+                child: chatTrainingButton),
           ],
         ),
       ),
@@ -376,28 +319,18 @@ class _ChatTrainingState extends State<ChatTraining> {
                   ],
                 )),
             FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))),
-              color: Color(0xFFF1B43F),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DailyActivityAdvice()));
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Center(
-                  child: Text(
-                    'รายละเอียดเพิ่มเติม',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0))),
+                color: Color(0xFFF1B43F),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DailyActivityAdvice()));
+                },
+                child: chatTrainingButton),
           ],
         ),
       ),
@@ -450,6 +383,50 @@ class _ChatTrainingState extends State<ChatTraining> {
     );
   }
 
+  Widget _walkAdvice() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      child: Container(
+        constraints: BoxConstraints(maxWidth: 300),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+          border: Border.all(
+            color: Colors.grey[300],
+          ),
+        ),
+        child: Column(
+          children: [
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("""คำแนะนำเกี่ยวกับการลุกจากเตียงและเดินบริเวณรอบๆ"""),
+                    Text(
+                        """หลังการผ่าตัดวันที่ 1 ควรลุกจากเตียงและเดินบริเวณรอบๆ เตียง เพื่อป้องกันภาวะลำไส้อัมพาต อย่างไรก็ตามหากท่านรู้สึกว่าร่างกายยังไม่พร้อมหรือมีอาการปวดแผลมาก ควรออกกำลังกายบนเตียงโดยการงอและเหยียดข้อต่างๆทุกข้อ รวมทั้งการพลิกตะแคงตัวเพื่อฟื้นฟูสภาพร่างกายหลังการผ่าตัด""",
+                        style: Theme.of(context).textTheme.bodyText1)
+                  ],
+                )),
+            FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0))),
+                color: Color(0xFFF1B43F),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DigestiveAdviceDay2(navigate: navigate)));
+                },
+                child: chatTrainingButton),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -485,6 +462,9 @@ class _ChatTrainingState extends State<ChatTraining> {
               break;
             case "แบบประเมินก่อนกลับบ้าน":
               return _adlformcard();
+              break;
+            case "ไม่ลุกเดินหลังผ่าตัด":
+              return _walkAdvice();
               break;
           }
         }()),
