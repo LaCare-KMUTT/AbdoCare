@@ -130,30 +130,39 @@ class _ADLTableState extends State<ADLTable> {
                     )
                   ]),
                   Column(children: [
-                    Text(
-                      'ประเมิน\nครั้งที่ 1',
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.normal,
-                          color: Color(0xFFC37447)),
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      child: Text(
+                        'ประเมินก่อนผ่าตัด',
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                            color: Color(0xFFC37447)),
+                      ),
                     )
                   ]),
                   Column(children: [
-                    Text(
-                      'ประเมิน\nครั้งที่ 2',
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.normal,
-                          color: Color(0xFFC37447)),
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      child: Text(
+                        'ประเมินหลังผ่าตัด',
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                            color: Color(0xFFC37447)),
+                      ),
                     )
                   ]),
                   Column(children: [
-                    Text(
-                      'ประเมิน\nครั้งที่ 3',
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.normal,
-                          color: Color(0xFFC37447)),
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      child: Text(
+                        'ประเมินขณะพักฟื้นที่บ้าน',
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                            color: Color(0xFFC37447)),
+                      ),
                     )
                   ]),
                 ]),

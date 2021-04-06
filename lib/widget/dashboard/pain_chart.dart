@@ -57,10 +57,9 @@ class PainChartState extends State<PainChart> {
               child: IntrinsicWidth(
                 child: Container(
                   height: screenSize.height / 2,
-                  width: screenSize.width * 2,
+                  width: screenSize.width * 4,
                   child: SfCartesianChart(
                       primaryXAxis: CategoryAxis(),
-                      legend: Legend(isVisible: false),
                       tooltipBehavior: TooltipBehavior(enable: true),
                       series: <ChartSeries<_PainData, String>>[
                         LineSeries<_PainData, String>(
