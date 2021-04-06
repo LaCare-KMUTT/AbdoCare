@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../evaluation_form/post-op-home/adl_form.dart';
 import '../training_information/post-op-home/daily_activity_advice.dart';
 import '../training_information/post-op-home/infection_advice.dart';
 import '../training_information/post-op-hos-day1/nutrition_advice.dart';
@@ -403,6 +404,52 @@ class _ChatTrainingState extends State<ChatTraining> {
     );
   }
 
+  Widget _adlformcard() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      child: Container(
+        constraints: BoxConstraints(maxWidth: 300),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+          border: Border.all(
+            color: Colors.grey[300],
+          ),
+        ),
+        child: Column(
+          children: [
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    """แบบประเมินการปฏิบัติกิจวัตรประจำวันก่อนกลับบ้าน""")),
+            FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(15.0),
+                      bottomRight: Radius.circular(15.0))),
+              color: Color(0xFFF1B43F),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ADLForm(navigate: "Chat")));
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                child: Center(
+                  child: Text(
+                    'แบบประเมิน',
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -435,6 +482,9 @@ class _ChatTrainingState extends State<ChatTraining> {
               break;
             case "การปฎิบัติกิจวัตรประจำวัน":
               return _dailyActivityAdvice();
+              break;
+            case "แบบประเมินก่อนกลับบ้าน":
+              return _adlformcard();
               break;
           }
         }()),

@@ -3,6 +3,8 @@ import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 
 class ADLForm extends StatefulWidget {
+  final String navigate;
+  ADLForm({Key key, @required this.navigate}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _ADLFormState();
@@ -44,7 +46,11 @@ class _ADLFormState extends State<ADLForm> {
           icon: const Icon(Icons.arrow_back_ios),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.pushNamed(context, '/evaluation_page');
+            if (widget.navigate == "Evaluate") {
+              Navigator.pushNamed(context, '/evaluation_page');
+            } else {
+              Navigator.pop(context);
+            }
           },
         ),
       ),
