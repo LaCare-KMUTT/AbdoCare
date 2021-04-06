@@ -11,19 +11,26 @@ class _ADLTableState extends State<ADLTable> {
   String topic;
   Widget adlIcon(BuildContext context, String topic, int score) {
     Widget child;
+
     // For 2 choice
     if (topic == "Grooming" || topic == "Bathing") {
       if (score == 0) {
         child = Icon(
           Icons.sentiment_very_dissatisfied,
           color: Colors.red,
-          size: 80,
+          size: 60,
         );
       } else if (score == 1) {
         child = Icon(
           Icons.sentiment_very_satisfied_outlined,
           color: Colors.green,
-          size: 80,
+          size: 60,
+        );
+      } else {
+        child = Icon(
+          Icons.sentiment_satisfied,
+          color: Colors.grey[350],
+          size: 60,
         );
       }
     }
@@ -38,19 +45,25 @@ class _ADLTableState extends State<ADLTable> {
         child = Icon(
           Icons.sentiment_very_dissatisfied,
           color: Colors.red,
-          size: 80,
+          size: 60,
         );
       } else if (score == 1) {
         child = Icon(
           Icons.sentiment_satisfied_outlined,
           color: Colors.yellow[600],
-          size: 80,
+          size: 60,
         );
       } else if (score == 2) {
         child = Icon(
           Icons.sentiment_very_satisfied_outlined,
           color: Colors.green,
-          size: 80,
+          size: 60,
+        );
+      } else {
+        child = Icon(
+          Icons.sentiment_satisfied,
+          color: Colors.grey[350],
+          size: 60,
         );
       }
     }
@@ -60,25 +73,31 @@ class _ADLTableState extends State<ADLTable> {
         child = Icon(
           Icons.sentiment_very_dissatisfied,
           color: Colors.red,
-          size: 80,
+          size: 60,
         );
       } else if (score == 1) {
         child = Icon(
           Icons.sentiment_satisfied,
           color: Colors.orange,
-          size: 80,
+          size: 60,
         );
       } else if (score == 2) {
         child = Icon(
           Icons.sentiment_satisfied_outlined,
           color: Colors.yellow[600],
-          size: 80,
+          size: 60,
         );
       } else if (score == 3) {
         child = Icon(
           Icons.sentiment_very_satisfied_outlined,
           color: Colors.green,
-          size: 80,
+          size: 60,
+        );
+      } else {
+        child = Icon(
+          Icons.sentiment_satisfied,
+          color: Colors.grey[350],
+          size: 60,
         );
       }
     }
@@ -94,8 +113,10 @@ class _ADLTableState extends State<ADLTable> {
               border: TableBorder.all(
                   color: Colors.grey, style: BorderStyle.solid, width: 1),
               columnWidths: {
-                0: FractionColumnWidth(0.75),
-                1: FractionColumnWidth(0.25)
+                0: FractionColumnWidth(0.40),
+                1: FractionColumnWidth(0.20),
+                2: FractionColumnWidth(0.20),
+                3: FractionColumnWidth(0.20)
               },
               children: [
                 TableRow(children: [
@@ -109,12 +130,39 @@ class _ADLTableState extends State<ADLTable> {
                     )
                   ]),
                   Column(children: [
-                    Text(
-                      'ผลประเมิน',
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.normal,
-                          color: Color(0xFFC37447)),
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      child: Text(
+                        'ประเมินก่อนผ่าตัด',
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                            color: Color(0xFFC37447)),
+                      ),
+                    )
+                  ]),
+                  Column(children: [
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      child: Text(
+                        'ประเมินหลังผ่าตัด',
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                            color: Color(0xFFC37447)),
+                      ),
+                    )
+                  ]),
+                  Column(children: [
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      child: Text(
+                        'ประเมินขณะพักฟื้นที่บ้าน',
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.normal,
+                            color: Color(0xFFC37447)),
+                      ),
                     )
                   ]),
                 ]),
@@ -136,8 +184,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Feeding", score = 0)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
                       child: adlIcon(context, topic = "Feeding", score = 1)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Feeding", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -157,8 +211,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 35),
                       child: adlIcon(context, topic = "Grooming", score = 1)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Grooming", score = 0)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Grooming", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -178,8 +238,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
-                      child: adlIcon(context, topic = "Transfer", score = 2)),
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Transfer", score = 3)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Transfer", score = 1)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Transfer", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -201,8 +267,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Toilet", score = 2)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
                       child: adlIcon(context, topic = "Toilet", score = 0)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Toilet", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -224,8 +296,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Mobility", score = 3)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
                       child: adlIcon(context, topic = "Mobility", score = 1)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Mobility", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -247,8 +325,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
-                      child: adlIcon(context, topic = "Dressing", score = 1)),
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Dressing", score = 2)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Dressing", score = 0)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Dressing", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -270,8 +354,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 35),
                       child: adlIcon(context, topic = "Stairs", score = 2)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Stairs", score = 1)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Stairs", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -293,8 +383,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Bathing", score = 1)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
                       child: adlIcon(context, topic = "Bathing", score = 0)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: adlIcon(context, topic = "Bathing", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -316,8 +412,14 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 50),
                       child: adlIcon(context, topic = "Bowels", score = 2)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: adlIcon(context, topic = "Bowels", score = 2)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: adlIcon(context, topic = "Bowels", score = 4)),
                 ]),
                 TableRow(children: [
                   Padding(
@@ -339,8 +441,42 @@ class _ADLTableState extends State<ADLTable> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 20),
+                      padding: const EdgeInsets.only(top: 50),
                       child: adlIcon(context, topic = "Bladder", score = 1)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: adlIcon(context, topic = "Bladder", score = 1)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: adlIcon(context, topic = "Bladder", score = 4)),
+                ]),
+                TableRow(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Center(
+                      child: Text(
+                        "ผลรวม",
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Center(
+                      child: Text("14"),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Center(
+                      child: Text("8"),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Center(
+                      child: Text("0"),
+                    ),
+                  ),
                 ]),
               ],
             ),

@@ -149,7 +149,9 @@ class EvaluationViewModel {
         break;
       case EvaluationFormTopic.adlHome:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ADLForm()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => ADLForm(navigate: "Evaluate")));
         break;
     }
   }

@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(50, 10, 50, screenSize.height / 4),
+              padding: EdgeInsets.fromLTRB(50, 10, 50, screenSize.height / 6),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[

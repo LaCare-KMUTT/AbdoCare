@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class LineChart extends StatelessWidget {
   final List<PointSeries> data2;
   LineChart({@required this.data2});
+  // ignore: missing_return
   final customTickFormatter = charts.BasicNumericTickFormatterSpec((value) {
     if (value == 0) {
       return "19 ม.ค";
