@@ -4,6 +4,7 @@ import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
+import '../../shared/alert_style.dart';
 import '../../training_information/post-op-hos-day2-7/drain_secretion_advice.dart';
 
 class InfectionForm extends StatefulWidget {
@@ -216,7 +217,7 @@ class _InfectionForm extends State<InfectionForm> {
                               _value7 |
                               _value8 !=
                           true) {
-                        alert(context);
+                        Dialogs.alertDialog(context);
                       } else {
                         Map<String, dynamic> formDataToDB = {
                           'Choice1': _value1,
@@ -261,23 +262,6 @@ class _InfectionForm extends State<InfectionForm> {
         ],
       ),
     );
-  }
-
-  void alert(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (_) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
-          });
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text("แสดงเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center),
-          );
-        });
   }
 
   void showAdvise1(BuildContext context, String result) {

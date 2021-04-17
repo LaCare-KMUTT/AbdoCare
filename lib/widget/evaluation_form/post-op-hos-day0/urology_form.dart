@@ -4,6 +4,7 @@ import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
+import '../../shared/alert_style.dart';
 
 class UrologyForm extends StatefulWidget {
   @override
@@ -129,7 +130,7 @@ class _UrologyFormState extends State<UrologyForm> {
                     color: Color(0xFF2ED47A),
                     onPressed: () async {
                       if (_value1 == null) {
-                        alert(context);
+                        Dialogs.alertDialog(context);
                       } else {
                         Map<String, dynamic> formDataToDB = {
                           'Exercise1': _value1,
@@ -164,23 +165,6 @@ class _UrologyFormState extends State<UrologyForm> {
         ],
       ),
     );
-  }
-
-  void alert(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (_) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
-          });
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text("ให้แสดงเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center),
-          );
-        });
   }
 
   void showAdvise1(BuildContext context, String result) {

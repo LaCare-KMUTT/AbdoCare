@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
+import '../../shared/alert_style.dart';
 
 class AbnormalSymptomForm extends StatefulWidget {
   @override
@@ -138,22 +139,24 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                         'Choice4': _value4,
                         'Choice5': _value5,
                       };
-                      _firebaseService.addDataToFormsCollection(
-                          formName: 'Abnormal Symptom', data: formDataToDB);
                       if (_value | _value2 | _value3 | _value4 == true) {
                         result = "NoPass";
-                        showAdvise(context, result);
+                        _firebaseService.addDataToFormsCollection(
+                            formName: 'Abnormal Symptom', data: formDataToDB);
+                        showAdvise(context);
                       }
                       if (_value5 == true) {
                         result = "Pass";
-                        showAdvise(context, result);
+                        _firebaseService.addDataToFormsCollection(
+                            formName: 'Abnormal Symptom', data: formDataToDB);
+                        showAdvise(context);
                       } else if (_value |
                               _value2 |
                               _value3 |
                               _value4 |
                               _value5 !=
                           true) {
-                        alert(context);
+                        Dialogs.alertDialog(context);
                       }
                     }),
               ],
@@ -164,50 +167,20 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
     );
   }
 
-  void alert(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (_) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
-          });
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text("แสดงเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center),
-          );
-        });
-  }
-
-  void showAdvise(BuildContext context, String result) {
+  void showAdvise(BuildContext context) {
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("ผลการประเมิน", style: Theme.of(context).textTheme.bodyText2),
+        children: <Widget>[
+          Text("แจ้งเตือน", style: Theme.of(context).textTheme.bodyText2),
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                (() {
-                  if (result == "Pass") {
-                    return Text("ผ่าน",
-                        style: Theme.of(context).textTheme.bodyText1);
-                  } else {
-                    return Column(
-                      children: [
-                        Text("ไม่ผ่าน",
-                            style: Theme.of(context).textTheme.bodyText1),
-                        Text("แนะนำให้ผู้ป่วยมาพบแพทย์ทันที",
-                            style: Theme.of(context).textTheme.bodyText1),
-                      ],
-                    );
-                  }
-                }()),
+              children: <Widget>[
+                Text("ให้ผู้ป่วยมาพบแพทย์ทันที",
+                    style: Theme.of(context).textTheme.bodyText1),
               ],
             ),
           ),
@@ -231,7 +204,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
         ),
       ],
     );
-    // show the dialog
     showDialog(
       context: context,
       builder: (context) => alert,

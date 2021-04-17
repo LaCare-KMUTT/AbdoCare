@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
+import '../../shared/alert_style.dart';
 
 class ADLForm extends StatefulWidget {
   final String navigate;
@@ -1747,7 +1748,7 @@ class _ADLFormState extends State<ADLForm> {
                             selectedChoice8 == "" ||
                             selectedChoice9 == "" ||
                             selectedChoice10 == "") {
-                          alert(context);
+                          Dialogs.alertDialog(context);
                         } else {
                           totalscore = score1 +
                               score2 +
@@ -1786,23 +1787,6 @@ class _ADLFormState extends State<ADLForm> {
       ),
     );
   }
-}
-
-void alert(BuildContext context) {
-  showDialog(
-      context: context,
-      builder: (_) {
-        Future.delayed(Duration(seconds: 2), () {
-          Navigator.of(context).pop(true);
-        });
-        return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          title: Text("กรุณาทำแบบประเมินให้ครบถ้วน",
-              style: Theme.of(context).textTheme.bodyText2,
-              textAlign: TextAlign.center),
-        );
-      });
 }
 
 void showAlertDialog(BuildContext context, int total) {
