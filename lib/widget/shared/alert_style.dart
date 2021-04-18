@@ -49,24 +49,4 @@ class Dialogs {
       },
     );
   }
-
-  static Future<void> alertDialogSaveData(BuildContext context) async {
-    await showDialog(
-      context: context,
-      builder: (context) {
-        Future.delayed(Duration(seconds: 1), () {});
-        return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Icon(
-              Icons.check_circle_outline_rounded,
-              size: 100,
-              color: Colors.greenAccent,
-            ),
-            content: Text("บันทึกข้อมูลสำเร็จ",
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center));
-      },
-    );
-  }
 }
