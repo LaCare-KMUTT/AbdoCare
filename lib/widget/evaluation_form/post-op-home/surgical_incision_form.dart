@@ -1,11 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../ultilities/form_utility/surgical_incision_form_utility/surgical_incision_advise.dart';
 import '../../../ultilities/form_utility/surgical_incision_form_utility/upload_photo.dart';
+import '../../shared/alert_style.dart';
 
 class SurgicalIncisionForm extends StatefulWidget {
   @override
@@ -157,7 +156,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                                   builder: (context) => AdvisePage()));
                         } else if (_value | _value2 | _value3 | _value4 ==
                             false) {
-                          alert(context);
+                          Dialogs.alertToCompleteEvalutation(context);
                         }
                       }),
                 ],
@@ -166,23 +165,6 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
           ],
         ),
       );
-
-  void alert(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (_) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
-          });
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text("ทำเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center),
-          );
-        });
-  }
 
   void showAdvise1(BuildContext context) {
     // Create AlertDialog

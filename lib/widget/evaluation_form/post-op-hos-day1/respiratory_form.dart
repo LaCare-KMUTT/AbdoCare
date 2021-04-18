@@ -5,6 +5,7 @@ import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
+import '../../shared/alert_style.dart';
 import '../../training_information/post-op-hos-day1/respiratory_advice.dart';
 
 class RespiratoryDay1Form extends StatefulWidget {
@@ -368,7 +369,7 @@ class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
                           _value4 == null ||
                           _value5 == null ||
                           _value6 == null) {
-                        alert(context);
+                        Dialogs.alertToCompleteEvalutation(context);
                       } else {
                         Map<String, dynamic> formDataToDB = {
                           'Exercise1': _value1,
@@ -413,23 +414,6 @@ class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
         ],
       ),
     );
-  }
-
-  void alert(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (_) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
-          });
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text("ให้แสดงเครื่องหมาย √ \nในข้อที่ท่านมีอาการ",
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center),
-          );
-        });
   }
 
   void showAdvise1(BuildContext context, String result) {
