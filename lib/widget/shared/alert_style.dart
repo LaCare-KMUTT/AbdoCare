@@ -19,7 +19,7 @@ AlertStyle alertStyle = AlertStyle(
 );
 
 class Dialogs {
-  static Future<void> alertDialog(BuildContext context) async {
+  static Future<void> alertToCompleteEvalutation(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (context) {

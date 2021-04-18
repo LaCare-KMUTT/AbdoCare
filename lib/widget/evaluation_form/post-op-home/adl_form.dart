@@ -1748,7 +1748,7 @@ class _ADLFormState extends State<ADLForm> {
                             selectedChoice8 == "" ||
                             selectedChoice9 == "" ||
                             selectedChoice10 == "") {
-                          Dialogs.alertDialog(context);
+                          Dialogs.alertToCompleteEvalutation(context);
                         } else {
                           totalscore = score1 +
                               score2 +

@@ -247,7 +247,7 @@ class _NutritionFormState extends State<NutritionForm> {
                           _value2 == null ||
                           _value3 == null ||
                           _value4 == null) {
-                        Dialogs.alertDialog(context);
+                        Dialogs.alertToCompleteEvalutation(context);
                       } else {
                         Map<String, dynamic> formDataToDB = {
                           'Exercise1': _value1,

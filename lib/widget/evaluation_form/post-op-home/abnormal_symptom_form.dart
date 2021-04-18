@@ -15,7 +15,6 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
   var _value3 = false;
   var _value4 = false;
   var _value5 = false;
-  String result;
 
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
   @override
@@ -140,23 +139,20 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                         'Choice5': _value5,
                       };
                       if (_value | _value2 | _value3 | _value4 == true) {
-                        result = "NoPass";
                         _firebaseService.addDataToFormsCollection(
                             formName: 'Abnormal Symptom', data: formDataToDB);
                         showAdvise(context);
                       }
                       if (_value5 == true) {
-                        result = "Pass";
                         _firebaseService.addDataToFormsCollection(
                             formName: 'Abnormal Symptom', data: formDataToDB);
-                        showAdvise(context);
                       } else if (_value |
                               _value2 |
                               _value3 |
                               _value4 |
                               _value5 !=
                           true) {
-                        Dialogs.alertDialog(context);
+                        Dialogs.alertToCompleteEvalutation(context);
                       }
                     }),
               ],

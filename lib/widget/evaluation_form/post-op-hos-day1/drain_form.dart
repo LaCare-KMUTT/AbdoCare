@@ -230,7 +230,7 @@ class _DrainFormState extends State<DrainForm> {
                               _value7 |
                               _value8 !=
                           true) {
-                        Dialogs.alertDialog(context);
+                        Dialogs.alertToCompleteEvalutation(context);
                       } else {
                         Map<String, dynamic> formDataToDB = {
                           'Choice1': _value1,

@@ -405,7 +405,7 @@ class _BloodClotFormState extends State<BloodClotForm> {
                           _value7 == null ||
                           _value8 == null ||
                           _value9 == null) {
-                        Dialogs.alertDialog(context);
+                        Dialogs.alertToCompleteEvalutation(context);
                       } else {
                         Map<String, dynamic> formDataToDB = {
                           'Choice1': _value1,

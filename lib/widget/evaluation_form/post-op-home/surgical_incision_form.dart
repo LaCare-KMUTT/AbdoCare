@@ -156,7 +156,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                                   builder: (context) => AdvisePage()));
                         } else if (_value | _value2 | _value3 | _value4 ==
                             false) {
-                          Dialogs.alertDialog(context);
+                          Dialogs.alertToCompleteEvalutation(context);
                         }
                       }),
                 ],

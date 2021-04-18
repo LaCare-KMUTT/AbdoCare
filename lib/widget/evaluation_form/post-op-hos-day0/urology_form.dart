@@ -130,7 +130,7 @@ class _UrologyFormState extends State<UrologyForm> {
                     color: Color(0xFF2ED47A),
                     onPressed: () async {
                       if (_value1 == null) {
-                        Dialogs.alertDialog(context);
+                        Dialogs.alertToCompleteEvalutation(context);
                       } else {
                         Map<String, dynamic> formDataToDB = {
                           'Exercise1': _value1,

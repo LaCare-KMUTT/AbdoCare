@@ -548,7 +548,7 @@ class _DigestiveFormState extends State<DigestiveForm> {
                           _value12 == null ||
                           _value13 == null ||
                           _value14 == null) {
-                        Dialogs.alertDialog(context);
+                        Dialogs.alertToCompleteEvalutation(context);
                       } else {
                         Map<String, dynamic> formDataToDB = {
                           'Choice1': _value1,
