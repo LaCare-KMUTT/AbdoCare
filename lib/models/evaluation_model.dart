@@ -11,10 +11,6 @@ class EvaluationModel {
       "selectedform": EvaluationFormTopic.drain0,
     },
     {
-      "formname": "แบบประเมินการจัดการความปวด",
-      "selectedform": EvaluationFormTopic.pain0,
-    },
-    {
       "formname": "แบบประเมินระบบปัสสาวะ",
       "selectedform": EvaluationFormTopic.urology0,
     }
@@ -29,10 +25,6 @@ class EvaluationModel {
       "selectedform": EvaluationFormTopic.drain1,
     },
     {
-      "formname": "แบบประเมินการจัดการความปวด",
-      "selectedform": EvaluationFormTopic.pain1,
-    },
-    {
       "formname": "แบบประเมินป้องกันการเกิดภาวะลิ่มเลือดอุดตัน",
       "selectedform": EvaluationFormTopic.bloodclot1,
     },
@@ -42,10 +34,6 @@ class EvaluationModel {
     }
   ];
   List<Map<String, Object>> postOpHospitalDay2List = [
-    {
-      "formname": "แบบประเมินการจัดการความปวด",
-      "selectedform": EvaluationFormTopic.pain2,
-    },
     {
       "formname": "แบบประเมินการเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
       "selectedform": EvaluationFormTopic.infection2,

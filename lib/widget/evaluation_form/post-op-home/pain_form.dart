@@ -158,7 +158,7 @@ class _PainFormState extends State<PainForm> {
                       color: Color(0xFF2ED47A),
                       onPressed: () async {
                         Map<String, dynamic> saveToDatabase = {
-                          'Answer': value,
+                          'pain': value,
                         };
                         var formId =
                             await _firebaseService.addDataToFormsCollection(

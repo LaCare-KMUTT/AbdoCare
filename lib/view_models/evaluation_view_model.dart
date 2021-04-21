@@ -91,10 +91,6 @@ class EvaluationViewModel {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => DrainForm()));
         break;
-      case EvaluationFormTopic.pain0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
-        break;
       case EvaluationFormTopic.urology0:
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => UrologyForm()));
@@ -107,10 +103,6 @@ class EvaluationViewModel {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => DrainForm()));
         break;
-      case EvaluationFormTopic.pain1:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
-        break;
       case EvaluationFormTopic.bloodclot1:
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => BloodClotForm()));
@@ -118,10 +110,6 @@ class EvaluationViewModel {
       case EvaluationFormTopic.nutrition1:
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => NutritionForm()));
-        break;
-      case EvaluationFormTopic.pain2:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => PainForm()));
         break;
       case EvaluationFormTopic.infection2:
         Navigator.push(
