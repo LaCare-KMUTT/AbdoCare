@@ -336,13 +336,11 @@ void showAdvise1(BuildContext context, int value, String patientstate) {
       ],
     ),
     actions: [
-      RaisedButton(
-        color: Color(0xFFC37447),
-        child: Center(
-          child: Text(
-            "การบรรเทาความปวดโดยไม่ใช้ยา",
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Color(0xFFC37447),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         ),
         onPressed: () {
           if (patientstate ==
@@ -360,18 +358,30 @@ void showAdvise1(BuildContext context, int value, String patientstate) {
             );
           }
         },
-      ),
-      RaisedButton(
-        color: Color(0xFFC37447),
-        child: Center(
-          child: Text(
-            "ตกลง",
-            style: TextStyle(color: Colors.white, fontSize: 16),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Text("การบรรเทาความปวดโดยไม่ใช้ยา",
+                style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
+        ),
+      ),
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Color(0xFFC37447),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         ),
         onPressed: () {
           Navigator.pushNamed(context, '/evaluation_page');
         },
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Text("ตกลง",
+                style: TextStyle(color: Colors.white, fontSize: 16)),
+          ),
+        ),
       ),
     ],
   );
