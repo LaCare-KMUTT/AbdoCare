@@ -283,4 +283,22 @@ class FirebaseService extends IFirebaseService {
       print('$e failed to add notification to Notifications Collection');
     });
   }
+
+  Future<List<Map<String, dynamic>>> getNotifications() async {
+    var storedUserId = UserStore.getValueFromStore('storedUserId');
+    print('storedUserId in getNotificationList $storedUserId');
+    var querySnapshot = await _firestore
+        .collection('Notifications')
+        .where('userId', isEqualTo: storedUserId)
+        .get()
+        .then((value) => value.docs)
+        .catchError((onError) {
+      print('$onError error in getnotification');
+    });
+    var map = querySnapshot.map((doc) {
+      return doc.data();
+    }).toList();
+    print('Map in Notification $map');
+    return map;
+  }
 }
