@@ -75,10 +75,12 @@ class _NotificationCardState extends State<NotificationCard> {
                                 if (notification['formName'] ==
                                     "Surgical Incision") {
                                   alertShowAdvice(
-                                      context, notification['imgURL']);
+                                      context,
+                                      notification['imgURL'],
+                                      notification['advice']);
                                 } else {
-                                  // alertShowAdvice(
-                                  //     context, notification['imgURL']);
+                                  alertShowTraining(
+                                      context, notification['formName']);
                                 }
                               },
                               child: Padding(
@@ -139,25 +141,91 @@ class _NotificationCardState extends State<NotificationCard> {
     }
   }
 
-  Future<void> alertShowAdvice(BuildContext context, String imgURL) async {
+  Future<void> alertShowAdvice(
+      BuildContext context, String imgURL, String advice) async {
     await showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: Text("Pang"),
+            title: Text(
+              "หมายเหตุการแจ้งเตือน",
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
             content: Column(
               children: [
-                Text("Pang"),
+                Text("รูปภาพแผล:"),
                 Container(
                   padding: EdgeInsets.only(top: 0, bottom: 8),
                   width: 400,
                   height: 300,
                   child: Image.network(imgURL),
                 ),
+                Text("คำแนะนำ:\t${advice ?? "ไม่มี"}"),
               ],
             ),
+          );
+        });
+  }
+
+  Future<void> alertShowTraining(BuildContext context, String formName) async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: Text(
+              "หมายเหตุการแจ้งเตือน",
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
+            content: Text(
+              "ผู้ป่วยไม่ผ่าน${formNameModel[formName]}",
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              Column(
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFFC37447),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/training_page');
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(
+                        child: Text("คำแนะนำในการฟื้นตัว",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 16)),
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFFC37447),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(
+                        child: Text("ตกลง",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 16)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           );
         });
   }

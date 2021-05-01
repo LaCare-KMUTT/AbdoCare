@@ -298,7 +298,6 @@ class FirebaseService extends IFirebaseService {
     var map = querySnapshot.map((doc) {
       return doc.data();
     }).toList();
-    print('Map in Notification $map');
     return map;
   }
 }
