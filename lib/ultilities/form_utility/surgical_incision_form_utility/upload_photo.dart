@@ -129,7 +129,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                 'imgURL': imgUrl,
               };
               await _firebaseService.addNotification(dataToDb);
-              Navigator.of(context).pop();
+              Navigator.pushNamed(context, '/evaluation_page');
             }
           },
         ),
