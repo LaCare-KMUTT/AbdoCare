@@ -7,6 +7,7 @@ import 'pages/chat_page.dart';
 import 'pages/dashboard_page.dart';
 import 'pages/evaluation_page.dart';
 import 'pages/login_page.dart';
+import 'pages/notification_page.dart';
 import 'pages/passcode_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/training_page.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           '/dashboard_page': (context) => DashboardPage(),
           '/training_page': (context) => TrainingPage(),
           '/passcode_page': (context) => PasscodePage(),
+          '/notification_page': (context) => NotificationPage(),
         },
       );
 }

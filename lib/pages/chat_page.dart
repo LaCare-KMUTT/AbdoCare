@@ -33,11 +33,13 @@ class _ChatPageState extends State<ChatPage> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(
-              Icons.help,
+              Icons.notifications,
               size: 30,
             ),
-            tooltip: 'ช่วยเหลือ',
-            onPressed: () {},
+            tooltip: 'การแจ้งเตือน',
+            onPressed: () {
+              Navigator.pushNamed(context, '/notification_page');
+            },
           ),
         ],
         leading: IconButton(
