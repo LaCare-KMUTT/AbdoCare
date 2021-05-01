@@ -38,8 +38,6 @@ class _NotificationCardState extends State<NotificationCard> {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     if (_notificationList == null) {
       return loadingProgress;
     } else {
@@ -77,7 +75,8 @@ class _NotificationCardState extends State<NotificationCard> {
                                   alertShowAdvice(
                                       context,
                                       notification['imgURL'],
-                                      notification['advice']);
+                                      notification['advice'],
+                                      notification['formName']);
                                 } else {
                                   alertShowTraining(
                                       context, notification['formName']);
@@ -117,12 +116,24 @@ class _NotificationCardState extends State<NotificationCard> {
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(
-                                            '''ผู้ป่วยไม่ผ่านแบบประเมิน''',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1,
-                                          ),
+                                          (() {
+                                            if (notification['formName'] ==
+                                                "Surgical Incision") {
+                                              return Text(
+                                                '''บุคลากรทางการแพทย์ได้ส่งคำแนะนำถึงคุณ''',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1,
+                                              );
+                                            } else {
+                                              return Text(
+                                                '''ผู้ป่วยไม่ผ่านแบบประเมิน''',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1,
+                                              );
+                                            }
+                                          }()),
                                         ],
                                       ),
                                     ),
@@ -141,8 +152,8 @@ class _NotificationCardState extends State<NotificationCard> {
     }
   }
 
-  Future<void> alertShowAdvice(
-      BuildContext context, String imgURL, String advice) async {
+  Future<void> alertShowAdvice(BuildContext context, String imgURL,
+      String advice, String formName) async {
     await showDialog(
         context: context,
         builder: (context) {
@@ -153,18 +164,58 @@ class _NotificationCardState extends State<NotificationCard> {
               "หมายเหตุการแจ้งเตือน",
               style: Theme.of(context).textTheme.bodyText2,
             ),
-            content: Column(
-              children: [
-                Text("รูปภาพแผล:"),
-                Container(
-                  padding: EdgeInsets.only(top: 0, bottom: 8),
-                  width: 400,
-                  height: 300,
-                  child: Image.network(imgURL),
+            content: Builder(builder: (context) {
+              var height = MediaQuery.of(context).size.height;
+              var width = MediaQuery.of(context).size.width;
+              return Container(
+                height: height / 3,
+                width: width,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "ผู้ป่วยไม่ผ่าน${formNameModel[formName]}",
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          "รูปภาพแผล:",
+                          textAlign: TextAlign.start,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5, bottom: 5),
+                          child: Container(
+                            height: 200,
+                            child: Image.network(imgURL),
+                          ),
+                        ),
+                        Text("คำแนะนำ:\t${advice ?? "-"}"),
+                      ],
+                    ),
+                  ],
                 ),
-                Text("คำแนะนำ:\t${advice ?? "ไม่มี"}"),
-              ],
-            ),
+              );
+            }),
+            actions: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFFC37447),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: Text("ตกลง",
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
+                  ),
+                ),
+              ),
+            ],
           );
         });
   }

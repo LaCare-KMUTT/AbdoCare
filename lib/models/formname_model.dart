@@ -11,6 +11,6 @@ Map<String, String> formNameModel = {
   'Vital Sign': 'แบบประเมินสัญญาณชีพ',
   'Digestive': 'แบบประเมินการฟื้นฟูระบบทางเดินอาหาร',
   'Pulmanary': 'แบบประเมินการฟื้นฟูสมรรถภาพของปอด',
-  'Surgical Incision': 'แบบประเมินการประเมินแผล',
+  'Surgical Incision': 'แบบประเมินแผล',
   'Abnormal Symptom': 'แบบประเมินอาการแสดงที่ผิดปกติ',
 };
