@@ -1,23 +1,26 @@
-import '../services/interfaces/firebase_service_interface.dart';
-import '../services/service_locator.dart';
+class NotiData {
+  String patientState;
+  String formName;
+  String formTime;
+  String formDate;
+  DateTime formDateTimeSort;
+  String seen;
+  String imgURL;
+  String advice;
+  int severity;
+  Map<String, dynamic> map;
 
-class NotificationList {
-  List<Map<String, dynamic>> _notificationList = [];
-  final IFirebaseService _firebaseService = locator<IFirebaseService>();
-
-  NotificationList();
-
-  static Future<NotificationList> create() async {
-    var instance = NotificationList();
-    await instance._getNotificationFromDb();
-    return instance;
-  }
-
-  void _getNotificationFromDb() async {
-    _notificationList = await _firebaseService.getNotifications();
-  }
-
-  Future<List<Map<String, dynamic>>> getNotificationList() async {
-    return await _notificationList;
+  NotiData({
+    this.map,
+  }) {
+    this.patientState = map['patientState'];
+    this.formName = map['formName'];
+    this.formTime = map['formTime'];
+    this.formDate = map['formDate'];
+    this.formDateTimeSort = map["formDateTimeSort"];
+    this.seen = map['seen'];
+    this.imgURL = map['imgURL'];
+    this.advice = map['advice'];
+    this.severity = map['severity'];
   }
 }
