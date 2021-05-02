@@ -305,10 +305,10 @@ class _NutritionFormState extends State<NutritionForm> {
               children: [
                 (() {
                   if (result == "Pass") {
-                    return Text("ผ่าน",
+                    return Text("ผู้ป่วยผ่านแบบประเมิน",
                         style: Theme.of(context).textTheme.bodyText1);
                   } else {
-                    return Text("ไม่ผ่าน",
+                    return Text("ผู้ป่วยไม่ผ่านแบบประเมิน",
                         style: Theme.of(context).textTheme.bodyText1);
                   }
                 }())

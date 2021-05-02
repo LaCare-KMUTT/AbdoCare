@@ -1830,7 +1830,7 @@ void showAlertDialog(BuildContext context, int total) {
                   return Column(
                     children: [
                       Text("คะแนนรวม = $total"),
-                      Text("ไม่ผ่านค่ะ",
+                      Text("ผู้ป่วยไม่ผ่านแบบประเมิน",
                           style: Theme.of(context).textTheme.bodyText1),
                     ],
                   );

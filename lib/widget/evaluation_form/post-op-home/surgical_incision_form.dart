@@ -139,7 +139,6 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                                     UploadPhoto(formDataToDB)),
                           );
                         }
-
                         if (_value | _value2 == true) {
                           await _firebaseService.addDataToFormsCollection(
                               formName: 'Surgical Incision',
@@ -150,10 +149,7 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
                           await _firebaseService.addDataToFormsCollection(
                               formName: 'Surgical Incision',
                               data: formDataToDB);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AdvisePage()));
+                          showAdvise2(context);
                         } else if (_value | _value2 | _value3 | _value4 ==
                             false) {
                           Dialogs.alertToCompleteEvalutation(context);
@@ -167,7 +163,6 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
       );
 
   void showAdvise1(BuildContext context) {
-    // Create AlertDialog
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Column(
@@ -187,6 +182,69 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
         ],
       ),
       actions: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFFC37447),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/evaluation_page');
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Text("ตกลง",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+            ),
+          ),
+        ),
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (context) => alert,
+    );
+  }
+
+  void showAdvise2(BuildContext context) {
+    AlertDialog alert = AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      title: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text("ผลการประเมิน", style: Theme.of(context).textTheme.bodyText2),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text("ผู้ป่วยผ่านแบบประเมิน",
+                    style: Theme.of(context).textTheme.bodyText1),
+              ],
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFFC37447),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+          ),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AdvisePage()));
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Text("คำแนะนำเพื่อส่งเสริมการหายของแผล",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+            ),
+          ),
+        ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: Color(0xFFC37447),

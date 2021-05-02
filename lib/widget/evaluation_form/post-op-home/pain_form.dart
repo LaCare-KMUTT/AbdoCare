@@ -171,8 +171,8 @@ class _PainFormState extends State<PainForm> {
                             (_anSubCollection['state'] ==
                                     'Post-Operation@Home' &&
                                 value >= 4)) {
-                          showAdvise1(
-                              context, value, _anSubCollection['state']);
+                          showAdvise1(context, value, _anSubCollection['state'],
+                              "NoPass");
                           if (checkNotificationCriteria(value)) {
                             var creation = _calculationService.formatDate(
                                 date: DateTime.now());
@@ -188,8 +188,8 @@ class _PainFormState extends State<PainForm> {
                             });
                           }
                         } else {
-                          showAdvise2(
-                              context, value, _anSubCollection['state']);
+                          showAdvise1(context, value, _anSubCollection['state'],
+                              "pass");
                         }
                       }),
                 ],
@@ -312,29 +312,38 @@ class GradientRectSliderTrackShape extends SliderTrackShape
   }
 }
 
-void showAdvise1(BuildContext context, int value, String patientstate) {
+void showAdvise1(
+    BuildContext context, int value, String patientstate, String result) {
   String navigate = "Evaluate";
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-    title: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("ระดับคะแนนคือ $value",
-            style: Theme.of(context).textTheme.bodyText2),
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text("ให้รับประทานยาแก้ปวด",
-                  style: Theme.of(context).textTheme.bodyText1),
-              Text("ตามคำสั่งการรักษาของแพทย์",
-                  style: Theme.of(context).textTheme.bodyText1),
-            ],
-          ),
-        ),
-      ],
-    ),
+    title: (() {
+      if (result == "NoPass") {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("ระดับคะแนนคือ $value",
+                style: Theme.of(context).textTheme.bodyText2),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("ให้รับประทานยาแก้ปวด",
+                      style: Theme.of(context).textTheme.bodyText1),
+                  Text("ตามคำสั่งการรักษาของแพทย์",
+                      style: Theme.of(context).textTheme.bodyText1),
+                ],
+              ),
+            ),
+          ],
+        );
+      } else {
+        return Text("ระดับคะแนนคือ $value",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyText2);
+      }
+    }()),
     actions: [
       ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -386,54 +395,6 @@ void showAdvise1(BuildContext context, int value, String patientstate) {
     ],
   );
 
-  showDialog(
-    context: context,
-    builder: (context) => alert,
-  );
-}
-
-void showAdvise2(BuildContext context, int value, String patientstate) {
-  String navigate = "Evaluate";
-  AlertDialog alert = AlertDialog(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-    title: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text("ระดับคะแนนคือ $value",
-            style: Theme.of(context).textTheme.bodyText2),
-      ],
-    ),
-    actions: [
-      RaisedButton(
-        color: Color(0xFFC37447),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          child: Center(
-            child: Text(
-              "การบรรเทาความปวดโดยไม่ใช้ยา",
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-          ),
-        ),
-        onPressed: () {
-          if (patientstate ==
-              enumToString(PatientState.postOperationHospital)) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PainAdviceDay2(navigate: navigate)),
-            );
-          } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PainAdvice(navigate: navigate)),
-            );
-          }
-        },
-      ),
-    ],
-  );
   showDialog(
     context: context,
     builder: (context) => alert,
