@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
+import '../models/formname_model.dart';
 import '../stores/user_store.dart';
 import 'interfaces/calculation_service_interface.dart';
 import 'interfaces/firebase_service_interface.dart';
@@ -290,14 +291,47 @@ class FirebaseService extends IFirebaseService {
     var querySnapshot = await _firestore
         .collection('Notifications')
         .where('userId', isEqualTo: storedUserId)
-        .get()
-        .then((value) => value.docs)
-        .catchError((onError) {
-      print('$onError error in getnotification');
+        .where('seen', isEqualTo: true)
+        .get();
+    var querySnapshotData = querySnapshot.docs;
+    var returnList = querySnapshotData.map((user) async {
+      var notiCollection =
+          await _firestore.collection("Notifications").doc(user.id).get();
+      var seen = notiCollection['seen'];
+      if (seen == false) {
+        seen = "ยังไม่ได้ดำเนินการ";
+      } else {
+        seen = "ดำเนินการแล้ว";
+      }
+      var patientState = notiCollection['patientState'];
+      var formName = notiCollection['formName'];
+      formName = formNameModel[formName];
+      var time = notiCollection['creation'];
+      var formTime =
+          DateTime.fromMicrosecondsSinceEpoch(time.microsecondsSinceEpoch);
+      var formDateToShow = DateFormat('dd/MM/yyyy').format(formTime);
+      var formTimeToShow = DateFormat.Hm().format(formTime).toString() + " น.";
+      var imgURL = notiCollection['imgURL'] ?? '-';
+      var advice = notiCollection['advice'] ?? '-';
+      var severity = notiCollection['severity'] ?? '-';
+      var map = {
+        'patientState': patientState ?? '-',
+        'formName': formName ?? '-',
+        'formTime': formTimeToShow ?? '-',
+        'formDate': formDateToShow ?? '-',
+        'formDateTimeSort': formTime ?? '-',
+        'seen': seen ?? '-',
+        'imgURL': imgURL ?? '-',
+        'advice': advice ?? '-',
+        'severity': severity ?? '-'
+      };
+      return map;
     });
-    var map = querySnapshot.map((doc) {
-      return doc.data();
-    }).toList();
-    return map;
+    var futureList = Future.wait(returnList);
+    var returnValue = await futureList;
+    if (returnValue != null) {
+      returnValue.removeWhere((element) => element == null);
+    }
+    return returnValue;
   }
 }
