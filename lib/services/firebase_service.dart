@@ -15,39 +15,13 @@ class FirebaseService extends IFirebaseService {
   final ICalculationService _calculationService =
       locator<ICalculationService>();
 
-  Future<String> _getUsernameByHnAndKey(String hn, String uniqueKey) async {
-    var username;
-    var searchedUserId = await _firestore
-        .collection('Users')
-        .where('uniqueKey', isEqualTo: uniqueKey)
-        .where('hn', isEqualTo: hn)
-        .get();
-    if (searchedUserId.size != 0) {
-      var document = searchedUserId.docs.first;
-      var userId = document.id;
-      username = await _firestore
-          .collection('Users')
-          .doc(userId)
-          .get()
-          .then((user) => user.get('username'))
-          .catchError((onError) {
-        print('$onError Failed to find username');
-        return null;
-      });
-    } else {
-      print('can\'t find user id');
-      username = null;
-    }
-    return username;
-  }
-
   Future<bool> signIn({
     @required String hn,
     @required String uniqueKey,
   }) async {
-    var username = await _getUsernameByHnAndKey(hn, uniqueKey);
     var loginResult = await _auth
-        .signInWithEmailAndPassword(email: username, password: uniqueKey)
+        .signInWithEmailAndPassword(
+            email: '$hn@abdocare.com', password: uniqueKey)
         .then((value) {
       print('${value.user.uid} has logined!');
       return true;
