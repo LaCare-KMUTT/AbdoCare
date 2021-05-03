@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import './set_pin_page.dart';
 import '../models/profile_model.dart';
 import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
 import '../stores/user_store.dart';
 import '../widget/shared/loading_widget.dart';
+import './set_pin_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
