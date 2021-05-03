@@ -41,7 +41,7 @@ class _NotificationPageState extends State<NotificationPage> {
           ),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/chat_page');
+            Navigator.pushNamed(context, '/chat_page');
           },
         ),
       ),

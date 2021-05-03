@@ -24,10 +24,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
           ),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ChatPage()),
-            );
+            Navigator.pushNamed(context, '/chat_page');
           },
         ),
       ),
