@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../@enum/patient_state.dart';
-import '../models/formname_model.dart';
+import '../models/formName_model.dart';
 import '../stores/user_store.dart';
 import 'interfaces/calculation_service_interface.dart';
 import 'interfaces/firebase_service_interface.dart';
@@ -301,12 +301,6 @@ class FirebaseService extends IFirebaseService {
     var returnList = notiList.map((user) async {
       var notiCollection =
           await _firestore.collection("Notifications").doc(user.id).get();
-      var seen = notiCollection['seen'];
-      if (seen == false) {
-        seen = "ยังไม่ได้ดำเนินการ";
-      } else {
-        seen = "ดำเนินการแล้ว";
-      }
       var patientState = notiCollection['patientState'];
       var formName = notiCollection['formName'];
       formName = formNameModel[formName];
@@ -315,8 +309,7 @@ class FirebaseService extends IFirebaseService {
           DateTime.fromMicrosecondsSinceEpoch(time.microsecondsSinceEpoch);
       var formDateToShow = DateFormat('dd/MM/yyyy').format(formTime);
       var formTimeToShow = "${DateFormat.Hm().format(formTime)} น.";
-
-      var patientSeen = notiCollection['patientSeen'] ?? '-';
+      var patientSeen = notiCollection['patientSeen'] ?? false;
       if (patientSeen == false) {
         patientSeen = "ยังไม่ได้อ่าน";
       } else {
@@ -328,21 +321,20 @@ class FirebaseService extends IFirebaseService {
         'formTime': formTimeToShow ?? '-',
         'formDate': formDateToShow ?? '-',
         'formDateTimeSort': formTime ?? '-',
-        'seen': seen ?? '-',
         'imgURL': '-',
         'advice': '-',
-        'severity': '-',
+        'severity': 0,
         'notiId': user.id ?? '-',
-        'patientSeen': patientSeen ?? '-',
+        'patientSeen': patientSeen ?? 'ยังไม่ได้อ่าน',
       };
       if (patientState == "Post-Operation@Home") {
         var imgURL = notiCollection['imgURL'] ?? '-';
         var advice = notiCollection['advice'] ?? '-';
-        var severity = notiCollection['severity'] ?? '-';
+        var severity = notiCollection['severity'] ?? 0;
         map.addAll({
           'imgURL': imgURL ?? '-',
           'advice': advice ?? '-',
-          'severity': severity ?? '-',
+          'severity': severity ?? 0
         });
       }
       return map;
@@ -355,7 +347,7 @@ class FirebaseService extends IFirebaseService {
     return returnValue;
   }
 
-  Future<int> getNoticounter() async {
+  Future<int> getNotiCounter() async {
     int count = 0;
     var notiList = await this.getNotificationList();
     var returnList = notiList.map((user) async {

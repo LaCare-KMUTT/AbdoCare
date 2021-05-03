@@ -4,10 +4,9 @@ class NotiData {
   String formTime;
   String formDate;
   DateTime formDateTimeSort;
-  String seen;
   String imgURL;
   String advice;
-  dynamic severity;
+  int severity;
   String notiId;
   String patientSeen;
   Map<String, dynamic> map;
@@ -20,7 +19,6 @@ class NotiData {
     this.formTime = map['formTime'];
     this.formDate = map['formDate'];
     this.formDateTimeSort = map["formDateTimeSort"];
-    this.seen = map['seen'];
     this.imgURL = map['imgURL'];
     this.advice = map['advice'];
     this.severity = map['severity'];
