@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../@enum/patient_state.dart';
 import '../models/formname_model.dart';
 import '../stores/user_store.dart';
 import 'interfaces/calculation_service_interface.dart';
@@ -285,16 +286,30 @@ class FirebaseService extends IFirebaseService {
     });
   }
 
-  Future<List<Map<String, dynamic>>> getNotifications() async {
+  Future<List<QueryDocumentSnapshot>> getNotificationList() async {
+    var data;
     var storedUserId = UserStore.getValueFromStore('storedUserId');
-    print('storedUserId in getNotificationList $storedUserId');
-    var querySnapshot = await _firestore
-        .collection('Notifications')
-        .where('userId', isEqualTo: storedUserId)
-        .where('seen', isEqualTo: true)
-        .get();
-    var querySnapshotData = querySnapshot.docs;
-    var returnList = querySnapshotData.map((user) async {
+    var anSubcollection = await getLatestAnSubCollection(userId: storedUserId);
+    var patientState = anSubcollection["state"];
+    var checkState = enumToString(PatientState.postOperationHome);
+    if (patientState == checkState) {
+      data = await _firestore
+          .collection('Notifications')
+          .where('userId', isEqualTo: storedUserId)
+          .where('seen', isEqualTo: true)
+          .get();
+    } else {
+      data = await _firestore
+          .collection('Notifications')
+          .where('userId', isEqualTo: storedUserId)
+          .get();
+    }
+    return data.docs;
+  }
+
+  Future<List<Map<String, dynamic>>> getNotifications() async {
+    var notiList = await this.getNotificationList();
+    var returnList = notiList.map((user) async {
       var notiCollection =
           await _firestore.collection("Notifications").doc(user.id).get();
       var seen = notiCollection['seen'];
@@ -310,7 +325,7 @@ class FirebaseService extends IFirebaseService {
       var formTime =
           DateTime.fromMicrosecondsSinceEpoch(time.microsecondsSinceEpoch);
       var formDateToShow = DateFormat('dd/MM/yyyy').format(formTime);
-      var formTimeToShow = DateFormat.Hm().format(formTime).toString() + " น.";
+      var formTimeToShow = "${DateFormat.Hm().format(formTime)} น.";
       var imgURL = notiCollection['imgURL'] ?? '-';
       var advice = notiCollection['advice'] ?? '-';
       var severity = notiCollection['severity'] ?? '-';
@@ -333,5 +348,23 @@ class FirebaseService extends IFirebaseService {
       returnValue.removeWhere((element) => element == null);
     }
     return returnValue;
+  }
+
+  Future<int> getNoticounter() async {
+    int count = 0;
+    var notiList = await this.getNotificationList();
+    var returnList = notiList.map((user) async {
+      var notiCollection =
+          await _firestore.collection("Notifications").doc(user.id).get();
+      var seen = notiCollection['seen'];
+      if (seen == true || seen == false) {
+        count = count + 1;
+      }
+      return count;
+    });
+    var futureList = Future.wait(returnList);
+    var returnValue = await futureList;
+    count = returnValue.first;
+    return count;
   }
 }

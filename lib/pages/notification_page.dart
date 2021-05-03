@@ -36,7 +36,7 @@ class _NotificationPageState extends State<NotificationPage> {
           ),
           tooltip: 'กลับ',
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.popAndPushNamed(context, '/chat_page');
           },
         ),
       ),
@@ -53,7 +53,6 @@ class _NotificationPageState extends State<NotificationPage> {
           } else {
             notidata.clear();
             notidata.addAll(snapshot.data);
-
             return NotificationCard(
               notiData: notidata,
             );
