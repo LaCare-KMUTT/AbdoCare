@@ -8,6 +8,8 @@ class NotiData {
   String imgURL;
   String advice;
   int severity;
+  String notiId;
+  String patientSeen;
   Map<String, dynamic> map;
 
   NotiData({
@@ -22,5 +24,7 @@ class NotiData {
     this.imgURL = map['imgURL'];
     this.advice = map['advice'];
     this.severity = map['severity'];
+    this.notiId = map['notiId'];
+    this.patientSeen = map['patientSeen'];
   }
 }

@@ -303,6 +303,12 @@ class FirebaseService extends IFirebaseService {
       var imgURL = notiCollection['imgURL'] ?? '-';
       var advice = notiCollection['advice'] ?? '-';
       var severity = notiCollection['severity'] ?? '-';
+      var patientSeen = notiCollection['patientSeen'] ?? '-';
+      if (patientSeen == false) {
+        patientSeen = "ยังไม่ได้อ่าน";
+      } else {
+        patientSeen = "อ่านแล้ว";
+      }
       var map = {
         'patientState': patientState ?? '-',
         'formName': formName ?? '-',
@@ -312,7 +318,9 @@ class FirebaseService extends IFirebaseService {
         'seen': seen ?? '-',
         'imgURL': imgURL ?? '-',
         'advice': advice ?? '-',
-        'severity': severity ?? '-'
+        'severity': severity ?? '-',
+        'notiId': user.id ?? '-',
+        'patientSeen': patientSeen ?? '-',
       };
       return map;
     });
@@ -330,8 +338,8 @@ class FirebaseService extends IFirebaseService {
     var returnList = notiList.map((user) async {
       var notiCollection =
           await _firestore.collection("Notifications").doc(user.id).get();
-      var seen = notiCollection['seen'];
-      if (seen == true || seen == false) {
+      var patientSeen = notiCollection['patientSeen'] ?? '-';
+      if (patientSeen == false) {
         count = count + 1;
       }
       return count;
