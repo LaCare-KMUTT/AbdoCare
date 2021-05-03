@@ -63,5 +63,5 @@ abstract class IFirebaseService {
 
   Future<List<Map<String, dynamic>>> getNotifications();
 
-  Future<int> getNoticounter();
+  Future<int> getNotiCounter();
 }
