@@ -51,7 +51,7 @@ class _NotiIconState extends State<NotiIcon> {
             ),
             Positioned(
                 top: 0,
-                right: 5,
+                right: 7,
                 child: (() {
                   if (_notiCounter == null || _notiCounter == 0) {
                     return SizedBox();

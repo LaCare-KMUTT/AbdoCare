@@ -15,7 +15,7 @@ class NotiViewModel {
       // ignore: avoid_function_literals_in_foreach_calls
       allNotiList.forEach((mapData) {
         userList.add(NotiData(map: mapData));
-        sortBy("DateTimeSort", true);
+        sortBy("patientSeen", true);
       });
     }
   }
@@ -31,9 +31,10 @@ class NotiViewModel {
   // ignore: avoid_positional_boolean_parameters
   List<NotiData> sortBy(String key, bool isAsc) {
     switch (key) {
-      case 'DateTimeSort':
+      case 'patientSeen':
         userList
             .sort((a, b) => a.formDateTimeSort.compareTo(b.formDateTimeSort));
+        userList.sort((a, b) => b.patientSeen.compareTo(a.patientSeen));
         break;
     }
     if (isAsc) {

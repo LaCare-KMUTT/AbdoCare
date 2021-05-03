@@ -15,6 +15,11 @@ class _NotificationPageState extends State<NotificationPage> {
 
   Future<List<NotiData>> _notidata;
   List<NotiData> notidata = [];
+  void callData() {
+    setState(() {
+      _notidata = _notiViewModel.getUsers();
+    });
+  }
 
   @override
   void initState() {
@@ -55,6 +60,7 @@ class _NotificationPageState extends State<NotificationPage> {
             notidata.addAll(snapshot.data);
             return NotificationCard(
               notiData: notidata,
+              callData: callData,
             );
           }
         });

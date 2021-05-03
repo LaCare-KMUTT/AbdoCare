@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import '../models/formname_model.dart';
 import '../models/notification_list_model.dart';
+import '../services/interfaces/firebase_service_interface.dart';
+import '../services/service_locator.dart';
 
 class NotificationCard extends StatefulWidget {
   final List<NotiData> notiData;
-  NotificationCard({Key key, @required this.notiData}) : super(key: key);
+  final Function callData;
+  NotificationCard({Key key, @required this.notiData, @required this.callData})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() => _NotificationCardState();
 }
 
 class _NotificationCardState extends State<NotificationCard> {
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,6 +35,10 @@ class _NotificationCardState extends State<NotificationCard> {
                 side: BorderSide(color: Colors.grey[200], width: 1),
               ),
               onPressed: () {
+                _firebaseService.updateDataToCollectionField(
+                    collection: 'Notifications',
+                    docId: noti.notiId,
+                    updateField: {'patientSeen': true});
                 if (noti.formName == "แบบประเมินแผล") {
                   alertShowAdvice(
                       context, noti.imgURL, noti.advice, noti.formName);
@@ -44,8 +53,30 @@ class _NotificationCardState extends State<NotificationCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        (() {
+                          if (noti.patientSeen == "ยังไม่ได้อ่าน") {
+                            return Row(
+                              children: [
+                                Icon(
+                                  Icons.circle_notifications,
+                                  size: 25,
+                                  color: Color(0xFFC37447),
+                                ),
+                                Text(
+                                  " ใหม่",
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color(0xFFC37447),
+                                  ),
+                                ),
+                              ],
+                            );
+                          } else {
+                            return Text("");
+                          }
+                        }()),
                         Text(
                           '''${noti.formDate}\t\t${noti.formTime}''',
                           style: TextStyle(
@@ -160,7 +191,7 @@ class _NotificationCardState extends State<NotificationCard> {
               ),
             ],
           );
-        });
+        }).then((value) => widget.callData());
   }
 
   Future<void> alertShowTraining(BuildContext context, String formName) async {
@@ -221,6 +252,6 @@ class _NotificationCardState extends State<NotificationCard> {
               ),
             ],
           );
-        });
+        }).then((value) => widget.callData());
   }
 }
