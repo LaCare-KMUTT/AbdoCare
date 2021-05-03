@@ -249,10 +249,25 @@ class FirebaseService extends IFirebaseService {
     return map;
   }
 
-  Future<void> addNotification(Map<String, dynamic> data) async {
+  Future<void> addNotification(
+      {@required String userId,
+      @required String formId,
+      @required String formName}) async {
+    var creation = _calculationService.formatDate(date: DateTime.now());
+    var anSubCollection = await getLatestAnSubCollection(userId: userId);
+    var patientState = anSubCollection['state'];
+    Map<String, dynamic> dataToAdd = {
+      'formName': formName,
+      'formId': formId,
+      'userId': userId,
+      'creation': creation,
+      'patientState': patientState,
+      'seen': false,
+      'patientSeen': false,
+    };
     await _firestore
         .collection('Notifications')
-        .add(data)
+        .add(dataToAdd)
         .then((value) =>
             print('Successfully added $value to Notificaitons Collection'))
         .catchError((e) {

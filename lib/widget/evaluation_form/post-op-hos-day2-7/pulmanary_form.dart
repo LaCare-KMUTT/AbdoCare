@@ -307,18 +307,12 @@ class _PulmanaryFormState extends State<PulmanaryForm> {
                         } else {
                           result = "NoPass";
                           showAdvise1(context, result);
-                          var creation = _calculationService.formatDate(
-                              date: DateTime.now());
-                          var patientState = _anSubCollection['state'];
-                          _firebaseService.addNotification({
-                            'formName': 'Pulmanary',
-                            'formId': formId,
-                            'userId':
-                                UserStore.getValueFromStore('storedUserId'),
-                            'creation': creation,
-                            'patientState': patientState,
-                            'seen': false,
-                          });
+                          var userId =
+                              UserStore.getValueFromStore('storedUserId');
+                          await _firebaseService.addNotification(
+                              formId: formId,
+                              formName: 'Pulmanary',
+                              userId: userId);
                         }
                       }
                     }),

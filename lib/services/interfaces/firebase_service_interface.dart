@@ -56,7 +56,10 @@ abstract class IFirebaseService {
 
   Future<List<Map<String, dynamic>>> getAppointments();
 
-  Future<void> addNotification(Map<String, dynamic> data);
+  Future<void> addNotification(
+      {@required String userId,
+      @required String formId,
+      @required String formName});
 
   Future<List<Map<String, dynamic>>> getNotifications();
 

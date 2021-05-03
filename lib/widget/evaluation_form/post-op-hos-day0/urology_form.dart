@@ -144,18 +144,12 @@ class _UrologyFormState extends State<UrologyForm> {
                         } else {
                           result = "NoPass";
                           showAdvise1(context, result);
-                          var creation = _calculationService.formatDate(
-                              date: DateTime.now());
-                          var patientState = _anSubCollection['state'];
-                          _firebaseService.addNotification({
-                            'formName': 'Urology',
-                            'formId': formId,
-                            'userId':
-                                UserStore.getValueFromStore('storedUserId'),
-                            'creation': creation,
-                            'patientState': patientState,
-                            'seen': false,
-                          });
+                          var userId =
+                              UserStore.getValueFromStore('storedUserId');
+                          await _firebaseService.addNotification(
+                              formId: formId,
+                              formName: 'Urology',
+                              userId: userId);
                         }
                       }
                     }),

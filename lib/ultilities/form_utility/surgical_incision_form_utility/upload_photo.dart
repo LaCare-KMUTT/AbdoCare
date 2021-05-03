@@ -116,19 +116,11 @@ class _UploadPhotoState extends State<UploadPhoto> {
               print('printFormDataToDb in upload_photo $formDataToDB');
               var formId = await _firebaseService.addDataToFormsCollection(
                   formName: 'Surgical Incision', data: formDataToDB);
-
-              var state = _anSubCollection['state'];
-              var dataToDb = {
-                'creation':
-                    _calculationService.formatDate(date: DateTime.now()),
-                'formName': 'Surgical Incision',
-                'formId': formId,
-                'userId': UserStore.getValueFromStore('storedUserId'),
-                'seen': false,
-                'patientState': state,
-                'imgURL': imgUrl,
-              };
-              await _firebaseService.addNotification(dataToDb);
+              var userId = UserStore.getValueFromStore('storedUserId');
+              await _firebaseService.addNotification(
+                  formId: formId,
+                  formName: 'Surgical Incision',
+                  userId: userId);
               Navigator.pushNamed(context, '/evaluation_page');
             }
           },

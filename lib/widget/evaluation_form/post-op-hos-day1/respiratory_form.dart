@@ -393,18 +393,12 @@ class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
                         } else {
                           result = "NoPass";
                           showAdvise1(context, result);
-                          var creation = _calculationService.formatDate(
-                              date: DateTime.now());
-                          var patientState = _anSubCollection['state'];
-                          _firebaseService.addNotification({
-                            'formName': 'Respiratory',
-                            'formId': formId,
-                            'userId':
-                                UserStore.getValueFromStore('storedUserId'),
-                            'creation': creation,
-                            'patientState': patientState,
-                            'seen': false,
-                          });
+                          var userId =
+                              UserStore.getValueFromStore('storedUserId');
+                          await _firebaseService.addNotification(
+                              formId: formId,
+                              formName: 'Respiratory',
+                              userId: userId);
                         }
                       }
                     }),

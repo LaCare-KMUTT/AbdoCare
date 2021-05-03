@@ -174,18 +174,12 @@ class _PainFormState extends State<PainForm> {
                           showAdvise1(context, value, _anSubCollection['state'],
                               "NoPass");
                           if (checkNotificationCriteria(value)) {
-                            var creation = _calculationService.formatDate(
-                                date: DateTime.now());
-                            var patientState = _anSubCollection['state'];
-                            _firebaseService.addNotification({
-                              'formName': 'pain',
-                              'formId': formId,
-                              'userId':
-                                  UserStore.getValueFromStore('storedUserId'),
-                              'creation': creation,
-                              'patientState': patientState,
-                              'seen': false,
-                            });
+                            var userId =
+                                UserStore.getValueFromStore('storedUserId');
+                            await _firebaseService.addNotification(
+                                formId: formId,
+                                formName: 'pain',
+                                userId: userId);
                           }
                         } else {
                           showAdvise1(context, value, _anSubCollection['state'],
