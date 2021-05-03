@@ -300,9 +300,7 @@ class FirebaseService extends IFirebaseService {
           DateTime.fromMicrosecondsSinceEpoch(time.microsecondsSinceEpoch);
       var formDateToShow = DateFormat('dd/MM/yyyy').format(formTime);
       var formTimeToShow = "${DateFormat.Hm().format(formTime)} น.";
-      var imgURL = notiCollection['imgURL'] ?? '-';
-      var advice = notiCollection['advice'] ?? '-';
-      var severity = notiCollection['severity'] ?? '-';
+
       var patientSeen = notiCollection['patientSeen'] ?? '-';
       if (patientSeen == false) {
         patientSeen = "ยังไม่ได้อ่าน";
@@ -316,12 +314,22 @@ class FirebaseService extends IFirebaseService {
         'formDate': formDateToShow ?? '-',
         'formDateTimeSort': formTime ?? '-',
         'seen': seen ?? '-',
-        'imgURL': imgURL ?? '-',
-        'advice': advice ?? '-',
-        'severity': severity ?? '-',
+        'imgURL': '-',
+        'advice': '-',
+        'severity': '-',
         'notiId': user.id ?? '-',
         'patientSeen': patientSeen ?? '-',
       };
+      if (patientState == "Post-Operation@Home") {
+        var imgURL = notiCollection['imgURL'] ?? '-';
+        var advice = notiCollection['advice'] ?? '-';
+        var severity = notiCollection['severity'] ?? '-';
+        map.addAll({
+          'imgURL': imgURL ?? '-',
+          'advice': advice ?? '-',
+          'severity': severity ?? '-',
+        });
+      }
       return map;
     });
     var futureList = Future.wait(returnList);

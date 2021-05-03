@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../models/formname_model.dart';
 import '../models/notification_list_model.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
@@ -206,7 +205,7 @@ class _NotificationCardState extends State<NotificationCard> {
               style: Theme.of(context).textTheme.bodyText2,
             ),
             content: Text(
-              "ผู้ป่วยไม่ผ่าน${formNameModel[formName]}",
+              "ผู้ป่วยไม่ผ่าน$formName",
               textAlign: TextAlign.center,
             ),
             actions: [

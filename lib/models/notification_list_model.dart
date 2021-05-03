@@ -7,7 +7,7 @@ class NotiData {
   String seen;
   String imgURL;
   String advice;
-  int severity;
+  dynamic severity;
   String notiId;
   String patientSeen;
   Map<String, dynamic> map;
