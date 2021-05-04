@@ -342,7 +342,6 @@ class FirebaseService extends IFirebaseService {
     });
     var futureList = Future.wait(returnList);
     returnValue = await futureList;
-    print(returnValue);
     return returnValue;
   }
 

@@ -147,4 +147,11 @@ class EvaluationViewModel {
         break;
     }
   }
+
+  bool disableEvaluationformButton(String check) {
+    if (check == "completed") {
+      return true;
+    }
+    return false;
+  }
 }
