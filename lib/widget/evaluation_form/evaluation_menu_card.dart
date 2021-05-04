@@ -6,12 +6,17 @@ class EvaluationMenuCard {
   final EvaluationViewModel _evaluationViewModel =
       locator<EvaluationViewModel>();
 
-  Widget getEvaluationCard(BuildContext context, Map<String, Object> item) {
+  Widget getEvaluationCard(
+      BuildContext context, Map<String, Object> item, bool evaluateStatus) {
     var evaluationCard = Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
-        child: RaisedButton(
-          color: Color(0xFFF5F5F5),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFFF5F5F5),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+          ),
           onPressed: () {
             var selectedform = item['selectedform'];
             _evaluationViewModel.navigateOnTopic(selectedform, context);
@@ -27,18 +32,13 @@ class EvaluationMenuCard {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: (() {
-                        //Hard code for set the evaluation form check box
-                        int check = 0;
-                        //When evaluation form complete
-                        if (check == 0) {
+                        if (evaluateStatus == true) {
                           return Icon(
                             Icons.check_box,
                             color: Colors.green,
                             size: 40.0,
                           );
-                        }
-                        //When evaluation form incomplete
-                        else {
+                        } else {
                           return Icon(
                             Icons.check_box_outline_blank,
                             color: Colors.grey,

@@ -1,3 +1,4 @@
+import 'package:AbdoCare/models/formName_model.dart';
 import 'package:flutter/material.dart';
 import '../@enum/evaluation_form_topic.dart';
 import '../@enum/patient_state.dart';
@@ -30,6 +31,7 @@ class EvaluationViewModel {
   Future<Map<String, Widget>> getevaluations(BuildContext context) async {
     String patientState;
     var _anSubCollection;
+    var evaluateStatus;
     List<Map<String, Object>> mustShowList = [];
     List<Widget> mustShowCardList = [];
     Column mustShowToColumn = Column();
@@ -48,7 +50,6 @@ class EvaluationViewModel {
     } else if (patientState ==
         enumToString(PatientState.postOperationHospital)) {
       var latestStateChange = _anSubCollection['latestStateChange'].toDate();
-      print(latestStateChange);
       var dayInCurrentState = _calculationService.calculateDayDifference(
           day: latestStateChange,
           compareTo: _calculationService.formatDate(date: DateTime.now()));
@@ -65,9 +66,11 @@ class EvaluationViewModel {
       mustShowList.addAll(_evaluationModel.postOpHomeList);
     }
     for (var item in mustShowList) {
-      print(item['formname']);
-      mustShowCardList
-          .add(EvaluationMenuCard().getEvaluationCard(context, item));
+      var formName = formNameModel[item['formname']];
+      evaluateStatus = await _firebaseService.getEvaluationStatus(
+          formName: formName, patientState: patientState);
+      mustShowCardList.add(EvaluationMenuCard()
+          .getEvaluationCard(context, item, evaluateStatus));
     }
 
     if (mustShowCardList != null) {
