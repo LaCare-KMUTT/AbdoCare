@@ -297,6 +297,7 @@ class FirebaseService extends IFirebaseService {
   }
 
   Future<List<Map<String, dynamic>>> getNotifications() async {
+    var returnValue;
     var notiList = await this.getNotificationList();
     var returnList = notiList.map((user) async {
       var notiCollection =
@@ -340,28 +341,103 @@ class FirebaseService extends IFirebaseService {
       return map;
     });
     var futureList = Future.wait(returnList);
-    var returnValue = await futureList;
-    if (returnValue != null) {
-      returnValue.removeWhere((element) => element == null);
-    }
+    returnValue = await futureList;
+    print(returnValue);
     return returnValue;
   }
 
   Future<int> getNotiCounter() async {
     int count = 0;
     var notiList = await this.getNotificationList();
-    var returnList = notiList.map((user) async {
-      var notiCollection =
-          await _firestore.collection("Notifications").doc(user.id).get();
-      var patientSeen = notiCollection['patientSeen'] ?? '-';
-      if (patientSeen == false) {
-        count = count + 1;
-      }
-      return count;
-    });
-    var futureList = Future.wait(returnList);
-    var returnValue = await futureList;
-    count = returnValue.first;
+    if (notiList.isNotEmpty) {
+      var returnList = notiList.map((user) async {
+        var notiCollection =
+            await _firestore.collection("Notifications").doc(user.id).get();
+        var patientSeen = notiCollection['patientSeen'] ?? '-';
+        if (patientSeen == false) {
+          count = count + 1;
+        }
+        return count;
+      });
+      var futureList = Future.wait(returnList);
+      var returnValue = await futureList;
+      count = returnValue.first;
+    } else {
+      count = 0;
+    }
     return count;
+  }
+
+  Future<List> getFormListInAnBasedOnState(
+      {@required String userId,
+      @required String patientState,
+      @required String formName}) async {
+    var anSubCollection = await _firestore
+        .collection('Users')
+        .doc(userId)
+        .collection('an')
+        .orderBy('operationDate', descending: true)
+        .where('state', isEqualTo: patientState)
+        .get()
+        .catchError((onError) {
+      print('$onError Error in getFormListInAnBasedOnState!');
+    });
+    List userForm;
+    try {
+      userForm = anSubCollection.docs.first.get('forms');
+      // ignore: avoid_catches_without_on_clauses
+    } catch (error) {
+      userForm = null;
+    }
+
+    List list = [];
+    if (userForm != null) {
+      // ignore: avoid_function_literals_in_foreach_calls
+      userForm.forEach((form) {
+        if (form['formName'] == formName) {
+          list.add(form);
+        }
+      });
+    } else {
+      print('userForm = null');
+    }
+    return list;
+  }
+
+  Future<bool> getEvaluationStatus(
+      {@required String formName, @required String patientState}) async {
+    var formCreation;
+    var formState;
+    var formDateToShow;
+    var dateCompare;
+    var formTime;
+    var dateToCompare;
+    var formStatus = await getFormListInAnBasedOnState(
+        userId: UserStore.getValueFromStore('storedUserId'),
+        patientState: patientState,
+        formName: formName);
+    if (formStatus.isNotEmpty) {
+      var formsCollection = await _firestore
+          .collection('Forms')
+          .doc(formStatus.last['formId'])
+          .get()
+          .then((value) => value.data())
+          .catchError((onError) {
+        print('$onError no formsCollection');
+      });
+      formCreation = formsCollection['creation'] ?? '-';
+      formTime = DateTime.fromMicrosecondsSinceEpoch(
+          formCreation.microsecondsSinceEpoch);
+      formDateToShow = DateFormat('yyyy-MM-dd').format(formTime);
+      dateToCompare = _calculationService.formatDate(date: DateTime.now());
+      dateCompare = DateFormat('yyyy-MM-dd').format(dateToCompare);
+      if (formDateToShow == dateCompare) {
+        formState = true;
+      }
+    } else {
+      formState = false;
+    }
+    print(formState);
+    return formState;
   }
 }
