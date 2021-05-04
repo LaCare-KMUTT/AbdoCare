@@ -7,7 +7,7 @@ class EvaluationMenuCard {
       locator<EvaluationViewModel>();
 
   Widget getEvaluationCard(
-      BuildContext context, Map<String, Object> item, bool evaluateStatus) {
+      BuildContext context, Map<String, Object> item, String evaluateStatus) {
     var evaluationCard = Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
@@ -32,7 +32,7 @@ class EvaluationMenuCard {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: (() {
-                        if (evaluateStatus == true) {
+                        if (evaluateStatus == "completed") {
                           return Icon(
                             Icons.check_box,
                             color: Colors.green,

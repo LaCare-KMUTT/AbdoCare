@@ -404,7 +404,7 @@ class FirebaseService extends IFirebaseService {
     return list;
   }
 
-  Future<bool> getEvaluationStatus(
+  Future<String> getEvaluationStatus(
       {@required String formName, @required String patientState}) async {
     var formCreation;
     var evaluationStatus;
@@ -432,12 +432,11 @@ class FirebaseService extends IFirebaseService {
       dateToCompare = _calculationService.formatDate(date: DateTime.now());
       dateCompare = DateFormat('yyyy-MM-dd').format(dateToCompare);
       if (formDateToShow == dateCompare) {
-        evaluationStatus = true;
+        evaluationStatus = "completed";
       }
     } else {
-      evaluationStatus = false;
+      evaluationStatus = "notCompleted";
     }
-    print(evaluationStatus);
     return evaluationStatus;
   }
 }

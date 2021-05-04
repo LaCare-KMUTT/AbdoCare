@@ -70,6 +70,6 @@ abstract class IFirebaseService {
       @required String patientState,
       @required String formName});
 
-  Future<bool> getEvaluationStatus(
+  Future<String> getEvaluationStatus(
       {@required String formName, @required String patientState});
 }
