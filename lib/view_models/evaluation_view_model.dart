@@ -65,6 +65,7 @@ class EvaluationViewModel {
       mustShowList.addAll(_evaluationModel.postOpHomeList);
     }
     for (var item in mustShowList) {
+      print(item['formname']);
       mustShowCardList
           .add(EvaluationMenuCard().getEvaluationCard(context, item));
     }
