@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
@@ -24,10 +23,7 @@ class _BloodClotFormState extends State<BloodClotForm> {
   var _value8;
   var _value9;
   String result;
-
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
-  final ICalculationService _calculationService =
-      locator<ICalculationService>();
   var _anSubCollection;
   @override
   void initState() {

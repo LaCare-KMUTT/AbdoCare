@@ -1,9 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/interfaces/storage_service_interface.dart';
 import '../../../services/service_locator.dart';
@@ -25,7 +22,6 @@ class _UploadPhotoState extends State<UploadPhoto> {
   var _anSubCollection;
 
   final _firebaseService = locator<IFirebaseService>();
-  final _calculationService = locator<ICalculationService>();
   final _storageService = locator<IStorageService>();
 
   void initData() async {
