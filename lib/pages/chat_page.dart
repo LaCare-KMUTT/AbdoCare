@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
-
 import '../models/chat_model.dart';
 import '../models/message_model.dart';
 import '../services/service_locator.dart';
 import '../widget/chatbot/buttom_nav_bar.dart';
 import '../widget/chatbot/chat_training.dart';
 import '../widget/chatbot/message.dart';
+import '../widget/notification_appbar.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({Key key, this.title}) : super(key: key);
@@ -31,13 +31,12 @@ class _ChatPageState extends State<ChatPage> {
         title: Text("Abdocare"),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.help,
-              size: 30,
-            ),
-            tooltip: 'ช่วยเหลือ',
-            onPressed: () {},
+          NotiIcon(
+            iconData: Icons.notifications,
+            notificationCount: 0,
+            onTap: () {
+              Navigator.pushNamed(context, '/notification_page');
+            },
           ),
         ],
         leading: IconButton(

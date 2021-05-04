@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
+import '../@enum/patient_state.dart';
+import '../models/formName_model.dart';
 import '../stores/user_store.dart';
 import 'interfaces/calculation_service_interface.dart';
 import 'interfaces/firebase_service_interface.dart';
@@ -247,14 +249,119 @@ class FirebaseService extends IFirebaseService {
     return map;
   }
 
-  Future<void> addNotification(Map<String, dynamic> data) async {
+  Future<void> addNotification(
+      {@required String userId,
+      @required String formId,
+      @required String formName}) async {
+    var creation = _calculationService.formatDate(date: DateTime.now());
+    var anSubCollection = await getLatestAnSubCollection(userId: userId);
+    var patientState = anSubCollection['state'];
+    Map<String, dynamic> dataToAdd = {
+      'formName': formName,
+      'formId': formId,
+      'userId': userId,
+      'creation': creation,
+      'patientState': patientState,
+      'seen': false,
+      'patientSeen': false,
+    };
     await _firestore
         .collection('Notifications')
-        .add(data)
+        .add(dataToAdd)
         .then((value) =>
             print('Successfully added $value to Notificaitons Collection'))
         .catchError((e) {
       print('$e failed to add notification to Notifications Collection');
     });
+  }
+
+  Future<List<QueryDocumentSnapshot>> getNotificationList() async {
+    var data;
+    var storedUserId = UserStore.getValueFromStore('storedUserId');
+    var anSubcollection = await getLatestAnSubCollection(userId: storedUserId);
+    var patientState = anSubcollection["state"];
+    var checkState = enumToString(PatientState.postOperationHome);
+    if (patientState == checkState) {
+      data = await _firestore
+          .collection('Notifications')
+          .where('userId', isEqualTo: storedUserId)
+          .where('seen', isEqualTo: true)
+          .get();
+    } else {
+      data = await _firestore
+          .collection('Notifications')
+          .where('userId', isEqualTo: storedUserId)
+          .get();
+    }
+    return data.docs;
+  }
+
+  Future<List<Map<String, dynamic>>> getNotifications() async {
+    var notiList = await this.getNotificationList();
+    var returnList = notiList.map((user) async {
+      var notiCollection =
+          await _firestore.collection("Notifications").doc(user.id).get();
+      var patientState = notiCollection['patientState'];
+      var formName = notiCollection['formName'];
+      formName = formNameModel[formName];
+      var time = notiCollection['creation'];
+      var formTime =
+          DateTime.fromMicrosecondsSinceEpoch(time.microsecondsSinceEpoch);
+      var formDateToShow = DateFormat('dd/MM/yyyy').format(formTime);
+      var formTimeToShow = "${DateFormat.Hm().format(formTime)} น.";
+      var patientSeen = notiCollection['patientSeen'] ?? false;
+      if (patientSeen == false) {
+        patientSeen = "ยังไม่ได้อ่าน";
+      } else {
+        patientSeen = "อ่านแล้ว";
+      }
+      var map = {
+        'patientState': patientState ?? '-',
+        'formName': formName ?? '-',
+        'formTime': formTimeToShow ?? '-',
+        'formDate': formDateToShow ?? '-',
+        'formDateTimeSort': formTime ?? '-',
+        'imgURL': '-',
+        'advice': '-',
+        'severity': 0,
+        'notiId': user.id ?? '-',
+        'patientSeen': patientSeen ?? 'ยังไม่ได้อ่าน',
+      };
+      if (patientState == "Post-Operation@Home") {
+        var imgURL = notiCollection['imgURL'] ?? '-';
+        var advice = notiCollection['advice'] ?? '-';
+        var severity = notiCollection['severity'] ?? 0;
+        map.addAll({
+          'imgURL': imgURL ?? '-',
+          'advice': advice ?? '-',
+          'severity': severity ?? 0
+        });
+      }
+      return map;
+    });
+    var futureList = Future.wait(returnList);
+    var returnValue = await futureList;
+    if (returnValue != null) {
+      returnValue.removeWhere((element) => element == null);
+    }
+    return returnValue;
+  }
+
+  Future<int> getNotiCounter() async {
+    int count = 0;
+    var notiList = await this.getNotificationList();
+    var returnList = notiList.map((user) async {
+      var notiCollection =
+          await _firestore.collection("Notifications").doc(user.id).get();
+      var patientSeen = notiCollection['patientSeen'] ?? '-';
+      if (patientSeen == false) {
+        count = count + 1;
+      }
+      return count;
+    });
+    var futureList = Future.wait(returnList);
+    var returnValue = await futureList;
+    count = returnValue.first;
+    return count;
   }
 }

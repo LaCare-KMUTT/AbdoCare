@@ -141,11 +141,12 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
                       if (_value | _value2 | _value3 | _value4 == true) {
                         _firebaseService.addDataToFormsCollection(
                             formName: 'Abnormal Symptom', data: formDataToDB);
-                        showAdvise(context);
+                        showAdvise(context, "NoPass");
                       }
                       if (_value5 == true) {
                         _firebaseService.addDataToFormsCollection(
                             formName: 'Abnormal Symptom', data: formDataToDB);
+                        showAdvise(context, "Pass");
                       } else if (_value |
                               _value2 |
                               _value3 |
@@ -163,40 +164,64 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
     );
   }
 
-  void showAdvise(BuildContext context) {
+  void showAdvise(BuildContext context, String result) {
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      title: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("แจ้งเตือน", style: Theme.of(context).textTheme.bodyText2),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text("ให้ผู้ป่วยมาพบแพทย์ทันที",
-                    style: Theme.of(context).textTheme.bodyText1),
-              ],
-            ),
-          ),
-        ],
-      ),
-      actions: [
-        RaisedButton(
-          color: Color(0xFFC37447),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: Text(
-                "ตกลง",
-                style: TextStyle(color: Colors.white, fontSize: 16),
+      title: (() {
+        if (result == "NoPass") {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("แจ้งเตือน", style: Theme.of(context).textTheme.bodyText2),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text("ให้ผู้ป่วยมาพบแพทย์ทันที",
+                        style: Theme.of(context).textTheme.bodyText1),
+                  ],
+                ),
               ),
-            ),
+            ],
+          );
+        } else {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("ผลการประเมิน",
+                  style: Theme.of(context).textTheme.bodyText2),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text("ผู้ป่วยผ่านแบบประเมิน",
+                        style: Theme.of(context).textTheme.bodyText1),
+                  ],
+                ),
+              ),
+            ],
+          );
+        }
+      }()),
+      actions: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFFC37447),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
           ),
           onPressed: () {
             Navigator.pushNamed(context, '/evaluation_page');
           },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Text("ตกลง",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+            ),
+          ),
         ),
       ],
     );
