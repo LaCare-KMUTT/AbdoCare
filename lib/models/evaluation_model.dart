@@ -4,24 +4,27 @@ class EvaluationModel {
   List<Map<String, Object>> postOpHospitalDay0List = [
     {
       "formname": "แบบประเมินระบบทางเดินหายใจหลังผ่าตัด",
+      "formnameEng": "Respiratory",
       "selectedform": EvaluationFormTopic.respiratory0,
     },
     {
-      "formname": "แบบประเมินการจัดการแผลผ่าตัดและสายระบายต่าง ๆ",
+      "formname": "แบบประเมินการจัดการแผลผ่าตัดและสายระบาย",
+      "formnameEng": "Respiratory",
       "selectedform": EvaluationFormTopic.drain0,
     },
     {
       "formname": "แบบประเมินระบบปัสสาวะ",
+      "formnameEng": "Respiratory",
       "selectedform": EvaluationFormTopic.urology0,
     }
   ];
   List<Map<String, Object>> postOpHospitalDay1List = [
     {
-      "formname": "แบบประเมินป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
+      "formname": "แบบประเมินระบบทางเดินหายใจหลังผ่าตัด",
       "selectedform": EvaluationFormTopic.respiratory1,
     },
     {
-      "formname": "แบบประเมินการจัดการแผลผ่าตัดและสายระบายต่าง ๆ",
+      "formname": "แบบประเมินการจัดการแผลผ่าตัดและสายระบาย",
       "selectedform": EvaluationFormTopic.drain1,
     },
     {
@@ -43,7 +46,7 @@ class EvaluationModel {
       "selectedform": EvaluationFormTopic.pulmanary2,
     },
     {
-      "formname": "การประเมินการฟื้นฟูระบบทางเดินอาหาร",
+      "formname": "แบบประเมินการฟื้นฟูระบบทางเดินอาหาร",
       "selectedform": EvaluationFormTopic.digestive2,
     }
   ];
@@ -53,7 +56,7 @@ class EvaluationModel {
       "selectedform": EvaluationFormTopic.painHome,
     },
     {
-      "formname": "แบบประเมินการประเมินแผล",
+      "formname": "แบบประเมินแผล",
       "selectedform": EvaluationFormTopic.surgicalIncisionHome,
     },
     {
@@ -61,7 +64,7 @@ class EvaluationModel {
       "selectedform": EvaluationFormTopic.abnormalSymptomHome,
     },
     {
-      "formname": "แบบประเมินการปฏิบัติกิจวัตรประจำวันหลังผ่าตัด",
+      "formname": "แบบประเมินการปฏิบัติกิจวัตรประจำวัน",
       "selectedform": EvaluationFormTopic.adlHome,
     }
   ];
