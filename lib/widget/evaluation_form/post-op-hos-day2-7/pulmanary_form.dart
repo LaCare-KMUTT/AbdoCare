@@ -307,18 +307,12 @@ class _PulmanaryFormState extends State<PulmanaryForm> {
                         } else {
                           result = "NoPass";
                           showAdvise1(context, result);
-                          var creation = _calculationService.formatDate(
-                              date: DateTime.now());
-                          var patientState = _anSubCollection['state'];
-                          _firebaseService.addNotification({
-                            'formName': 'Pulmanary',
-                            'formId': formId,
-                            'userId':
-                                UserStore.getValueFromStore('storedUserId'),
-                            'creation': creation,
-                            'patientState': patientState,
-                            'seen': false,
-                          });
+                          var userId =
+                              UserStore.getValueFromStore('storedUserId');
+                          await _firebaseService.addNotification(
+                              formId: formId,
+                              formName: 'Pulmanary',
+                              userId: userId);
                         }
                       }
                     }),
@@ -345,10 +339,10 @@ class _PulmanaryFormState extends State<PulmanaryForm> {
               children: [
                 (() {
                   if (result == "Pass") {
-                    return Text("ผ่าน",
+                    return Text("ผู้ป่วยผ่านแบบประเมิน",
                         style: Theme.of(context).textTheme.bodyText1);
                   } else {
-                    return Text("ไม่ผ่าน",
+                    return Text("ผู้ป่วยไม่ผ่านแบบประเมิน",
                         style: Theme.of(context).textTheme.bodyText1);
                   }
                 }())
@@ -358,40 +352,43 @@ class _PulmanaryFormState extends State<PulmanaryForm> {
         ],
       ),
       actions: [
-        RaisedButton(
-          color: Color(0xFFC37447),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: Text(
-                "คำแนะนำการฟื้นฟูสมรรถภาพของปอด",
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFFC37447),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
           ),
           onPressed: () {
             Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      PulmonaryAdviceDay2(navigate: navigate)),
-            );
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        PulmonaryAdviceDay2(navigate: navigate)));
           },
-        ),
-        RaisedButton(
-          color: Color(0xFFC37447),
           child: Container(
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child: Text(
-                "ตกลง",
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
+              child: Text("คำแนะนำการฟื้นฟูสมรรถภาพของปอด",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
+          ),
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFFC37447),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
           ),
           onPressed: () {
             Navigator.pushNamed(context, '/evaluation_page');
           },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Text("ตกลง",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+            ),
+          ),
         ),
       ],
     );

@@ -6,6 +6,7 @@ import '../models/message_model.dart';
 import '../models/profile_model.dart';
 import '../models/training_model.dart';
 import '../view_models/evaluation_view_model.dart';
+import '../view_models/notification_view_model.dart';
 import '../view_models/pin_view_model.dart';
 import '../view_models/training_view_model.dart';
 import 'calculation_service.dart';
@@ -32,4 +33,5 @@ void setupServiceLocator() {
   locator.registerLazySingleton<EvaluationModel>(() => EvaluationModel());
   locator
       .registerLazySingleton<EvaluationViewModel>(() => EvaluationViewModel());
+  locator.registerLazySingleton<NotiViewModel>(() => NotiViewModel());
 }
