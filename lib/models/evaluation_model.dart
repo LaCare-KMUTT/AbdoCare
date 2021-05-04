@@ -4,17 +4,14 @@ class EvaluationModel {
   List<Map<String, Object>> postOpHospitalDay0List = [
     {
       "formname": "แบบประเมินระบบทางเดินหายใจหลังผ่าตัด",
-      "formnameEng": "Respiratory",
       "selectedform": EvaluationFormTopic.respiratory0,
     },
     {
       "formname": "แบบประเมินการจัดการแผลผ่าตัดและสายระบาย",
-      "formnameEng": "Respiratory",
       "selectedform": EvaluationFormTopic.drain0,
     },
     {
       "formname": "แบบประเมินระบบปัสสาวะ",
-      "formnameEng": "Respiratory",
       "selectedform": EvaluationFormTopic.urology0,
     }
   ];
