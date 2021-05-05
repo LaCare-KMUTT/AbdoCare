@@ -23,13 +23,20 @@ class CalculationService extends ICalculationService {
   }
 
   String calculateBMI(int weight, int height) {
+    height = height ?? 0;
+    weight = weight ?? 0;
     var heightMeter = height / 100;
     var bmi = (weight) / (heightMeter * heightMeter);
+    if (bmi.isNaN || bmi.isInfinite) bmi = 0;
     return bmi.toStringAsFixed(2);
   }
 
   String calculateBML(int oldWeight, int weight) {
+    oldWeight = oldWeight ?? 0;
+    weight = weight ?? 0;
+
     var bml = ((oldWeight - weight) / oldWeight) * 100;
+    if (bml.isNaN || bml.isInfinite) bml = 0;
     return bml.toStringAsFixed(2);
   }
 
