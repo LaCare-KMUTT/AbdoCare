@@ -121,7 +121,7 @@ class _DashboardState extends State<Dashboard> {
                                               .textTheme
                                               .bodyText1),
                                       Text(
-                                          '''%BWL = ${_calculationService.calculateBML(anSubCollection.data['oldWeight'], anSubCollection.data['weight'])} %''',
+                                          '''%BWL = ${_calculationService.calculateBWL(anSubCollection.data['oldWeight'], anSubCollection.data['weight'])} %''',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),

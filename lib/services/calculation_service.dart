@@ -31,7 +31,7 @@ class CalculationService extends ICalculationService {
     return bmi.toStringAsFixed(2);
   }
 
-  String calculateBML(int oldWeight, int weight) {
+  String calculateBWL(int oldWeight, int weight) {
     oldWeight = oldWeight ?? 0;
     weight = weight ?? 0;
 
