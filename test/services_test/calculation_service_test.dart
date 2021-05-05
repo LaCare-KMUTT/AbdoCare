@@ -13,12 +13,59 @@ void main() {
     expect(age, 22);
   });
 
-  test('calculate BMI should be correct', () {
-    ICalculationService _calculationService = locator<ICalculationService>();
-    var bmi = _calculationService.calculateBMI(70, 170);
-    expect(bmi, "24.22");
+  group('Calculate BMI', () {
+    test('Calculate BWL should return 0.00 when divider is 0', () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+      var bmi = _calculationService.calculateBMI(0, 170);
+      expect(bmi, "0.00");
+    });
+    test('Calculate BWL should return 0.00 when both values are 0', () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+      var bmi = _calculationService.calculateBMI(0, 0);
+      expect(bmi, "0.00");
+    });
+    test('calculate BMI should be correct', () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+      var bmi = _calculationService.calculateBMI(70, 170);
+      expect(bmi, "24.22");
+    });
+    test('Calculate BMI should handle null value', () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+      var bmi = _calculationService.calculateBMI(null, null);
+      expect(bmi, '0.00');
+    });
   });
+  group('Calculate BWL', () {
+    test('Calculate BWL should return 0.00 when divider is 0', () {
+      ICalculationService _calculationService = locator<ICalculationService>();
 
+      var result = _calculationService.calculateBWL(0, 70);
+      expect(result.runtimeType, String);
+      expect(result, '0.00');
+    });
+
+    test('Calculate BWL should return 0.00 when both values are 0', () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+      var result = _calculationService.calculateBWL(0, 0);
+      expect(result.runtimeType, String);
+      expect(result, '0.00');
+    });
+
+    test('Calculate BML should calculate properly', () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+
+      var result = _calculationService.calculateBWL(70, 68);
+      var result2 = _calculationService.calculateBWL(68, 70);
+      expect(result, '2.86');
+      expect(result2, '-2.94');
+    });
+
+    test('Calculate BML should handle null value', () {
+      ICalculationService _calculationService = locator<ICalculationService>();
+      var result = _calculationService.calculateBWL(null, null);
+      expect(result, '0.00');
+    });
+  });
   group('formatDateToThaiString test', () {
     test(
         // ignore: lines_longer_than_80_chars
