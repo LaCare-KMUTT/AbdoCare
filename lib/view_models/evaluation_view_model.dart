@@ -66,7 +66,7 @@ class EvaluationViewModel {
       mustShowList.addAll(_evaluationModel.postOpHomeList);
     }
     for (var item in mustShowList) {
-      var formName = formNameModel[item['formname']];
+      var formName = formNameModel[item['formName']];
       evaluateStatus = await _firebaseService.getEvaluationStatus(
           formName: formName, patientState: patientState);
       mustShowCardList.add(EvaluationMenuCard()

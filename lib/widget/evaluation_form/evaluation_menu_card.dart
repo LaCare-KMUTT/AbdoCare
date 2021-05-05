@@ -25,7 +25,7 @@ class EvaluationMenuCard {
               onPrimary: evaluationButton ? Colors.grey[600] : Colors.black,
             ),
             onPressed: () {
-              var selectedform = item['selectedform'];
+              var selectedform = item['selectedForm'];
               _evaluationViewModel.navigateOnTopic(selectedform, context);
             },
             child: Container(
@@ -60,7 +60,7 @@ class EvaluationMenuCard {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                item['formname'],
+                                item['formName'],
                                 style: TextStyle(fontSize: 17),
                               ),
                             ],
