@@ -3,66 +3,66 @@ import '../@enum/evaluation_form_topic.dart';
 class EvaluationModel {
   List<Map<String, Object>> postOpHospitalDay0List = [
     {
-      "formname": "แบบประเมินระบบทางเดินหายใจหลังผ่าตัด",
-      "selectedform": EvaluationFormTopic.respiratory0,
+      "formName": "แบบประเมินระบบทางเดินหายใจหลังผ่าตัด",
+      "selectedForm": EvaluationFormTopic.respiratory0,
     },
     {
-      "formname": "แบบประเมินการจัดการแผลผ่าตัดและสายระบายต่าง ๆ",
-      "selectedform": EvaluationFormTopic.drain0,
+      "formName": "แบบประเมินการจัดการแผลผ่าตัดและสายระบาย",
+      "selectedForm": EvaluationFormTopic.drain0,
     },
     {
-      "formname": "แบบประเมินระบบปัสสาวะ",
-      "selectedform": EvaluationFormTopic.urology0,
+      "formName": "แบบประเมินระบบปัสสาวะ",
+      "selectedForm": EvaluationFormTopic.urology0,
     }
   ];
   List<Map<String, Object>> postOpHospitalDay1List = [
     {
-      "formname": "แบบประเมินป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
-      "selectedform": EvaluationFormTopic.respiratory1,
+      "formName": "แบบประเมินระบบทางเดินหายใจหลังผ่าตัด",
+      "selectedForm": EvaluationFormTopic.respiratory1,
     },
     {
-      "formname": "แบบประเมินการจัดการแผลผ่าตัดและสายระบายต่าง ๆ",
-      "selectedform": EvaluationFormTopic.drain1,
+      "formName": "แบบประเมินการจัดการแผลผ่าตัดและสายระบาย",
+      "selectedForm": EvaluationFormTopic.drain1,
     },
     {
-      "formname": "แบบประเมินป้องกันการเกิดภาวะลิ่มเลือดอุดตัน",
-      "selectedform": EvaluationFormTopic.bloodclot1,
+      "formName": "แบบประเมินป้องกันการเกิดภาวะลิ่มเลือดอุดตัน",
+      "selectedForm": EvaluationFormTopic.bloodclot1,
     },
     {
-      "formname": "แบบประเมินการจัดการภาวะโภชนาการ",
-      "selectedform": EvaluationFormTopic.nutrition1,
+      "formName": "แบบประเมินการจัดการภาวะโภชนาการ",
+      "selectedForm": EvaluationFormTopic.nutrition1,
     }
   ];
   List<Map<String, Object>> postOpHospitalDay2List = [
     {
-      "formname": "แบบประเมินการเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
-      "selectedform": EvaluationFormTopic.infection2,
+      "formName": "แบบประเมินการเฝ้าระวังการติดเชื้อที่แผลผ่าตัด",
+      "selectedForm": EvaluationFormTopic.infection2,
     },
     {
-      "formname": "แบบประเมินการฟื้นฟูสมรรถภาพของปอด",
-      "selectedform": EvaluationFormTopic.pulmanary2,
+      "formName": "แบบประเมินการฟื้นฟูสมรรถภาพของปอด",
+      "selectedForm": EvaluationFormTopic.pulmanary2,
     },
     {
-      "formname": "การประเมินการฟื้นฟูระบบทางเดินอาหาร",
-      "selectedform": EvaluationFormTopic.digestive2,
+      "formName": "แบบประเมินการฟื้นฟูระบบทางเดินอาหาร",
+      "selectedForm": EvaluationFormTopic.digestive2,
     }
   ];
   List<Map<String, Object>> postOpHomeList = [
     {
-      "formname": "แบบประเมินการจัดการความปวด",
-      "selectedform": EvaluationFormTopic.painHome,
+      "formName": "แบบประเมินการจัดการความปวด",
+      "selectedForm": EvaluationFormTopic.painHome,
     },
     {
-      "formname": "แบบประเมินการประเมินแผล",
-      "selectedform": EvaluationFormTopic.surgicalIncisionHome,
+      "formName": "แบบประเมินแผล",
+      "selectedForm": EvaluationFormTopic.surgicalIncisionHome,
     },
     {
-      "formname": "แบบประเมินอาการแสดงที่ผิดปกติ",
-      "selectedform": EvaluationFormTopic.abnormalSymptomHome,
+      "formName": "แบบประเมินอาการแสดงที่ผิดปกติ",
+      "selectedForm": EvaluationFormTopic.abnormalSymptomHome,
     },
     {
-      "formname": "แบบประเมินการปฏิบัติกิจวัตรประจำวันหลังผ่าตัด",
-      "selectedform": EvaluationFormTopic.adlHome,
+      "formName": "แบบประเมินการปฏิบัติกิจวัตรประจำวัน",
+      "selectedForm": EvaluationFormTopic.adlHome,
     }
   ];
 }

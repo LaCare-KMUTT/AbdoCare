@@ -58,9 +58,13 @@ class _NotificationPageState extends State<NotificationPage> {
           } else {
             notidata.clear();
             notidata.addAll(snapshot.data);
-            return NotificationCard(
-              notiData: notidata,
-              callData: callData,
+            return ListView(
+              children: [
+                NotificationCard(
+                  notiData: notidata,
+                  callData: callData,
+                ),
+              ],
             );
           }
         });

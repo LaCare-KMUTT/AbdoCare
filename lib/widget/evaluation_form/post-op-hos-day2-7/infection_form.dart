@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../../services/interfaces/calculation_service_interface.dart';
 import '../../../services/interfaces/firebase_service_interface.dart';
 import '../../../services/service_locator.dart';
 import '../../../stores/user_store.dart';
@@ -24,8 +23,6 @@ class _InfectionForm extends State<InfectionForm> {
   String result;
 
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
-  final ICalculationService _calculationService =
-      locator<ICalculationService>();
   var _anSubCollection;
   @override
   void initState() {

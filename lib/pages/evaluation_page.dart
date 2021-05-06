@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../services/service_locator.dart';
 import '../view_models/evaluation_view_model.dart';
 import '../widget/shared/loading_widget.dart';
-import 'chat_page.dart';
 
 class EvaluationPage extends StatefulWidget {
   @override

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../@enum/training_topic.dart';
 import '../services/service_locator.dart';
 import '../view_models/training_view_model.dart';
 import '../widget/shared/loading_widget.dart';
-import 'chat_page.dart';
 
 class TrainingPage extends StatefulWidget {
   @override

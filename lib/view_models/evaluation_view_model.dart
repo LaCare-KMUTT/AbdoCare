@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../@enum/evaluation_form_topic.dart';
 import '../@enum/patient_state.dart';
 import '../models/evaluation_model.dart';
+import '../models/formName_model.dart';
 import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
@@ -30,6 +31,7 @@ class EvaluationViewModel {
   Future<Map<String, Widget>> getevaluations(BuildContext context) async {
     String patientState;
     var _anSubCollection;
+    var evaluateStatus;
     List<Map<String, Object>> mustShowList = [];
     List<Widget> mustShowCardList = [];
     Column mustShowToColumn = Column();
@@ -48,7 +50,6 @@ class EvaluationViewModel {
     } else if (patientState ==
         enumToString(PatientState.postOperationHospital)) {
       var latestStateChange = _anSubCollection['latestStateChange'].toDate();
-      print(latestStateChange);
       var dayInCurrentState = _calculationService.calculateDayDifference(
           day: latestStateChange,
           compareTo: _calculationService.formatDate(date: DateTime.now()));
@@ -65,8 +66,11 @@ class EvaluationViewModel {
       mustShowList.addAll(_evaluationModel.postOpHomeList);
     }
     for (var item in mustShowList) {
-      mustShowCardList
-          .add(EvaluationMenuCard().getEvaluationCard(context, item));
+      var formName = formNameModel[item['formName']];
+      evaluateStatus = await _firebaseService.getEvaluationStatus(
+          formName: formName, patientState: patientState);
+      mustShowCardList.add(EvaluationMenuCard()
+          .getEvaluationCard(context, item, evaluateStatus));
     }
 
     if (mustShowCardList != null) {
@@ -142,5 +146,12 @@ class EvaluationViewModel {
                 builder: (context) => ADLForm(navigate: "Evaluate")));
         break;
     }
+  }
+
+  bool disableEvaluationformButton(String check) {
+    if (check == "completed") {
+      return true;
+    }
+    return false;
   }
 }
