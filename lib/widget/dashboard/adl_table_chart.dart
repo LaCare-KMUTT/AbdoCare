@@ -260,7 +260,7 @@ class _ADLTableState extends State<ADLTable> {
                                   child: Column(
                                     children: [
                                       Text(
-                                          "การลุกนั่งจากที่นอนหรือเตียงไปยังเก้าอี้",
+                                          '''การลุกนั่งจากที่นอนหรือเตียงไปยังเก้าอี้''',
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.normal,
@@ -451,7 +451,7 @@ class _ADLTableState extends State<ADLTable> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        "การกลั้นการถ่ายอุจจาระในระยะ 1 สัปดาห์ที่ผ่านมา",
+                                        '''การกลั้นการถ่ายอุจจาระในระยะ 1 สัปดาห์ที่ผ่านมา''',
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.normal,
@@ -483,7 +483,7 @@ class _ADLTableState extends State<ADLTable> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        "การกลั้นปัสสาวะในระยะ 1 สัปดาห์ที่ผ่านมา",
+                                        '''การกลั้นปัสสาวะในระยะ 1 สัปดาห์ที่ผ่านมา''',
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.normal,
