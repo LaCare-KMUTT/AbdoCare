@@ -72,4 +72,6 @@ abstract class IFirebaseService {
 
   Future<String> getEvaluationStatus(
       {@required String formName, @required String patientState});
+
+  Future<Map<String, dynamic>> getAdlTable();
 }
