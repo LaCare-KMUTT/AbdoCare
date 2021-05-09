@@ -1764,7 +1764,7 @@ class _ADLFormState extends State<ADLForm> {
                           Map<String, dynamic> formDataToDB = {
                             'Feeding': score1,
                             'Grooming': score2,
-                            'Tranfer': score3,
+                            'Transsfer': score3,
                             'Toilet': score4,
                             'Mobility': score5,
                             'Dressing': score6,
@@ -1772,7 +1772,7 @@ class _ADLFormState extends State<ADLForm> {
                             'Bathing': score8,
                             'Bowels': score9,
                             'Bladder': score10,
-                            'TotalscoreADL': totalscore,
+                            'TotalScoreADL': totalscore,
                           };
                           _firebaseService.addDataToFormsCollection(
                               formName: 'ADL', data: formDataToDB);
