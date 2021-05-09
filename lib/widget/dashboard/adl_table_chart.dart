@@ -157,42 +157,39 @@ class _ADLTableState extends State<ADLTable> {
                                         color: Color(0xFFC37447)),
                                   )
                                 ]),
-                                Column(children: [
-                                  Container(
-                                    padding: EdgeInsets.all(2),
-                                    child: Text(
-                                      'ประเมินก่อนผ่าตัด',
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.normal,
-                                          color: Color(0xFFC37447)),
-                                    ),
-                                  )
-                                ]),
-                                Column(children: [
-                                  Container(
-                                    padding: EdgeInsets.all(2),
-                                    child: Text(
-                                      'ประเมินหลังผ่าตัด',
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.normal,
-                                          color: Color(0xFFC37447)),
-                                    ),
-                                  )
-                                ]),
-                                Column(children: [
-                                  Container(
-                                    padding: EdgeInsets.all(2),
-                                    child: Text(
-                                      'ประเมินขณะพักฟื้นที่บ้าน',
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.normal,
-                                          color: Color(0xFFC37447)),
-                                    ),
-                                  )
-                                ]),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Text(
+                                    'ประเมินก่อนผ่าตัด',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color(0xFFC37447)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Text(
+                                    'ประเมินหลังผ่าตัด',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color(0xFFC37447)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Text(
+                                    'ประเมินขณะพักฟื้นที่บ้าน',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color(0xFFC37447)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ]),
                               TableRow(children: [
                                 Padding(
