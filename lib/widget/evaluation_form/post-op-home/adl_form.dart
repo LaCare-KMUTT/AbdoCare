@@ -1764,7 +1764,7 @@ class _ADLFormState extends State<ADLForm> {
                           Map<String, dynamic> formDataToDB = {
                             'Feeding': score1,
                             'Grooming': score2,
-                            'Transsfer': score3,
+                            'Transfer': score3,
                             'Toilet': score4,
                             'Mobility': score5,
                             'Dressing': score6,
