@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class PieChart extends StatelessWidget {
+  final int totalScoreADL;
+  PieChart({Key key, @required this.totalScoreADL}) : super(key: key);
   @override
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -50,7 +52,7 @@ class PieChart extends StatelessWidget {
                   ],
                   pointers: <GaugePointer>[
                     NeedlePointer(
-                        value: 12,
+                        value: totalScoreADL.toDouble(),
                         lengthUnit: GaugeSizeUnit.logicalPixel,
                         needleLength: 80)
                   ],
@@ -58,7 +60,7 @@ class PieChart extends StatelessWidget {
                     GaugeAnnotation(
                         widget: Container(
                             child: Text(
-                          'ผลคะแนน\n12 คะแนน',
+                          'ผลคะแนน\n$totalScoreADL คะแนน',
                         )),
                         angle: 90,
                         positionFactor: 0.5)

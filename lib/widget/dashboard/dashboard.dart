@@ -1,13 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../../services/interfaces/calculation_service_interface.dart';
 import '../../services/interfaces/firebase_service_interface.dart';
 import '../../services/service_locator.dart';
 import 'adl_table_chart.dart';
 import 'line_chart.dart';
 import 'pain_chart.dart';
-import 'radial_gauge_chart.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -131,44 +129,7 @@ class _DashboardState extends State<Dashboard> {
                               ),
                             ),
                             Container(
-                              child: Card(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              5, 10, 0, 10),
-                                          child: Text(
-                                            '''ความสามารถในการปฏิบัติกิจวัตรประจำวัน''',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    ADLTable(),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Card(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              5, 10, 0, 10),
-                                          child: Text(
-                                            '''ผลการประเมินการปฏิบัติกิจวัตรประจำวัน''',
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    PieChart(),
-                                  ],
-                                ),
-                              ),
+                              child: ADLTable(),
                             ),
                             Container(
                               child: Card(
