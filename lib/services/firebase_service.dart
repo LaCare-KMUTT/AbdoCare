@@ -450,7 +450,7 @@ class FirebaseService extends IFirebaseService {
         .where('formName', isEqualTo: formName)
         .where('patientState', isEqualTo: patientState)
         .get()
-        .then((value) => value.docs.first.id)
+        .then((value) => value.docs.last.id)
         .catchError((onError) {});
     if (formId != null) {
       await _firestore.collection('Forms').doc(formId).get().then((value) {
@@ -467,9 +467,7 @@ class FirebaseService extends IFirebaseService {
     var preOpAdlData = await getLastFormId(
         formName: 'ADL', hn: storedHn, patientState: 'Pre-Operation');
     var postHosData = await getLastFormId(
-        formName: 'ADL',
-        hn: storedHn,
-        patientState: 'Post-Operation@Hospitals');
+        formName: 'ADL', hn: storedHn, patientState: 'Post-Operation@Hospital');
     var postHomeData = await getLastFormId(
         formName: 'ADL', hn: storedHn, patientState: 'Post-Operation@Home');
     var map = {
