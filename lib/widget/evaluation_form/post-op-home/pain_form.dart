@@ -44,6 +44,19 @@ class _PainFormState extends State<PainForm> {
     print('_anSubCollectionHere $_anSubCollection');
   }
 
+  Future<void> addToDashboardData() async {
+    var date = _calculationService.formatDate(date: DateTime.now());
+
+    Map<String, dynamic> dashboardData = {
+      'hn': UserStore.getValueFromStore('storedHn'),
+      'name': 'painGraph',
+      'Date': date,
+      'PainScore': value,
+    };
+
+    await _firebaseService.addToDashboardCollection(dashboardData);
+  }
+
   bool checkNotificationCriteria(int score) {
     var state = _anSubCollection['state'];
     var latestStateChange = _anSubCollection['latestStateChange'].toDate();
@@ -160,6 +173,7 @@ class _PainFormState extends State<PainForm> {
                         Map<String, dynamic> saveToDatabase = {
                           'pain': value,
                         };
+                        await addToDashboardData();
                         var formId =
                             await _firebaseService.addDataToFormsCollection(
                                 formName: 'pain', data: saveToDatabase);
