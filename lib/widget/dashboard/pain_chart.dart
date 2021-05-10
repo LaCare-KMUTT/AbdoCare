@@ -17,6 +17,7 @@ class PainChartState extends State<PainChart> {
   void initState() {
     super.initState();
     final formatter = DateFormat('dd/MM/yyyy');
+    // ignore: avoid_function_literals_in_foreach_calls
     widget.snapshot.data.forEach((element) {
       var painScore = element['PainScore'] ?? 0;
       var dateFromDb = element['Date'].toDate();
