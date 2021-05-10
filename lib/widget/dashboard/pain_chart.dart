@@ -1,121 +1,67 @@
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class PainChart extends StatefulWidget {
-  PainChart({Key key}) : super(key: key);
+  final AsyncSnapshot<List<Map<String, dynamic>>> snapshot;
+  PainChart({this.snapshot});
 
   @override
   PainChartState createState() => PainChartState();
 }
 
 class PainChartState extends State<PainChart> {
-  List<_PainData> data = [
-    _PainData('10/03/64\n02.00น', 9),
-    _PainData('10/03/64\n06.00น', 9),
-    _PainData('10/03/64\n10.00น', 8),
-    _PainData('10/03/64\n14.00น', 8),
-    _PainData('10/03/64\n18.00น', 8),
-    _PainData('10/03/64\n22.00น', 8),
-    _PainData('11/03/64\n02.00น', 7),
-    _PainData('11/03/64\n06.00น', 9),
-    _PainData('11/03/64\n10.00น', 9),
-    _PainData('11/03/64\n14.00น', 7),
-    _PainData('11/03/64\n18.00น', 6),
-    _PainData('11/03/64\n22.00น', 6),
-    _PainData('12/03/64\n02.00น', 6),
-    _PainData('12/03/64\n06.00น', 6),
-    _PainData('12/03/64\n10.00น', 7),
-    _PainData('12/03/64\n14.00น', 6),
-    _PainData('12/03/64\n18.00น', 5),
-    _PainData('12/03/64\n22.00น', 5),
-    _PainData('13/03/64\n02.00น', 5),
-    _PainData('13/03/64\n06.00น', 4),
-    _PainData('13/03/64\n10.00น', 4),
-    _PainData('13/03/64\n14.00น', 4),
-    _PainData('13/03/64\n18.00น', 4),
-    _PainData('13/03/64\n22.00น', 4),
-    _PainData('14/03/64\n02.00น', 5),
-    _PainData('14/03/64\n06.00น', 4),
-    _PainData('14/03/64\n10.00น', 4),
-    _PainData('14/03/64\n14.00น', 4),
-    _PainData('14/03/64\n18.00น', 4),
-    _PainData('14/03/64\n22.00น', 4),
-  ];
-  ZoomPanBehavior _zoomPanBehavior;
+  final formatter = DateFormat('dd/MM/yyyy');
+  List<_PainData> data = [];
   @override
   void initState() {
-    _zoomPanBehavior = ZoomPanBehavior(
-      enablePinching: true,
-      zoomMode: ZoomMode.x,
-      enablePanning: true,
-    );
     super.initState();
+    final formatter = DateFormat('dd/MM/yyyy');
+    widget.snapshot.data.forEach((element) {
+      var painScore = element['PainScore'] ?? 0;
+      var dateFromDb = element['Date'].toDate();
+      var formattedDate = formatter.format(dateFromDb);
+      var formTime = element['Time'] ?? '';
+      var date = '$formattedDate\n$formTime';
+      data.add(_PainData(day: date, painScore: painScore));
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
-    return LayoutBuilder(builder: (context, constraints) {
-      return SafeArea(
-        child: Column(
+    return Container(
+        height: widget.snapshot.data == null || widget.snapshot.data.length == 0
+            ? 30
+            : 300,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
           children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                      minWidth: constraints.minWidth,
-                      minHeight: constraints.minHeight),
-                  child: IntrinsicWidth(
-                    child: Container(
-                      height: screenSize.height / 2,
-                      width: screenSize.width * 4,
-                      child: SfCartesianChart(
-                          // zoomPanBehavior: _zoomPanBehavior,
-                          primaryXAxis: CategoryAxis(),
-                          primaryYAxis:
-                              NumericAxis(anchorRangeToVisiblePoints: true),
-                          tooltipBehavior: TooltipBehavior(enable: true),
-                          series: <ChartSeries<_PainData, String>>[
-                            LineSeries<_PainData, String>(
-                                dataSource: data,
-                                xValueMapper: (pain, _) => pain.painscore,
-                                yValueMapper: (pain, _) => pain.day,
-                                name: 'Pain score',
-                                color: Colors.red,
-                                dataLabelSettings:
-                                    DataLabelSettings(isVisible: true))
-                          ]),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SfCartesianChart(
-                zoomPanBehavior: _zoomPanBehavior,
-                primaryXAxis: CategoryAxis(),
-                primaryYAxis: NumericAxis(anchorRangeToVisiblePoints: true),
-                tooltipBehavior: TooltipBehavior(enable: true),
-                series: <ChartSeries<_PainData, String>>[
-                  LineSeries<_PainData, String>(
-                      dataSource: data,
-                      xValueMapper: (pain, _) => pain.painscore,
-                      yValueMapper: (pain, _) => pain.day,
-                      name: 'Pain score',
-                      color: Colors.red,
-                      dataLabelSettings: DataLabelSettings(isVisible: true))
-                ])
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SfCartesianChart(
+                    primaryXAxis: CategoryAxis(),
+                    legend: Legend(isVisible: false),
+                    tooltipBehavior: TooltipBehavior(enable: true),
+                    series: <ChartSeries<_PainData, String>>[
+                      LineSeries<_PainData, String>(
+                          dataSource: data,
+                          xValueMapper: (pain, _) => pain.day,
+                          yValueMapper: (pain, _) => pain.painScore,
+                          name: 'Pain score',
+                          color: Colors.red,
+                          dataLabelSettings: DataLabelSettings(isVisible: true))
+                    ]),
+              ],
+            )
           ],
-        ),
-      );
-    });
+        ));
   }
 }
 
 class _PainData {
-  _PainData(this.painscore, this.day);
-
-  final String painscore;
-  final double day;
+  _PainData({this.painScore, this.day});
+  final String day;
+  final int painScore;
 }

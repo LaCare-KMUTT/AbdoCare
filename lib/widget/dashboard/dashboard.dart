@@ -1,10 +1,10 @@
+import 'package:AbdoCare/widget/shared/loading_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../services/interfaces/calculation_service_interface.dart';
 import '../../services/interfaces/firebase_service_interface.dart';
 import '../../services/service_locator.dart';
 import 'adl_table_chart.dart';
-import 'line_chart.dart';
 import 'pain_chart.dart';
 
 class Dashboard extends StatefulWidget {
@@ -13,15 +13,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final List<PointSeries> data2 = [
-    PointSeries(day: 0, point: 10),
-    PointSeries(day: 1, point: 8),
-    PointSeries(day: 2, point: 7),
-    PointSeries(day: 3, point: 8),
-    PointSeries(day: 4, point: 5),
-    PointSeries(day: 5, point: 4),
-    PointSeries(day: 6, point: 2),
-  ];
   final IFirebaseService _firebaseService = locator<IFirebaseService>();
   final ICalculationService _calculationService =
       locator<ICalculationService>();
@@ -146,8 +137,28 @@ class _DashboardState extends State<Dashboard> {
                                         ),
                                       ],
                                     ),
-                                    //LineChart(data2: data2),
-                                    PainChart(),
+                                    Container(
+                                      child: FutureBuilder<
+                                              List<Map<String, dynamic>>>(
+                                          future: _firebaseService
+                                              .getDashboardGraph(),
+                                          builder: (context, snapshot) {
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                  child: loadingProgress);
+                                            }
+                                            if (snapshot.data.length == 0 ||
+                                                snapshot.data == null) {
+                                              return Text(
+                                                  '''ไม่มีข้อมูลจากแบบฟอร์มความเจ็บปวด''',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1);
+                                            }
+                                            return PainChart(
+                                                snapshot: snapshot);
+                                          }),
+                                    )
                                   ],
                                 ),
                               ),

@@ -70,7 +70,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    Text(userCollection.data['name'],
+                                    Text(
+                                        '''${userCollection.data['name']}\t${userCollection.data['surname']}''',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1),
