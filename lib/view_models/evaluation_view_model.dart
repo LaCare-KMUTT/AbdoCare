@@ -149,12 +149,9 @@ class EvaluationViewModel {
   }
 
   bool disableEvaluationformButton(String check) {
-    if (check == "completed" || check == "noPassRecoveryReadiness") {
+    if (check == "completed") {
       return true;
-    } else if (check == "nocompleted") {
-      return false;
-    } else {
-      return false;
     }
+    return false;
   }
 }
