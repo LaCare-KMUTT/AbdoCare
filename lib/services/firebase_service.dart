@@ -440,17 +440,18 @@ class FirebaseService extends IFirebaseService {
   }
 
   Future<Map<dynamic, dynamic>> getLastFormId(
-      String formName, String patientState) async {
+      {@required String formName,
+      @required String patientState,
+      @required String hn}) async {
     var mapData = {};
     var formId = await _firestore
         .collection('Forms')
-        .where('hn', isEqualTo: UserStore.getValueFromStore('storedHN'))
+        .where('hn', isEqualTo: hn)
         .where('formName', isEqualTo: formName)
         .where('patientState', isEqualTo: patientState)
         .get()
-        .then((value) => value.docs.first.id)
+        .then((value) => value.docs.last.id)
         .catchError((onError) {});
-
     if (formId != null) {
       await _firestore.collection('Forms').doc(formId).get().then((value) {
         mapData.addAll(value.data());
@@ -462,9 +463,13 @@ class FirebaseService extends IFirebaseService {
   }
 
   Future<Map<String, dynamic>> getAdlTable() async {
-    var preOpAdlData = await getLastFormId('ADL', 'Pre-Operation');
-    var postHosData = await getLastFormId('ADL', 'Post-Operation@Hospital');
-    var postHomeData = await getLastFormId('ADL', 'Post-Operation@Home');
+    var storedHn = UserStore.getValueFromStore('storedHn');
+    var preOpAdlData = await getLastFormId(
+        formName: 'ADL', hn: storedHn, patientState: 'Pre-Operation');
+    var postHosData = await getLastFormId(
+        formName: 'ADL', hn: storedHn, patientState: 'Post-Operation@Hospital');
+    var postHomeData = await getLastFormId(
+        formName: 'ADL', hn: storedHn, patientState: 'Post-Operation@Home');
     var map = {
       'PreOpGrooming':
           preOpAdlData.length != 0 ? preOpAdlData['formData']['Grooming'] : 2,
@@ -537,5 +542,40 @@ class FirebaseService extends IFirebaseService {
           : 0,
     };
     return map;
+  }
+
+  Future<void> addToDashboardCollection(Map<String, dynamic> data) async {
+    await _firestore.collection('Dashboards').add(data).then((value) {
+      print("Add $data to Dashboard Collection");
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> getDashboardGraph() async {
+    var storedUserId = UserStore.getValueFromStore('storedUserId');
+    var anSubcollection = await getLatestAnSubCollection(userId: storedUserId);
+    var patientState = anSubcollection["state"];
+    var fieldName;
+    if (patientState == "Post-Operation@Home") {
+      fieldName = 'painGraph';
+    } else {
+      fieldName = 'dashboardTable';
+    }
+    var dashboardsCollection = await _firestore
+        .collection('Dashboards')
+        .orderBy('Date')
+        .where('hn', isEqualTo: UserStore.getValueFromStore('storedHn'))
+        .where('name', isEqualTo: fieldName)
+        .get()
+        .then((value) {
+      return value.docs;
+    }).catchError((onError) {
+      print('Error in getDashboardGraph = $onError');
+    });
+    List<Map<String, dynamic>> list = [];
+    dashboardsCollection.forEach((element) {
+      Map<String, dynamic> data = element.data();
+      list.add(data);
+    });
+    return list;
   }
 }

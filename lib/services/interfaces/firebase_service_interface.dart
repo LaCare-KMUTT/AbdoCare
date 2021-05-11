@@ -74,4 +74,8 @@ abstract class IFirebaseService {
       {@required String formName, @required String patientState});
 
   Future<Map<String, dynamic>> getAdlTable();
+
+  Future<void> addToDashboardCollection(Map<String, dynamic> data);
+
+  Future<List<Map<String, dynamic>>> getDashboardGraph();
 }
