@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../services/service_locator.dart';
 import '../../view_models/evaluation_view_model.dart';
+import '../shared/alert_style.dart';
 
 class EvaluationMenuCard {
   final EvaluationViewModel _evaluationViewModel =
@@ -25,8 +26,13 @@ class EvaluationMenuCard {
               onPrimary: evaluationButton ? Colors.grey[600] : Colors.black,
             ),
             onPressed: () {
-              var selectedform = item['selectedForm'];
-              _evaluationViewModel.navigateOnTopic(selectedform, context);
+              if (evaluateStatus == 'noPassRecoveryReadiness') {
+                Dialogs.alertToCompleteRecoveryReadinessForm(
+                    context, evaluateStatus);
+              } else {
+                var selectedform = item['selectedForm'];
+                _evaluationViewModel.navigateOnTopic(selectedform, context);
+              }
             },
             child: Container(
               height: 80,
