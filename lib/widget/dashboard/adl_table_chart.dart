@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../services/interfaces/firebase_service_interface.dart';
 import '../../services/service_locator.dart';
 import '../shared/loading_widget.dart';
+import '../shared/material.dart';
 import 'radial_gauge_chart.dart';
 
 class ADLTable extends StatefulWidget {
@@ -12,6 +13,7 @@ class ADLTable extends StatefulWidget {
 
 class _ADLTableState extends State<ADLTable> {
   final _firebaseService = locator<IFirebaseService>();
+  final CustomMaterial _customMaterial = locator<CustomMaterial>();
   int score;
   String topic;
   Widget adlIcon(BuildContext context, String topic, int score) {
@@ -230,7 +232,8 @@ class _ADLTableState extends State<ADLTable> {
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.normal,
-                                              color: Colors.black)),
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center),
                                       Image.asset(
                                         'assets/icon/Grooming.png',
                                         height: 100,
@@ -261,7 +264,8 @@ class _ADLTableState extends State<ADLTable> {
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.normal,
-                                              color: Colors.black)),
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center),
                                       Image.asset(
                                         'assets/icon/Transfer.png',
                                         height: 100,
@@ -287,13 +291,12 @@ class _ADLTableState extends State<ADLTable> {
                                   padding: const EdgeInsets.all(5.0),
                                   child: Column(
                                     children: [
-                                      Text(
-                                        "การใช้ห้องน้ำ",
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black),
-                                      ),
+                                      Text("การใช้ห้องน้ำ",
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center),
                                       Image.asset(
                                         'assets/icon/Toilet.png',
                                         height: 100,
@@ -319,13 +322,12 @@ class _ADLTableState extends State<ADLTable> {
                                   padding: const EdgeInsets.all(5.0),
                                   child: Column(
                                     children: [
-                                      Text(
-                                        "การเคลื่อนที่ภายในห้องหรือบ้าน",
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black),
-                                      ),
+                                      Text("การเคลื่อนที่ภายในห้องหรือบ้าน",
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center),
                                       Image.asset(
                                         'assets/icon/Mobility.png',
                                         height: 100,
@@ -351,13 +353,12 @@ class _ADLTableState extends State<ADLTable> {
                                   padding: const EdgeInsets.all(5.0),
                                   child: Column(
                                     children: [
-                                      Text(
-                                        "การสวมใส่เสื้อผ้า",
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black),
-                                      ),
+                                      Text("การสวมใส่เสื้อผ้า",
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center),
                                       Image.asset(
                                         'assets/icon/Dressing.png',
                                         height: 100,
@@ -383,13 +384,12 @@ class _ADLTableState extends State<ADLTable> {
                                   padding: const EdgeInsets.all(5.0),
                                   child: Column(
                                     children: [
-                                      Text(
-                                        "การขึ้นลงบันได 1 ชั้น",
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black),
-                                      ),
+                                      Text("การขึ้นลงบันได 1 ชั้น",
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center),
                                       Image.asset(
                                         'assets/icon/Stairs.png',
                                         height: 100,
@@ -415,13 +415,12 @@ class _ADLTableState extends State<ADLTable> {
                                   padding: const EdgeInsets.all(5.0),
                                   child: Column(
                                     children: [
-                                      Text(
-                                        "การอาบน้ำ",
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black),
-                                      ),
+                                      Text("การอาบน้ำ",
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.normal,
+                                              color: Colors.black),
+                                          textAlign: TextAlign.center),
                                       Image.asset(
                                         'assets/icon/Bathing.png',
                                         height: 100,
@@ -453,6 +452,7 @@ class _ADLTableState extends State<ADLTable> {
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.normal,
                                             color: Colors.black),
+                                        textAlign: TextAlign.center,
                                       ),
                                       Image.asset(
                                         'assets/icon/Bowels.png',
@@ -485,6 +485,7 @@ class _ADLTableState extends State<ADLTable> {
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.normal,
                                             color: Colors.black),
+                                        textAlign: TextAlign.center,
                                       ),
                                       Image.asset(
                                         'assets/icon/Bladder.png',
@@ -518,20 +519,34 @@ class _ADLTableState extends State<ADLTable> {
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Center(
-                                    child: Text("${snap.data['PreOpTotal']}"),
+                                    child: Text(
+                                      "${snap.data['PreOpTotal']}",
+                                      style: TextStyle(
+                                          color: _customMaterial.getADLColor(
+                                              snap.data['PreOpTotal'])),
+                                    ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Center(
-                                    child: Text("${snap.data['PostHosTotal']}"),
+                                    child: Text(
+                                      "${snap.data['PostHosTotal']}",
+                                      style: TextStyle(
+                                          color: _customMaterial.getADLColor(
+                                              snap.data['PostHosTotal'])),
+                                    ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Center(
-                                    child:
-                                        Text("${snap.data['PostHomeTotal']}"),
+                                    child: Text(
+                                      "${snap.data['PostHomeTotal']}",
+                                      style: TextStyle(
+                                          color: _customMaterial.getADLColor(
+                                              snap.data['PostHomeTotal'])),
+                                    ),
                                   ),
                                 ),
                               ]),

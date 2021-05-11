@@ -9,6 +9,7 @@ import '../view_models/evaluation_view_model.dart';
 import '../view_models/notification_view_model.dart';
 import '../view_models/pin_view_model.dart';
 import '../view_models/training_view_model.dart';
+import '../widget/shared/material.dart';
 import 'calculation_service.dart';
 import 'firebase_service.dart';
 import 'interfaces/calculation_service_interface.dart';
@@ -34,4 +35,5 @@ void setupServiceLocator() {
   locator
       .registerLazySingleton<EvaluationViewModel>(() => EvaluationViewModel());
   locator.registerLazySingleton<NotiViewModel>(() => NotiViewModel());
+  locator.registerLazySingleton<CustomMaterial>(() => CustomMaterial());
 }
