@@ -128,7 +128,7 @@ class _ADLTableState extends State<ADLTable> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(5, 10, 0, 10),
                           child: Text(
-                            '''ความสามารถในการปฏิบัติกิจวัตรประจำวัน''',
+                            '''ผลการประเมินการปฏิบัติกิจวัตรประจำวัน''',
                           ),
                         ),
                       ],
@@ -552,33 +552,30 @@ class _ADLTableState extends State<ADLTable> {
                               ]),
                             ],
                           ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Card(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
+                        ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 10, 0, 10),
-                          child: Text(
-                            '''ผลการประเมินการปฏิบัติกิจวัตรประจำวัน''',
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(' การแปลผล',
+                              style: Theme.of(context).textTheme.bodyText2),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(30, 0, 0, 5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('12 คะแนนขึ้นไป = สามารถพึ่งพาตนเองได้ดี',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                              Text('9-11 คะแนน= สามารถพึ่งพาตนเองได้ปานกลาง',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                              Text('5-8 คะแนน = สามารถพึ่งพาตนเองน้อย',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                              Text('0-4 คะแนน = ไม่สามารถพึ่งพาตนเองได้',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            ],
                           ),
                         ),
                       ],
-                    ),
-                    PieChart(
-                        totalScoreADL: snap.data['PostHomeTotal'] != null
-                            ? snap.data['PostHomeTotal']
-                            : snap.data['PostHosTotal'] != null
-                                ? snap.data['PostHosTotal']
-                                : snap.data['PreOpTotal'] != null
-                                    ? snap.data['PreOpTotal']
-                                    : 0),
+                    )
                   ],
                 ),
               ),
