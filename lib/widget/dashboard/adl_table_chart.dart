@@ -4,7 +4,6 @@ import '../../services/interfaces/firebase_service_interface.dart';
 import '../../services/service_locator.dart';
 import '../shared/loading_widget.dart';
 import '../shared/material.dart';
-import 'radial_gauge_chart.dart';
 
 class ADLTable extends StatefulWidget {
   @override
