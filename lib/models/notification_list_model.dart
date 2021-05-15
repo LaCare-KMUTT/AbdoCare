@@ -6,7 +6,7 @@ class NotiData {
   DateTime formDateTimeSort;
   String imgURL;
   String advice;
-  int severity;
+  String severity;
   String notiId;
   String patientSeen;
   Map<String, dynamic> map;
