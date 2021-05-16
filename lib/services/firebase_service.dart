@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -324,7 +325,7 @@ class FirebaseService extends IFirebaseService {
         'formDateTimeSort': formTime ?? '-',
         'imgURL': '-',
         'advice': '-',
-        'severity': 0,
+        'severity': '-',
         'notiId': user.id ?? '-',
         'patientSeen': patientSeen ?? 'ยังไม่ได้อ่าน',
       };
@@ -360,7 +361,7 @@ class FirebaseService extends IFirebaseService {
       });
       var futureList = Future.wait(returnList);
       var returnValue = await futureList;
-      count = returnValue.first;
+      count = returnValue.reduce(max);
     } else {
       count = 0;
     }

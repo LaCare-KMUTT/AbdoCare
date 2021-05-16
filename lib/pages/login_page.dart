@@ -107,11 +107,11 @@ class _LoginPageState extends State<LoginPage> {
                       height: 100,
                       width: 80,
                     ),
-                    // Image.asset(
-                    //   'assets/STIN_logo.png',
-                    //   height: 100,
-                    //   width: 80,
-                    // )
+                    Image.asset(
+                      'assets/STIN_logo.png',
+                      height: 100,
+                      width: 80,
+                    )
                   ],
                 ),
               ],
