@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -34,7 +35,24 @@ class _LoginPageState extends State<LoginPage> {
           shrinkWrap: true,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.fromLTRB(50, 150, 50, 0),
+              padding: const EdgeInsets.fromLTRB(50, 50, 50, 0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/abdocare_logo.png',
+                        height: 200,
+                        width: 200,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
               child: TextField(
                 controller: _hnController,
                 obscureText: true,
@@ -97,25 +115,25 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
-            Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/Hospital_logo.png',
-                      height: 100,
-                      width: 80,
-                    ),
-                    Image.asset(
-                      'assets/STIN_logo.png',
-                      height: 100,
-                      width: 80,
-                    )
-                  ],
-                ),
-              ],
-            ),
+            // Column(
+            //   children: <Widget>[
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: <Widget>[
+            //         Image.asset(
+            //           'assets/Hospital_logo.png',
+            //           height: 100,
+            //           width: 80,
+            //         ),
+            //         Image.asset(
+            //           'assets/STIN_logo.png',
+            //           height: 100,
+            //           width: 80,
+            //         )
+            //       ],
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
