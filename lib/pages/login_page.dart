@@ -115,25 +115,6 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
-            // Column(
-            //   children: <Widget>[
-            //     Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: <Widget>[
-            //         Image.asset(
-            //           'assets/Hospital_logo.png',
-            //           height: 100,
-            //           width: 80,
-            //         ),
-            //         Image.asset(
-            //           'assets/STIN_logo.png',
-            //           height: 100,
-            //           width: 80,
-            //         )
-            //       ],
-            //     ),
-            //   ],
-            // ),
           ],
         ),
       ),
