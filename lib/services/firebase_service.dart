@@ -548,7 +548,7 @@ class FirebaseService extends IFirebaseService {
           preOpAdlData.length != 0 ? preOpAdlData['formData']['Mobility'] : 4,
       'PreOpTotal': preOpAdlData.length != 0
           ? preOpAdlData['formData']['TotalScoreADL']
-          : 0,
+          : '-',
       'PostHosGrooming':
           postHosData.length != 0 ? postHosData['formData']['Grooming'] : 2,
       'PostHosBathing':
@@ -571,7 +571,7 @@ class FirebaseService extends IFirebaseService {
           postHosData.length != 0 ? postHosData['formData']['Mobility'] : 4,
       'PostHosTotal': postHosData.length != 0
           ? postHosData['formData']['TotalScoreADL']
-          : 0,
+          : '-',
       'PostHomeGrooming':
           postHomeData.length != 0 ? postHomeData['formData']['Grooming'] : 2,
       'PostHomeBathing':
@@ -594,7 +594,7 @@ class FirebaseService extends IFirebaseService {
           postHomeData.length != 0 ? postHomeData['formData']['Mobility'] : 4,
       'PostHomeTotal': postHomeData.length != 0
           ? postHomeData['formData']['TotalScoreADL']
-          : 0,
+          : '-',
     };
     return map;
   }
