@@ -89,7 +89,7 @@ class TrainingViewModel {
 
     Map<String, Widget> cardLists = {
       'mustShow': mustShowToColumn,
-      'recommended': recommendedToColumn,
+      'recommended': recommendedToColumn
     };
 
     return cardLists;
