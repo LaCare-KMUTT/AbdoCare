@@ -117,44 +117,44 @@ class _SurgicalIncisionFormState extends State<SurgicalIncisionForm> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  RaisedButton(
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF2ED47A),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
-                      child: Text('สำเร็จ',
-                          style: TextStyle(fontSize: 18, color: Colors.white)),
-                      color: Color(0xFF2ED47A),
-                      onPressed: () async {
-                        Map<String, dynamic> formDataToDB = {
-                          'Choice1': _value,
-                          'Choice2': _value2,
-                          'Choice3': _value3,
-                          'Choice4': _value4,
-                          'imgURL': '-',
-                        };
-                        if (_value4 == true) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    UploadPhoto(formDataToDB)),
-                          );
-                        }
-                        if (_value | _value2 == true) {
-                          await _firebaseService.addDataToFormsCollection(
-                              formName: 'Surgical Incision',
-                              data: formDataToDB);
-                          showAdvise1(context);
-                        }
-                        if (_value3 == true) {
-                          await _firebaseService.addDataToFormsCollection(
-                              formName: 'Surgical Incision',
-                              data: formDataToDB);
-                          showAdvise2(context);
-                        } else if (_value | _value2 | _value3 | _value4 ==
-                            false) {
-                          Dialogs.alertToCompleteEvalutation(context);
-                        }
-                      }),
+                    ),
+                    onPressed: () async {
+                      Map<String, dynamic> formDataToDB = {
+                        'Choice1': _value,
+                        'Choice2': _value2,
+                        'Choice3': _value3,
+                        'Choice4': _value4,
+                        'imgURL': '-',
+                      };
+                      if (_value4 == true) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UploadPhoto(formDataToDB)),
+                        );
+                      }
+                      if (_value | _value2 == true) {
+                        await _firebaseService.addDataToFormsCollection(
+                            formName: 'Surgical Incision', data: formDataToDB);
+                        showAdvise1(context);
+                      }
+                      if (_value3 == true) {
+                        await _firebaseService.addDataToFormsCollection(
+                            formName: 'Surgical Incision', data: formDataToDB);
+                        showAdvise2(context);
+                      } else if (_value | _value2 | _value3 | _value4 ==
+                          false) {
+                        Dialogs.alertToCompleteEvalutation(context);
+                      }
+                    },
+                    child: Text('สำเร็จ',
+                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                  ),
                 ],
               ),
             )

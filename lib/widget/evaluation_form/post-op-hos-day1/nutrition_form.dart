@@ -233,46 +233,49 @@ class _NutritionFormState extends State<NutritionForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () async {
-                      if (_value1 == null ||
-                          _value2 == null ||
-                          _value3 == null ||
-                          _value4 == null) {
-                        Dialogs.alertToCompleteEvalutation(context);
+                  ),
+                  onPressed: () async {
+                    if (_value1 == null ||
+                        _value2 == null ||
+                        _value3 == null ||
+                        _value4 == null) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    } else {
+                      Map<String, dynamic> formDataToDB = {
+                        'Exercise1': _value1,
+                        'Exercise2': _value2,
+                        'Exercise3': _value3,
+                        'Exercise4': _value4,
+                      };
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Nutrition', data: formDataToDB);
+                      if (_value1 == "มี" &&
+                          _value2 == "มี" &&
+                          _value3 == "ปฏิบัติ" &&
+                          _value4 == "ปฏิบัติ") {
+                        result = "Pass";
+                        showAdvise1(context, result);
                       } else {
-                        Map<String, dynamic> formDataToDB = {
-                          'Exercise1': _value1,
-                          'Exercise2': _value2,
-                          'Exercise3': _value3,
-                          'Exercise4': _value4,
-                        };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'Nutrition', data: formDataToDB);
-                        if (_value1 == "มี" &&
-                            _value2 == "มี" &&
-                            _value3 == "ปฏิบัติ" &&
-                            _value4 == "ปฏิบัติ") {
-                          result = "Pass";
-                          showAdvise1(context, result);
-                        } else {
-                          result = "NoPass";
-                          showAdvise1(context, result);
-                          var userId =
-                              UserStore.getValueFromStore('storedUserId');
-                          await _firebaseService.addNotification(
-                              formId: formId,
-                              formName: 'Nutrition',
-                              userId: userId);
-                        }
+                        result = "NoPass";
+                        showAdvise1(context, result);
+                        var userId =
+                            UserStore.getValueFromStore('storedUserId');
+                        await _firebaseService.addNotification(
+                            formId: formId,
+                            formName: 'Nutrition',
+                            userId: userId);
                       }
-                    }),
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )

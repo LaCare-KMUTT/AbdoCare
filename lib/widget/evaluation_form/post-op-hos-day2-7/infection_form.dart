@@ -198,55 +198,58 @@ class _InfectionForm extends State<InfectionForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () async {
-                      if (_value1 |
-                              _value2 |
-                              _value3 |
-                              _value4 |
-                              _value5 |
-                              _value6 |
-                              _value7 |
-                              _value8 !=
-                          true) {
-                        Dialogs.alertToCompleteEvalutation(context);
+                  ),
+                  onPressed: () async {
+                    if (_value1 |
+                            _value2 |
+                            _value3 |
+                            _value4 |
+                            _value5 |
+                            _value6 |
+                            _value7 |
+                            _value8 !=
+                        true) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    } else {
+                      Map<String, dynamic> formDataToDB = {
+                        'Choice1': _value1,
+                        'Choice2': _value2,
+                        'Choice3': _value3,
+                        'Choice4': _value4,
+                        'Choice5': _value5,
+                        'Choice6': _value6,
+                        'Choice7': _value7,
+                        'Choice8': _value8,
+                      };
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Infection', data: formDataToDB);
+                      if (_value3 == true &&
+                          (_value5 || _value6 == true) &&
+                          _value7 == false &&
+                          _value8 == false) {
+                        result = "Pass";
+                        showAdvise1(context, result);
                       } else {
-                        Map<String, dynamic> formDataToDB = {
-                          'Choice1': _value1,
-                          'Choice2': _value2,
-                          'Choice3': _value3,
-                          'Choice4': _value4,
-                          'Choice5': _value5,
-                          'Choice6': _value6,
-                          'Choice7': _value7,
-                          'Choice8': _value8,
-                        };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'Infection', data: formDataToDB);
-                        if (_value3 == true &&
-                            (_value5 || _value6 == true) &&
-                            _value7 == false &&
-                            _value8 == false) {
-                          result = "Pass";
-                          showAdvise1(context, result);
-                        } else {
-                          result = "NoPass";
-                          showAdvise1(context, result);
-                          var userId =
-                              UserStore.getValueFromStore('storedUserId');
-                          await _firebaseService.addNotification(
-                              formId: formId,
-                              formName: 'Infection',
-                              userId: userId);
-                        }
+                        result = "NoPass";
+                        showAdvise1(context, result);
+                        var userId =
+                            UserStore.getValueFromStore('storedUserId');
+                        await _firebaseService.addNotification(
+                            formId: formId,
+                            formName: 'Infection',
+                            userId: userId);
                       }
-                    }),
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )
