@@ -85,33 +85,35 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0)),
-                    color: Color(0xFF2ED47A),
-                    child: Text('ลงทะเบียน',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    onPressed: () async {
-                      _loginModel.hn = _hnController.text.trim();
-                      _loginModel.password = _uniqueKeycontroller.text.trim();
-                      _loginModel.checkHn();
-                      _loginModel.checkUniqueKey();
-                      if (!_loginModel.validateHn &&
-                          !_loginModel.validateUniqueKey) {
-                        if (await _loginModel.signIn()) {
-                          print("login success!");
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SetPinPage()),
-                          );
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7.0)),
+                        onPrimary: Colors.white,
+                        primary: Color(0xFF2ED47A),
+                      ),
+                      child: Text('ลงทะเบียน',
+                          style: TextStyle(fontSize: 18, color: Colors.white)),
+                      onPressed: () async {
+                        _loginModel.hn = _hnController.text.trim();
+                        _loginModel.password = _uniqueKeycontroller.text.trim();
+                        _loginModel.checkHn();
+                        _loginModel.checkUniqueKey();
+                        if (!_loginModel.validateHn &&
+                            !_loginModel.validateUniqueKey) {
+                          if (await _loginModel.signIn()) {
+                            print("login success!");
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SetPinPage()),
+                            );
+                          }
+                        } else {
+                          print('login failed');
+                          _showErrorSignInDialog(context);
                         }
-                      } else {
-                        print('login failed');
-                        _showErrorSignInDialog(context);
-                      }
-                    },
-                  ),
+                      }),
                 ],
               ),
             ),

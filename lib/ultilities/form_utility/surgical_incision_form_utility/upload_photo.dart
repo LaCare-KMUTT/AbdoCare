@@ -93,15 +93,16 @@ class _UploadPhotoState extends State<UploadPhoto> {
         ],
       ),
       actions: [
-        RaisedButton(
-          color: Color(0xFFC37447),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(7.0)),
+              onPrimary: Colors.white,
+              primary: Color(0xFFC37447)),
           child: Container(
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child: Text(
-                "ตกลง",
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
+              child: Text("ตกลง", style: TextStyle(fontSize: 16)),
             ),
           ),
           onPressed: () async {
