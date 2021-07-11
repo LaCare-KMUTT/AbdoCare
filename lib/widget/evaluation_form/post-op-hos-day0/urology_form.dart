@@ -119,37 +119,40 @@ class _UrologyFormState extends State<UrologyForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () async {
-                      if (_value1 == null) {
-                        Dialogs.alertToCompleteEvalutation(context);
+                  ),
+                  onPressed: () async {
+                    if (_value1 == null) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    } else {
+                      Map<String, dynamic> formDataToDB = {
+                        'Exercise1': _value1,
+                      };
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Urology', data: formDataToDB);
+                      if (_value1 == "ถ่ายปัสสาวะแล้ว") {
+                        result = "Pass";
+                        showAdvise1(context, result);
                       } else {
-                        Map<String, dynamic> formDataToDB = {
-                          'Exercise1': _value1,
-                        };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'Urology', data: formDataToDB);
-                        if (_value1 == "ถ่ายปัสสาวะแล้ว") {
-                          result = "Pass";
-                          showAdvise1(context, result);
-                        } else {
-                          result = "NoPass";
-                          showAdvise1(context, result);
-                          var userId =
-                              UserStore.getValueFromStore('storedUserId');
-                          await _firebaseService.addNotification(
-                              formId: formId,
-                              formName: 'Urology',
-                              userId: userId);
-                        }
+                        result = "NoPass";
+                        showAdvise1(context, result);
+                        var userId =
+                            UserStore.getValueFromStore('storedUserId');
+                        await _firebaseService.addNotification(
+                            formId: formId,
+                            formName: 'Urology',
+                            userId: userId);
                       }
-                    }),
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )

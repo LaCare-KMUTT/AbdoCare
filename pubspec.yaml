@@ -104,6 +104,7 @@ flutter:
     - assets/nurse.png
     - assets/user.png
     - assets/nurse2.png
+    - assets/abdocare_logo.png
 
   fonts:
     - family: Prompt

@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -34,7 +35,24 @@ class _LoginPageState extends State<LoginPage> {
           shrinkWrap: true,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.fromLTRB(50, 150, 50, 0),
+              padding: const EdgeInsets.fromLTRB(50, 50, 50, 0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/abdocare_logo.png',
+                        height: 200,
+                        width: 200,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
               child: TextField(
                 controller: _hnController,
                 obscureText: true,
@@ -67,54 +85,37 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0)),
-                    color: Color(0xFF2ED47A),
-                    child: Text('ลงทะเบียน',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    onPressed: () async {
-                      _loginModel.hn = _hnController.text.trim();
-                      _loginModel.password = _uniqueKeycontroller.text.trim();
-                      _loginModel.checkHn();
-                      _loginModel.checkUniqueKey();
-                      if (!_loginModel.validateHn &&
-                          !_loginModel.validateUniqueKey) {
-                        if (await _loginModel.signIn()) {
-                          print("login success!");
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SetPinPage()),
-                          );
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7.0)),
+                        onPrimary: Colors.white,
+                        primary: Color(0xFF2ED47A),
+                      ),
+                      child: Text('ลงทะเบียน',
+                          style: TextStyle(fontSize: 18, color: Colors.white)),
+                      onPressed: () async {
+                        _loginModel.hn = _hnController.text.trim();
+                        _loginModel.password = _uniqueKeycontroller.text.trim();
+                        _loginModel.checkHn();
+                        _loginModel.checkUniqueKey();
+                        if (!_loginModel.validateHn &&
+                            !_loginModel.validateUniqueKey) {
+                          if (await _loginModel.signIn()) {
+                            print("login success!");
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SetPinPage()),
+                            );
+                          }
+                        } else {
+                          print('login failed');
+                          _showErrorSignInDialog(context);
                         }
-                      } else {
-                        print('login failed');
-                        _showErrorSignInDialog(context);
-                      }
-                    },
-                  ),
+                      }),
                 ],
               ),
-            ),
-            Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/Hospital_logo.png',
-                      height: 100,
-                      width: 80,
-                    ),
-                    Image.asset(
-                      'assets/STIN_logo.png',
-                      height: 100,
-                      width: 80,
-                    )
-                  ],
-                ),
-              ],
             ),
           ],
         ),

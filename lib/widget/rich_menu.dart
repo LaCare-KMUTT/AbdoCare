@@ -50,18 +50,11 @@ class _RichMenuState extends State<RichMenu> {
                   ),
                 ],
               ),
-              FlatButton(
-                padding: EdgeInsets.only(top: 0),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/evaluation_page');
-                },
+              TextButton(
+                style: TextButton.styleFrom(backgroundColor: Color(0xFFFCECBC)),
                 child: Container(
                   height: 100,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(0),
-                    color: Color(0xFFFCECBC),
-                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -72,37 +65,17 @@ class _RichMenuState extends State<RichMenu> {
                     ],
                   ),
                 ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/evaluation_page');
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: FlatButton(
-                      color: Color(0xFFF8CC77),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/dashboard_page');
-                      },
-                      child: Container(
-                        height: 100,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'สรุปผลประจำวัน',
-                              style: Theme.of(context).textTheme.bodyText1,
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: FlatButton(
-                      color: Color(0xFFF1B43F),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/appoint_page');
-                      },
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Color(0xFFF8CC77)),
                       child: Container(
                         height: 100,
                         child: Column(
@@ -115,14 +88,36 @@ class _RichMenuState extends State<RichMenu> {
                           ],
                         ),
                       ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/evaluation_page');
+                      },
                     ),
                   ),
                   Expanded(
-                    child: FlatButton(
-                      color: Color(0xFFE38C14),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Color(0xFFF1B43F)),
+                      child: Container(
+                        height: 100,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'ตารางนัด',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                          ],
+                        ),
+                      ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/training_page');
+                        Navigator.pushNamed(context, '/appoint_page');
                       },
+                    ),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Color(0xFFE38C14)),
                       child: Container(
                         height: 100,
                         child: Column(
@@ -135,6 +130,9 @@ class _RichMenuState extends State<RichMenu> {
                           ],
                         ),
                       ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/training_page');
+                      },
                     ),
                   ),
                 ],

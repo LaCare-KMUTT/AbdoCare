@@ -211,60 +211,61 @@ class _DrainFormState extends State<DrainForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () async {
-                      if (_value1 |
-                              _value2 |
-                              _value3 |
-                              _value4 |
-                              _value5 |
-                              _value6 |
-                              _value7 |
-                              _value8 !=
-                          true) {
-                        Dialogs.alertToCompleteEvalutation(context);
+                  ),
+                  onPressed: () async {
+                    if (_value1 |
+                            _value2 |
+                            _value3 |
+                            _value4 |
+                            _value5 |
+                            _value6 |
+                            _value7 |
+                            _value8 !=
+                        true) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    } else {
+                      Map<String, dynamic> formDataToDB = {
+                        'Choice1': _value1,
+                        'Choice2': _value2,
+                        'Choice3': _value3,
+                        'Choice4': _value4,
+                        'Choice5': _value5,
+                        'Choice6': _value6,
+                        'Choice7': _value7,
+                        'Choice8': _value8,
+                      };
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Drain', data: formDataToDB);
+                      if ((_value1 || _value2 == true) &&
+                          _value3 == false &&
+                          _value4 == false &&
+                          _value5 == false &&
+                          _value6 == false &&
+                          _value7 == false &&
+                          _value8 == true) {
+                        result = "Pass";
+                        showAdvise1(context, result);
+                        print(result);
                       } else {
-                        Map<String, dynamic> formDataToDB = {
-                          'Choice1': _value1,
-                          'Choice2': _value2,
-                          'Choice3': _value3,
-                          'Choice4': _value4,
-                          'Choice5': _value5,
-                          'Choice6': _value6,
-                          'Choice7': _value7,
-                          'Choice8': _value8,
-                        };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'Drain', data: formDataToDB);
-                        if ((_value1 || _value2 == true) &&
-                            _value3 == false &&
-                            _value4 == false &&
-                            _value5 == false &&
-                            _value6 == false &&
-                            _value7 == false &&
-                            _value8 == true) {
-                          result = "Pass";
-                          showAdvise1(context, result);
-                          print(result);
-                        } else {
-                          result = "NoPass";
-                          print(result);
-                          showAdvise1(context, result);
-                          var userId =
-                              UserStore.getValueFromStore('storedUserId');
-                          await _firebaseService.addNotification(
-                              formId: formId,
-                              formName: 'Drain',
-                              userId: userId);
-                        }
+                        result = "NoPass";
+                        print(result);
+                        showAdvise1(context, result);
+                        var userId =
+                            UserStore.getValueFromStore('storedUserId');
+                        await _firebaseService.addNotification(
+                            formId: formId, formName: 'Drain', userId: userId);
                       }
-                    }),
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )

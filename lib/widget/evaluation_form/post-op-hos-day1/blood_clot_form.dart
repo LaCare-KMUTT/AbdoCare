@@ -388,58 +388,61 @@ class _BloodClotFormState extends State<BloodClotForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () async {
-                      if (_value1 | _value2 | _value3 | _value4 != true ||
-                          _value5 == null ||
-                          _value6 == null ||
-                          _value7 == null ||
-                          _value8 == null ||
-                          _value9 == null) {
-                        Dialogs.alertToCompleteEvalutation(context);
+                  ),
+                  onPressed: () async {
+                    if (_value1 | _value2 | _value3 | _value4 != true ||
+                        _value5 == null ||
+                        _value6 == null ||
+                        _value7 == null ||
+                        _value8 == null ||
+                        _value9 == null) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    } else {
+                      Map<String, dynamic> formDataToDB = {
+                        'Choice1': _value1,
+                        'Choice2': _value2,
+                        'Choice3': _value3,
+                        'Choice4': _value4,
+                        'Exercise1': _value5,
+                        'Exercise2': _value6,
+                        'Exercise3': _value7,
+                        'Exercise4': _value8,
+                        'Exercise5': _value9,
+                      };
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'BloodClot', data: formDataToDB);
+                      if (_value1 == false &&
+                          _value2 == false &&
+                          _value3 == false &&
+                          _value4 == true &&
+                          _value5 == "10 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value6 == "10 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value7 == "10 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value8 == "5 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value9 == "5 ครั้ง/รอบ/ชั่วโมง") {
+                        result = "Pass";
+                        showAdvise1(context, result);
                       } else {
-                        Map<String, dynamic> formDataToDB = {
-                          'Choice1': _value1,
-                          'Choice2': _value2,
-                          'Choice3': _value3,
-                          'Choice4': _value4,
-                          'Exercise1': _value5,
-                          'Exercise2': _value6,
-                          'Exercise3': _value7,
-                          'Exercise4': _value8,
-                          'Exercise5': _value9,
-                        };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'BloodClot', data: formDataToDB);
-                        if (_value1 == false &&
-                            _value2 == false &&
-                            _value3 == false &&
-                            _value4 == true &&
-                            _value5 == "10 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value6 == "10 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value7 == "10 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value8 == "5 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value9 == "5 ครั้ง/รอบ/ชั่วโมง") {
-                          result = "Pass";
-                          showAdvise1(context, result);
-                        } else {
-                          result = "NoPass";
-                          showAdvise1(context, result);
-                          var userId =
-                              UserStore.getValueFromStore('storedUserId');
-                          await _firebaseService.addNotification(
-                              formId: formId,
-                              formName: 'BloodClot',
-                              userId: userId);
-                        }
+                        result = "NoPass";
+                        showAdvise1(context, result);
+                        var userId =
+                            UserStore.getValueFromStore('storedUserId');
+                        await _firebaseService.addNotification(
+                            formId: formId,
+                            formName: 'BloodClot',
+                            userId: userId);
                       }
-                    }),
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )

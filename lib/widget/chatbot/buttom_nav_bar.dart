@@ -10,21 +10,14 @@ class ButtomNavBar extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FlatButton(
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => SingleChildScrollView(
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom),
-                            child: RichMenu(),
-                          ),
-                        ));
-              },
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7.0)),
+                  onPrimary: Colors.white,
+                  primary: Color(0xFFC37447)),
               child: Container(
+                height: 50,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -40,6 +33,19 @@ class ButtomNavBar extends StatelessWidget {
                   ],
                 ),
               ),
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => SingleChildScrollView(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: RichMenu(),
+                          ),
+                        ));
+              },
             ),
           ],
         ),

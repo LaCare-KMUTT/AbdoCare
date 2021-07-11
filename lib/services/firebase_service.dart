@@ -527,72 +527,71 @@ class FirebaseService extends IFirebaseService {
         formName: 'ADL', hn: storedHn, patientState: 'Post-Operation@Home');
     var map = {
       'PreOpGrooming':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Grooming'] : 2,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Grooming'] : 2,
       'PreOpBathing':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Bathing'] : 2,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Bathing'] : 2,
       'PreOpFeeding':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Feeding'] : 3,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Feeding'] : 3,
       'PreOpToilet':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Toilet'] : 3,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Toilet'] : 3,
       'PreOpDressing':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Dressing'] : 3,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Dressing'] : 3,
       'PreOpStairs':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Stairs'] : 3,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Stairs'] : 3,
       'PreOpBowels':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Bowels'] : 3,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Bowels'] : 3,
       'PreOpBladder':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Bladder'] : 3,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Bladder'] : 3,
       'PreOpTransfer':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Transfer'] : 4,
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Transfer'] : 4,
       'PreOpMobility':
-          preOpAdlData.length != 0 ? preOpAdlData['formData']['Mobility'] : 4,
-      'PreOpTotal': preOpAdlData.length != 0
+          preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Mobility'] : 4,
+      'PreOpTotal': preOpAdlData.isNotEmpty
           ? preOpAdlData['formData']['TotalScoreADL']
           : 0,
       'PostHosGrooming':
-          postHosData.length != 0 ? postHosData['formData']['Grooming'] : 2,
+          postHosData.isNotEmpty ? postHosData['formData']['Grooming'] : 2,
       'PostHosBathing':
-          postHosData.length != 0 ? postHosData['formData']['Bathing'] : 2,
+          postHosData.isNotEmpty ? postHosData['formData']['Bathing'] : 2,
       'PostHosFeeding':
-          postHosData.length != 0 ? postHosData['formData']['Feeding'] : 3,
+          postHosData.isNotEmpty ? postHosData['formData']['Feeding'] : 3,
       'PostHosToilet':
-          postHosData.length != 0 ? postHosData['formData']['Toilet'] : 3,
+          postHosData.isNotEmpty ? postHosData['formData']['Toilet'] : 3,
       'PostHosDressing':
-          postHosData.length != 0 ? postHosData['formData']['Dressing'] : 3,
+          postHosData.isNotEmpty ? postHosData['formData']['Dressing'] : 3,
       'PostHosStairs':
-          postHosData.length != 0 ? postHosData['formData']['Stairs'] : 3,
+          postHosData.isNotEmpty ? postHosData['formData']['Stairs'] : 3,
       'PostHosBowels':
-          postHosData.length != 0 ? postHosData['formData']['Bowels'] : 3,
+          postHosData.isNotEmpty ? postHosData['formData']['Bowels'] : 3,
       'PostHosBladder':
-          postHosData.length != 0 ? postHosData['formData']['Bladder'] : 3,
+          postHosData.isNotEmpty ? postHosData['formData']['Bladder'] : 3,
       'PostHosTransfer':
-          postHosData.length != 0 ? postHosData['formData']['Transfer'] : 4,
+          postHosData.isNotEmpty ? postHosData['formData']['Transfer'] : 4,
       'PostHosMobility':
-          postHosData.length != 0 ? postHosData['formData']['Mobility'] : 4,
-      'PostHosTotal': postHosData.length != 0
-          ? postHosData['formData']['TotalScoreADL']
-          : 0,
+          postHosData.isNotEmpty ? postHosData['formData']['Mobility'] : 4,
+      'PostHosTotal':
+          postHosData.isNotEmpty ? postHosData['formData']['TotalScoreADL'] : 0,
       'PostHomeGrooming':
-          postHomeData.length != 0 ? postHomeData['formData']['Grooming'] : 2,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Grooming'] : 2,
       'PostHomeBathing':
-          postHomeData.length != 0 ? postHomeData['formData']['Bathing'] : 2,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Bathing'] : 2,
       'PostHomeFeeding':
-          postHomeData.length != 0 ? postHomeData['formData']['Feeding'] : 3,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Feeding'] : 3,
       'PostHomeToilet':
-          postHomeData.length != 0 ? postHomeData['formData']['Toilet'] : 3,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Toilet'] : 3,
       'PostHomeDressing':
-          postHomeData.length != 0 ? postHomeData['formData']['Dressing'] : 3,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Dressing'] : 3,
       'PostHomeStairs':
-          postHomeData.length != 0 ? postHomeData['formData']['Stairs'] : 3,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Stairs'] : 3,
       'PostHomeBowels':
-          postHomeData.length != 0 ? postHomeData['formData']['Bowels'] : 3,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Bowels'] : 3,
       'PostHomeBladder':
-          postHomeData.length != 0 ? postHomeData['formData']['Bladder'] : 3,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Bladder'] : 3,
       'PostHomeTransfer':
-          postHomeData.length != 0 ? postHomeData['formData']['Transfer'] : 4,
+          postHomeData.isNotEmpty ? postHomeData['formData']['Transfer'] : 4,
       'PostHomeMobility':
-          postHomeData.length != 0 ? postHomeData['formData']['Mobility'] : 4,
-      'PostHomeTotal': postHomeData.length != 0
+          postHomeData.isNotEmpty ? postHomeData['formData']['Mobility'] : 4,
+      'PostHomeTotal': postHomeData.isNotEmpty
           ? postHomeData['formData']['TotalScoreADL']
           : 0,
     };

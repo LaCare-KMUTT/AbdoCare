@@ -7,12 +7,15 @@ class TrainingMenuCard {
   final TrainingViewModel _trainingViewModel = locator<TrainingViewModel>();
 
   Widget getTrainingCard(BuildContext context, Map<String, Object> item) {
-    var trainingCard = Card(
-      child: FlatButton(
-        onPressed: () {
-          var selectedtopic = item['selectedtopic'];
-          _trainingViewModel.navigateOnTopic(selectedtopic, context);
-        },
+    var trainingCard = Container(
+      padding: EdgeInsets.only(bottom: 5),
+      // color: Colors.grey[100],
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7.0)),
+            onPrimary: Colors.white,
+            primary: Colors.white70),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
           child: Row(
@@ -30,15 +33,17 @@ class TrainingMenuCard {
                   ),
                 ),
               ),
-              Icon(
-                Icons.navigate_next,
-                size: 32,
-              ),
+              Icon(Icons.navigate_next, size: 32, color: Color(0xFFC37447)),
             ],
           ),
         ),
+        onPressed: () {
+          var selectedtopic = item['selectedtopic'];
+          _trainingViewModel.navigateOnTopic(selectedtopic, context);
+        },
       ),
     );
+
     return trainingCard;
   }
 }

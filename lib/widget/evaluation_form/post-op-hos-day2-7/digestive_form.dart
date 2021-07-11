@@ -523,77 +523,80 @@ class _DigestiveFormState extends State<DigestiveForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () async {
-                      if (_value1 |
-                                  _value2 |
-                                  _value3 |
-                                  _value4 |
-                                  _value5 |
-                                  _value6 !=
-                              true ||
-                          _value7 == null ||
-                          _value8 == null ||
-                          _value9 == null ||
-                          _value10 == null ||
-                          _value11 == null ||
-                          _value12 == null ||
-                          _value13 == null ||
-                          _value14 == null) {
-                        Dialogs.alertToCompleteEvalutation(context);
+                  ),
+                  onPressed: () async {
+                    if (_value1 |
+                                _value2 |
+                                _value3 |
+                                _value4 |
+                                _value5 |
+                                _value6 !=
+                            true ||
+                        _value7 == null ||
+                        _value8 == null ||
+                        _value9 == null ||
+                        _value10 == null ||
+                        _value11 == null ||
+                        _value12 == null ||
+                        _value13 == null ||
+                        _value14 == null) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    } else {
+                      Map<String, dynamic> formDataToDB = {
+                        'Choice1': _value1,
+                        'Choice2': _value2,
+                        'Choice3': _value3,
+                        'Choice4': _value4,
+                        'Choice5': _value5,
+                        'Choice6': _value6,
+                        'Exercise1': _value7,
+                        'Exercise2': _value8,
+                        'Exercise3': _value9,
+                        'Exercise4': _value10,
+                        'Exercise5': _value11,
+                        'Exercise6': _value12,
+                        'Exercise7': _value13,
+                        'Exercise8': _value14,
+                      };
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Digestive', data: formDataToDB);
+                      if (_value1 == true &&
+                          _value2 == false &&
+                          _value3 == false &&
+                          _value4 == false &&
+                          _value5 == false &&
+                          _value6 == false &&
+                          _value7 == "10 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value8 == "5 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value9 == "5 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value10 == "5 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value11 == "10 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value12 == "10 ครั้ง/รอบ/ชั่วโมง" &&
+                          _value13 == "ปฏิบัติ" &&
+                          _value14 == "ปฏิบัติ") {
+                        result = "Pass";
+                        showAdvise1(context, result);
                       } else {
-                        Map<String, dynamic> formDataToDB = {
-                          'Choice1': _value1,
-                          'Choice2': _value2,
-                          'Choice3': _value3,
-                          'Choice4': _value4,
-                          'Choice5': _value5,
-                          'Choice6': _value6,
-                          'Exercise1': _value7,
-                          'Exercise2': _value8,
-                          'Exercise3': _value9,
-                          'Exercise4': _value10,
-                          'Exercise5': _value11,
-                          'Exercise6': _value12,
-                          'Exercise7': _value13,
-                          'Exercise8': _value14,
-                        };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'Digestive', data: formDataToDB);
-                        if (_value1 == true &&
-                            _value2 == false &&
-                            _value3 == false &&
-                            _value4 == false &&
-                            _value5 == false &&
-                            _value6 == false &&
-                            _value7 == "10 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value8 == "5 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value9 == "5 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value10 == "5 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value11 == "10 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value12 == "10 ครั้ง/รอบ/ชั่วโมง" &&
-                            _value13 == "ปฏิบัติ" &&
-                            _value14 == "ปฏิบัติ") {
-                          result = "Pass";
-                          showAdvise1(context, result);
-                        } else {
-                          result = "NoPass";
-                          showAdvise1(context, result);
-                          var userId =
-                              UserStore.getValueFromStore('storedUserId');
-                          await _firebaseService.addNotification(
-                              formId: formId,
-                              formName: 'Digestive',
-                              userId: userId);
-                        }
+                        result = "NoPass";
+                        showAdvise1(context, result);
+                        var userId =
+                            UserStore.getValueFromStore('storedUserId');
+                        await _firebaseService.addNotification(
+                            formId: formId,
+                            formName: 'Digestive',
+                            userId: userId);
                       }
-                    }),
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )

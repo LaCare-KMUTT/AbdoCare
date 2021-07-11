@@ -353,52 +353,55 @@ class _RespiratoryDay1FormState extends State<RespiratoryDay1Form> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () async {
-                      if (_value1 == null ||
-                          _value2 == null ||
-                          _value3 == null ||
-                          _value4 == null ||
-                          _value5 == null ||
-                          _value6 == null) {
-                        Dialogs.alertToCompleteEvalutation(context);
+                  ),
+                  onPressed: () async {
+                    if (_value1 == null ||
+                        _value2 == null ||
+                        _value3 == null ||
+                        _value4 == null ||
+                        _value5 == null ||
+                        _value6 == null) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    } else {
+                      Map<String, dynamic> formDataToDB = {
+                        'Exercise1': _value1,
+                        'Exercise2': _value2,
+                        'Exercise3': _value3,
+                        'Exercise4': _value4,
+                        'Exercise5': _value5,
+                        'Exercise6': _value6,
+                      };
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Respiratory', data: formDataToDB);
+                      if (_value1 == "ใช่" &&
+                          _value2 == "5 -10 ครั้ง/รอบ/ชั่วโมง" &&
+                          (_value3 == "ปฏิบัติ" || _value3 == "ไม่มีเสมหะ") &&
+                          _value4 == "ปฏิบัติ" &&
+                          _value5 == "5 -10 ครั้ง/รอบ/ชั่วโมง" &&
+                          (_value6 == "2 ลูก" || _value6 == "3 ลูก")) {
+                        result = "Pass";
+                        showAdvise1(context, result);
                       } else {
-                        Map<String, dynamic> formDataToDB = {
-                          'Exercise1': _value1,
-                          'Exercise2': _value2,
-                          'Exercise3': _value3,
-                          'Exercise4': _value4,
-                          'Exercise5': _value5,
-                          'Exercise6': _value6,
-                        };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'Respiratory', data: formDataToDB);
-                        if (_value1 == "ใช่" &&
-                            _value2 == "5 -10 ครั้ง/รอบ/ชั่วโมง" &&
-                            (_value3 == "ปฏิบัติ" || _value3 == "ไม่มีเสมหะ") &&
-                            _value4 == "ปฏิบัติ" &&
-                            _value5 == "5 -10 ครั้ง/รอบ/ชั่วโมง" &&
-                            (_value6 == "2 ลูก" || _value6 == "3 ลูก")) {
-                          result = "Pass";
-                          showAdvise1(context, result);
-                        } else {
-                          result = "NoPass";
-                          showAdvise1(context, result);
-                          var userId =
-                              UserStore.getValueFromStore('storedUserId');
-                          await _firebaseService.addNotification(
-                              formId: formId,
-                              formName: 'Respiratory',
-                              userId: userId);
-                        }
+                        result = "NoPass";
+                        showAdvise1(context, result);
+                        var userId =
+                            UserStore.getValueFromStore('storedUserId');
+                        await _firebaseService.addNotification(
+                            formId: formId,
+                            formName: 'Respiratory',
+                            userId: userId);
                       }
-                    }),
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )

@@ -124,38 +124,37 @@ class _AbnormalSymptomFormState extends State<AbnormalSymptomForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () {
-                      Map<String, dynamic> formDataToDB = {
-                        'Choice1': _value,
-                        'Choice2': _value2,
-                        'Choice3': _value3,
-                        'Choice4': _value4,
-                        'Choice5': _value5,
-                      };
-                      if (_value | _value2 | _value3 | _value4 == true) {
-                        _firebaseService.addDataToFormsCollection(
-                            formName: 'Abnormal Symptom', data: formDataToDB);
-                        showAdvise(context, "NoPass");
-                      }
-                      if (_value5 == true) {
-                        _firebaseService.addDataToFormsCollection(
-                            formName: 'Abnormal Symptom', data: formDataToDB);
-                        showAdvise(context, "Pass");
-                      } else if (_value |
-                              _value2 |
-                              _value3 |
-                              _value4 |
-                              _value5 !=
-                          true) {
-                        Dialogs.alertToCompleteEvalutation(context);
-                      }
-                    }),
+                  ),
+                  onPressed: () {
+                    Map<String, dynamic> formDataToDB = {
+                      'Choice1': _value,
+                      'Choice2': _value2,
+                      'Choice3': _value3,
+                      'Choice4': _value4,
+                      'Choice5': _value5,
+                    };
+                    if (_value | _value2 | _value3 | _value4 == true) {
+                      _firebaseService.addDataToFormsCollection(
+                          formName: 'Abnormal Symptom', data: formDataToDB);
+                      showAdvise(context, "NoPass");
+                    }
+                    if (_value5 == true) {
+                      _firebaseService.addDataToFormsCollection(
+                          formName: 'Abnormal Symptom', data: formDataToDB);
+                      showAdvise(context, "Pass");
+                    } else if (_value | _value2 | _value3 | _value4 | _value5 !=
+                        true) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )

@@ -163,43 +163,43 @@ class _PainFormState extends State<PainForm> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  RaisedButton(
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF2ED47A),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
-                      child: Text('สำเร็จ',
-                          style: TextStyle(fontSize: 18, color: Colors.white)),
-                      color: Color(0xFF2ED47A),
-                      onPressed: () async {
-                        Map<String, dynamic> saveToDatabase = {
-                          'pain': value,
-                        };
-                        await addToDashboardData();
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'pain', data: saveToDatabase);
-                        print('Value in pain_form = $value ');
-                        print('state = ${_anSubCollection['state']}');
-                        if ((_anSubCollection['state'] ==
-                                    'Post-Operation@Hospital' &&
-                                value >= 7) ||
-                            (_anSubCollection['state'] ==
-                                    'Post-Operation@Home' &&
-                                value >= 4)) {
-                          showAdvise1(context, value, _anSubCollection['state'],
-                              "NoPass");
-                          if (checkNotificationCriteria(value)) {
-                            var userId =
-                                UserStore.getValueFromStore('storedUserId');
-                            await _firebaseService.addNotification(
-                                formId: formId,
-                                formName: 'pain',
-                                userId: userId);
-                          }
-                        } else {
-                          showAdvise1(context, value, _anSubCollection['state'],
-                              "pass");
+                    ),
+                    onPressed: () async {
+                      Map<String, dynamic> saveToDatabase = {
+                        'pain': value,
+                      };
+                      await addToDashboardData();
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'pain', data: saveToDatabase);
+                      print('Value in pain_form = $value ');
+                      print('state = ${_anSubCollection['state']}');
+                      if ((_anSubCollection['state'] ==
+                                  'Post-Operation@Hospital' &&
+                              value >= 7) ||
+                          (_anSubCollection['state'] == 'Post-Operation@Home' &&
+                              value >= 4)) {
+                        showAdvise1(context, value, _anSubCollection['state'],
+                            "NoPass");
+                        if (checkNotificationCriteria(value)) {
+                          var userId =
+                              UserStore.getValueFromStore('storedUserId');
+                          await _firebaseService.addNotification(
+                              formId: formId, formName: 'pain', userId: userId);
                         }
-                      }),
+                      } else {
+                        showAdvise1(
+                            context, value, _anSubCollection['state'], "pass");
+                      }
+                    },
+                    child: Text('สำเร็จ',
+                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                  ),
                 ],
               ),
             )

@@ -46,20 +46,36 @@ class _ChatTrainingState extends State<ChatTraining> {
                     playedColor: Color(0xFFC37447), handleColor: Colors.amber),
               ),
             ),
-            FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0))),
-                color: Color(0xFFF1B43F),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              DigestiveAdviceDay2(navigate: navigate)));
-                },
-                child: chatTrainingButton),
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
+              child: chatTrainingButton,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            DigestiveAdviceDay2(navigate: navigate)));
+              },
+            ),
+            // FlatButton(
+            //     shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.only(
+            //             bottomLeft: Radius.circular(15.0),
+            //             bottomRight: Radius.circular(15.0))),
+            //     color: Color(0xFFF1B43F),
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (context) =>
+            //                   DigestiveAdviceDay2(navigate: navigate)));
+            //     },
+            //     child: chatTrainingButton),
           ],
         ),
       ),
@@ -93,20 +109,36 @@ class _ChatTrainingState extends State<ChatTraining> {
                     playedColor: Color(0xFFC37447), handleColor: Colors.amber),
               ),
             ),
-            FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0))),
-                color: Color(0xFFF1B43F),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              PulmonaryAdviceDay2(navigate: navigate)));
-                },
-                child: chatTrainingButton),
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
+              child: chatTrainingButton,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            PulmonaryAdviceDay2(navigate: navigate)));
+              },
+            ),
+            // FlatButton(
+            //     shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.only(
+            //             bottomLeft: Radius.circular(15.0),
+            //             bottomRight: Radius.circular(15.0))),
+            //     color: Color(0xFFF1B43F),
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (context) =>
+            //                   PulmonaryAdviceDay2(navigate: navigate)));
+            //     },
+            //     child: chatTrainingButton),
           ],
         ),
       ),
@@ -137,20 +169,36 @@ class _ChatTrainingState extends State<ChatTraining> {
                         style: Theme.of(context).textTheme.bodyText1)
                   ],
                 )),
-            FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0))),
-                color: Color(0xFFF1B43F),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              DrainSecretionAdviceDay2(navigate: navigate)));
-                },
-                child: chatTrainingButton),
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
+              child: chatTrainingButton,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            DrainSecretionAdviceDay2(navigate: navigate)));
+              },
+            ),
+            // FlatButton(
+            //     shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.only(
+            //             bottomLeft: Radius.circular(15.0),
+            //             bottomRight: Radius.circular(15.0))),
+            //     color: Color(0xFFF1B43F),
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (context) =>
+            //                   DrainSecretionAdviceDay2(navigate: navigate)));
+            //     },
+            //     child: chatTrainingButton),
           ],
         ),
       ),
@@ -181,19 +229,21 @@ class _ChatTrainingState extends State<ChatTraining> {
                         style: Theme.of(context).textTheme.bodyText1)
                   ],
                 )),
-            FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0))),
-                color: Color(0xFFF1B43F),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BehaveAdviceDay2()));
-                },
-                child: chatTrainingButton),
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
+              child: chatTrainingButton,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BehaveAdviceDay2()));
+              },
+            ),
           ],
         ),
       ),
@@ -225,19 +275,19 @@ class _ChatTrainingState extends State<ChatTraining> {
                         style: Theme.of(context).textTheme.bodyText1)
                   ],
                 )),
-            FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0))),
-                color: Color(0xFFF1B43F),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => InfectionAdvice()));
-                },
-                child: chatTrainingButton),
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
+              child: chatTrainingButton,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => InfectionAdvice()));
+              },
+            ),
           ],
         ),
       ),
@@ -272,21 +322,22 @@ class _ChatTrainingState extends State<ChatTraining> {
                     playedColor: Color(0xFFC37447), handleColor: Colors.amber),
               ),
             ),
-            FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0))),
-                color: Color(0xFFF1B43F),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NutritionAdviceDay1(
-                                navigate: navigate,
-                              )));
-                },
-                child: chatTrainingButton),
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
+              child: chatTrainingButton,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            NutritionAdviceDay1(navigate: navigate)));
+              },
+            ),
           ],
         ),
       ),
@@ -318,19 +369,21 @@ class _ChatTrainingState extends State<ChatTraining> {
                         style: Theme.of(context).textTheme.bodyText1)
                   ],
                 )),
-            FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0))),
-                color: Color(0xFFF1B43F),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DailyActivityAdvice()));
-                },
-                child: chatTrainingButton),
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
+              child: chatTrainingButton,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DailyActivityAdvice()));
+              },
+            ),
           ],
         ),
       ),
@@ -354,18 +407,13 @@ class _ChatTrainingState extends State<ChatTraining> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                     """แบบประเมินการปฏิบัติกิจวัตรประจำวันก่อนกลับบ้าน""")),
-            FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15.0),
-                      bottomRight: Radius.circular(15.0))),
-              color: Color(0xFFF1B43F),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ADLForm(navigate: "Chat")));
-              },
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
@@ -376,6 +424,12 @@ class _ChatTrainingState extends State<ChatTraining> {
                   ),
                 ),
               ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ADLForm(navigate: "Chat")));
+              },
             ),
           ],
         ),
@@ -407,20 +461,22 @@ class _ChatTrainingState extends State<ChatTraining> {
                         style: Theme.of(context).textTheme.bodyText1)
                   ],
                 )),
-            FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(15.0),
-                        bottomRight: Radius.circular(15.0))),
-                color: Color(0xFFF1B43F),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              DigestiveAdviceDay2(navigate: navigate)));
-                },
-                child: chatTrainingButton),
+            TextButton(
+              style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0))),
+                  backgroundColor: Color(0xFFF1B43F)),
+              child: chatTrainingButton,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            DigestiveAdviceDay2(navigate: navigate)));
+              },
+            ),
           ],
         ),
       ),

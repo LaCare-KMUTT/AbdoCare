@@ -240,23 +240,23 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(7.0)),
-                                  textColor: Colors.black,
-                                  color: Color(0xFFEBEBEB),
-                                  child: Text(
-                                    'ตั้งค่ารหัสผ่านยืนยันตัวตน 6 หลัก',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SetPinPage()),
-                                    );
-                                  },
-                                ),
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(7.0)),
+                                        onPrimary: Colors.black,
+                                        primary: Color(0xFFEBEBEB)),
+                                    child: Text(
+                                        'ตั้งค่ารหัสผ่านยืนยันตัวตน 6 หลัก',
+                                        style: TextStyle(fontSize: 18)),
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SetPinPage()));
+                                    }),
                               ],
                             ),
                           ),
@@ -265,15 +265,15 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(7.0)),
-                                  textColor: Colors.white,
-                                  color: Color(0xFF2ED47A),
-                                  child: Text(
-                                    'ยืนยัน',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7.0)),
+                                      onPrimary: Colors.white,
+                                      primary: Color(0xFF2ED47A)),
+                                  child: Text('ยืนยัน',
+                                      style: TextStyle(fontSize: 18)),
                                   onPressed: () {
                                     if (patientTel != null) {
                                       _firebaseService
@@ -328,15 +328,15 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(7.0)),
-                                  textColor: Colors.white,
-                                  color: Color(0xFFE96E4C),
-                                  child: Text(
-                                    'ออกจากระบบ',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7.0)),
+                                      onPrimary: Colors.white,
+                                      primary: Color(0xFFE96E4C)),
+                                  child: Text('ออกจากระบบ',
+                                      style: TextStyle(fontSize: 18)),
                                   onPressed: () async {
                                     await _firebaseService.signOut();
                                     Navigator.pushReplacementNamed(
