@@ -23,41 +23,43 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.3
-  flutter_dialogflow: ^0.1.3
+  cupertino_icons: ^1.0.3
+  #flutter_dialogflow: ^0.1.3
 
   #Firebase Stuffs
-  firebase_core: ^0.7.0
-  rflutter_alert: ^1.1.0
-  cloud_firestore: ^0.16.0+1
-  cloud_functions: ^0.9.0
-  firebase_storage: "^7.0.0"
-  firebase_auth: ^0.20.1
+  firebase_core: ^1.4.0
+  rflutter_alert: ^2.0.2
+  cloud_firestore: ^2.4.0
+  cloud_functions: ^3.0.0
+  firebase_storage: ^10.0.1
+  firebase_auth: ^3.0.1
   #firebase_messaging Temp verison (They're fixing this may cause error on ios)
   #firebase_messaging: ^8.0.0-dev.14
 
-  bubble: ^1.1.9+1
-  intl: ^0.16.1
-  charts_flutter: ^0.9.0
-  get_it: ^5.0.3
-  syncfusion_flutter_gauges: ^18.4.33
-  image_picker: ^0.6.7+21
-  step_progress_indicator: ^0.2.5+8
-  expandable: ^4.1.4
-  youtube_player_flutter: ^7.0.0+7
-  flutter_dialogflow_v2: ^0.3.2
+  bubble: ^1.2.1
+  intl: ^0.17.0
+  charts_flutter: ^0.11.0
+  get_it: ^7.2.0
+  syncfusion_flutter_gauges: ^19.2.47
+  image_picker: ^0.8.2
+  step_progress_indicator: ^1.0.1
+  expandable: ^5.0.1
+  youtube_player_flutter: ^8.0.0
+  #flutter_dialogflow_v2: ^0.3.2
+  dialog_flowtter: ^0.3.1
+  
 
   #provider
-  provider: ^4.3.3
+  provider: ^5.0.0
   #To save local cache
-  shared_preferences: ^0.5.12+4
-  syncfusion_flutter_charts: ^18.4.46
+  shared_preferences: ^2.0.6
+  syncfusion_flutter_charts: ^19.2.47+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  effective_dart: ^1.2.4
-  flutter_launcher_icons: ^0.8.1
+  effective_dart: ^1.3.2
+  flutter_launcher_icons: ^0.9.0
   
 
 flutter_icons:
