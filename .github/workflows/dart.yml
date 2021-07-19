@@ -20,11 +20,10 @@ jobs:
       with:
         channel: stable
         flutter-version: '2.2.3' 
-    - run: flutter upgrade
+    #- run: flutter upgrade
     - run: flutter pub get
     - run: flutter test 
     - run: flutter build apk
-
     - name: Install dependencies
       run: flutter pub get
 #     - name: Run tests
