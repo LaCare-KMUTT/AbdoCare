@@ -52,7 +52,7 @@ android {
             abiFilters "armeabi", "x86", "armeabi-v7a", "arm64-v8a" ,"x86_64"
         }
     }
-
+//*** The code below will use when release the project ***//
 //    signingConfigs {
 //         release {
 //             keyAlias keystoreProperties['keyAlias']
@@ -72,6 +72,7 @@ android {
 
     buildTypes {
         release {
+        //*** The code below will use when release the project ***//
         //     signingConfig signingConfigs.release
         // }
 
