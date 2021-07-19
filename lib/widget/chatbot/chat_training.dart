@@ -62,20 +62,6 @@ class _ChatTrainingState extends State<ChatTraining> {
                             DigestiveAdviceDay2(navigate: navigate)));
               },
             ),
-            // FlatButton(
-            //     shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.only(
-            //             bottomLeft: Radius.circular(15.0),
-            //             bottomRight: Radius.circular(15.0))),
-            //     color: Color(0xFFF1B43F),
-            //     onPressed: () {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (context) =>
-            //                   DigestiveAdviceDay2(navigate: navigate)));
-            //     },
-            //     child: chatTrainingButton),
           ],
         ),
       ),
@@ -125,20 +111,6 @@ class _ChatTrainingState extends State<ChatTraining> {
                             PulmonaryAdviceDay2(navigate: navigate)));
               },
             ),
-            // FlatButton(
-            //     shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.only(
-            //             bottomLeft: Radius.circular(15.0),
-            //             bottomRight: Radius.circular(15.0))),
-            //     color: Color(0xFFF1B43F),
-            //     onPressed: () {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (context) =>
-            //                   PulmonaryAdviceDay2(navigate: navigate)));
-            //     },
-            //     child: chatTrainingButton),
           ],
         ),
       ),
@@ -185,20 +157,6 @@ class _ChatTrainingState extends State<ChatTraining> {
                             DrainSecretionAdviceDay2(navigate: navigate)));
               },
             ),
-            // FlatButton(
-            //     shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.only(
-            //             bottomLeft: Radius.circular(15.0),
-            //             bottomRight: Radius.circular(15.0))),
-            //     color: Color(0xFFF1B43F),
-            //     onPressed: () {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (context) =>
-            //                   DrainSecretionAdviceDay2(navigate: navigate)));
-            //     },
-            //     child: chatTrainingButton),
           ],
         ),
       ),
