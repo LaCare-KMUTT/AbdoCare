@@ -9,29 +9,25 @@ class AppointmentNavBar extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FlatButton(
-              padding: EdgeInsets.only(top: 0),
-              textColor: Colors.white,
-              onPressed: () {
-                showAlertDialog(context);
-              },
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7.0)),
+                  onPrimary: Colors.white,
+                  primary: Color(0xFFC37447)),
               child: Container(
                 height: 50,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(0),
-                  color: Color(0xFFC37447),
-                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'เลื่อนนัด',
-                      style: TextStyle(fontSize: 18),
-                    ),
+                    Text('เลื่อนนัด', style: TextStyle(fontSize: 18)),
                   ],
                 ),
               ),
+              onPressed: () {
+                showAlertDialog(context);
+              },
             ),
           ],
         ),
@@ -40,13 +36,15 @@ class AppointmentNavBar extends StatelessWidget {
 
 void showAlertDialog(BuildContext context) {
   // Create button
-  Widget okButton = FlatButton(
-    color: Color(0xFFC37447),
+  Widget okButton = ElevatedButton(
+    style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
+        onPrimary: Colors.white,
+        primary: Color(0xFFC37447)),
     child: Container(
       width: MediaQuery.of(context).size.width,
       child: Center(
-        child:
-            Text("ตกลง", style: TextStyle(color: Colors.white, fontSize: 16)),
+        child: Text("ตกลง", style: TextStyle(fontSize: 16)),
       ),
     ),
     onPressed: () {

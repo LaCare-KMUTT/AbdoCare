@@ -147,7 +147,7 @@ class _DashboardState extends State<Dashboard> {
                                               return Center(
                                                   child: loadingProgress);
                                             }
-                                            if (snapshot.data.length == 0 ||
+                                            if (snapshot.data.isEmpty ||
                                                 snapshot.data == null) {
                                               return Text(
                                                   '''ไม่มีข้อมูลจากแบบฟอร์มความเจ็บปวด''',

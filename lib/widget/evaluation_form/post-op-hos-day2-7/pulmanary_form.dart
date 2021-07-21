@@ -272,47 +272,50 @@ class _PulmanaryFormState extends State<PulmanaryForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RaisedButton(
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF2ED47A),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: Text('สำเร็จ',
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    color: Color(0xFF2ED47A),
-                    onPressed: () async {
-                      if (_value1 == null ||
-                          _value2 == null ||
-                          _value3 == null ||
-                          _value4 == null) {
-                        Dialogs.alertToCompleteEvalutation(context);
+                  ),
+                  onPressed: () async {
+                    if (_value1 == null ||
+                        _value2 == null ||
+                        _value3 == null ||
+                        _value4 == null) {
+                      Dialogs.alertToCompleteEvalutation(context);
+                    } else {
+                      Map<String, dynamic> formDataToDB = {
+                        'Exercise1': _value1,
+                        'Exercise2': _value2,
+                        'Exercise3': _value3,
+                        'Exercise4': _value4,
+                      };
+                      var formId =
+                          await _firebaseService.addDataToFormsCollection(
+                              formName: 'Pulmanary', data: formDataToDB);
+                      print("finish add data");
+                      if (_value1 == "5 -10 ครั้ง/รอบ/ชั่วโมง" &&
+                          (_value2 == "ปฏิบัติ" || _value2 == "ไม่มีเสมหะ") &&
+                          _value3 == "5 -10 ครั้ง/รอบ/ชั่วโมง" &&
+                          (_value4 == "2 ลูก" || _value4 == "3 ลูก")) {
+                        result = "Pass";
+                        showAdvise1(context, result);
                       } else {
-                        Map<String, dynamic> formDataToDB = {
-                          'Exercise1': _value1,
-                          'Exercise2': _value2,
-                          'Exercise3': _value3,
-                          'Exercise4': _value4,
-                        };
-                        var formId =
-                            await _firebaseService.addDataToFormsCollection(
-                                formName: 'Pulmanary', data: formDataToDB);
-                        print("finish add data");
-                        if (_value1 == "5 -10 ครั้ง/รอบ/ชั่วโมง" &&
-                            (_value2 == "ปฏิบัติ" || _value2 == "ไม่มีเสมหะ") &&
-                            _value3 == "5 -10 ครั้ง/รอบ/ชั่วโมง" &&
-                            (_value4 == "2 ลูก" || _value4 == "3 ลูก")) {
-                          result = "Pass";
-                          showAdvise1(context, result);
-                        } else {
-                          result = "NoPass";
-                          showAdvise1(context, result);
-                          var userId =
-                              UserStore.getValueFromStore('storedUserId');
-                          await _firebaseService.addNotification(
-                              formId: formId,
-                              formName: 'Pulmanary',
-                              userId: userId);
-                        }
+                        result = "NoPass";
+                        showAdvise1(context, result);
+                        var userId =
+                            UserStore.getValueFromStore('storedUserId');
+                        await _firebaseService.addNotification(
+                            formId: formId,
+                            formName: 'Pulmanary',
+                            userId: userId);
                       }
-                    }),
+                    }
+                  },
+                  child: Text('สำเร็จ',
+                      style: TextStyle(fontSize: 18, color: Colors.white)),
+                ),
               ],
             ),
           )

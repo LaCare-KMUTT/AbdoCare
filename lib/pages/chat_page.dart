@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import '../models/chat_model.dart';
 import '../models/message_model.dart';
 import '../services/service_locator.dart';
@@ -175,55 +174,55 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void response(dynamic query) async {
-    _textController.clear();
-    AuthGoogle authGoogle =
-        await AuthGoogle(fileJson: "assets/abdo-bot-briv-9ed7278f51f5.json")
-            .build();
-    Dialogflow dialogflow = Dialogflow(authGoogle: authGoogle);
-    AIResponse response = await dialogflow.detectIntent(query);
-    List<String> chatTraining = _chat.getChatTraining();
-    for (var i = 0; i < chatTraining.length; i++) {
-      if (response.getMessage() == chatTraining[i]) {
-        _chat.result = true;
-        // result = true;
-        setState(() {
-          _messageModel.insertMessage(
-              0, ChatTraining(answer: response.getMessage()));
-        });
-        break;
-      } else {
-        _chat.result = false;
-        // result = false;
-      }
-    }
-    if (response.getMessage() != null &&
-        response.getMessage() != "" &&
-        _chat.result == false) {
-      Message message = Message(
-        text: response.getMessage(),
-        name: "Bot",
-        type: false,
-      );
-      setState(() {
-        _messageModel.insertMessage(0, message);
-      });
-    }
+    // _textController.clear();
+    // AuthGoogle authGoogle =
+    //     await AuthGoogle(fileJson: "assets/abdo-bot-briv-9ed7278f51f5.json")
+    //         .build();
+    // Dialogflow dialogflow = Dialogflow(authGoogle: authGoogle);
+    // AIResponse response = await dialogflow.detectIntent(query);
+    // List<String> chatTraining = _chat.getChatTraining();
+    // for (var i = 0; i < chatTraining.length; i++) {
+    //   if (response.getMessage() == chatTraining[i]) {
+    //     _chat.result = true;
+    //     // result = true;
+    //     setState(() {
+    //       _messageModel.insertMessage(
+    //           0, ChatTraining(answer: response.getMessage()));
+    //     });
+    //     break;
+    //   } else {
+    //     _chat.result = false;
+    //     // result = false;
+    //   }
+    // }
+    // if (response.getMessage() != null &&
+    //     response.getMessage() != "" &&
+    //     _chat.result == false) {
+    //   Message message = Message(
+    //     text: response.getMessage(),
+    //     name: "Bot",
+    //     type: false,
+    //   );
+    //   setState(() {
+    //     _messageModel.insertMessage(0, message);
+    //   });
+    // }
   }
 
   void _handleSubmitted(String text) {
-    if (text.isEmpty) {
-      print("empty message");
-    } else {
-      Message message = Message(
-        text: text,
-        name: "Patient",
-        type: true,
-      );
-      setState(() {
-        _messageModel.insertMessage(0, message);
-      });
-      response(text);
-      _textController.clear();
-    }
+    // if (text.isEmpty) {
+    //   print("empty message");
+    // } else {
+    //   Message message = Message(
+    //     text: text,
+    //     name: "Patient",
+    //     type: true,
+    //   );
+    //   setState(() {
+    //     _messageModel.insertMessage(0, message);
+    //   });
+    //   response(text);
+    //   _textController.clear();
+    // }
   }
 }

@@ -30,21 +30,21 @@ class Dialogs {
                 style: Theme.of(context).textTheme.bodyText2,
                 textAlign: TextAlign.center),
             actions: [
-              FlatButton(
-                color: Color(0xFFC37447),
+              TextButton(
+                style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0)),
+                    backgroundColor: Color(0xFFC37447)),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Center(
-                    child: Text(
-                      "ตกลง",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ),
+                      child: Text("ตกลง",
+                          style: TextStyle(color: Colors.white, fontSize: 16))),
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-              )
+              ),
             ]);
       },
     );
@@ -67,21 +67,21 @@ class Dialogs {
               ],
             ),
             actions: [
-              FlatButton(
-                color: Color(0xFFC37447),
+              TextButton(
+                style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0)),
+                    backgroundColor: Color(0xFFC37447)),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Center(
-                    child: Text(
-                      "ตกลง",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ),
+                      child: Text("ตกลง",
+                          style: TextStyle(color: Colors.white, fontSize: 16))),
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-              )
+              ),
             ]);
       },
     );

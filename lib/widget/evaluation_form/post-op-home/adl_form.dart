@@ -1731,54 +1731,57 @@ class _ADLFormState extends State<ADLForm> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  RaisedButton(
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF2ED47A),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
-                      child: Text('สำเร็จ',
-                          style: TextStyle(fontSize: 18, color: Colors.white)),
-                      color: Color(0xFF2ED47A),
-                      onPressed: () {
-                        if (selectedChoice1 == "" ||
-                            selectedChoice2 == "" ||
-                            selectedChoice3 == "" ||
-                            selectedChoice4 == "" ||
-                            selectedChoice5 == "" ||
-                            selectedChoice6 == "" ||
-                            selectedChoice7 == "" ||
-                            selectedChoice8 == "" ||
-                            selectedChoice9 == "" ||
-                            selectedChoice10 == "") {
-                          Dialogs.alertToCompleteEvalutation(context);
-                        } else {
-                          totalscore = score1 +
-                              score2 +
-                              score3 +
-                              score4 +
-                              score5 +
-                              score6 +
-                              score7 +
-                              score8 +
-                              score9 +
-                              score10;
-                          ;
-                          Map<String, dynamic> formDataToDB = {
-                            'Feeding': score1,
-                            'Grooming': score2,
-                            'Transfer': score3,
-                            'Toilet': score4,
-                            'Mobility': score5,
-                            'Dressing': score6,
-                            'Stairs': score7,
-                            'Bathing': score8,
-                            'Bowels': score9,
-                            'Bladder': score10,
-                            'TotalScoreADL': totalscore,
-                          };
-                          _firebaseService.addDataToFormsCollection(
-                              formName: 'ADL', data: formDataToDB);
-                          showAlertDialog(context, totalscore);
-                        }
-                      }),
+                    ),
+                    onPressed: () {
+                      if (selectedChoice1 == "" ||
+                          selectedChoice2 == "" ||
+                          selectedChoice3 == "" ||
+                          selectedChoice4 == "" ||
+                          selectedChoice5 == "" ||
+                          selectedChoice6 == "" ||
+                          selectedChoice7 == "" ||
+                          selectedChoice8 == "" ||
+                          selectedChoice9 == "" ||
+                          selectedChoice10 == "") {
+                        Dialogs.alertToCompleteEvalutation(context);
+                      } else {
+                        totalscore = score1 +
+                            score2 +
+                            score3 +
+                            score4 +
+                            score5 +
+                            score6 +
+                            score7 +
+                            score8 +
+                            score9 +
+                            score10;
+                        ;
+                        Map<String, dynamic> formDataToDB = {
+                          'Feeding': score1,
+                          'Grooming': score2,
+                          'Transfer': score3,
+                          'Toilet': score4,
+                          'Mobility': score5,
+                          'Dressing': score6,
+                          'Stairs': score7,
+                          'Bathing': score8,
+                          'Bowels': score9,
+                          'Bladder': score10,
+                          'TotalScoreADL': totalscore,
+                        };
+                        _firebaseService.addDataToFormsCollection(
+                            formName: 'ADL', data: formDataToDB);
+                        showAlertDialog(context, totalscore);
+                      }
+                    },
+                    child: Text('สำเร็จ',
+                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                  ),
                 ],
               ),
             )

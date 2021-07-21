@@ -31,7 +31,7 @@ class PainChartState extends State<PainChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: widget.snapshot.data == null || widget.snapshot.data.length == 0
+        height: widget.snapshot.data == null || widget.snapshot.data.isEmpty
             ? 30
             : 300,
         child: ListView(
