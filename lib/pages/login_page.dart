@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
 import '../models/login_model.dart';
 import '../services/service_locator.dart';
 import '../ultilities/form_utility/format_text.dart';
 import '../widget/shared/alert_style.dart';
-import 'set_pin_page.dart';
+import 'consent_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -106,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SetPinPage()),
+                                  builder: (context) => ConsentPage()),
                             );
                           }
                         } else {
