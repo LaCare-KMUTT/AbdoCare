@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Message extends StatelessWidget {
-  Message({this.text, this.name, this.type});
+class ShowMessage extends StatelessWidget {
+  ShowMessage({this.text, this.name, this.type});
 
   final String text;
   final String name;
