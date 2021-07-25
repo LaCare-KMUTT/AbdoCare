@@ -31,7 +31,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
   }
 
   Future<void> getImage() async {
-    await picker.getImage(source: ImageSource.camera).then((image) {
+    await picker.pickImage(source: ImageSource.camera).then((image) {
       setState(() {
         _image = File(image.path);
         print('_image = $_image');
