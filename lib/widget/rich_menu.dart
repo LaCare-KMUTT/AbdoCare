@@ -82,14 +82,14 @@ class _RichMenuState extends State<RichMenu> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'ตารางนัด',
+                              'สรุปผลประจำวัน',
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],
                         ),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/evaluation_page');
+                        Navigator.pushNamed(context, '/dashboard_page');
                       },
                     ),
                   ),
