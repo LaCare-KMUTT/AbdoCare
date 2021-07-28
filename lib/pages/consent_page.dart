@@ -1,3 +1,4 @@
+import 'package:AbdoCare/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'set_pin_page.dart';
 
@@ -31,7 +32,7 @@ class _ConsentPageState extends State<ConsentPage> {
           Column(
             children: [
               Container(
-                height: screenSize.height / 1.5,
+                // height: screenSize.height / 1.5,
                 padding: EdgeInsets.all(10),
                 child: Card(
                   shadowColor: Color(0xFFC37447),
@@ -55,7 +56,6 @@ class _ConsentPageState extends State<ConsentPage> {
                   onChanged: (value) {
                     setState(() {
                       _result = value;
-                      print(_result);
                     });
                   }),
               RadioListTile(
@@ -65,7 +65,6 @@ class _ConsentPageState extends State<ConsentPage> {
                   onChanged: (value) {
                     setState(() {
                       _result = value;
-                      print(_result);
                     });
                   })
             ],
@@ -104,7 +103,10 @@ class _ConsentPageState extends State<ConsentPage> {
                 if (_result == Consent.consent) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => SetPinPage()));
-                } else {}
+                } else {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                }
               },
             ),
           ],
