@@ -18,7 +18,6 @@ class _ConsentPageState extends State<ConsentPage> {
   String selectedChoice = '';
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -32,7 +31,6 @@ class _ConsentPageState extends State<ConsentPage> {
           Column(
             children: [
               Container(
-                // height: screenSize.height / 1.5,
                 padding: EdgeInsets.all(10),
                 child: Card(
                   shadowColor: Color(0xFFC37447),
