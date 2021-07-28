@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
-
 import 'pages/appointment_page.dart';
 import 'pages/chat_page.dart';
 import 'pages/dashboard_page.dart';
