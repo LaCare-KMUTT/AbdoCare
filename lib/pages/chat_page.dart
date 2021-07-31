@@ -32,27 +32,29 @@ class _ChatPageState extends State<ChatPage> {
         title: Text("Abdocare"),
         centerTitle: true,
         actions: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.local_phone_rounded,
-                  size: 30,
-                ),
-                tooltip: 'โทรฉุกเฉิน',
-                onPressed: () {
-                  showFastCall(context);
-                },
+          Container(
+            width: 20.0,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              icon: const Icon(
+                Icons.local_phone_rounded,
+                size: 30,
               ),
-              NotiIcon(
-                iconData: Icons.notifications,
-                notificationCount: 0,
-                onTap: () {
-                  Navigator.pushNamed(context, '/notification_page');
-                },
-              ),
-            ],
+              alignment: Alignment.centerRight,
+              tooltip: 'โทรฉุกเฉิน',
+              onPressed: () {
+                showFastCall(context);
+              },
+            ),
+          ),
+          Container(
+            child: NotiIcon(
+              iconData: Icons.notifications,
+              notificationCount: 0,
+              onTap: () {
+                Navigator.pushNamed(context, '/notification_page');
+              },
+            ),
           ),
         ],
         leading: IconButton(
