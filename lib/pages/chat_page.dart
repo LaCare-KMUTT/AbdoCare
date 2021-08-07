@@ -2,6 +2,7 @@ import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import '../models/chat_model.dart';
+import '../models/fastcall_model.dart';
 import '../models/message_model.dart';
 import '../services/service_locator.dart';
 import '../widget/chatbot/buttom_nav_bar.dart';
@@ -246,24 +247,6 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void showFastCall(BuildContext context) {
-    List<Map<String, Object>> fastCallInfo = [
-      {
-        "MedicalTeamName": "อ.ฉัตรกมล ประจวบลาภ",
-        "PhoneNumber": "086-357-3877",
-      },
-      {
-        "MedicalTeamName": "อ.เอมปภา ปรีชาธีรศาสตร์",
-        "PhoneNumber": "062-926-2253",
-      },
-      {
-        "MedicalTeamName": "อ.พรนภา นาคโนนหัน",
-        "PhoneNumber": "089-493-3902",
-      },
-      {
-        "MedicalTeamName": "ผศ.ดร. รสสุคนธ์ วาริทสกุล",
-        "PhoneNumber": "081-642-3478",
-      },
-    ];
     _callNumber(String phoneNum) async {
       String number = phoneNum; //set the number here
       await FlutterPhoneDirectCaller.callNumber(number);
