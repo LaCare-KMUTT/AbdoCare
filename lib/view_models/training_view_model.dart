@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../@enum/patient_state.dart';
 import '../@enum/training_topic.dart';
 import '../models/training_model.dart';
+import '../services/interfaces/calculation_service_interface.dart';
 import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
 import '../stores/user_store.dart';
@@ -27,17 +27,24 @@ import '../widget/training_information/training_menu_card.dart';
 class TrainingViewModel {
   final _firebaseService = locator<IFirebaseService>();
   final _trainingModel = locator<TrainingModel>();
+  final ICalculationService _calculationService =
+      locator<ICalculationService>();
 
   TrainingViewModel();
 
   Future<Map<String, Widget>> getTrainings(BuildContext context) async {
     String patientState;
-    List<Map<String, Object>> recomendedList = [];
-    List<Map<String, Object>> mustShowList = [];
-    List<Widget> mustShowCardList = [];
-    List<Widget> recommendedCardList = [];
-    Column mustShowToColumn = Column();
-    Column recommendedToColumn = Column();
+    var _anSubCollection;
+    List<Map<String, Object>> postOpDay0List = [];
+    List<Map<String, Object>> postOpDay1List = [];
+    List<Map<String, Object>> postOpDay2List = [];
+    List<Map<String, Object>> postOpHomeList = [];
+    List<Widget> postOpDay1CardList = [];
+    List<Widget> postOpDay0CardList = [];
+    List<Widget> postOpDay2CardList = [];
+    List<Widget> postOpHomeCardList = [];
+    List<Widget> postOpCardList = [];
+    Column postOpToColumn = Column();
 
     patientState = await _firebaseService
         .getLatestAnSubCollection(
@@ -45,53 +52,90 @@ class TrainingViewModel {
         .then((value) {
       return value['state'];
     });
-
+    postOpDay0List.addAll(_trainingModel.postOpHosDay0List);
+    postOpDay1List.addAll(_trainingModel.postOpHosDay1List);
+    postOpDay2List.addAll(_trainingModel.postOpHosDay2List);
+    postOpHomeList.addAll(_trainingModel.postOpHomeList);
+    for (var item in postOpDay1List) {
+      postOpDay1CardList.add(TrainingMenuCard().getTrainingCard(context, item));
+    }
+    for (var item in postOpDay0List) {
+      postOpDay0CardList.add(TrainingMenuCard().getTrainingCard(context, item));
+    }
+    for (var item in postOpDay2List) {
+      postOpDay2CardList.add(TrainingMenuCard().getTrainingCard(context, item));
+    }
+    for (var item in postOpHomeList) {
+      postOpHomeCardList.add(TrainingMenuCard().getTrainingCard(context, item));
+    }
+    if (postOpDay1CardList != null) {
+      postOpDay1CardList.insert(
+          0,
+          Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text('คำแนะนำสำหรับการฟื้นตัวหลังผ่าตัดวันที่ 1')));
+    }
+    if (postOpDay0CardList != null) {
+      postOpDay0CardList.insert(
+          0,
+          Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                  'คำแนะนำสำหรับการฟื้นตัวหลังผ่าตัดวันที่ 0 (วันที่ผ่าตัด)')));
+    }
+    if (postOpDay2CardList != null) {
+      postOpDay2CardList.insert(
+          0,
+          Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text('คำแนะนำสำหรับการฟื้นตัวหลังผ่าตัดวันที่ 2-7')));
+    }
+    if (postOpHomeCardList != null) {
+      postOpHomeCardList.insert(
+          0,
+          Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text('คำแนะนำสำหรับการฟื้นตัวหลังผ่าตัดที่บ้าน')));
+    }
     if (patientState == enumToString(PatientState.preOperation)) {
-      mustShowList.addAll(_trainingModel.postOpHospitalList);
-      mustShowList.addAll(_trainingModel.postOpHomeList);
+      postOpCardList.addAll(postOpDay0CardList);
+      postOpCardList.addAll(postOpDay1CardList);
+      postOpCardList.addAll(postOpDay2CardList);
+      postOpCardList.addAll(postOpHomeCardList);
     } else if (patientState ==
         enumToString(PatientState.postOperationHospital)) {
-      mustShowList.addAll(_trainingModel.postOpHospitalList);
-      recomendedList.addAll(_trainingModel.postOpHomeList);
+      var latestStateChange = _anSubCollection['latestStateChange'].toDate();
+      var dayInCurrentState = _calculationService.calculateDayDifference(
+          day: latestStateChange,
+          compareTo: _calculationService.formatDate(date: DateTime.now()));
+      if (dayInCurrentState == 0) {
+        postOpCardList.addAll(postOpDay0CardList);
+        postOpCardList.addAll(postOpDay1CardList);
+        postOpCardList.addAll(postOpDay2CardList);
+        postOpCardList.addAll(postOpHomeCardList);
+      }
+      if (dayInCurrentState == 1) {
+        postOpCardList.addAll(postOpDay1CardList);
+        postOpCardList.addAll(postOpDay2CardList);
+        postOpCardList.addAll(postOpHomeCardList);
+        postOpCardList.addAll(postOpDay0CardList);
+      }
+      if (dayInCurrentState >= 2) {
+        postOpCardList.addAll(postOpDay2CardList);
+        postOpCardList.addAll(postOpHomeCardList);
+        postOpCardList.addAll(postOpDay0CardList);
+        postOpCardList.addAll(postOpDay1CardList);
+      }
     } else if (patientState == enumToString(PatientState.postOperationHome)) {
-      mustShowList.addAll(_trainingModel.postOpHomeList);
-      recomendedList.addAll(_trainingModel.postOpHospitalList);
+      postOpCardList.addAll(postOpHomeCardList);
+      postOpCardList.addAll(postOpDay0CardList);
+      postOpCardList.addAll(postOpDay1CardList);
+      postOpCardList.addAll(postOpDay2CardList);
     }
-    for (var item in mustShowList) {
-      mustShowCardList.add(TrainingMenuCard().getTrainingCard(context, item));
-    }
-    for (var item in recomendedList) {
-      recommendedCardList
-          .add(TrainingMenuCard().getTrainingCard(context, item));
-    }
-    if (mustShowCardList != null) {
-      mustShowCardList.insert(
-          0,
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text('คำแนะนำที่ควรทราบ'),
-          ));
-
-      mustShowToColumn = Column(
-        children: mustShowCardList,
-      );
-    }
-    if (recommendedCardList != null) {
-      recommendedCardList.insert(
-          0,
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text('คำแนะนำอื่นๆ'),
-          ));
-
-      recommendedToColumn = Column(children: recommendedCardList);
-    }
-
+    postOpToColumn = Column(children: postOpCardList);
     Map<String, Widget> cardLists = {
-      'mustShow': mustShowToColumn,
-      'recommended': recommendedToColumn,
+      'TrainingPostOp': postOpToColumn,
     };
-
     return cardLists;
   }
 
