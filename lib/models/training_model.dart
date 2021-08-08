@@ -1,7 +1,7 @@
 import '../@enum/training_topic.dart';
 
 class TrainingModel {
-  List<Map<String, Object>> postOpHospitalList = [
+  List<Map<String, Object>> postOpHosDay0List = [
     {
       "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
       "state": "post-op @ Hospital Day 0",
@@ -17,6 +17,8 @@ class TrainingModel {
       "state": "post-op @ Hospital Day 0",
       "selectedtopic": TrainingTopic.drainDay01,
     },
+  ];
+  List<Map<String, Object>> postOpHosDay1List = [
     {
       "topic": "การป้องกันภาวะแทรกซ้อนระบบทางเดินหายใจ",
       "state": "post-op @ Hospital Day 1",
@@ -32,6 +34,8 @@ class TrainingModel {
       "state": "post-op @ Hospital Day 1",
       "selectedtopic": TrainingTopic.nutritionDay1,
     },
+  ];
+  List<Map<String, Object>> postOpHosDay2List = [
     {
       "topic": "การจัดการความปวดขณะพักฟื้นอยู่ในโรงพยาบาล",
       "state": "post-op @ Hospital Day 2",
@@ -63,7 +67,6 @@ class TrainingModel {
       "selectedtopic": TrainingTopic.behaveDay2,
     },
   ];
-
   List<Map<String, Object>> postOpHomeList = [
     {
       "topic": "การจัดการความปวดขณะพักฟื้นอยู่ที่บ้าน",
