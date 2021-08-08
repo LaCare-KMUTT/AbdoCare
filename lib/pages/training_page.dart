@@ -41,8 +41,7 @@ class _TrainingPageState extends State<TrainingPage> {
             return ListView(
               shrinkWrap: true,
               children: <Widget>[
-                snapshot.data['mustShow'],
-                snapshot.data['recommended'],
+                snapshot.data['TrainingPostOp'],
               ],
             );
           }),
