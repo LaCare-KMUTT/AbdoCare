@@ -1,6 +1,8 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import '../models/chat_model.dart';
+import '../models/fastcall_model.dart';
 import '../models/message_model.dart';
 import '../services/service_locator.dart';
 import '../widget/chatbot/buttom_nav_bar.dart';
@@ -31,12 +33,29 @@ class _ChatPageState extends State<ChatPage> {
         title: Text("Abdocare"),
         centerTitle: true,
         actions: <Widget>[
-          NotiIcon(
-            iconData: Icons.notifications,
-            notificationCount: 0,
-            onTap: () {
-              Navigator.pushNamed(context, '/notification_page');
-            },
+          Container(
+            width: 20.0,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              icon: const Icon(
+                Icons.local_phone_rounded,
+                size: 30,
+              ),
+              alignment: Alignment.centerRight,
+              tooltip: 'โทรฉุกเฉิน',
+              onPressed: () {
+                showFastCall(context);
+              },
+            ),
+          ),
+          Container(
+            child: NotiIcon(
+              iconData: Icons.notifications,
+              notificationCount: 0,
+              onTap: () {
+                Navigator.pushNamed(context, '/notification_page');
+              },
+            ),
           ),
         ],
         leading: IconButton(
@@ -225,5 +244,75 @@ class _ChatPageState extends State<ChatPage> {
       response(text);
       _textController.clear();
     }
+  }
+
+  void showFastCall(BuildContext context) {
+    _callNumber(String phoneNum) async {
+      String number = phoneNum; //set the number here
+      await FlutterPhoneDirectCaller.callNumber(number);
+    }
+
+    AlertDialog fastcall = AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      title: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text("""หมายเลขโทรศัพท์ติดต่อทีมสุขภาพ\n""",
+              style: Theme.of(context).textTheme.bodyText2),
+          for (var item in fastCallInfo)
+            Column(
+              children: [
+                Text(item["MedicalTeamName"],
+                    style: Theme.of(context).textTheme.bodyText1),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7.0)),
+                        onPrimary: Colors.black,
+                        primary: Colors.amber),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2.5,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.local_phone_rounded,
+                            size: 30,
+                          ),
+                          Text(item["PhoneNumber"],
+                              style: TextStyle(fontSize: 16)),
+                        ],
+                      ),
+                    ),
+                    onPressed: () {
+                      _callNumber(item["PhoneNumber"]);
+                    }),
+              ],
+            ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(7.0)),
+              onPrimary: Colors.white,
+              primary: Color(0xFFC37447)),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Text("ยกเลิก", style: TextStyle(fontSize: 16)),
+            ),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (context) => fastcall,
+    );
   }
 }

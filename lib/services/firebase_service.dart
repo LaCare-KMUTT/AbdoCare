@@ -548,7 +548,7 @@ class FirebaseService extends IFirebaseService {
           preOpAdlData.isNotEmpty ? preOpAdlData['formData']['Mobility'] : 4,
       'PreOpTotal': preOpAdlData.isNotEmpty
           ? preOpAdlData['formData']['TotalScoreADL']
-          : 0,
+          : "-",
       'PostHosGrooming':
           postHosData.isNotEmpty ? postHosData['formData']['Grooming'] : 2,
       'PostHosBathing':
@@ -569,8 +569,9 @@ class FirebaseService extends IFirebaseService {
           postHosData.isNotEmpty ? postHosData['formData']['Transfer'] : 4,
       'PostHosMobility':
           postHosData.isNotEmpty ? postHosData['formData']['Mobility'] : 4,
-      'PostHosTotal':
-          postHosData.isNotEmpty ? postHosData['formData']['TotalScoreADL'] : 0,
+      'PostHosTotal': postHosData.isNotEmpty
+          ? postHosData['formData']['TotalScoreADL']
+          : "-",
       'PostHomeGrooming':
           postHomeData.isNotEmpty ? postHomeData['formData']['Grooming'] : 2,
       'PostHomeBathing':
@@ -593,7 +594,7 @@ class FirebaseService extends IFirebaseService {
           postHomeData.isNotEmpty ? postHomeData['formData']['Mobility'] : 4,
       'PostHomeTotal': postHomeData.isNotEmpty
           ? postHomeData['formData']['TotalScoreADL']
-          : 0,
+          : "-",
     };
     return map;
   }
