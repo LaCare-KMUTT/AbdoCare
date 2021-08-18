@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
 import '../models/login_model.dart';
 import '../services/service_locator.dart';
 import '../ultilities/form_utility/format_text.dart';
 import '../widget/shared/alert_style.dart';
-import 'set_pin_page.dart';
+import 'consent_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,6 +17,13 @@ class _LoginPageState extends State<LoginPage> {
   final LoginModel _loginModel = locator<LoginModel>();
   final bool _validateHN = false;
   final bool _validateUniqueKey = false;
+  bool _obscureText = true;
+  // Toggles the password show status
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
               child: TextField(
                 controller: _hnController,
-                obscureText: true,
+                obscureText: false,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -70,9 +76,14 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.fromLTRB(50, 20, 50, 0),
               child: TextField(
                 controller: _uniqueKeycontroller,
-                obscureText: true,
+                obscureText: _obscureText,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: _toggle),
                   border: OutlineInputBorder(),
                   labelText: 'รหัสโค้ด',
                   errorText:
@@ -106,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SetPinPage()),
+                                  builder: (context) => ConsentPage()),
                             );
                           }
                         } else {

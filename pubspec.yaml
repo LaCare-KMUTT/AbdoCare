@@ -49,6 +49,8 @@ dependencies:
   #To save local cache
   shared_preferences: ^2.0.6
   syncfusion_flutter_charts: ^19.2.47+1
+  url_launcher: ^6.0.9
+  flutter_phone_direct_caller: ^2.0.0
 
 dev_dependencies:
   flutter_test:
