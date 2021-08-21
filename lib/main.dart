@@ -9,7 +9,6 @@ import 'pages/login_page.dart';
 import 'pages/notification_page.dart';
 import 'pages/passcode_page.dart';
 import 'pages/profile_page.dart';
-import 'pages/training_page.dart';
 import 'services/firebase_service.dart';
 import 'services/service_locator.dart';
 import 'stores/user_store.dart';
@@ -59,7 +58,6 @@ class MyApp extends StatelessWidget {
           '/evaluation_page': (context) => EvaluationPage(),
           '/appoint_page': (context) => AppointmentPage(),
           '/dashboard_page': (context) => DashboardPage(),
-          '/training_page': (context) => TrainingPage(),
           '/passcode_page': (context) => PasscodePage(),
           '/notification_page': (context) => NotificationPage(),
         },

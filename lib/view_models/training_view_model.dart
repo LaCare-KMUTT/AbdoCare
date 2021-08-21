@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import '../@enum/patient_state.dart';
 import '../@enum/training_topic.dart';
 import '../models/training_model.dart';
-import '../services/interfaces/calculation_service_interface.dart';
-import '../services/interfaces/firebase_service_interface.dart';
 import '../services/service_locator.dart';
-import '../stores/user_store.dart';
 import '../widget/training_information/post-op-home/daily_activity_advice.dart';
 import '../widget/training_information/post-op-home/food_advice.dart';
 import '../widget/training_information/post-op-home/infection_advice.dart';
@@ -25,16 +21,10 @@ import '../widget/training_information/post-op-hos-day2-7/pulmanary_rehabilitati
 import '../widget/training_information/training_menu_card.dart';
 
 class TrainingViewModel {
-  final _firebaseService = locator<IFirebaseService>();
   final _trainingModel = locator<TrainingModel>();
-  final ICalculationService _calculationService =
-      locator<ICalculationService>();
-
   TrainingViewModel();
 
   Future<Map<String, Widget>> getTrainings(BuildContext context) async {
-    String patientState;
-    var _anSubCollection;
     List<Map<String, Object>> postOpDay0List = [];
     List<Map<String, Object>> postOpDay1List = [];
     List<Map<String, Object>> postOpDay2List = [];
@@ -43,15 +33,11 @@ class TrainingViewModel {
     List<Widget> postOpDay0CardList = [];
     List<Widget> postOpDay2CardList = [];
     List<Widget> postOpHomeCardList = [];
-    List<Widget> postOpCardList = [];
-    Column postOpToColumn = Column();
+    Column postOpDay0ToColumn = Column();
+    Column postOpDay1ToColumn = Column();
+    Column postOpDay2ToColumn = Column();
+    Column postOpHomeToColumn = Column();
 
-    patientState = await _firebaseService
-        .getLatestAnSubCollection(
-            userId: UserStore.getValueFromStore('storedUserId'))
-        .then((value) {
-      return value['state'];
-    });
     postOpDay0List.addAll(_trainingModel.postOpHosDay0List);
     postOpDay1List.addAll(_trainingModel.postOpHosDay1List);
     postOpDay2List.addAll(_trainingModel.postOpHosDay2List);
@@ -97,44 +83,17 @@ class TrainingViewModel {
               padding: const EdgeInsets.all(10.0),
               child: Text('คำแนะนำสำหรับการฟื้นตัวหลังผ่าตัดที่บ้าน')));
     }
-    if (patientState == enumToString(PatientState.preOperation)) {
-      postOpCardList.addAll(postOpDay0CardList);
-      postOpCardList.addAll(postOpDay1CardList);
-      postOpCardList.addAll(postOpDay2CardList);
-      postOpCardList.addAll(postOpHomeCardList);
-    } else if (patientState ==
-        enumToString(PatientState.postOperationHospital)) {
-      var latestStateChange = _anSubCollection['latestStateChange'].toDate();
-      var dayInCurrentState = _calculationService.calculateDayDifference(
-          day: latestStateChange,
-          compareTo: _calculationService.formatDate(date: DateTime.now()));
-      if (dayInCurrentState == 0) {
-        postOpCardList.addAll(postOpDay0CardList);
-        postOpCardList.addAll(postOpDay1CardList);
-        postOpCardList.addAll(postOpDay2CardList);
-        postOpCardList.addAll(postOpHomeCardList);
-      }
-      if (dayInCurrentState == 1) {
-        postOpCardList.addAll(postOpDay1CardList);
-        postOpCardList.addAll(postOpDay2CardList);
-        postOpCardList.addAll(postOpHomeCardList);
-        postOpCardList.addAll(postOpDay0CardList);
-      }
-      if (dayInCurrentState >= 2) {
-        postOpCardList.addAll(postOpDay2CardList);
-        postOpCardList.addAll(postOpHomeCardList);
-        postOpCardList.addAll(postOpDay0CardList);
-        postOpCardList.addAll(postOpDay1CardList);
-      }
-    } else if (patientState == enumToString(PatientState.postOperationHome)) {
-      postOpCardList.addAll(postOpHomeCardList);
-      postOpCardList.addAll(postOpDay0CardList);
-      postOpCardList.addAll(postOpDay1CardList);
-      postOpCardList.addAll(postOpDay2CardList);
-    }
-    postOpToColumn = Column(children: postOpCardList);
+
+    postOpDay0ToColumn = Column(children: postOpDay0CardList);
+    postOpDay1ToColumn = Column(children: postOpDay1CardList);
+    postOpDay2ToColumn = Column(children: postOpDay2CardList);
+    postOpHomeToColumn = Column(children: postOpHomeCardList);
+
     Map<String, Widget> cardLists = {
-      'TrainingPostOp': postOpToColumn,
+      'TrainingDay0': postOpDay0ToColumn,
+      'TrainingDay1': postOpDay1ToColumn,
+      'TrainingDay2': postOpDay2ToColumn,
+      'TrainingHome': postOpHomeToColumn,
     };
     return cardLists;
   }
