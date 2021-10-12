@@ -56,7 +56,7 @@ class _TrainingPageState extends State<TrainingPage> {
                       child: Column(
                         children: [
                           Card(
-                            color: Colors.grey[300],
+                            color: Colors.grey[100],
                             shape: RoundedRectangleBorder(
                               side: BorderSide(color: Colors.white70, width: 1),
                               borderRadius: BorderRadius.circular(10),

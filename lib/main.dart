@@ -12,7 +12,7 @@ import 'pages/profile_page.dart';
 import 'services/firebase_service.dart';
 import 'services/service_locator.dart';
 import 'stores/user_store.dart';
-
+ 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

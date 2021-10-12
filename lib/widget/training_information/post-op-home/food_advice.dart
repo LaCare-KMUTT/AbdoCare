@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class FoodAdvice extends StatelessWidget {
   @override
@@ -34,6 +35,21 @@ class FoodAdvice extends StatelessWidget {
                         child: Text(
                             '''ผู้ป่วยที่ได้รับการผ่าตัดช่องท้อง แนะนำการรับประทานอาหารดังนี้'''),
                       ),
+                      Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    "https://youtu.be/i51FDKRcKVc"),
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
+                            ),
+                          ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
