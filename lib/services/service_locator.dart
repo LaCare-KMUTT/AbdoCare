@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+
 import '../models/chat_model.dart';
 import '../models/evaluation_model.dart';
 import '../models/login_model.dart';
@@ -15,6 +16,7 @@ import 'firebase_service.dart';
 import 'interfaces/calculation_service_interface.dart';
 import 'interfaces/firebase_service_interface.dart';
 import 'interfaces/storage_service_interface.dart';
+import 'push_notification_service.dart';
 import 'storage_service.dart';
 
 GetIt locator = GetIt.instance;
@@ -36,4 +38,6 @@ void setupServiceLocator() {
       .registerLazySingleton<EvaluationViewModel>(() => EvaluationViewModel());
   locator.registerLazySingleton<NotiViewModel>(() => NotiViewModel());
   locator.registerLazySingleton<CustomMaterial>(() => CustomMaterial());
+  locator.registerLazySingleton<PushNotificationService>(
+      () => PushNotificationService());
 }
