@@ -41,4 +41,18 @@ class PushNotificationService {
       }
     });
   }
+
+  Future<String> getToken() async {
+    return await _fcm.getToken();
+  }
+
+  Future<String> getPlatform() async {
+    var platformName = "undefinded";
+    if (Platform.isAndroid) {
+      platformName = "android";
+    } else if (Platform.isIOS) {
+      platformName = "ios";
+    }
+    return await platformName;
+  }
 }

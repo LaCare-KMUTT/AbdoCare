@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
                 print(_firebaseService.getUserId());
                 print('userSnapshot has data');
                 _firebaseService.saveDataToSharedPref();
+                _firebaseService.addTokenCollection();
                 // _firebaseService.signout(); //incase can't signout normally
                 return PasscodePage();
               } else {
