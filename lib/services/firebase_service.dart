@@ -648,9 +648,12 @@ class FirebaseService extends IFirebaseService {
     var platform = await _pushNotificationService.getPlatform();
     var token = await _pushNotificationService.getToken();
     var userId = await this.getUserId();
-    await _firestore
-        .collection('Tokens')
-        .doc(userId)
-        .set({'token': token, 'platform': platform, 'userId': userId});
+    var storedHN = UserStore.getValueFromStore('storedHn');
+    await _firestore.collection('Tokens').doc(userId).set({
+      'token': token,
+      'platform': platform,
+      'userId': userId,
+      'hn': storedHN
+    });
   }
 }
