@@ -1,13 +1,16 @@
 import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import '../@enum/patient_state.dart';
 import '../models/formName_model.dart';
 import '../stores/user_store.dart';
 import 'interfaces/calculation_service_interface.dart';
 import 'interfaces/firebase_service_interface.dart';
+import 'push_notification_service.dart';
 import 'service_locator.dart';
 
 class FirebaseService extends IFirebaseService {
@@ -15,6 +18,8 @@ class FirebaseService extends IFirebaseService {
   final _auth = FirebaseAuth.instance;
   final ICalculationService _calculationService =
       locator<ICalculationService>();
+  final PushNotificationService _pushNotificationService =
+      locator<PushNotificationService>();
 
   Future<bool> signIn({
     @required String hn,
@@ -256,6 +261,8 @@ class FirebaseService extends IFirebaseService {
       @required String formName}) async {
     var creation = _calculationService.formatDate(date: DateTime.now());
     var anSubCollection = await getLatestAnSubCollection(userId: userId);
+    var token = await _pushNotificationService.getToken();
+    var platform = await _pushNotificationService.getPlatform();
     var patientState = anSubCollection['state'];
     Map<String, dynamic> dataToAdd = {
       'formName': formName,
@@ -265,6 +272,8 @@ class FirebaseService extends IFirebaseService {
       'patientState': patientState,
       'seen': false,
       'patientSeen': false,
+      'token': token,
+      'platform': platform
     };
     await _firestore
         .collection('Notifications')
@@ -633,5 +642,18 @@ class FirebaseService extends IFirebaseService {
       list.add(data);
     });
     return list;
+  }
+
+  void addTokenCollection() async {
+    var platform = await _pushNotificationService.getPlatform();
+    var token = await _pushNotificationService.getToken();
+    var userId = await this.getUserId();
+    var storedHN = UserStore.getValueFromStore('storedHn');
+    await _firestore.collection('Tokens').doc(userId).set({
+      'token': token,
+      'platform': platform,
+      'userId': userId,
+      'hn': storedHN
+    });
   }
 }
