@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../models/training_model.dart';
+import '../../../services/service_locator.dart';
 
 class DailyActivityAdvice extends StatelessWidget {
+  final _trainingModel = locator<TrainingModel>();
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -38,12 +41,13 @@ class DailyActivityAdvice extends StatelessWidget {
                             child: Text(
                                 '''การปฏิบัติกิจวัตรประจำวันภายหลังการผ่าตัดช่องท้อง สามารถทำได้ดังนี้'''),
                           ),
-                           Container(
+                          Container(
                             margin: EdgeInsets.symmetric(horizontal: 4),
                             child: YoutubePlayer(
                               controller: YoutubePlayerController(
                                 initialVideoId: YoutubePlayer.convertUrlToId(
-                                    "https://youtu.be/APUgLilx37A"),
+                                    _trainingModel
+                                        .trainingLink["DailyActivityAdvice"]),
                                 flags: YoutubePlayerFlags(autoPlay: false),
                               ),
                               showVideoProgressIndicator: true,

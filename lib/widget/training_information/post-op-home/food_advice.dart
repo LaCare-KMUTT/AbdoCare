@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../models/training_model.dart';
+import '../../../services/service_locator.dart';
 
 class FoodAdvice extends StatelessWidget {
+  final _trainingModel = locator<TrainingModel>();
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -36,20 +39,20 @@ class FoodAdvice extends StatelessWidget {
                             '''ผู้ป่วยที่ได้รับการผ่าตัดช่องท้อง แนะนำการรับประทานอาหารดังนี้'''),
                       ),
                       Container(
-                            margin: EdgeInsets.symmetric(horizontal: 4),
-                            child: YoutubePlayer(
-                              controller: YoutubePlayerController(
-                                initialVideoId: YoutubePlayer.convertUrlToId(
-                                    "https://youtu.be/i51FDKRcKVc"),
-                                flags: YoutubePlayerFlags(autoPlay: false),
-                              ),
-                              showVideoProgressIndicator: true,
-                              progressIndicatorColor: Colors.amber,
-                              progressColors: ProgressBarColors(
-                                  playedColor: Color(0xFFC37447),
-                                  handleColor: Colors.amber),
-                            ),
+                        margin: EdgeInsets.symmetric(horizontal: 4),
+                        child: YoutubePlayer(
+                          controller: YoutubePlayerController(
+                            initialVideoId: YoutubePlayer.convertUrlToId(
+                                _trainingModel.trainingLink["FoodAdvice"]),
+                            flags: YoutubePlayerFlags(autoPlay: false),
                           ),
+                          showVideoProgressIndicator: true,
+                          progressIndicatorColor: Colors.amber,
+                          progressColors: ProgressBarColors(
+                              playedColor: Color(0xFFC37447),
+                              handleColor: Colors.amber),
+                        ),
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
