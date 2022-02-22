@@ -2,6 +2,8 @@
 // Post-op @ Hospital Day 2-7
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../models/training_model.dart';
+import '../../../services/service_locator.dart';
 
 class PulmonaryAdviceDay2 extends StatefulWidget {
   final String navigate;
@@ -11,6 +13,7 @@ class PulmonaryAdviceDay2 extends StatefulWidget {
 }
 
 class _PulmonaryAdviceDay2State extends State<PulmonaryAdviceDay2> {
+  final _trainingModel = locator<TrainingModel>();
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -56,7 +59,8 @@ class _PulmonaryAdviceDay2State extends State<PulmonaryAdviceDay2> {
                             child: YoutubePlayer(
                               controller: YoutubePlayerController(
                                 initialVideoId: YoutubePlayer.convertUrlToId(
-                                    "https://youtu.be/fgKkGjSHISg"),
+                                    _trainingModel
+                                        .trainingLink["PulmonaryAdviceDay2"]),
                                 flags: YoutubePlayerFlags(autoPlay: false),
                               ),
                               showVideoProgressIndicator: true,

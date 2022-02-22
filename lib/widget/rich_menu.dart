@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../pages/training_page.dart';
+import '../services/interfaces/firebase_service_interface.dart';
+import '../services/service_locator.dart';
+import '../stores/user_store.dart';
 
 class RichMenu extends StatefulWidget {
   @override
@@ -6,6 +10,7 @@ class RichMenu extends StatefulWidget {
 }
 
 class _RichMenuState extends State<RichMenu> {
+  final IFirebaseService _firebaseService = locator<IFirebaseService>();
   @override
   Widget build(BuildContext context) => Container(
         color: Colors.grey[900].withOpacity(0.62),
@@ -130,8 +135,19 @@ class _RichMenuState extends State<RichMenu> {
                           ],
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/training_page');
+                      onPressed: () async {
+                        var storedUserId =
+                            UserStore.getValueFromStore('storedUserId');
+                        var anSubcollection = await _firebaseService
+                            .getLatestAnSubCollection(userId: storedUserId);
+                        var _patientState = anSubcollection["state"];
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  TrainingPage(patientState: _patientState)),
+                        );
                       },
                     ),
                   ),

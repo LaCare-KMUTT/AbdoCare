@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../models/training_model.dart';
+import '../../../services/service_locator.dart';
 
 class InfectionAdvice extends StatelessWidget {
+  final _trainingModel = locator<TrainingModel>();
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -35,6 +39,22 @@ class InfectionAdvice extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
                                 '''การดูแลเพื่อส่งเสริมการหายของแผลและป้องกันการติดเชื้อที่แผลผ่าตัด มีดังนี้'''),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    _trainingModel
+                                        .trainingLink["InfectionAdvice"]),
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
+                            ),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,

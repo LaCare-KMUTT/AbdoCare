@@ -1,8 +1,12 @@
 // Proper behave advice before returning home
 // Post-op @ Hospital Day 2-7
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../models/training_model.dart';
+import '../../../services/service_locator.dart';
 
 class BehaveAdviceDay2 extends StatelessWidget {
+  final _trainingModel = locator<TrainingModel>();
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -38,6 +42,22 @@ class BehaveAdviceDay2 extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
                                 '''การปฏิบัติตัวที่เหมาะสมเพื่อฟื้นฟูสภาพและเฝ้าระวังภาวะแทรกซ้อนหลังผ่าตัดอย่างต่อเนื่อง'''),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4),
+                            child: YoutubePlayer(
+                              controller: YoutubePlayerController(
+                                initialVideoId: YoutubePlayer.convertUrlToId(
+                                    _trainingModel
+                                        .trainingLink["BehaveAdviceDay2"]),
+                                flags: YoutubePlayerFlags(autoPlay: false),
+                              ),
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: ProgressBarColors(
+                                  playedColor: Color(0xFFC37447),
+                                  handleColor: Colors.amber),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
